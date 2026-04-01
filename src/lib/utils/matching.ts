@@ -15,6 +15,7 @@ export function filterFields(fields: FieldDefinition[], searchTerm: string) {
 			field.code,
 			field.label,
 			field.table,
+			field.group,
 			field.description,
 			...(field.keywords ?? [])
 		]
@@ -64,7 +65,8 @@ export function buildFallbackMail(
 		'Merci de créer ou compléter une extraction read-only avec les champs suivants :',
 		'',
 		...selectedFields.map(
-			(field) => `- ${field.code} | ${field.label} | ${field.category} | table ${field.table}`
+			(field) =>
+				`- ${field.code} | ${field.label} | ${field.category} > ${field.group} | table ${field.table}`
 		),
 		'',
 		'Contexte : application de consultation interne Sage X3.',

@@ -5,7 +5,7 @@
 
 	type Props = {
 		categories: CategoryName[];
-		fieldsByCategory: Record<string, FieldDefinition[]>;
+		groupedFields: Record<string, Record<string, FieldDefinition[]>>;
 		selectedCodes: string[];
 		searchTerm: string;
 		onToggleField: (code: string) => void;
@@ -16,7 +16,7 @@
 
 	let {
 		categories,
-		fieldsByCategory,
+		groupedFields,
 		selectedCodes,
 		searchTerm,
 		onToggleField,
@@ -33,6 +33,9 @@
 	});
 
 	const isSelected = (code: string) => selectedCodes.includes(code);
+	const countFields = (category: CategoryName) =>
+		Object.values(groupedFields[category] ?? {}).reduce((total, fields) => total + fields.length, 0);
+	const countGroups = (category: CategoryName) => Object.keys(groupedFields[category] ?? {}).length;
 </script>
 
 <section class="glass-card overflow-hidden">
@@ -86,9 +89,12 @@
 						<div>
 							<h3 class="text-lg font-semibold text-slate-900">{meta.title}</h3>
 							<p class="mt-2 text-sm leading-6 text-slate-600">{meta.description}</p>
+							<p class="mt-2 text-xs uppercase tracking-[0.18em] text-slate-500">
+								{countGroups(category)} sous-catégorie(s)
+							</p>
 						</div>
 						<span class="rounded-full border border-white/80 bg-white/80 px-2.5 py-1 text-xs font-medium text-slate-600">
-							{fieldsByCategory[category]?.length ?? 0}
+							{countFields(category)}
 						</span>
 					</div>
 				</button>
@@ -103,44 +109,60 @@
 						<h3 class="text-lg font-semibold text-slate-900">{openCategory}</h3>
 					</div>
 					<span class="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600">
-						{fieldsByCategory[openCategory]?.length ?? 0} champ(s)
+						{countFields(openCategory)} champ(s)
 					</span>
 				</div>
 
-				<div class="grid max-h-[34rem] gap-3 overflow-y-auto pr-1 md:grid-cols-2">
-					{#each fieldsByCategory[openCategory] ?? [] as field}
-						<label
-							class={`group flex cursor-pointer gap-3 rounded-2xl border p-4 transition ${
-								isSelected(field.code)
-									? 'border-corporate-300 bg-corporate-50'
-									: 'border-slate-200 bg-white hover:border-corporate-200 hover:bg-slate-50'
-							}`}
-						>
-							<input
-								class="mt-1 size-4 rounded border-slate-300 text-corporate-600 focus:ring-corporate-300"
-								type="checkbox"
-								checked={isSelected(field.code)}
-								onchange={() => onToggleField(field.code)}
-							/>
-							<div class="min-w-0 flex-1">
-								<div class="flex items-center justify-between gap-3">
-									<div>
-										<p class="text-sm font-semibold text-slate-900">{field.label}</p>
-										<p class="text-xs uppercase tracking-[0.2em] text-slate-500">{field.code}</p>
-									</div>
-									{#if isSelected(field.code)}
-										<CheckCircle2 class="size-4 shrink-0 text-corporate-600" />
-									{/if}
+				<div class="max-h-[42rem] space-y-5 overflow-y-auto pr-1">
+					{#each Object.entries(groupedFields[openCategory] ?? {}) as [groupName, fields]}
+						<section class="rounded-3xl border border-slate-200 bg-slate-50/50 p-4">
+							<div class="mb-4 flex items-center justify-between gap-3">
+								<div>
+									<h4 class="text-base font-semibold text-slate-900">{groupName}</h4>
+									<p class="text-sm text-slate-500">{fields.length} champ(s) disponibles</p>
 								</div>
-								<p class="mt-2 text-sm leading-6 text-slate-600">{field.description}</p>
-								<div class="mt-3 flex items-center gap-2 text-xs text-slate-500">
-									<span class="rounded-full bg-slate-100 px-2.5 py-1">{field.table}</span>
-									{#each field.keywords.slice(0, 2) as keyword}
-										<span class="rounded-full bg-slate-100 px-2.5 py-1">{keyword}</span>
-									{/each}
-								</div>
+								<span class="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-600">
+									{groupName}
+								</span>
 							</div>
-						</label>
+
+							<div class="grid gap-3 xl:grid-cols-2 2xl:grid-cols-3">
+								{#each fields as field}
+									<label
+										class={`group flex cursor-pointer gap-3 rounded-2xl border p-4 transition ${
+											isSelected(field.code)
+												? 'border-corporate-300 bg-corporate-50'
+												: 'border-slate-200 bg-white hover:border-corporate-200 hover:bg-slate-50'
+										}`}
+									>
+										<input
+											class="mt-1 size-4 rounded border-slate-300 text-corporate-600 focus:ring-corporate-300"
+											type="checkbox"
+											checked={isSelected(field.code)}
+											onchange={() => onToggleField(field.code)}
+										/>
+										<div class="min-w-0 flex-1">
+											<div class="flex items-center justify-between gap-3">
+												<div>
+													<p class="text-sm font-semibold text-slate-900">{field.label}</p>
+													<p class="text-xs uppercase tracking-[0.2em] text-slate-500">{field.code}</p>
+												</div>
+												{#if isSelected(field.code)}
+													<CheckCircle2 class="size-4 shrink-0 text-corporate-600" />
+												{/if}
+											</div>
+											<p class="mt-2 text-sm leading-6 text-slate-600">{field.description}</p>
+											<div class="mt-3 flex flex-wrap items-center gap-2 text-xs text-slate-500">
+												<span class="rounded-full bg-slate-100 px-2.5 py-1">{field.table}</span>
+												{#each field.keywords.slice(0, 2) as keyword}
+													<span class="rounded-full bg-slate-100 px-2.5 py-1">{keyword}</span>
+												{/each}
+											</div>
+										</div>
+									</label>
+								{/each}
+							</div>
+						</section>
 					{/each}
 				</div>
 			{:else}

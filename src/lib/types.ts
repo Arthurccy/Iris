@@ -2,6 +2,7 @@ export type FieldDefinition = {
 	code: string;
 	label: string;
 	category: string;
+	group: string;
 	table: string;
 	description: string;
 	keywords: string[];

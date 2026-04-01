@@ -23,7 +23,7 @@
 			</p>
 		</div>
 
-		<div class="rounded-2xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
+		<div class="rounded-2xl border border-corporate-200 bg-corporate-50 px-4 py-3 text-sm text-corporate-900">
 			<div class="flex items-center gap-2 font-medium">
 				<ShieldCheck class="size-4" />
 				Consultation read-only
@@ -107,12 +107,12 @@
 								</div>
 							</div>
 
-							<div class="rounded-2xl border border-slate-200 bg-slate-950 p-4 text-slate-100">
-								<div class="mb-3 flex items-center gap-2 text-sm font-semibold text-slate-200">
+							<div class="rounded-2xl border border-corporate-800 bg-corporate-900 p-4 text-white">
+								<div class="mb-3 flex items-center gap-2 text-sm font-semibold text-corporate-100">
 									<FileCode2 class="size-4" />
 									SQL disponible
 								</div>
-								<pre class="overflow-x-auto whitespace-pre-wrap break-words text-xs leading-6 text-slate-300">{query.sql}</pre>
+								<pre class="overflow-x-auto whitespace-pre-wrap break-words text-xs leading-6 text-corporate-100/90">{query.sql}</pre>
 							</div>
 						</div>
 
@@ -126,10 +126,10 @@
 				{/each}
 			</div>
 		{:else}
-			<div class="rounded-3xl border border-dashed border-amber-200 bg-amber-50 p-8">
+			<div class="rounded-3xl border border-dashed border-corporate-200 bg-corporate-50 p-8">
 				<div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
 					<div class="max-w-2xl space-y-2">
-						<p class="text-sm font-semibold uppercase tracking-[0.22em] text-amber-700">Bouton 3636</p>
+						<p class="text-sm font-semibold uppercase tracking-[0.22em] text-corporate-700">Bouton 3636</p>
 						<h3 class="text-xl font-semibold text-slate-900">Aucune requête existante ne couvre ce besoin</h3>
 						<p class="text-sm leading-6 text-slate-700">
 							Le fallback prépare un e-mail vers {fallbackMailTo} avec la liste exacte des champs demandés

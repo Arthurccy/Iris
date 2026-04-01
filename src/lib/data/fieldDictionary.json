@@ -3,6 +3,7 @@
     "code": "ITMREF",
     "label": "Référence article",
     "category": "Production",
+    "group": "Articles",
     "table": "ITMMASTER",
     "description": "Identifiant unique de l'article dans Sage X3.",
     "keywords": ["article", "référence", "produit"]
@@ -11,14 +12,34 @@
     "code": "ITMDEZ",
     "label": "Désignation article",
     "category": "Production",
+    "group": "Articles",
     "table": "ITMMASTER",
     "description": "Libellé métier affiché pour l'article.",
     "keywords": ["désignation", "nom", "article"]
   },
   {
+    "code": "TCLCOD",
+    "label": "Catégorie article",
+    "category": "Production",
+    "group": "Articles",
+    "table": "ITMMASTER",
+    "description": "Famille ou typologie de l'article.",
+    "keywords": ["catégorie", "famille", "classification"]
+  },
+  {
+    "code": "TSICOD",
+    "label": "Code sous-famille",
+    "category": "Production",
+    "group": "Articles",
+    "table": "ITMMASTER",
+    "description": "Code de segmentation complémentaire de l'article.",
+    "keywords": ["sous-famille", "code", "article"]
+  },
+  {
     "code": "MFGNUM",
     "label": "Numéro d'OF",
     "category": "Production",
+    "group": "Ordres de fabrication",
     "table": "MFGHEAD",
     "description": "Numéro de l'ordre de fabrication.",
     "keywords": ["of", "fabrication", "ordre"]
@@ -27,14 +48,34 @@
     "code": "MFGFCY",
     "label": "Site de fabrication",
     "category": "Production",
+    "group": "Ordres de fabrication",
     "table": "MFGHEAD",
     "description": "Site sur lequel l'OF est exécuté.",
     "keywords": ["site", "usine", "production"]
   },
   {
+    "code": "MFGSTA",
+    "label": "Statut OF",
+    "category": "Production",
+    "group": "Ordres de fabrication",
+    "table": "MFGHEAD",
+    "description": "État d'avancement de l'ordre de fabrication.",
+    "keywords": ["statut", "of", "avancement"]
+  },
+  {
+    "code": "MFGTYP",
+    "label": "Type d'OF",
+    "category": "Production",
+    "group": "Ordres de fabrication",
+    "table": "MFGHEAD",
+    "description": "Type d'ordre selon le processus de fabrication.",
+    "keywords": ["type", "ordre", "fabrication"]
+  },
+  {
     "code": "EXTQTY",
     "label": "Quantité prévue",
     "category": "Production",
+    "group": "Quantités et planning",
     "table": "MFGHEAD",
     "description": "Quantité attendue dans l'OF.",
     "keywords": ["quantité", "prévu", "planning"]
@@ -43,22 +84,70 @@
     "code": "CPLQTY",
     "label": "Quantité réalisée",
     "category": "Production",
+    "group": "Quantités et planning",
     "table": "MFGHEAD",
     "description": "Quantité produite ou déclarée.",
     "keywords": ["quantité", "réalisée", "déclaration"]
   },
   {
+    "code": "STRDAT",
+    "label": "Date début prévue",
+    "category": "Production",
+    "group": "Quantités et planning",
+    "table": "MFGHEAD",
+    "description": "Date de démarrage planifiée pour l'OF.",
+    "keywords": ["date", "début", "planning"]
+  },
+  {
+    "code": "ENDDAT",
+    "label": "Date fin prévue",
+    "category": "Production",
+    "group": "Quantités et planning",
+    "table": "MFGHEAD",
+    "description": "Date de fin planifiée pour l'OF.",
+    "keywords": ["date", "fin", "planning"]
+  },
+  {
     "code": "LOT",
     "label": "Numéro de lot",
     "category": "Qualité",
+    "group": "Traçabilité",
     "table": "STOCK",
     "description": "Lot de traçabilité matière ou produit fini.",
     "keywords": ["lot", "traçabilité", "batch"]
   },
   {
+    "code": "SLO",
+    "label": "Sous-lot",
+    "category": "Qualité",
+    "group": "Traçabilité",
+    "table": "STOCK",
+    "description": "Découpage fin du lot pour le suivi qualité.",
+    "keywords": ["sous-lot", "lot", "traçabilité"]
+  },
+  {
+    "code": "PALNUM",
+    "label": "Numéro palette",
+    "category": "Qualité",
+    "group": "Traçabilité",
+    "table": "STOCK",
+    "description": "Identifiant palette lié au lot ou au stock.",
+    "keywords": ["palette", "support", "logistique"]
+  },
+  {
+    "code": "SERIAL",
+    "label": "Numéro de série",
+    "category": "Qualité",
+    "group": "Traçabilité",
+    "table": "STOCK",
+    "description": "Numéro de série unitaire quand applicable.",
+    "keywords": ["série", "serial", "traçabilité"]
+  },
+  {
     "code": "QIPCOD",
     "label": "Code inspection qualité",
     "category": "Qualité",
+    "group": "Contrôles et inspections",
     "table": "QINSPECTION",
     "description": "Code du plan ou contrôle qualité associé.",
     "keywords": ["inspection", "qualité", "contrôle"]
@@ -67,14 +156,34 @@
     "code": "QSTA",
     "label": "Statut qualité",
     "category": "Qualité",
+    "group": "Contrôles et inspections",
     "table": "QINSPECTION",
     "description": "Statut qualité de l'article, lot ou contrôle.",
     "keywords": ["statut", "qualité", "blocage"]
   },
   {
+    "code": "QCRIT",
+    "label": "Criticité contrôle",
+    "category": "Qualité",
+    "group": "Contrôles et inspections",
+    "table": "QINSPECTION",
+    "description": "Niveau de criticité du contrôle qualité.",
+    "keywords": ["criticité", "contrôle", "qualité"]
+  },
+  {
+    "code": "QRESCOD",
+    "label": "Résultat contrôle",
+    "category": "Qualité",
+    "group": "Contrôles et inspections",
+    "table": "QINSPECTION",
+    "description": "Résultat saisi à l'issue de l'inspection.",
+    "keywords": ["résultat", "contrôle", "inspection"]
+  },
+  {
     "code": "CREDAT",
     "label": "Date de création",
     "category": "Qualité",
+    "group": "Audit et historique",
     "table": "AUDIT",
     "description": "Date de création de l'enregistrement.",
     "keywords": ["date", "création", "historique"]
@@ -83,38 +192,43 @@
     "code": "UPDDATTIM",
     "label": "Horodatage de mise à jour",
     "category": "Qualité",
+    "group": "Audit et historique",
     "table": "AUDIT",
     "description": "Date et heure de dernière modification.",
     "keywords": ["date", "mise à jour", "audit"]
   },
   {
-    "code": "BPSNUM",
-    "label": "Code fournisseur",
-    "category": "Stocks",
-    "table": "BPSUPPLIER",
-    "description": "Identifiant du fournisseur dans Sage X3.",
-    "keywords": ["fournisseur", "tiers", "achat"]
+    "code": "CREUSR",
+    "label": "Créé par",
+    "category": "Qualité",
+    "group": "Audit et historique",
+    "table": "AUDIT",
+    "description": "Utilisateur à l'origine de la création.",
+    "keywords": ["utilisateur", "création", "audit"]
+  },
+  {
+    "code": "UPDUSR",
+    "label": "Mis à jour par",
+    "category": "Qualité",
+    "group": "Audit et historique",
+    "table": "AUDIT",
+    "description": "Dernier utilisateur ayant modifié l'enregistrement.",
+    "keywords": ["utilisateur", "modification", "audit"]
   },
   {
     "code": "STOFCY",
     "label": "Site de stock",
     "category": "Stocks",
+    "group": "Disponibilité",
     "table": "STOCK",
     "description": "Site logistique porteur du stock.",
     "keywords": ["stock", "site", "entrepôt"]
   },
   {
-    "code": "LOC",
-    "label": "Emplacement",
-    "category": "Stocks",
-    "table": "STOCK",
-    "description": "Adresse ou emplacement physique dans le dépôt.",
-    "keywords": ["emplacement", "magasin", "rayon"]
-  },
-  {
     "code": "PCUQTY",
     "label": "Stock physique",
     "category": "Stocks",
+    "group": "Disponibilité",
     "table": "STOCK",
     "description": "Quantité présente physiquement au stock.",
     "keywords": ["stock", "physique", "quantité"]
@@ -123,8 +237,72 @@
     "code": "AVLQTY",
     "label": "Stock disponible",
     "category": "Stocks",
+    "group": "Disponibilité",
     "table": "STOCK",
     "description": "Quantité disponible après allocations et contrôles.",
     "keywords": ["stock", "disponible", "allocation"]
+  },
+  {
+    "code": "ALLQTY",
+    "label": "Stock alloué",
+    "category": "Stocks",
+    "group": "Disponibilité",
+    "table": "STOCK",
+    "description": "Quantité déjà réservée ou allouée.",
+    "keywords": ["stock", "alloué", "réservation"]
+  },
+  {
+    "code": "LOC",
+    "label": "Emplacement",
+    "category": "Stocks",
+    "group": "Emplacements",
+    "table": "STOCK",
+    "description": "Adresse ou emplacement physique dans le dépôt.",
+    "keywords": ["emplacement", "magasin", "rayon"]
+  },
+  {
+    "code": "LOCTYP",
+    "label": "Type d'emplacement",
+    "category": "Stocks",
+    "group": "Emplacements",
+    "table": "LOCMASTER",
+    "description": "Nature de l'emplacement dans l'entrepôt.",
+    "keywords": ["emplacement", "type", "entrepôt"]
+  },
+  {
+    "code": "WRH",
+    "label": "Dépôt",
+    "category": "Stocks",
+    "group": "Emplacements",
+    "table": "LOCMASTER",
+    "description": "Dépôt ou magasin de rattachement.",
+    "keywords": ["dépôt", "magasin", "stock"]
+  },
+  {
+    "code": "BPSNUM",
+    "label": "Code fournisseur",
+    "category": "Stocks",
+    "group": "Approvisionnement",
+    "table": "BPSUPPLIER",
+    "description": "Identifiant du fournisseur dans Sage X3.",
+    "keywords": ["fournisseur", "tiers", "achat"]
+  },
+  {
+    "code": "PTHNUM",
+    "label": "Numéro de réception",
+    "category": "Stocks",
+    "group": "Approvisionnement",
+    "table": "PRECEIPT",
+    "description": "Référence de réception fournisseur.",
+    "keywords": ["réception", "fournisseur", "appro"]
+  },
+  {
+    "code": "BPRNUM",
+    "label": "Code client",
+    "category": "Stocks",
+    "group": "Approvisionnement",
+    "table": "BPCUSTOMER",
+    "description": "Identifiant du client pour les flux de sortie.",
+    "keywords": ["client", "tiers", "expédition"]
   }
 ]

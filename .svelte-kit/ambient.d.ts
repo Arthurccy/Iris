@@ -40,7 +40,6 @@
 declare module '$env/static/private' {
 	export const ALLUSERSPROFILE: string;
 	export const APPDATA: string;
-	export const APPLICATION_INSIGHTS_NO_STATSBEAT: string;
 	export const ChocolateyInstall: string;
 	export const ChocolateyLastPathUpdate: string;
 	export const CHROME_CRASHPAD_PIPE_NAME: string;
@@ -66,6 +65,7 @@ declare module '$env/static/private' {
 	export const LOCALAPPDATA: string;
 	export const LOGONSERVER: string;
 	export const NODE: string;
+	export const NODE_ENV: string;
 	export const NODE_EXE: string;
 	export const NODE_UNC_HOST_ALLOWLIST: string;
 	export const NPM_CLI_JS: string;
@@ -164,7 +164,12 @@ declare module '$env/static/private' {
  * The above values will be the same _even if_ different values for `ENVIRONMENT` or `PUBLIC_BASE_URL` are set at runtime, as they are statically replaced in your code with their build time values.
  */
 declare module '$env/static/public' {
-	
+	export const PUBLIC_APP_NAME: string;
+	export const PUBLIC_APP_ENV: string;
+	export const PUBLIC_SUPPORT_EMAIL: string;
+	export const PUBLIC_GITHUB_REPO: string;
+	export const PUBLIC_GITHUB_BRANCH: string;
+	export const PUBLIC_GITHUB_URL: string;
 }
 
 /**
@@ -216,7 +221,6 @@ declare module '$env/dynamic/private' {
 	export const env: {
 		ALLUSERSPROFILE: string;
 		APPDATA: string;
-		APPLICATION_INSIGHTS_NO_STATSBEAT: string;
 		ChocolateyInstall: string;
 		ChocolateyLastPathUpdate: string;
 		CHROME_CRASHPAD_PIPE_NAME: string;
@@ -242,6 +246,7 @@ declare module '$env/dynamic/private' {
 		LOCALAPPDATA: string;
 		LOGONSERVER: string;
 		NODE: string;
+		NODE_ENV: string;
 		NODE_EXE: string;
 		NODE_UNC_HOST_ALLOWLIST: string;
 		NPM_CLI_JS: string;
@@ -359,6 +364,12 @@ declare module '$env/dynamic/private' {
  */
 declare module '$env/dynamic/public' {
 	export const env: {
+		PUBLIC_APP_NAME: string;
+		PUBLIC_APP_ENV: string;
+		PUBLIC_SUPPORT_EMAIL: string;
+		PUBLIC_GITHUB_REPO: string;
+		PUBLIC_GITHUB_BRANCH: string;
+		PUBLIC_GITHUB_URL: string;
 		[key: `PUBLIC_${string}`]: string | undefined;
 	}
 }

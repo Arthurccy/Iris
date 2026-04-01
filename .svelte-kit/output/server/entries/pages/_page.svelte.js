@@ -71,44 +71,6 @@ function Icon($$renderer, $$props) {
     });
   });
 }
-function Database($$renderer, $$props) {
-  const $$sanitized_props = sanitize_props($$props);
-  /**
-   * @license lucide-svelte v0.454.0 - ISC
-   *
-   * This source code is licensed under the ISC license.
-   * See the LICENSE file in the root directory of this source tree.
-   */
-  const iconNode = [
-    ["ellipse", { "cx": "12", "cy": "5", "rx": "9", "ry": "3" }],
-    ["path", { "d": "M3 5V19A9 3 0 0 0 21 19V5" }],
-    ["path", { "d": "M3 12A9 3 0 0 0 21 12" }]
-  ];
-  Icon($$renderer, spread_props([
-    { name: "database" },
-    $$sanitized_props,
-    {
-      /**
-       * @component @name Database
-       * @description Lucide SVG icon component, renders SVG Element with children.
-       *
-       * @preview ![img](data:image/svg+xml;base64,PHN2ZyAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzAwMCIgc3R5bGU9ImJhY2tncm91bmQtY29sb3I6ICNmZmY7IGJvcmRlci1yYWRpdXM6IDJweCIKICBzdHJva2Utd2lkdGg9IjIiCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8ZWxsaXBzZSBjeD0iMTIiIGN5PSI1IiByeD0iOSIgcnk9IjMiIC8+CiAgPHBhdGggZD0iTTMgNVYxOUE5IDMgMCAwIDAgMjEgMTlWNSIgLz4KICA8cGF0aCBkPSJNMyAxMkE5IDMgMCAwIDAgMjEgMTIiIC8+Cjwvc3ZnPgo=) - https://lucide.dev/icons/database
-       * @see https://lucide.dev/guide/packages/lucide-svelte - Documentation
-       *
-       * @param {Object} props - Lucide icons props and any valid SVG attribute
-       * @returns {FunctionalComponent} Svelte component
-       *
-       */
-      iconNode,
-      children: ($$renderer2) => {
-        $$renderer2.push(`<!--[-->`);
-        slot($$renderer2, $$props, "default", {});
-        $$renderer2.push(`<!--]-->`);
-      },
-      $$slots: { default: true }
-    }
-  ]));
-}
 function Factory($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
   /**
@@ -222,57 +184,6 @@ function Flask_conical($$renderer, $$props) {
        * @description Lucide SVG icon component, renders SVG Element with children.
        *
        * @preview ![img](data:image/svg+xml;base64,PHN2ZyAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzAwMCIgc3R5bGU9ImJhY2tncm91bmQtY29sb3I6ICNmZmY7IGJvcmRlci1yYWRpdXM6IDJweCIKICBzdHJva2Utd2lkdGg9IjIiCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMTAgMnY3LjUyN2EyIDIgMCAwIDEtLjIxMS44OTZMNC43MiAyMC41NWExIDEgMCAwIDAgLjkgMS40NWgxMi43NmExIDEgMCAwIDAgLjktMS40NWwtNS4wNjktMTAuMTI3QTIgMiAwIDAgMSAxNCA5LjUyN1YyIiAvPgogIDxwYXRoIGQ9Ik04LjUgMmg3IiAvPgogIDxwYXRoIGQ9Ik03IDE2aDEwIiAvPgo8L3N2Zz4K) - https://lucide.dev/icons/flask-conical
-       * @see https://lucide.dev/guide/packages/lucide-svelte - Documentation
-       *
-       * @param {Object} props - Lucide icons props and any valid SVG attribute
-       * @returns {FunctionalComponent} Svelte component
-       *
-       */
-      iconNode,
-      children: ($$renderer2) => {
-        $$renderer2.push(`<!--[-->`);
-        slot($$renderer2, $$props, "default", {});
-        $$renderer2.push(`<!--]-->`);
-      },
-      $$slots: { default: true }
-    }
-  ]));
-}
-function Layout_grid($$renderer, $$props) {
-  const $$sanitized_props = sanitize_props($$props);
-  /**
-   * @license lucide-svelte v0.454.0 - ISC
-   *
-   * This source code is licensed under the ISC license.
-   * See the LICENSE file in the root directory of this source tree.
-   */
-  const iconNode = [
-    [
-      "rect",
-      { "width": "7", "height": "7", "x": "3", "y": "3", "rx": "1" }
-    ],
-    [
-      "rect",
-      { "width": "7", "height": "7", "x": "14", "y": "3", "rx": "1" }
-    ],
-    [
-      "rect",
-      { "width": "7", "height": "7", "x": "14", "y": "14", "rx": "1" }
-    ],
-    [
-      "rect",
-      { "width": "7", "height": "7", "x": "3", "y": "14", "rx": "1" }
-    ]
-  ];
-  Icon($$renderer, spread_props([
-    { name: "layout-grid" },
-    $$sanitized_props,
-    {
-      /**
-       * @component @name LayoutGrid
-       * @description Lucide SVG icon component, renders SVG Element with children.
-       *
-       * @preview ![img](data:image/svg+xml;base64,PHN2ZyAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzAwMCIgc3R5bGU9ImJhY2tncm91bmQtY29sb3I6ICNmZmY7IGJvcmRlci1yYWRpdXM6IDJweCIKICBzdHJva2Utd2lkdGg9IjIiCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSI3IiB4PSIzIiB5PSIzIiByeD0iMSIgLz4KICA8cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSI3IiB4PSIxNCIgeT0iMyIgcng9IjEiIC8+CiAgPHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iNyIgeD0iMTQiIHk9IjE0IiByeD0iMSIgLz4KICA8cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSI3IiB4PSIzIiB5PSIxNCIgcng9IjEiIC8+Cjwvc3ZnPgo=) - https://lucide.dev/icons/layout-grid
        * @see https://lucide.dev/guide/packages/lucide-svelte - Documentation
        *
        * @param {Object} props - Lucide icons props and any valid SVG attribute
@@ -455,51 +366,6 @@ function Shield_check($$renderer, $$props) {
     }
   ]));
 }
-function Sparkles($$renderer, $$props) {
-  const $$sanitized_props = sanitize_props($$props);
-  /**
-   * @license lucide-svelte v0.454.0 - ISC
-   *
-   * This source code is licensed under the ISC license.
-   * See the LICENSE file in the root directory of this source tree.
-   */
-  const iconNode = [
-    [
-      "path",
-      {
-        "d": "M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"
-      }
-    ],
-    ["path", { "d": "M20 3v4" }],
-    ["path", { "d": "M22 5h-4" }],
-    ["path", { "d": "M4 17v2" }],
-    ["path", { "d": "M5 18H3" }]
-  ];
-  Icon($$renderer, spread_props([
-    { name: "sparkles" },
-    $$sanitized_props,
-    {
-      /**
-       * @component @name Sparkles
-       * @description Lucide SVG icon component, renders SVG Element with children.
-       *
-       * @preview ![img](data:image/svg+xml;base64,PHN2ZyAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iIzAwMCIgc3R5bGU9ImJhY2tncm91bmQtY29sb3I6ICNmZmY7IGJvcmRlci1yYWRpdXM6IDJweCIKICBzdHJva2Utd2lkdGg9IjIiCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNOS45MzcgMTUuNUEyIDIgMCAwIDAgOC41IDE0LjA2M2wtNi4xMzUtMS41ODJhLjUuNSAwIDAgMSAwLS45NjJMOC41IDkuOTM2QTIgMiAwIDAgMCA5LjkzNyA4LjVsMS41ODItNi4xMzVhLjUuNSAwIDAgMSAuOTYzIDBMMTQuMDYzIDguNUEyIDIgMCAwIDAgMTUuNSA5LjkzN2w2LjEzNSAxLjU4MWEuNS41IDAgMCAxIDAgLjk2NEwxNS41IDE0LjA2M2EyIDIgMCAwIDAtMS40MzcgMS40MzdsLTEuNTgyIDYuMTM1YS41LjUgMCAwIDEtLjk2MyAweiIgLz4KICA8cGF0aCBkPSJNMjAgM3Y0IiAvPgogIDxwYXRoIGQ9Ik0yMiA1aC00IiAvPgogIDxwYXRoIGQ9Ik00IDE3djIiIC8+CiAgPHBhdGggZD0iTTUgMThIMyIgLz4KPC9zdmc+Cg==) - https://lucide.dev/icons/sparkles
-       * @see https://lucide.dev/guide/packages/lucide-svelte - Documentation
-       *
-       * @param {Object} props - Lucide icons props and any valid SVG attribute
-       * @returns {FunctionalComponent} Svelte component
-       *
-       */
-      iconNode,
-      children: ($$renderer2) => {
-        $$renderer2.push(`<!--[-->`);
-        slot($$renderer2, $$props, "default", {});
-        $$renderer2.push(`<!--]-->`);
-      },
-      $$slots: { default: true }
-    }
-  ]));
-}
 const categoryMeta = {
   Production: {
     title: "Production",
@@ -511,23 +377,25 @@ const categoryMeta = {
     title: "Qualité",
     description: "Lots, statuts, inspections et audit qualité.",
     icon: Flask_conical,
-    accent: "from-emerald-500/15 via-emerald-100/40 to-white"
+    accent: "from-corporate-500/14 via-corporate-50/90 to-white"
   },
   Stocks: {
     title: "Stocks",
     description: "Disponibilité, emplacement, site et traçabilité.",
     icon: Package,
-    accent: "from-amber-500/15 via-amber-100/40 to-white"
+    accent: "from-corporate-700/12 via-corporate-100/35 to-white"
   }
 };
 function FieldSelectorPanel($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
     let {
       categories,
-      fieldsByCategory,
+      groupedFields,
       searchTerm
     } = $$props;
     let openCategory = null;
+    const countFields = (category) => Object.values(groupedFields[category] ?? {}).reduce((total, fields) => total + fields.length, 0);
+    const countGroups = (category) => Object.keys(groupedFields[category] ?? {}).length;
     $$renderer2.push(`<section class="glass-card overflow-hidden"><div class="section-divider flex flex-col gap-4 p-6 lg:flex-row lg:items-end lg:justify-between"><div class="space-y-2"><p class="text-sm font-semibold uppercase tracking-[0.24em] text-corporate-600">Catalogue métier</p> <h2 class="text-2xl font-semibold text-slate-900">Sélection des champs Sage X3</h2> <p class="max-w-2xl text-sm leading-6 text-slate-600">Cliquez sur une famille, cochez les champs utiles, puis laissez le moteur retrouver les requêtes
 				existantes qui couvrent au minimum votre besoin.</p></div> <div class="flex flex-col gap-3 sm:flex-row"><label class="relative block min-w-[18rem]">`);
     Search($$renderer2, {
@@ -547,7 +415,7 @@ function FieldSelectorPanel($$renderer, $$props) {
         $$renderer2.push("<!--[!-->");
         $$renderer2.push("<!--]-->");
       }
-      $$renderer2.push(` <div class="flex items-start justify-between gap-3"><div><h3 class="text-lg font-semibold text-slate-900">${escape_html(meta.title)}</h3> <p class="mt-2 text-sm leading-6 text-slate-600">${escape_html(meta.description)}</p></div> <span class="rounded-full border border-white/80 bg-white/80 px-2.5 py-1 text-xs font-medium text-slate-600">${escape_html(fieldsByCategory[category]?.length ?? 0)}</span></div></button>`);
+      $$renderer2.push(` <div class="flex items-start justify-between gap-3"><div><h3 class="text-lg font-semibold text-slate-900">${escape_html(meta.title)}</h3> <p class="mt-2 text-sm leading-6 text-slate-600">${escape_html(meta.description)}</p> <p class="mt-2 text-xs uppercase tracking-[0.18em] text-slate-500">${escape_html(countGroups(category))} sous-catégorie(s)</p></div> <span class="rounded-full border border-white/80 bg-white/80 px-2.5 py-1 text-xs font-medium text-slate-600">${escape_html(countFields(category))}</span></div></button>`);
     }
     $$renderer2.push(`<!--]--></div> <div class="rounded-3xl border border-slate-200 bg-white/70 p-4">`);
     {
@@ -562,7 +430,7 @@ function QueryResults($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
     let { selectedFields, matches, fallbackMailTo, fallbackHref } = $$props;
     $$renderer2.push(`<section class="glass-card overflow-hidden"><div class="section-divider flex flex-col gap-3 p-6 lg:flex-row lg:items-center lg:justify-between"><div class="space-y-2"><p class="text-sm font-semibold uppercase tracking-[0.24em] text-corporate-600">Résultats</p> <h2 class="text-2xl font-semibold text-slate-900">Matching de requêtes existantes</h2> <p class="max-w-2xl text-sm leading-6 text-slate-600">L’algorithme remonte les requêtes dont la couverture contient au moins tous les champs cochés. Une
-				requête plus riche reste donc éligible.</p></div> <div class="rounded-2xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm text-emerald-900"><div class="flex items-center gap-2 font-medium">`);
+				requête plus riche reste donc éligible.</p></div> <div class="rounded-2xl border border-corporate-200 bg-corporate-50 px-4 py-3 text-sm text-corporate-900"><div class="flex items-center gap-2 font-medium">`);
     Shield_check($$renderer2, { class: "size-4" });
     $$renderer2.push(`<!----> Consultation read-only</div> <p class="mt-1 text-emerald-800/80">Aucune édition de données. Accès rapide à la doc et au SQL.</p></div></div> <div class="p-6"><div class="mb-6 flex flex-wrap gap-2">`);
     if (selectedFields.length === 0) {
@@ -595,14 +463,14 @@ function QueryResults($$renderer, $$props) {
           let fieldCode = each_array_2[$$index_1];
           $$renderer2.push(`<span${attr_class(`rounded-full px-3 py-1 text-xs font-medium ${selectedFields.some((field) => field.code === fieldCode) ? "bg-corporate-600 text-white" : "bg-white text-slate-600"}`)}>${escape_html(fieldCode)}</span>`);
         }
-        $$renderer2.push(`<!--]--></div></div> <div class="rounded-2xl border border-slate-200 bg-slate-950 p-4 text-slate-100"><div class="mb-3 flex items-center gap-2 text-sm font-semibold text-slate-200">`);
+        $$renderer2.push(`<!--]--></div></div> <div class="rounded-2xl border border-corporate-800 bg-corporate-900 p-4 text-white"><div class="mb-3 flex items-center gap-2 text-sm font-semibold text-corporate-100">`);
         File_code_2($$renderer2, { class: "size-4" });
-        $$renderer2.push(`<!----> SQL disponible</div> <pre class="overflow-x-auto whitespace-pre-wrap break-words text-xs leading-6 text-slate-300">${escape_html(query.sql)}</pre></div></div> <div class="mt-4 flex items-center justify-between gap-3 border-t border-slate-200 pt-4 text-sm text-slate-500"><span>Dernière mise à jour : ${escape_html(query.lastUpdated)}</span> <span class="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-600">${escape_html(query.system)}</span></div></article>`);
+        $$renderer2.push(`<!----> SQL disponible</div> <pre class="overflow-x-auto whitespace-pre-wrap break-words text-xs leading-6 text-corporate-100/90">${escape_html(query.sql)}</pre></div></div> <div class="mt-4 flex items-center justify-between gap-3 border-t border-slate-200 pt-4 text-sm text-slate-500"><span>Dernière mise à jour : ${escape_html(query.lastUpdated)}</span> <span class="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-600">${escape_html(query.system)}</span></div></article>`);
       }
       $$renderer2.push(`<!--]--></div>`);
     } else {
       $$renderer2.push("<!--[-1-->");
-      $$renderer2.push(`<div class="rounded-3xl border border-dashed border-amber-200 bg-amber-50 p-8"><div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between"><div class="max-w-2xl space-y-2"><p class="text-sm font-semibold uppercase tracking-[0.22em] text-amber-700">Bouton 3636</p> <h3 class="text-xl font-semibold text-slate-900">Aucune requête existante ne couvre ce besoin</h3> <p class="text-sm leading-6 text-slate-700">Le fallback prépare un e-mail vers ${escape_html(fallbackMailTo)} avec la liste exacte des champs demandés
+      $$renderer2.push(`<div class="rounded-3xl border border-dashed border-corporate-200 bg-corporate-50 p-8"><div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between"><div class="max-w-2xl space-y-2"><p class="text-sm font-semibold uppercase tracking-[0.22em] text-corporate-700">Bouton 3636</p> <h3 class="text-xl font-semibold text-slate-900">Aucune requête existante ne couvre ce besoin</h3> <p class="text-sm leading-6 text-slate-700">Le fallback prépare un e-mail vers ${escape_html(fallbackMailTo)} avec la liste exacte des champs demandés
 							pour accélérer la création d’une nouvelle extraction.</p></div> <a class="inline-flex items-center justify-center gap-2 rounded-2xl bg-corporate-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-corporate-700"${attr("href", fallbackHref)}>`);
       Mail($$renderer2, { class: "size-4" });
       $$renderer2.push(`<!----> Demander la création de la requête</a></div></div>`);
@@ -615,6 +483,7 @@ const fieldDictionaryData = [
     code: "ITMREF",
     label: "Référence article",
     category: "Production",
+    group: "Articles",
     table: "ITMMASTER",
     description: "Identifiant unique de l'article dans Sage X3.",
     keywords: [
@@ -627,6 +496,7 @@ const fieldDictionaryData = [
     code: "ITMDEZ",
     label: "Désignation article",
     category: "Production",
+    group: "Articles",
     table: "ITMMASTER",
     description: "Libellé métier affiché pour l'article.",
     keywords: [
@@ -636,9 +506,36 @@ const fieldDictionaryData = [
     ]
   },
   {
+    code: "TCLCOD",
+    label: "Catégorie article",
+    category: "Production",
+    group: "Articles",
+    table: "ITMMASTER",
+    description: "Famille ou typologie de l'article.",
+    keywords: [
+      "catégorie",
+      "famille",
+      "classification"
+    ]
+  },
+  {
+    code: "TSICOD",
+    label: "Code sous-famille",
+    category: "Production",
+    group: "Articles",
+    table: "ITMMASTER",
+    description: "Code de segmentation complémentaire de l'article.",
+    keywords: [
+      "sous-famille",
+      "code",
+      "article"
+    ]
+  },
+  {
     code: "MFGNUM",
     label: "Numéro d'OF",
     category: "Production",
+    group: "Ordres de fabrication",
     table: "MFGHEAD",
     description: "Numéro de l'ordre de fabrication.",
     keywords: [
@@ -651,6 +548,7 @@ const fieldDictionaryData = [
     code: "MFGFCY",
     label: "Site de fabrication",
     category: "Production",
+    group: "Ordres de fabrication",
     table: "MFGHEAD",
     description: "Site sur lequel l'OF est exécuté.",
     keywords: [
@@ -660,9 +558,36 @@ const fieldDictionaryData = [
     ]
   },
   {
+    code: "MFGSTA",
+    label: "Statut OF",
+    category: "Production",
+    group: "Ordres de fabrication",
+    table: "MFGHEAD",
+    description: "État d'avancement de l'ordre de fabrication.",
+    keywords: [
+      "statut",
+      "of",
+      "avancement"
+    ]
+  },
+  {
+    code: "MFGTYP",
+    label: "Type d'OF",
+    category: "Production",
+    group: "Ordres de fabrication",
+    table: "MFGHEAD",
+    description: "Type d'ordre selon le processus de fabrication.",
+    keywords: [
+      "type",
+      "ordre",
+      "fabrication"
+    ]
+  },
+  {
     code: "EXTQTY",
     label: "Quantité prévue",
     category: "Production",
+    group: "Quantités et planning",
     table: "MFGHEAD",
     description: "Quantité attendue dans l'OF.",
     keywords: [
@@ -675,6 +600,7 @@ const fieldDictionaryData = [
     code: "CPLQTY",
     label: "Quantité réalisée",
     category: "Production",
+    group: "Quantités et planning",
     table: "MFGHEAD",
     description: "Quantité produite ou déclarée.",
     keywords: [
@@ -684,9 +610,36 @@ const fieldDictionaryData = [
     ]
   },
   {
+    code: "STRDAT",
+    label: "Date début prévue",
+    category: "Production",
+    group: "Quantités et planning",
+    table: "MFGHEAD",
+    description: "Date de démarrage planifiée pour l'OF.",
+    keywords: [
+      "date",
+      "début",
+      "planning"
+    ]
+  },
+  {
+    code: "ENDDAT",
+    label: "Date fin prévue",
+    category: "Production",
+    group: "Quantités et planning",
+    table: "MFGHEAD",
+    description: "Date de fin planifiée pour l'OF.",
+    keywords: [
+      "date",
+      "fin",
+      "planning"
+    ]
+  },
+  {
     code: "LOT",
     label: "Numéro de lot",
     category: "Qualité",
+    group: "Traçabilité",
     table: "STOCK",
     description: "Lot de traçabilité matière ou produit fini.",
     keywords: [
@@ -696,9 +649,49 @@ const fieldDictionaryData = [
     ]
   },
   {
+    code: "SLO",
+    label: "Sous-lot",
+    category: "Qualité",
+    group: "Traçabilité",
+    table: "STOCK",
+    description: "Découpage fin du lot pour le suivi qualité.",
+    keywords: [
+      "sous-lot",
+      "lot",
+      "traçabilité"
+    ]
+  },
+  {
+    code: "PALNUM",
+    label: "Numéro palette",
+    category: "Qualité",
+    group: "Traçabilité",
+    table: "STOCK",
+    description: "Identifiant palette lié au lot ou au stock.",
+    keywords: [
+      "palette",
+      "support",
+      "logistique"
+    ]
+  },
+  {
+    code: "SERIAL",
+    label: "Numéro de série",
+    category: "Qualité",
+    group: "Traçabilité",
+    table: "STOCK",
+    description: "Numéro de série unitaire quand applicable.",
+    keywords: [
+      "série",
+      "serial",
+      "traçabilité"
+    ]
+  },
+  {
     code: "QIPCOD",
     label: "Code inspection qualité",
     category: "Qualité",
+    group: "Contrôles et inspections",
     table: "QINSPECTION",
     description: "Code du plan ou contrôle qualité associé.",
     keywords: [
@@ -711,6 +704,7 @@ const fieldDictionaryData = [
     code: "QSTA",
     label: "Statut qualité",
     category: "Qualité",
+    group: "Contrôles et inspections",
     table: "QINSPECTION",
     description: "Statut qualité de l'article, lot ou contrôle.",
     keywords: [
@@ -720,9 +714,36 @@ const fieldDictionaryData = [
     ]
   },
   {
+    code: "QCRIT",
+    label: "Criticité contrôle",
+    category: "Qualité",
+    group: "Contrôles et inspections",
+    table: "QINSPECTION",
+    description: "Niveau de criticité du contrôle qualité.",
+    keywords: [
+      "criticité",
+      "contrôle",
+      "qualité"
+    ]
+  },
+  {
+    code: "QRESCOD",
+    label: "Résultat contrôle",
+    category: "Qualité",
+    group: "Contrôles et inspections",
+    table: "QINSPECTION",
+    description: "Résultat saisi à l'issue de l'inspection.",
+    keywords: [
+      "résultat",
+      "contrôle",
+      "inspection"
+    ]
+  },
+  {
     code: "CREDAT",
     label: "Date de création",
     category: "Qualité",
+    group: "Audit et historique",
     table: "AUDIT",
     description: "Date de création de l'enregistrement.",
     keywords: [
@@ -735,6 +756,7 @@ const fieldDictionaryData = [
     code: "UPDDATTIM",
     label: "Horodatage de mise à jour",
     category: "Qualité",
+    group: "Audit et historique",
     table: "AUDIT",
     description: "Date et heure de dernière modification.",
     keywords: [
@@ -744,21 +766,36 @@ const fieldDictionaryData = [
     ]
   },
   {
-    code: "BPSNUM",
-    label: "Code fournisseur",
-    category: "Stocks",
-    table: "BPSUPPLIER",
-    description: "Identifiant du fournisseur dans Sage X3.",
+    code: "CREUSR",
+    label: "Créé par",
+    category: "Qualité",
+    group: "Audit et historique",
+    table: "AUDIT",
+    description: "Utilisateur à l'origine de la création.",
     keywords: [
-      "fournisseur",
-      "tiers",
-      "achat"
+      "utilisateur",
+      "création",
+      "audit"
+    ]
+  },
+  {
+    code: "UPDUSR",
+    label: "Mis à jour par",
+    category: "Qualité",
+    group: "Audit et historique",
+    table: "AUDIT",
+    description: "Dernier utilisateur ayant modifié l'enregistrement.",
+    keywords: [
+      "utilisateur",
+      "modification",
+      "audit"
     ]
   },
   {
     code: "STOFCY",
     label: "Site de stock",
     category: "Stocks",
+    group: "Disponibilité",
     table: "STOCK",
     description: "Site logistique porteur du stock.",
     keywords: [
@@ -768,21 +805,10 @@ const fieldDictionaryData = [
     ]
   },
   {
-    code: "LOC",
-    label: "Emplacement",
-    category: "Stocks",
-    table: "STOCK",
-    description: "Adresse ou emplacement physique dans le dépôt.",
-    keywords: [
-      "emplacement",
-      "magasin",
-      "rayon"
-    ]
-  },
-  {
     code: "PCUQTY",
     label: "Stock physique",
     category: "Stocks",
+    group: "Disponibilité",
     table: "STOCK",
     description: "Quantité présente physiquement au stock.",
     keywords: [
@@ -795,12 +821,104 @@ const fieldDictionaryData = [
     code: "AVLQTY",
     label: "Stock disponible",
     category: "Stocks",
+    group: "Disponibilité",
     table: "STOCK",
     description: "Quantité disponible après allocations et contrôles.",
     keywords: [
       "stock",
       "disponible",
       "allocation"
+    ]
+  },
+  {
+    code: "ALLQTY",
+    label: "Stock alloué",
+    category: "Stocks",
+    group: "Disponibilité",
+    table: "STOCK",
+    description: "Quantité déjà réservée ou allouée.",
+    keywords: [
+      "stock",
+      "alloué",
+      "réservation"
+    ]
+  },
+  {
+    code: "LOC",
+    label: "Emplacement",
+    category: "Stocks",
+    group: "Emplacements",
+    table: "STOCK",
+    description: "Adresse ou emplacement physique dans le dépôt.",
+    keywords: [
+      "emplacement",
+      "magasin",
+      "rayon"
+    ]
+  },
+  {
+    code: "LOCTYP",
+    label: "Type d'emplacement",
+    category: "Stocks",
+    group: "Emplacements",
+    table: "LOCMASTER",
+    description: "Nature de l'emplacement dans l'entrepôt.",
+    keywords: [
+      "emplacement",
+      "type",
+      "entrepôt"
+    ]
+  },
+  {
+    code: "WRH",
+    label: "Dépôt",
+    category: "Stocks",
+    group: "Emplacements",
+    table: "LOCMASTER",
+    description: "Dépôt ou magasin de rattachement.",
+    keywords: [
+      "dépôt",
+      "magasin",
+      "stock"
+    ]
+  },
+  {
+    code: "BPSNUM",
+    label: "Code fournisseur",
+    category: "Stocks",
+    group: "Approvisionnement",
+    table: "BPSUPPLIER",
+    description: "Identifiant du fournisseur dans Sage X3.",
+    keywords: [
+      "fournisseur",
+      "tiers",
+      "achat"
+    ]
+  },
+  {
+    code: "PTHNUM",
+    label: "Numéro de réception",
+    category: "Stocks",
+    group: "Approvisionnement",
+    table: "PRECEIPT",
+    description: "Référence de réception fournisseur.",
+    keywords: [
+      "réception",
+      "fournisseur",
+      "appro"
+    ]
+  },
+  {
+    code: "BPRNUM",
+    label: "Code client",
+    category: "Stocks",
+    group: "Approvisionnement",
+    table: "BPCUSTOMER",
+    description: "Identifiant du client pour les flux de sortie.",
+    keywords: [
+      "client",
+      "tiers",
+      "expédition"
     ]
   }
 ];
@@ -900,6 +1018,7 @@ function filterFields(fields, searchTerm) {
       field.code,
       field.label,
       field.table,
+      field.group,
       field.description,
       ...field.keywords ?? []
     ].join(" ").toLowerCase();
@@ -935,7 +1054,7 @@ function buildFallbackMail(selectedFields, mailTo = "3636@entreprise.local") {
     "Merci de créer ou compléter une extraction read-only avec les champs suivants :",
     "",
     ...selectedFields.map(
-      (field) => `- ${field.code} | ${field.label} | ${field.category} | table ${field.table}`
+      (field) => `- ${field.code} | ${field.label} | ${field.category} > ${field.group} | table ${field.table}`
     ),
     "",
     "Contexte : application de consultation interne Sage X3.",
@@ -954,9 +1073,19 @@ function _page($$renderer, $$props) {
     let selectedCodes = [];
     let searchTerm = "";
     const filteredFields = derived(() => filterFields(dictionary, searchTerm));
-    const fieldsByCategory = derived(() => categories.reduce(
+    const groupedFields = derived(() => categories.reduce(
       (accumulator, category) => {
-        accumulator[category] = filteredFields().filter((field) => field.category === category);
+        const categoryFields = filteredFields().filter((field) => field.category === category);
+        accumulator[category] = categoryFields.reduce(
+          (groups, field) => {
+            if (!groups[field.group]) {
+              groups[field.group] = [];
+            }
+            groups[field.group].push(field);
+            return groups;
+          },
+          {}
+        );
         return accumulator;
       },
       {}
@@ -970,20 +1099,14 @@ function _page($$renderer, $$props) {
       });
       $$renderer3.push(`<meta name="description" content="Interface de consultation read-only pour retrouver des requêtes Sage X3 à partir de champs métiers."/>`);
     });
-    $$renderer2.push(`<div class="relative isolate overflow-hidden"><div class="absolute inset-0 -z-10 bg-grid bg-[size:22px_22px] opacity-40"></div> <div class="mx-auto flex min-h-screen max-w-7xl flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8 lg:py-8"><header class="glass-card overflow-hidden"><div class="grid gap-8 p-6 lg:grid-cols-[1.35fr,0.85fr] lg:p-8"><div class="space-y-6"><div class="inline-flex items-center gap-2 rounded-full border border-corporate-100 bg-corporate-50 px-3 py-1.5 text-sm font-medium text-corporate-700">`);
-    Database($$renderer2, { class: "size-4" });
-    $$renderer2.push(`<!----> Sage X3 • Query Finder</div> <div class="space-y-4"><h1 class="max-w-3xl text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">Transformer les codes techniques en langage métier et retrouver la bonne requête SQL.</h1> <p class="max-w-3xl text-base leading-8 text-slate-600">Interface read-only pensée pour la production, la qualité et les stocks. Les utilisateurs
-							cochent leurs champs, l’app traduit les codes Sage X3 et propose automatiquement les requêtes
-							disponibles les plus proches du besoin.</p></div> <div class="grid gap-3 sm:grid-cols-3"><div class="rounded-3xl border border-slate-200 bg-white/70 p-4"><p class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Dictionnaire</p> <p class="mt-3 text-3xl font-semibold text-slate-950">${escape_html(dictionary.length)}</p> <p class="mt-1 text-sm text-slate-600">champs métiers indexés</p></div> <div class="rounded-3xl border border-slate-200 bg-white/70 p-4"><p class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Catalogue SQL</p> <p class="mt-3 text-3xl font-semibold text-slate-950">${escape_html(queries.length)}</p> <p class="mt-1 text-sm text-slate-600">requêtes read-only</p></div> <div class="rounded-3xl border border-slate-200 bg-white/70 p-4"><p class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Logique</p> <p class="mt-3 text-3xl font-semibold text-slate-950">3636</p> <p class="mt-1 text-sm text-slate-600">fallback mail si aucun match</p></div></div></div> <div class="rounded-[2rem] border border-slate-200 bg-slate-950 p-6 text-slate-100"><div class="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.22em] text-corporate-200">`);
-    Sparkles($$renderer2, { class: "size-4" });
-    $$renderer2.push(`<!----> Principes UX</div> <div class="mt-6 space-y-4"><div class="rounded-2xl border border-slate-800 bg-slate-900 p-4"><div class="flex items-center gap-3">`);
-    Layout_grid($$renderer2, { class: "size-5 text-corporate-300" });
-    $$renderer2.push(`<!----> <p class="font-semibold">Bento grid orientée métiers</p></div> <p class="mt-2 text-sm leading-6 text-slate-400">Navigation rapide par familles Production, Qualité et Stocks avec cartes lisibles et
-								ouverts contextuels.</p></div> <div class="rounded-2xl border border-slate-800 bg-slate-900 p-4"><p class="font-semibold">Matching “Qui peut le plus peut le moins”</p> <p class="mt-2 text-sm leading-6 text-slate-400">Une requête plus large reste pertinente si elle contient déjà tous les champs demandés.</p></div> <div class="rounded-2xl border border-slate-800 bg-slate-900 p-4"><p class="font-semibold">Design corporate moderne</p> <p class="mt-2 text-sm leading-6 text-slate-400">Blanc pur, gris perle, bleu profond, séparateurs fins et glassmorphism léger pour un rendu
-								premium mais lisible en environnement industriel.</p></div></div></div></div></header> `);
+    $$renderer2.push(`<div class="relative isolate overflow-hidden"><div class="absolute inset-0 -z-10 bg-grid bg-[size:22px_22px] opacity-40"></div> <div class="flex min-h-screen w-full flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8 lg:py-8 2xl:px-10"><header class="glass-card overflow-hidden"><div class="grid gap-8 p-6 lg:p-8 xl:grid-cols-[1.45fr,0.75fr]"><div class="space-y-6"><div class="inline-flex items-center rounded-full border border-corporate-100 bg-corporate-50 px-3 py-1.5 text-sm font-medium text-corporate-700">Sage X3 Query Finder</div> <div class="space-y-4"><h1 class="max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">Transformer les codes techniques en langage métier et retrouver la bonne requête SQL.</h1> <p class="max-w-5xl text-base leading-8 text-slate-600">Interface read-only pensée pour la production, la qualité et les stocks. Les utilisateurs
+							cochent leurs champs, l'application traduit les codes Sage X3 et propose automatiquement les
+							requêtes disponibles les plus proches du besoin.</p></div> <div class="grid gap-3 md:grid-cols-2 xl:grid-cols-4"><div class="rounded-3xl border border-slate-200 bg-white/70 p-4"><p class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Dictionnaire</p> <p class="mt-3 text-3xl font-semibold text-slate-950">${escape_html(dictionary.length)}</p> <p class="mt-1 text-sm text-slate-600">champs métiers indexés</p></div> <div class="rounded-3xl border border-slate-200 bg-white/70 p-4"><p class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Catalogue SQL</p> <p class="mt-3 text-3xl font-semibold text-slate-950">${escape_html(queries.length)}</p> <p class="mt-1 text-sm text-slate-600">requêtes read-only</p></div> <div class="rounded-3xl border border-slate-200 bg-white/70 p-4"><p class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Domaines</p> <p class="mt-3 text-3xl font-semibold text-slate-950">${escape_html(categories.length)}</p> <p class="mt-1 text-sm text-slate-600">groupes principaux</p></div> <div class="rounded-3xl border border-slate-200 bg-white/70 p-4"><p class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Support</p> <p class="mt-3 text-3xl font-semibold text-slate-950">3636</p> <p class="mt-1 text-sm text-slate-600">fallback mail si aucun match</p></div></div></div> <div class="rounded-[2rem] border border-corporate-800 bg-corporate-900 p-6 text-white"><div class="text-sm font-semibold uppercase tracking-[0.22em] text-corporate-200">Principes UX</div> <div class="mt-6 space-y-4"><div class="rounded-2xl border border-corporate-700 bg-corporate-800 p-4"><p class="font-semibold">Navigation orientée métiers</p> <p class="mt-2 text-sm leading-6 text-corporate-100/80">Navigation rapide par familles Production, Qualité et Stocks avec cartes lisibles et
+								sous-catégories dédiées.</p></div> <div class="rounded-2xl border border-corporate-700 bg-corporate-800 p-4"><p class="font-semibold">Matching qui peut le plus peut le moins</p> <p class="mt-2 text-sm leading-6 text-corporate-100/80">Une requête plus large reste pertinente si elle contient déjà tous les champs demandés.</p></div> <div class="rounded-2xl border border-corporate-700 bg-corporate-800 p-4"><p class="font-semibold">Écran conçu pour des volumes élevés</p> <p class="mt-2 text-sm leading-6 text-corporate-100/80">La page occupe toute la largeur disponible et répartit les champs en sections pour garder
+								une lecture claire.</p></div></div></div></div></header> `);
     FieldSelectorPanel($$renderer2, {
       categories,
-      fieldsByCategory: fieldsByCategory(),
+      groupedFields: groupedFields(),
       searchTerm
     });
     $$renderer2.push(`<!----> `);
