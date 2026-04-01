@@ -11,6 +11,7 @@
 		onToggleField: (code: string) => void;
 		onClearSelection: () => void;
 		onSearchChange: (value: string) => void;
+		
 	};
 
 	let {
