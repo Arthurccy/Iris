@@ -1,0 +1,130 @@
+[
+  {
+    "code": "ITMREF",
+    "label": "Référence article",
+    "category": "Production",
+    "table": "ITMMASTER",
+    "description": "Identifiant unique de l'article dans Sage X3.",
+    "keywords": ["article", "référence", "produit"]
+  },
+  {
+    "code": "ITMDEZ",
+    "label": "Désignation article",
+    "category": "Production",
+    "table": "ITMMASTER",
+    "description": "Libellé métier affiché pour l'article.",
+    "keywords": ["désignation", "nom", "article"]
+  },
+  {
+    "code": "MFGNUM",
+    "label": "Numéro d'OF",
+    "category": "Production",
+    "table": "MFGHEAD",
+    "description": "Numéro de l'ordre de fabrication.",
+    "keywords": ["of", "fabrication", "ordre"]
+  },
+  {
+    "code": "MFGFCY",
+    "label": "Site de fabrication",
+    "category": "Production",
+    "table": "MFGHEAD",
+    "description": "Site sur lequel l'OF est exécuté.",
+    "keywords": ["site", "usine", "production"]
+  },
+  {
+    "code": "EXTQTY",
+    "label": "Quantité prévue",
+    "category": "Production",
+    "table": "MFGHEAD",
+    "description": "Quantité attendue dans l'OF.",
+    "keywords": ["quantité", "prévu", "planning"]
+  },
+  {
+    "code": "CPLQTY",
+    "label": "Quantité réalisée",
+    "category": "Production",
+    "table": "MFGHEAD",
+    "description": "Quantité produite ou déclarée.",
+    "keywords": ["quantité", "réalisée", "déclaration"]
+  },
+  {
+    "code": "LOT",
+    "label": "Numéro de lot",
+    "category": "Qualité",
+    "table": "STOCK",
+    "description": "Lot de traçabilité matière ou produit fini.",
+    "keywords": ["lot", "traçabilité", "batch"]
+  },
+  {
+    "code": "QIPCOD",
+    "label": "Code inspection qualité",
+    "category": "Qualité",
+    "table": "QINSPECTION",
+    "description": "Code du plan ou contrôle qualité associé.",
+    "keywords": ["inspection", "qualité", "contrôle"]
+  },
+  {
+    "code": "QSTA",
+    "label": "Statut qualité",
+    "category": "Qualité",
+    "table": "QINSPECTION",
+    "description": "Statut qualité de l'article, lot ou contrôle.",
+    "keywords": ["statut", "qualité", "blocage"]
+  },
+  {
+    "code": "CREDAT",
+    "label": "Date de création",
+    "category": "Qualité",
+    "table": "AUDIT",
+    "description": "Date de création de l'enregistrement.",
+    "keywords": ["date", "création", "historique"]
+  },
+  {
+    "code": "UPDDATTIM",
+    "label": "Horodatage de mise à jour",
+    "category": "Qualité",
+    "table": "AUDIT",
+    "description": "Date et heure de dernière modification.",
+    "keywords": ["date", "mise à jour", "audit"]
+  },
+  {
+    "code": "BPSNUM",
+    "label": "Code fournisseur",
+    "category": "Stocks",
+    "table": "BPSUPPLIER",
+    "description": "Identifiant du fournisseur dans Sage X3.",
+    "keywords": ["fournisseur", "tiers", "achat"]
+  },
+  {
+    "code": "STOFCY",
+    "label": "Site de stock",
+    "category": "Stocks",
+    "table": "STOCK",
+    "description": "Site logistique porteur du stock.",
+    "keywords": ["stock", "site", "entrepôt"]
+  },
+  {
+    "code": "LOC",
+    "label": "Emplacement",
+    "category": "Stocks",
+    "table": "STOCK",
+    "description": "Adresse ou emplacement physique dans le dépôt.",
+    "keywords": ["emplacement", "magasin", "rayon"]
+  },
+  {
+    "code": "PCUQTY",
+    "label": "Stock physique",
+    "category": "Stocks",
+    "table": "STOCK",
+    "description": "Quantité présente physiquement au stock.",
+    "keywords": ["stock", "physique", "quantité"]
+  },
+  {
+    "code": "AVLQTY",
+    "label": "Stock disponible",
+    "category": "Stocks",
+    "table": "STOCK",
+    "description": "Quantité disponible après allocations et contrôles.",
+    "keywords": ["stock", "disponible", "allocation"]
+  }
+]

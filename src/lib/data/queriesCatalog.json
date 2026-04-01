@@ -1,0 +1,46 @@
+[
+  {
+    "id": "prod-001",
+    "title": "Suivi synthétique des ordres de fabrication",
+    "domain": "Production",
+    "system": "Sage X3",
+    "description": "Vue transverse pour piloter l'avancement d'un OF, son article et ses quantités.",
+    "fields": ["MFGNUM", "ITMREF", "ITMDEZ", "MFGFCY", "EXTQTY", "CPLQTY", "LOT"],
+    "sql": "SELECT MFGNUM, ITMREF, ITMDEZ, MFGFCY, EXTQTY, CPLQTY, LOT FROM MFGHEAD LEFT JOIN MFGITM ON MFGITM.MFGNUM = MFGHEAD.MFGNUM LEFT JOIN STOCK ON STOCK.ITMREF = MFGITM.ITMREF;",
+    "owner": "Production",
+    "lastUpdated": "2026-03-18"
+  },
+  {
+    "id": "qua-001",
+    "title": "Contrôles qualité par lot",
+    "domain": "Qualité",
+    "system": "Sage X3",
+    "description": "Extraction qualité centrée sur le lot, le statut et l'horodatage des contrôles.",
+    "fields": ["LOT", "ITMREF", "ITMDEZ", "QIPCOD", "QSTA", "CREDAT", "UPDDATTIM"],
+    "sql": "SELECT LOT, ITMREF, ITMDEZ, QIPCOD, QSTA, CREDAT, UPDDATTIM FROM QINSPECTION LEFT JOIN ITMMASTER ON ITMMASTER.ITMREF = QINSPECTION.ITMREF;",
+    "owner": "Qualité",
+    "lastUpdated": "2026-03-21"
+  },
+  {
+    "id": "sto-001",
+    "title": "Disponibilité stock par site et emplacement",
+    "domain": "Stocks",
+    "system": "Sage X3",
+    "description": "Requête de consultation read-only pour localiser le stock disponible et physique.",
+    "fields": ["ITMREF", "ITMDEZ", "STOFCY", "LOC", "PCUQTY", "AVLQTY", "LOT"],
+    "sql": "SELECT ITMREF, ITMDEZ, STOFCY, LOC, PCUQTY, AVLQTY, LOT FROM STOCK LEFT JOIN ITMMASTER ON ITMMASTER.ITMREF = STOCK.ITMREF;",
+    "owner": "Logistique",
+    "lastUpdated": "2026-03-24"
+  },
+  {
+    "id": "cross-001",
+    "title": "Vue article 360 production / qualité / stock",
+    "domain": "Transverse",
+    "system": "Sage X3",
+    "description": "Jeu de données élargi qui couvre la recherche article, OF, lot, qualité et disponibilité.",
+    "fields": ["ITMREF", "ITMDEZ", "MFGNUM", "LOT", "QSTA", "STOFCY", "LOC", "PCUQTY", "AVLQTY", "MFGFCY", "EXTQTY", "CPLQTY"],
+    "sql": "SELECT ITMREF, ITMDEZ, MFGNUM, LOT, QSTA, STOFCY, LOC, PCUQTY, AVLQTY, MFGFCY, EXTQTY, CPLQTY FROM ZVW_X3_360;",
+    "owner": "BI Industrielle",
+    "lastUpdated": "2026-03-29"
+  }
+]
