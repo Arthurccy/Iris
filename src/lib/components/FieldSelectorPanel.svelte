@@ -10,8 +10,8 @@
 		searchTerm: string;
 		onToggleField: (code: string) => void;
 		onClearSelection: () => void;
+		onOpenResults: () => void;
 		onSearchChange: (value: string) => void;
-		
 	};
 
 	let {
@@ -21,6 +21,7 @@
 		searchTerm,
 		onToggleField,
 		onClearSelection,
+		onOpenResults,
 		onSearchChange
 	}: Props = $props();
 
@@ -74,13 +75,19 @@
 					oninput={(event) => onSearchChange((event.currentTarget as HTMLInputElement).value)}
 				/>
 			</label>
-
 			<button
 				class="rounded-2xl border border-slate-200 px-4 py-3 text-sm font-medium text-slate-700 transition hover:border-corporate-200 hover:text-corporate-700"
 				type="button"
 				onclick={onClearSelection}
 			>
 				Vider la sélection
+			</button>
+			<button
+				class="rounded-2xl bg-corporate-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-corporate-700"
+				type="button"
+				onclick={onOpenResults}
+			>
+				Résultats
 			</button>
 		</div>
 	</div>
