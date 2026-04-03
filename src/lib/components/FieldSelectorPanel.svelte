@@ -83,8 +83,9 @@
 				Vider la sélection
 			</button>
 			<button
-				class="rounded-2xl bg-corporate-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-corporate-700"
+				class="rounded-2xl px-4 py-3 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:bg-slate-300 enabled:bg-corporate-600 enabled:hover:bg-corporate-700"
 				type="button"
+				disabled={selectedCodes.length === 0}
 				onclick={onOpenResults}
 			>
 				Résultats
