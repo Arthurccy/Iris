@@ -1,7 +1,11 @@
 import type { FieldDefinition, QueryDefinition, QueryMatch } from '$lib/types';
 
 export function normalizeText(value: string) {
-	return value.trim().toLowerCase();
+	return value
+		.trim()
+		.toLowerCase()
+		.normalize('NFD')
+		.replace(/\p{Diacritic}/gu, '');
 }
 
 export function filterFields(fields: FieldDefinition[], searchTerm: string) {
@@ -18,11 +22,9 @@ export function filterFields(fields: FieldDefinition[], searchTerm: string) {
 			field.group,
 			field.description,
 			...(field.keywords ?? [])
-		]
-			.join(' ')
-			.toLowerCase();
+		].join(' ');
 
-		return haystack.includes(normalized);
+		return normalizeText(haystack).includes(normalized);
 	});
 }
 

@@ -98,6 +98,7 @@
 			{categories}
 			{groupedFields}
 			{selectedCodes}
+			{selectedFields}
 			{searchTerm}
 			onToggleField={toggleField}
 			onClearSelection={clearSelection}

@@ -6,6 +6,7 @@ dist/
 .env.*
 !.env.example
 npm-debug.log*
+vite-dev*.log
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*

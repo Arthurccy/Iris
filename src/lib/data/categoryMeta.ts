@@ -3,7 +3,7 @@ import { Factory, FlaskConical, Package } from 'lucide-svelte';
 export const categoryMeta = {
 	Production: {
 		title: 'Production',
-		description: "OF, quantités, articles et cadence atelier.",
+		description: 'OF, quantités, articles et cadence atelier.',
 		icon: Factory,
 		accent: 'from-corporate-600/15 via-corporate-100/40 to-white'
 	},
