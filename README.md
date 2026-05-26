@@ -12,8 +12,8 @@ Application web SvelteKit en lecture seule pour aider les équipes à :
 En local sur la machine :
 
 ```bash
-npm.cmd install
-npm.cmd run dev
+npm install
+npm run dev
 ```
 
 Puis ouvrir l'URL affichée par Vite, en général `http://127.0.0.1:5173/`.
@@ -21,7 +21,7 @@ Puis ouvrir l'URL affichée par Vite, en général `http://127.0.0.1:5173/`.
 Depuis une autre machine du réseau :
 
 ```bash
-npm.cmd run dev:lan
+npm run dev:lan
 ```
 
 Puis ouvrir l'URL affichée par Vite avec l'IP du serveur, par exemple `http://10.103.6.28:5173/`.
@@ -37,8 +37,8 @@ L'URL `http://10.103.6.28/Iris/` est servie par Apache et liste le dossier sourc
 ## Qualité
 
 ```bash
-npm.cmd run check
-npm.cmd run build
+npm run check
+npm run build
 ```
 
 ## Extraction du classeur Excel fourni
