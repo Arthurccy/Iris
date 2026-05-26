@@ -34,6 +34,14 @@ L'URL `http://10.103.6.28/Iris/` est servie par Apache et liste le dossier sourc
 - Catalogue des requêtes : `src/lib/data/queriesCatalog.json`
 - Métadonnées d'interface : `src/lib/data/categoryMeta.ts`
 
+Pour régénérer le dictionnaire et le catalogue depuis l'export Sage X3 :
+
+```bash
+npm run import:sql
+```
+
+Le script lit `data/Export requête SQL.xlsx`, extrait les requêtes SQL et détecte les champs utilisés. Les libellés de champs générés restent techniques tant qu'ils ne sont pas validés métier.
+
 ## Qualité
 
 ```bash
