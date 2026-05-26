@@ -10,7 +10,7 @@
 	const dictionary = fieldDictionaryData as FieldDefinition[];
 	const queries = queriesCatalogData as QueryDefinition[];
 	const categories = Object.keys(categoryMeta) as CategoryName[];
-	const fallbackMailbox = '3636@entreprise.local';
+	const fallbackMailbox = '3636.valdepharm@fareva.com';
 
 	let selectedCodes = $state<string[]>([]);
 	let searchTerm = $state('');

@@ -55,7 +55,7 @@ export function matchQueries(selectedCodes: string[], queries: QueryDefinition[]
 
 export function buildFallbackMail(
 	selectedFields: FieldDefinition[],
-	mailTo = '3636@entreprise.local'
+	mailTo = '3636.valdepharm@fareva.com'
 ) {
 	const subject = `Demande de création de requête Sage X3 - ${selectedFields.length} champ(s)`;
 	const bodyLines = [
