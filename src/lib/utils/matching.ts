@@ -1,7 +1,11 @@
 import type { FieldDefinition, QueryDefinition, QueryMatch } from '$lib/types';
 
 export function normalizeText(value: string) {
-	return value.trim().toLowerCase();
+	return value
+		.trim()
+		.toLowerCase()
+		.normalize('NFD')
+		.replace(/\p{Diacritic}/gu, '');
 }
 
 export function filterFields(fields: FieldDefinition[], searchTerm: string) {
@@ -18,11 +22,9 @@ export function filterFields(fields: FieldDefinition[], searchTerm: string) {
 			field.group,
 			field.description,
 			...(field.keywords ?? [])
-		]
-			.join(' ')
-			.toLowerCase();
+		].join(' ');
 
-		return haystack.includes(normalized);
+		return normalizeText(haystack).includes(normalized);
 	});
 }
 
@@ -55,7 +57,7 @@ export function matchQueries(selectedCodes: string[], queries: QueryDefinition[]
 
 export function buildFallbackMail(
 	selectedFields: FieldDefinition[],
-	mailTo = '3636@entreprise.local'
+	mailTo = '3636.valdepharm@fareva.com'
 ) {
 	const subject = `Demande de création de requête Sage X3 - ${selectedFields.length} champ(s)`;
 	const bodyLines = [

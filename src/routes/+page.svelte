@@ -1,4 +1,6 @@
 ﻿<script lang="ts">
+	import { browser } from '$app/environment';
+	import { X } from 'lucide-svelte';
 	import FieldSelectorPanel from '../lib/components/FieldSelectorPanel.svelte';
 	import QueryResults from '../lib/components/QueryResults.svelte';
 	import fieldDictionaryData from '$lib/data/fieldDictionary.json';
@@ -10,10 +12,11 @@
 	const dictionary = fieldDictionaryData as FieldDefinition[];
 	const queries = queriesCatalogData as QueryDefinition[];
 	const categories = Object.keys(categoryMeta) as CategoryName[];
-	const fallbackMailbox = '3636@entreprise.local';
+	const fallbackMailbox = '3636.valdepharm@fareva.com';
 
 	let selectedCodes = $state<string[]>([]);
 	let searchTerm = $state('');
+	let isResultsOpen = $state(false);
 
 	const filteredFields = $derived(filterFields(dictionary, searchTerm));
 	const groupedFields = $derived.by(() =>
@@ -46,6 +49,36 @@
 	function clearSelection() {
 		selectedCodes = [];
 	}
+
+	function openResults() {
+		isResultsOpen = true;
+	}
+
+	function closeResults() {
+		isResultsOpen = false;
+	}
+
+	function handleWindowKeydown(event: KeyboardEvent) {
+		if (event.key === 'Escape' && isResultsOpen) {
+			closeResults();
+		}
+	}
+
+	$effect(() => {
+		if (!browser) {
+			return;
+		}
+
+		if (!isResultsOpen) {
+			return;
+		}
+
+		document.body.classList.add('modal-open');
+
+		return () => {
+			document.body.classList.remove('modal-open');
+		};
+	});
 </script>
 
 <svelte:head>
@@ -56,97 +89,64 @@
 	/>
 </svelte:head>
 
+<svelte:window onkeydown={handleWindowKeydown} />
+
 <div class="relative isolate overflow-hidden">
 	<div class="absolute inset-0 -z-10 bg-grid bg-[size:22px_22px] opacity-40"></div>
 	<div class="flex min-h-screen w-full flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8 lg:py-8 2xl:px-10">
-		<header class="glass-card overflow-hidden">
-			<div class="grid gap-8 p-6 lg:p-8 xl:grid-cols-[1.45fr,0.75fr]">
-				<div class="space-y-6">
-					<div class="inline-flex items-center rounded-full border border-corporate-100 bg-corporate-50 px-3 py-1.5 text-sm font-medium text-corporate-700">
-						Sage X3 Query Finder
-					</div>
-
-					<div class="space-y-4">
-						<h1 class="max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
-							Transformer les codes techniques en langage métier et retrouver la bonne requête SQL.
-						</h1>
-						<p class="max-w-5xl text-base leading-8 text-slate-600">
-							Interface read-only pensée pour la production, la qualité et les stocks. Les utilisateurs
-							cochent leurs champs, l'application traduit les codes Sage X3 et propose automatiquement les
-							requêtes disponibles les plus proches du besoin.
-						</p>
-					</div>
-
-					<div class="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-						<div class="rounded-3xl border border-slate-200 bg-white/70 p-4">
-							<p class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Dictionnaire</p>
-							<p class="mt-3 text-3xl font-semibold text-slate-950">{dictionary.length}</p>
-							<p class="mt-1 text-sm text-slate-600">champs métiers indexés</p>
-						</div>
-						<div class="rounded-3xl border border-slate-200 bg-white/70 p-4">
-							<p class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Catalogue SQL</p>
-							<p class="mt-3 text-3xl font-semibold text-slate-950">{queries.length}</p>
-							<p class="mt-1 text-sm text-slate-600">requêtes read-only</p>
-						</div>
-						<div class="rounded-3xl border border-slate-200 bg-white/70 p-4">
-							<p class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Domaines</p>
-							<p class="mt-3 text-3xl font-semibold text-slate-950">{categories.length}</p>
-							<p class="mt-1 text-sm text-slate-600">groupes principaux</p>
-						</div>
-						<div class="rounded-3xl border border-slate-200 bg-white/70 p-4">
-							<p class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Support</p>
-							<p class="mt-3 text-3xl font-semibold text-slate-950">3636</p>
-							<p class="mt-1 text-sm text-slate-600">fallback mail si aucun match</p>
-						</div>
-					</div>
-				</div>
-
-				<div class="rounded-[2rem] border border-corporate-800 bg-corporate-900 p-6 text-white">
-					<div class="text-sm font-semibold uppercase tracking-[0.22em] text-corporate-200">Principes UX</div>
-
-					<div class="mt-6 space-y-4">
-						<div class="rounded-2xl border border-corporate-700 bg-corporate-800 p-4">
-							<p class="font-semibold">Navigation orientée métiers</p>
-							<p class="mt-2 text-sm leading-6 text-corporate-100/80">
-								Navigation rapide par familles Production, Qualité et Stocks avec cartes lisibles et
-								sous-catégories dédiées.
-							</p>
-						</div>
-
-						<div class="rounded-2xl border border-corporate-700 bg-corporate-800 p-4">
-							<p class="font-semibold">Matching qui peut le plus peut le moins</p>
-							<p class="mt-2 text-sm leading-6 text-corporate-100/80">
-								Une requête plus large reste pertinente si elle contient déjà tous les champs demandés.
-							</p>
-						</div>
-
-						<div class="rounded-2xl border border-corporate-700 bg-corporate-800 p-4">
-							<p class="font-semibold">Écran conçu pour des volumes élevés</p>
-							<p class="mt-2 text-sm leading-6 text-corporate-100/80">
-								La page occupe toute la largeur disponible et répartit les champs en sections pour garder
-								une lecture claire.
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</header>
-
 		<FieldSelectorPanel
 			{categories}
 			{groupedFields}
 			{selectedCodes}
+			{selectedFields}
 			{searchTerm}
 			onToggleField={toggleField}
 			onClearSelection={clearSelection}
+			onOpenResults={openResults}
 			onSearchChange={(value) => (searchTerm = value)}
 		/>
-
-		<QueryResults
-			{selectedFields}
-			{matches}
-			fallbackMailTo={fallbackMailbox}
-			{fallbackHref}
-		/>
 	</div>
+
+	{#if isResultsOpen}
+		<div class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+			<button
+				class="absolute inset-0 bg-slate-950/55"
+				type="button"
+				aria-label="Fermer la fenêtre des résultats"
+				onclick={closeResults}
+			></button>
+
+			<div
+				class="relative z-10 flex max-h-[92vh] w-full max-w-7xl flex-col overflow-hidden rounded-[2rem] border border-white/70 bg-white shadow-2xl"
+				role="dialog"
+				aria-modal="true"
+				aria-label="Résultats de matching"
+				tabindex="-1"
+			>
+				<div class="section-divider flex items-center justify-between gap-3 px-5 py-4 sm:px-6">
+					<div>
+						<p class="text-xs font-semibold uppercase tracking-[0.2em] text-corporate-700">Résultats</p>
+						<p class="text-sm text-slate-600">{matches.length} requête(s) trouvée(s)</p>
+					</div>
+					<button
+						class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+						type="button"
+						onclick={closeResults}
+					>
+						<X class="size-4" />
+						Fermer
+					</button>
+				</div>
+
+				<div class="modal-scroll overscroll-contain overflow-y-auto p-3 sm:p-4">
+					<QueryResults
+						{selectedFields}
+						{matches}
+						fallbackMailTo={fallbackMailbox}
+						{fallbackHref}
+					/>
+				</div>
+			</div>
+		</div>
+	{/if}
 </div>

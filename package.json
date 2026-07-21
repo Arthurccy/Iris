@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
+    "dev:lan": "vite dev --host 0.0.0.0",
+    "import:sql": "python scripts/import_sql_export.py \"data/Export requête SQL.xlsx\"",
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"

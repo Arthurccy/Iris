@@ -1,308 +1,7295 @@
 [
   {
-    "code": "ITMREF",
-    "label": "Référence article",
+    "code": "ABCCLS",
+    "label": "ABCCLS",
     "category": "Production",
-    "group": "Articles",
-    "table": "ITMMASTER",
-    "description": "Identifiant unique de l'article dans Sage X3.",
-    "keywords": ["article", "référence", "produit"]
+    "group": "ITMFACILIT",
+    "table": "ITMFACILIT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "abccls",
+      "itmfacilit",
+      "production"
+    ]
   },
   {
-    "code": "ITMDEZ",
-    "label": "Désignation article",
-    "category": "Production",
-    "group": "Articles",
-    "table": "ITMMASTER",
-    "description": "Libellé métier affiché pour l'article.",
-    "keywords": ["désignation", "nom", "article"]
+    "code": "ABRFIC",
+    "label": "ABRFIC",
+    "category": "Administration",
+    "group": "CPTANALIN",
+    "table": "CPTANALIN",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "abrfic",
+      "cptanalin",
+      "administration"
+    ]
   },
   {
-    "code": "TCLCOD",
-    "label": "Catégorie article",
-    "category": "Production",
-    "group": "Articles",
-    "table": "ITMMASTER",
-    "description": "Famille ou typologie de l'article.",
-    "keywords": ["catégorie", "famille", "classification"]
-  },
-  {
-    "code": "TSICOD",
-    "label": "Code sous-famille",
-    "category": "Production",
-    "group": "Articles",
-    "table": "ITMMASTER",
-    "description": "Code de segmentation complémentaire de l'article.",
-    "keywords": ["sous-famille", "code", "article"]
-  },
-  {
-    "code": "MFGNUM",
-    "label": "Numéro d'OF",
-    "category": "Production",
-    "group": "Ordres de fabrication",
-    "table": "MFGHEAD",
-    "description": "Numéro de l'ordre de fabrication.",
-    "keywords": ["of", "fabrication", "ordre"]
-  },
-  {
-    "code": "MFGFCY",
-    "label": "Site de fabrication",
-    "category": "Production",
-    "group": "Ordres de fabrication",
-    "table": "MFGHEAD",
-    "description": "Site sur lequel l'OF est exécuté.",
-    "keywords": ["site", "usine", "production"]
-  },
-  {
-    "code": "MFGSTA",
-    "label": "Statut OF",
-    "category": "Production",
-    "group": "Ordres de fabrication",
-    "table": "MFGHEAD",
-    "description": "État d'avancement de l'ordre de fabrication.",
-    "keywords": ["statut", "of", "avancement"]
-  },
-  {
-    "code": "MFGTYP",
-    "label": "Type d'OF",
-    "category": "Production",
-    "group": "Ordres de fabrication",
-    "table": "MFGHEAD",
-    "description": "Type d'ordre selon le processus de fabrication.",
-    "keywords": ["type", "ordre", "fabrication"]
-  },
-  {
-    "code": "EXTQTY",
-    "label": "Quantité prévue",
-    "category": "Production",
-    "group": "Quantités et planning",
-    "table": "MFGHEAD",
-    "description": "Quantité attendue dans l'OF.",
-    "keywords": ["quantité", "prévu", "planning"]
-  },
-  {
-    "code": "CPLQTY",
-    "label": "Quantité réalisée",
-    "category": "Production",
-    "group": "Quantités et planning",
-    "table": "MFGHEAD",
-    "description": "Quantité produite ou déclarée.",
-    "keywords": ["quantité", "réalisée", "déclaration"]
-  },
-  {
-    "code": "STRDAT",
-    "label": "Date début prévue",
-    "category": "Production",
-    "group": "Quantités et planning",
-    "table": "MFGHEAD",
-    "description": "Date de démarrage planifiée pour l'OF.",
-    "keywords": ["date", "début", "planning"]
-  },
-  {
-    "code": "ENDDAT",
-    "label": "Date fin prévue",
-    "category": "Production",
-    "group": "Quantités et planning",
-    "table": "MFGHEAD",
-    "description": "Date de fin planifiée pour l'OF.",
-    "keywords": ["date", "fin", "planning"]
-  },
-  {
-    "code": "LOT",
-    "label": "Numéro de lot",
-    "category": "Qualité",
-    "group": "Traçabilité",
-    "table": "STOCK",
-    "description": "Lot de traçabilité matière ou produit fini.",
-    "keywords": ["lot", "traçabilité", "batch"]
-  },
-  {
-    "code": "SLO",
-    "label": "Sous-lot",
-    "category": "Qualité",
-    "group": "Traçabilité",
-    "table": "STOCK",
-    "description": "Découpage fin du lot pour le suivi qualité.",
-    "keywords": ["sous-lot", "lot", "traçabilité"]
-  },
-  {
-    "code": "PALNUM",
-    "label": "Numéro palette",
-    "category": "Qualité",
-    "group": "Traçabilité",
-    "table": "STOCK",
-    "description": "Identifiant palette lié au lot ou au stock.",
-    "keywords": ["palette", "support", "logistique"]
-  },
-  {
-    "code": "SERIAL",
-    "label": "Numéro de série",
-    "category": "Qualité",
-    "group": "Traçabilité",
-    "table": "STOCK",
-    "description": "Numéro de série unitaire quand applicable.",
-    "keywords": ["série", "serial", "traçabilité"]
-  },
-  {
-    "code": "QIPCOD",
-    "label": "Code inspection qualité",
-    "category": "Qualité",
-    "group": "Contrôles et inspections",
-    "table": "QINSPECTION",
-    "description": "Code du plan ou contrôle qualité associé.",
-    "keywords": ["inspection", "qualité", "contrôle"]
-  },
-  {
-    "code": "QSTA",
-    "label": "Statut qualité",
-    "category": "Qualité",
-    "group": "Contrôles et inspections",
-    "table": "QINSPECTION",
-    "description": "Statut qualité de l'article, lot ou contrôle.",
-    "keywords": ["statut", "qualité", "blocage"]
-  },
-  {
-    "code": "QCRIT",
-    "label": "Criticité contrôle",
-    "category": "Qualité",
-    "group": "Contrôles et inspections",
-    "table": "QINSPECTION",
-    "description": "Niveau de criticité du contrôle qualité.",
-    "keywords": ["criticité", "contrôle", "qualité"]
-  },
-  {
-    "code": "QRESCOD",
-    "label": "Résultat contrôle",
-    "category": "Qualité",
-    "group": "Contrôles et inspections",
-    "table": "QINSPECTION",
-    "description": "Résultat saisi à l'issue de l'inspection.",
-    "keywords": ["résultat", "contrôle", "inspection"]
-  },
-  {
-    "code": "CREDAT",
-    "label": "Date de création",
-    "category": "Qualité",
-    "group": "Audit et historique",
-    "table": "AUDIT",
-    "description": "Date de création de l'enregistrement.",
-    "keywords": ["date", "création", "historique"]
-  },
-  {
-    "code": "UPDDATTIM",
-    "label": "Horodatage de mise à jour",
-    "category": "Qualité",
-    "group": "Audit et historique",
-    "table": "AUDIT",
-    "description": "Date et heure de dernière modification.",
-    "keywords": ["date", "mise à jour", "audit"]
-  },
-  {
-    "code": "CREUSR",
-    "label": "Créé par",
-    "category": "Qualité",
-    "group": "Audit et historique",
-    "table": "AUDIT",
-    "description": "Utilisateur à l'origine de la création.",
-    "keywords": ["utilisateur", "création", "audit"]
-  },
-  {
-    "code": "UPDUSR",
-    "label": "Mis à jour par",
-    "category": "Qualité",
-    "group": "Audit et historique",
-    "table": "AUDIT",
-    "description": "Dernier utilisateur ayant modifié l'enregistrement.",
-    "keywords": ["utilisateur", "modification", "audit"]
-  },
-  {
-    "code": "STOFCY",
-    "label": "Site de stock",
+    "code": "ACCCOD",
+    "label": "ACCCOD",
     "category": "Stocks",
-    "group": "Disponibilité",
-    "table": "STOCK",
-    "description": "Site logistique porteur du stock.",
-    "keywords": ["stock", "site", "entrepôt"]
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "acccod",
+      "itmmaster",
+      "stocks"
+    ]
   },
   {
-    "code": "PCUQTY",
-    "label": "Stock physique",
+    "code": "ACCDAT",
+    "label": "ACCDAT",
     "category": "Stocks",
-    "group": "Disponibilité",
-    "table": "STOCK",
-    "description": "Quantité présente physiquement au stock.",
-    "keywords": ["stock", "physique", "quantité"]
+    "group": "PINVOICED",
+    "table": "PINVOICED",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "accdat",
+      "pinvoiced",
+      "stocks"
+    ]
   },
   {
-    "code": "AVLQTY",
-    "label": "Stock disponible",
+    "code": "ACC_1",
+    "label": "ACC_1",
     "category": "Stocks",
-    "group": "Disponibilité",
-    "table": "STOCK",
-    "description": "Quantité disponible après allocations et contrôles.",
-    "keywords": ["stock", "disponible", "allocation"]
+    "group": "CPTANALIN",
+    "table": "CPTANALIN",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "acc_1",
+      "cptanalin",
+      "stocks"
+    ]
+  },
+  {
+    "code": "ACS",
+    "label": "ACS",
+    "category": "Administration",
+    "group": "AFCTPRF",
+    "table": "AFCTPRF",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "acs",
+      "afctprf",
+      "administration"
+    ]
+  },
+  {
+    "code": "ACSUSR",
+    "label": "ACSUSR",
+    "category": "Stocks",
+    "group": "AUTILIS",
+    "table": "AUTILIS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "acsusr",
+      "autilis",
+      "stocks"
+    ]
+  },
+  {
+    "code": "ACTQTY",
+    "label": "ACTQTY",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "actqty",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "ADOUSR",
+    "label": "ADOUSR",
+    "category": "Administration",
+    "group": "AUDITH",
+    "table": "AUDITH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "adousr",
+      "audith",
+      "administration"
+    ]
+  },
+  {
+    "code": "ADRCLI",
+    "label": "ADRCLI",
+    "category": "Administration",
+    "group": "AUDITH",
+    "table": "AUDITH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "adrcli",
+      "audith",
+      "administration"
+    ]
+  },
+  {
+    "code": "AFCTFCT",
+    "label": "AFCTFCT",
+    "category": "Production",
+    "group": "VDRPROD",
+    "table": "VDRPROD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "afctfct",
+      "vdrprod",
+      "production"
+    ]
+  },
+  {
+    "code": "AFCTPRF",
+    "label": "AFCTPRF",
+    "category": "Production",
+    "group": "VDRPROD",
+    "table": "VDRPROD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "afctprf",
+      "vdrprod",
+      "production"
+    ]
+  },
+  {
+    "code": "AFONCTION",
+    "label": "AFONCTION",
+    "category": "Production",
+    "group": "VDRPROD",
+    "table": "VDRPROD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "afonction",
+      "vdrprod",
+      "production"
+    ]
+  },
+  {
+    "code": "ALLACS",
+    "label": "ALLACS",
+    "category": "Administration",
+    "group": "AFCTFCT",
+    "table": "AFCTFCT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "allacs",
+      "afctfct",
+      "administration"
+    ]
+  },
+  {
+    "code": "ALLFCT",
+    "label": "ALLFCT",
+    "category": "Administration",
+    "group": "AFCTFCT",
+    "table": "AFCTFCT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "allfct",
+      "afctfct",
+      "administration"
+    ]
   },
   {
     "code": "ALLQTY",
-    "label": "Stock alloué",
+    "label": "ALLQTY",
     "category": "Stocks",
-    "group": "Disponibilité",
-    "table": "STOCK",
-    "description": "Quantité déjà réservée ou allouée.",
-    "keywords": ["stock", "alloué", "réservation"]
+    "group": "SORDERQ",
+    "table": "SORDERQ",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "allqty",
+      "sorderq",
+      "stocks"
+    ]
   },
   {
-    "code": "LOC",
-    "label": "Emplacement",
+    "code": "ALLTYP",
+    "label": "ALLTYP",
     "category": "Stocks",
-    "group": "Emplacements",
-    "table": "STOCK",
-    "description": "Adresse ou emplacement physique dans le dépôt.",
-    "keywords": ["emplacement", "magasin", "rayon"]
+    "group": "STOALL",
+    "table": "STOALL",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "alltyp",
+      "stoall",
+      "stocks"
+    ]
   },
   {
-    "code": "LOCTYP",
-    "label": "Type d'emplacement",
+    "code": "AMTATILIN",
+    "label": "AMTATILIN",
     "category": "Stocks",
-    "group": "Emplacements",
-    "table": "LOCMASTER",
-    "description": "Nature de l'emplacement dans l'entrepôt.",
-    "keywords": ["emplacement", "type", "entrepôt"]
+    "group": "PINVOICED",
+    "table": "PINVOICED",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "amtatilin",
+      "pinvoiced",
+      "stocks"
+    ]
   },
   {
-    "code": "WRH",
-    "label": "Dépôt",
+    "code": "AMTNOTLIN",
+    "label": "AMTNOTLIN",
     "category": "Stocks",
-    "group": "Emplacements",
-    "table": "LOCMASTER",
-    "description": "Dépôt ou magasin de rattachement.",
-    "keywords": ["dépôt", "magasin", "stock"]
+    "group": "PINVOICED",
+    "table": "PINVOICED",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "amtnotlin",
+      "pinvoiced",
+      "stocks"
+    ]
   },
   {
-    "code": "BPSNUM",
-    "label": "Code fournisseur",
+    "code": "AMTNOTLINAVO",
+    "label": "AMTNOTLINAVO",
     "category": "Stocks",
-    "group": "Approvisionnement",
-    "table": "BPSUPPLIER",
-    "description": "Identifiant du fournisseur dans Sage X3.",
-    "keywords": ["fournisseur", "tiers", "achat"]
+    "group": "F",
+    "table": "F",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "amtnotlinavo",
+      "f",
+      "stocks"
+    ]
   },
   {
-    "code": "PTHNUM",
-    "label": "Numéro de réception",
+    "code": "AMTNOTLINFAC",
+    "label": "AMTNOTLINFAC",
     "category": "Stocks",
-    "group": "Approvisionnement",
-    "table": "PRECEIPT",
-    "description": "Référence de réception fournisseur.",
-    "keywords": ["réception", "fournisseur", "appro"]
+    "group": "F",
+    "table": "F",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "amtnotlinfac",
+      "f",
+      "stocks"
+    ]
+  },
+  {
+    "code": "AMTORD",
+    "label": "AMTORD",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "amtord",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "AMTVAL",
+    "label": "AMTVAL",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "amtval",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "ANALIG",
+    "label": "ANALIG",
+    "category": "Administration",
+    "group": "CPTANALIN",
+    "table": "CPTANALIN",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "analig",
+      "cptanalin",
+      "administration"
+    ]
+  },
+  {
+    "code": "APPFLG",
+    "label": "APPFLG",
+    "category": "Administration",
+    "group": "PREQUIS",
+    "table": "PREQUIS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "appflg",
+      "prequis",
+      "administration"
+    ]
+  },
+  {
+    "code": "ARTICLE",
+    "label": "ARTICLE",
+    "category": "Stocks",
+    "group": "ZCOUSTD",
+    "table": "ZCOUSTD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "article",
+      "zcoustd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "ATEXTE",
+    "label": "ATEXTE",
+    "category": "Production",
+    "group": "VDRPROD",
+    "table": "VDRPROD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "atexte",
+      "vdrprod",
+      "production"
+    ]
+  },
+  {
+    "code": "ATEXTRA",
+    "label": "ATEXTRA",
+    "category": "Production",
+    "group": "VDRTEST",
+    "table": "VDRTEST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "atextra",
+      "vdrtest",
+      "production"
+    ]
+  },
+  {
+    "code": "AUTILIS",
+    "label": "AUTILIS",
+    "category": "Production",
+    "group": "VDRPROD",
+    "table": "VDRPROD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "autilis",
+      "vdrprod",
+      "production"
+    ]
+  },
+  {
+    "code": "AVC",
+    "label": "AVC",
+    "category": "Stocks",
+    "group": "STOLOTFCY",
+    "table": "STOLOTFCY",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "avc",
+      "stolotfcy",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BASPRI",
+    "label": "BASPRI",
+    "category": "Transverse",
+    "group": "ITMSALES",
+    "table": "ITMSALES",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "baspri",
+      "itmsales",
+      "transverse"
+    ]
+  },
+  {
+    "code": "BASQTY",
+    "label": "BASQTY",
+    "category": "Production",
+    "group": "BOM",
+    "table": "BOM",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "basqty",
+      "bom",
+      "production"
+    ]
+  },
+  {
+    "code": "BCGCOD",
+    "label": "BCGCOD",
+    "category": "Stocks",
+    "group": "BPCUSTOMER",
+    "table": "BPCUSTOMER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bcgcod",
+      "bpcustomer",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BICCOD",
+    "label": "BICCOD",
+    "category": "Achats",
+    "group": "BID",
+    "table": "BID",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "biccod",
+      "bid",
+      "achats"
+    ]
+  },
+  {
+    "code": "BIDNUM",
+    "label": "BIDNUM",
+    "category": "Achats",
+    "group": "BID",
+    "table": "BID",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bidnum",
+      "bid",
+      "achats"
+    ]
+  },
+  {
+    "code": "BIDNUMFLG",
+    "label": "BIDNUMFLG",
+    "category": "Achats",
+    "group": "BID",
+    "table": "BID",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bidnumflg",
+      "bid",
+      "achats"
+    ]
+  },
+  {
+    "code": "BOMALT",
+    "label": "BOMALT",
+    "category": "Production",
+    "group": "BOM",
+    "table": "BOM",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bomalt",
+      "bom",
+      "production"
+    ]
+  },
+  {
+    "code": "BOMALTTYP",
+    "label": "BOMALTTYP",
+    "category": "Production",
+    "group": "BOM",
+    "table": "BOM",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bomalttyp",
+      "bom",
+      "production"
+    ]
+  },
+  {
+    "code": "BOMD",
+    "label": "BOMD",
+    "category": "Production",
+    "group": "VDRTEST",
+    "table": "VDRTEST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bomd",
+      "vdrtest",
+      "production"
+    ]
+  },
+  {
+    "code": "BOMOPE",
+    "label": "BOMOPE",
+    "category": "Stocks",
+    "group": "MFGMAT",
+    "table": "MFGMAT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bomope",
+      "mfgmat",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BOMQTY",
+    "label": "BOMQTY",
+    "category": "Production",
+    "group": "BOMD",
+    "table": "BOMD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bomqty",
+      "bomd",
+      "production"
+    ]
+  },
+  {
+    "code": "BOMSEQ",
+    "label": "BOMSEQ",
+    "category": "Production",
+    "group": "BOMD",
+    "table": "BOMD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bomseq",
+      "bomd",
+      "production"
+    ]
+  },
+  {
+    "code": "BOMUOM",
+    "label": "BOMUOM",
+    "category": "Production",
+    "group": "BOMD",
+    "table": "BOMD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bomuom",
+      "bomd",
+      "production"
+    ]
+  },
+  {
+    "code": "BPAADD",
+    "label": "BPAADD",
+    "category": "Achats",
+    "group": "BPADDRESS",
+    "table": "BPADDRESS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpaadd",
+      "bpaddress",
+      "achats"
+    ]
+  },
+  {
+    "code": "BPAADDFLG",
+    "label": "BPAADDFLG",
+    "category": "Achats",
+    "group": "BPADDRESS",
+    "table": "BPADDRESS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpaaddflg",
+      "bpaddress",
+      "achats"
+    ]
+  },
+  {
+    "code": "BPAADDLIG",
+    "label": "BPAADDLIG",
+    "category": "Achats",
+    "group": "BPADDRESS",
+    "table": "BPADDRESS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpaaddlig",
+      "bpaddress",
+      "achats"
+    ]
+  },
+  {
+    "code": "BPAADDLIG_1",
+    "label": "BPAADDLIG_1",
+    "category": "Achats",
+    "group": "BPADDRESS",
+    "table": "BPADDRESS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpaaddlig_1",
+      "bpaddress",
+      "achats"
+    ]
+  },
+  {
+    "code": "BPAADDLIG_2",
+    "label": "BPAADDLIG_2",
+    "category": "Achats",
+    "group": "BPADDRESS",
+    "table": "BPADDRESS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpaaddlig_2",
+      "bpaddress",
+      "achats"
+    ]
+  },
+  {
+    "code": "BPADES",
+    "label": "BPADES",
+    "category": "Achats",
+    "group": "BPADDRESS",
+    "table": "BPADDRESS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpades",
+      "bpaddress",
+      "achats"
+    ]
+  },
+  {
+    "code": "BPAINV",
+    "label": "BPAINV",
+    "category": "Stocks",
+    "group": "BPCUSTOMER",
+    "table": "BPCUSTOMER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpainv",
+      "bpcustomer",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BPANUM",
+    "label": "BPANUM",
+    "category": "Achats",
+    "group": "BPADDRESS",
+    "table": "BPADDRESS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpanum",
+      "bpaddress",
+      "achats"
+    ]
+  },
+  {
+    "code": "BPATYP",
+    "label": "BPATYP",
+    "category": "Achats",
+    "group": "BPADDRESS",
+    "table": "BPADDRESS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpatyp",
+      "bpaddress",
+      "achats"
+    ]
+  },
+  {
+    "code": "BPCFLG",
+    "label": "BPCFLG",
+    "category": "Stocks",
+    "group": "BPARTNER",
+    "table": "BPARTNER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpcflg",
+      "bpartner",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BPCGRU",
+    "label": "BPCGRU",
+    "category": "Stocks",
+    "group": "SDELIVERY",
+    "table": "SDELIVERY",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpcgru",
+      "sdelivery",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BPCINV",
+    "label": "BPCINV",
+    "category": "Stocks",
+    "group": "SDELIVERY",
+    "table": "SDELIVERY",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpcinv",
+      "sdelivery",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BPCNAM",
+    "label": "BPCNAM",
+    "category": "Stocks",
+    "group": "BPCUSTOMER",
+    "table": "BPCUSTOMER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpcnam",
+      "bpcustomer",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BPCNUM",
+    "label": "BPCNUM",
+    "category": "Stocks",
+    "group": "BPCUSTOMER",
+    "table": "BPCUSTOMER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpcnum",
+      "bpcustomer",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BPCORD",
+    "label": "BPCORD",
+    "category": "Stocks",
+    "group": "SORDER",
+    "table": "SORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpcord",
+      "sorder",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BPCPYR",
+    "label": "BPCPYR",
+    "category": "Stocks",
+    "group": "SDELIVERY",
+    "table": "SDELIVERY",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpcpyr",
+      "sdelivery",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BPDADDLIG",
+    "label": "BPDADDLIG",
+    "category": "Stocks",
+    "group": "SDELIVERY",
+    "table": "SDELIVERY",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpdaddlig",
+      "sdelivery",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BPDADDLIG_1",
+    "label": "BPDADDLIG_1",
+    "category": "Stocks",
+    "group": "SDELIVERY",
+    "table": "SDELIVERY",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpdaddlig_1",
+      "sdelivery",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BPDADDLIG_2",
+    "label": "BPDADDLIG_2",
+    "category": "Stocks",
+    "group": "SDELIVERY",
+    "table": "SDELIVERY",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpdaddlig_2",
+      "sdelivery",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BPDCRY",
+    "label": "BPDCRY",
+    "category": "Stocks",
+    "group": "SINVOICEV",
+    "table": "SINVOICEV",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpdcry",
+      "sinvoicev",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BPDCTY",
+    "label": "BPDCTY",
+    "category": "Stocks",
+    "group": "SDELIVERY",
+    "table": "SDELIVERY",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpdcty",
+      "sdelivery",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BPDNAM",
+    "label": "BPDNAM",
+    "category": "Stocks",
+    "group": "BPDLVCUST",
+    "table": "BPDLVCUST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpdnam",
+      "bpdlvcust",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BPDPOSCOD",
+    "label": "BPDPOSCOD",
+    "category": "Stocks",
+    "group": "SDELIVERY",
+    "table": "SDELIVERY",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpdposcod",
+      "sdelivery",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BPINAM",
+    "label": "BPINAM",
+    "category": "Stocks",
+    "group": "SDELIVERY",
+    "table": "SDELIVERY",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpinam",
+      "sdelivery",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BPR",
+    "label": "BPR",
+    "category": "Stocks",
+    "group": "SINVOICE",
+    "table": "SINVOICE",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpr",
+      "sinvoice",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BPRDAT",
+    "label": "BPRDAT",
+    "category": "Stocks",
+    "group": "PINVOICE",
+    "table": "PINVOICE",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bprdat",
+      "pinvoice",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BPRLOG",
+    "label": "BPRLOG",
+    "category": "Achats",
+    "group": "BPARTNER",
+    "table": "BPARTNER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bprlog",
+      "bpartner",
+      "achats"
+    ]
+  },
+  {
+    "code": "BPRNAM",
+    "label": "BPRNAM",
+    "category": "Achats",
+    "group": "BPARTNER",
+    "table": "BPARTNER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bprnam",
+      "bpartner",
+      "achats"
+    ]
   },
   {
     "code": "BPRNUM",
-    "label": "Code client",
+    "label": "BPRNUM",
+    "category": "Achats",
+    "group": "BPARTNER",
+    "table": "BPARTNER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bprnum",
+      "bpartner",
+      "achats"
+    ]
+  },
+  {
+    "code": "BPRPHYSTO",
+    "label": "BPRPHYSTO",
     "category": "Stocks",
-    "group": "Approvisionnement",
+    "group": "ITMMVT",
+    "table": "ITMMVT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bprphysto",
+      "itmmvt",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BPRVCR",
+    "label": "BPRVCR",
+    "category": "Stocks",
+    "group": "PINVOICE",
+    "table": "PINVOICE",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bprvcr",
+      "pinvoice",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BPSINV",
+    "label": "BPSINV",
+    "category": "Achats",
+    "group": "PORDERQ",
+    "table": "PORDERQ",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpsinv",
+      "porderq",
+      "achats"
+    ]
+  },
+  {
+    "code": "BPSLOT",
+    "label": "BPSLOT",
+    "category": "Stocks",
+    "group": "STOLOT",
+    "table": "STOLOT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpslot",
+      "stolot",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BPSNAM",
+    "label": "BPSNAM",
+    "category": "Achats",
+    "group": "BPSUPPLIER",
+    "table": "BPSUPPLIER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpsnam",
+      "bpsupplier",
+      "achats"
+    ]
+  },
+  {
+    "code": "BPSNUM",
+    "label": "BPSNUM",
+    "category": "Stocks",
+    "group": "BPSUPPLIER",
+    "table": "BPSUPPLIER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpsnum",
+      "bpsupplier",
+      "stocks"
+    ]
+  },
+  {
+    "code": "BPSUPPLIER",
+    "label": "BPSUPPLIER",
+    "category": "Achats",
+    "group": "VDRTEST",
+    "table": "VDRTEST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bpsupplier",
+      "vdrtest",
+      "achats"
+    ]
+  },
+  {
+    "code": "BPTNUM",
+    "label": "BPTNUM",
+    "category": "Achats",
+    "group": "PORDER",
+    "table": "PORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "bptnum",
+      "porder",
+      "achats"
+    ]
+  },
+  {
+    "code": "BRDCOD",
+    "label": "BRDCOD",
+    "category": "Transverse",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "brdcod",
+      "itmmaster",
+      "transverse"
+    ]
+  },
+  {
+    "code": "BUDOPECST",
+    "label": "BUDOPECST",
+    "category": "Transverse",
+    "group": "WORKCOST",
+    "table": "WORKCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "budopecst",
+      "workcost",
+      "transverse"
+    ]
+  },
+  {
+    "code": "BUDSETCST",
+    "label": "BUDSETCST",
+    "category": "Transverse",
+    "group": "WORKCOST",
+    "table": "WORKCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "budsetcst",
+      "workcost",
+      "transverse"
+    ]
+  },
+  {
+    "code": "BUY",
+    "label": "BUY",
+    "category": "Achats",
+    "group": "ITMFACILIT",
+    "table": "ITMFACILIT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "buy",
+      "itmfacilit",
+      "achats"
+    ]
+  },
+  {
+    "code": "CCE",
+    "label": "CCE",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "cce",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "CCE_1",
+    "label": "CCE_1",
+    "category": "Stocks",
+    "group": "CPTANALIN",
+    "table": "CPTANALIN",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "cce_1",
+      "cptanalin",
+      "stocks"
+    ]
+  },
+  {
+    "code": "CCE_2",
+    "label": "CCE_2",
+    "category": "Stocks",
+    "group": "CPTANALIN",
+    "table": "CPTANALIN",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "cce_2",
+      "cptanalin",
+      "stocks"
+    ]
+  },
+  {
+    "code": "CFMFLG",
+    "label": "CFMFLG",
+    "category": "Stocks",
+    "group": "SDELIVERY",
+    "table": "SDELIVERY",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "cfmflg",
+      "sdelivery",
+      "stocks"
+    ]
+  },
+  {
+    "code": "CHGCOE",
+    "label": "CHGCOE",
+    "category": "Stocks",
+    "group": "PRECEIPT",
+    "table": "PRECEIPT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "chgcoe",
+      "preceipt",
+      "stocks"
+    ]
+  },
+  {
+    "code": "CLCQTY",
+    "label": "CLCQTY",
+    "category": "Production",
+    "group": "ITMCOST",
+    "table": "ITMCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "clcqty",
+      "itmcost",
+      "production"
+    ]
+  },
+  {
+    "code": "CLEDEC",
+    "label": "CLEDEC",
+    "category": "Administration",
+    "group": "AWRKHISSUI",
+    "table": "AWRKHISSUI",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "cledec",
+      "awrkhissui",
+      "administration"
+    ]
+  },
+  {
+    "code": "CLEFLG",
+    "label": "CLEFLG",
+    "category": "Achats",
+    "group": "PORDER",
+    "table": "PORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "cleflg",
+      "porder",
+      "achats"
+    ]
+  },
+  {
+    "code": "CLES",
+    "label": "CLES",
+    "category": "Transverse",
+    "group": "AREFTXT",
+    "table": "AREFTXT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "cles",
+      "areftxt",
+      "transverse"
+    ]
+  },
+  {
+    "code": "CLOB",
+    "label": "CLOB",
+    "category": "Ventes",
+    "group": "ACLOB",
+    "table": "ACLOB",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "clob",
+      "aclob",
+      "ventes"
+    ]
+  },
+  {
+    "code": "CODACC",
+    "label": "CODACC",
+    "category": "Administration",
+    "group": "ACCES",
+    "table": "ACCES",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "codacc",
+      "acces",
+      "administration"
+    ]
+  },
+  {
+    "code": "CODEXT",
+    "label": "CODEXT",
+    "category": "Administration",
+    "group": "F",
+    "table": "F",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "codext",
+      "f",
+      "administration"
+    ]
+  },
+  {
+    "code": "CODFIC",
+    "label": "CODFIC",
+    "category": "Transverse",
+    "group": "ATEXTRA",
+    "table": "ATEXTRA",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "codfic",
+      "atextra",
+      "transverse"
+    ]
+  },
+  {
+    "code": "CODINT",
+    "label": "CODINT",
+    "category": "Production",
+    "group": "AFONCTION",
+    "table": "AFONCTION",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "codint",
+      "afonction",
+      "production"
+    ]
+  },
+  {
+    "code": "CODPRF",
+    "label": "CODPRF",
+    "category": "Production",
+    "group": "APROFIL",
+    "table": "APROFIL",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "codprf",
+      "aprofil",
+      "production"
+    ]
+  },
+  {
+    "code": "CODZON",
+    "label": "CODZON",
+    "category": "Transverse",
+    "group": "XITMMODDET",
+    "table": "XITMMODDET",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "codzon",
+      "xitmmoddet",
+      "transverse"
+    ]
+  },
+  {
+    "code": "CODZONE",
+    "label": "CODZONE",
+    "category": "Transverse",
+    "group": "AREFTXT",
+    "table": "AREFTXT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "codzone",
+      "areftxt",
+      "transverse"
+    ]
+  },
+  {
+    "code": "COL",
+    "label": "COL",
+    "category": "Administration",
+    "group": "AUDITL",
+    "table": "AUDITL",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "col",
+      "auditl",
+      "administration"
+    ]
+  },
+  {
+    "code": "CONSUL",
+    "label": "CONSUL",
+    "category": "Administration",
+    "group": "ACCES",
+    "table": "ACCES",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "consul",
+      "acces",
+      "administration"
+    ]
+  },
+  {
+    "code": "CPLCLE",
+    "label": "CPLCLE",
+    "category": "Administration",
+    "group": "CPTANALIN",
+    "table": "CPTANALIN",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "cplcle",
+      "cptanalin",
+      "administration"
+    ]
+  },
+  {
+    "code": "CPLQTY",
+    "label": "CPLQTY",
+    "category": "Stocks",
+    "group": "MFGITM",
+    "table": "MFGITM",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "cplqty",
+      "mfgitm",
+      "stocks"
+    ]
+  },
+  {
+    "code": "CPNITMREF",
+    "label": "CPNITMREF",
+    "category": "Production",
+    "group": "BOMD",
+    "table": "BOMD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "cpnitmref",
+      "bomd",
+      "production"
+    ]
+  },
+  {
+    "code": "CPNTYP",
+    "label": "CPNTYP",
+    "category": "Production",
+    "group": "B",
+    "table": "B",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "cpntyp",
+      "b",
+      "production"
+    ]
+  },
+  {
+    "code": "CPRPRI",
+    "label": "CPRPRI",
+    "category": "Stocks",
+    "group": "PRECEIPTD",
+    "table": "PRECEIPTD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "cprpri",
+      "preceiptd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "CREDAT",
+    "label": "CREDAT",
+    "category": "Stocks",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "credat",
+      "itmmaster",
+      "stocks"
+    ]
+  },
+  {
+    "code": "CREUSR",
+    "label": "CREUSR",
+    "category": "Achats",
+    "group": "PREQUIS",
+    "table": "PREQUIS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "creusr",
+      "prequis",
+      "achats"
+    ]
+  },
+  {
+    "code": "CRN",
+    "label": "CRN",
+    "category": "Achats",
+    "group": "BPARTNER",
+    "table": "BPARTNER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "crn",
+      "bpartner",
+      "achats"
+    ]
+  },
+  {
+    "code": "CRY",
+    "label": "CRY",
+    "category": "Achats",
+    "group": "BPADDRESS",
+    "table": "BPADDRESS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "cry",
+      "bpaddress",
+      "achats"
+    ]
+  },
+  {
+    "code": "CRYNAM",
+    "label": "CRYNAM",
+    "category": "Achats",
+    "group": "BPADDRESS",
+    "table": "BPADDRESS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "crynam",
+      "bpaddress",
+      "achats"
+    ]
+  },
+  {
+    "code": "CSTTOT",
+    "label": "CSTTOT",
+    "category": "Production",
+    "group": "ITMCOST",
+    "table": "ITMCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "csttot",
+      "itmcost",
+      "production"
+    ]
+  },
+  {
+    "code": "CSTTYP",
+    "label": "CSTTYP",
+    "category": "Stocks",
+    "group": "ITMCOST",
+    "table": "ITMCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "csttyp",
+      "itmcost",
+      "stocks"
+    ]
+  },
+  {
+    "code": "CTLSTO",
+    "label": "CTLSTO",
+    "category": "Achats",
+    "group": "ITMMVT",
+    "table": "ITMMVT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "ctlsto",
+      "itmmvt",
+      "achats"
+    ]
+  },
+  {
+    "code": "CTY",
+    "label": "CTY",
+    "category": "Achats",
+    "group": "BPADDRESS",
+    "table": "BPADDRESS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "cty",
+      "bpaddress",
+      "achats"
+    ]
+  },
+  {
+    "code": "CUR",
+    "label": "CUR",
+    "category": "Stocks",
+    "group": "SORDER",
+    "table": "SORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "cur",
+      "sorder",
+      "stocks"
+    ]
+  },
+  {
+    "code": "CUSORDREF",
+    "label": "CUSORDREF",
+    "category": "Stocks",
+    "group": "SORDER",
+    "table": "SORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "cusordref",
+      "sorder",
+      "stocks"
+    ]
+  },
+  {
+    "code": "CUSREF",
+    "label": "CUSREF",
+    "category": "Transverse",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "cusref",
+      "itmmaster",
+      "transverse"
+    ]
+  },
+  {
+    "code": "CUTOPECST",
+    "label": "CUTOPECST",
+    "category": "Transverse",
+    "group": "WORKCOST",
+    "table": "WORKCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "cutopecst",
+      "workcost",
+      "transverse"
+    ]
+  },
+  {
+    "code": "CUTSETCST",
+    "label": "CUTSETCST",
+    "category": "Transverse",
+    "group": "WORKCOST",
+    "table": "WORKCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "cutsetcst",
+      "workcost",
+      "transverse"
+    ]
+  },
+  {
+    "code": "DAT",
+    "label": "DAT",
+    "category": "Administration",
+    "group": "AUDITH",
+    "table": "AUDITH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "dat",
+      "audith",
+      "administration"
+    ]
+  },
+  {
+    "code": "DEFPOT",
+    "label": "DEFPOT",
+    "category": "Production",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "defpot",
+      "itmmaster",
+      "production"
+    ]
+  },
+  {
+    "code": "DEMDLVDAT",
+    "label": "DEMDLVDAT",
+    "category": "Stocks",
+    "group": "SORDERQ",
+    "table": "SORDERQ",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "demdlvdat",
+      "sorderq",
+      "stocks"
+    ]
+  },
+  {
+    "code": "DLVQTY",
+    "label": "DLVQTY",
+    "category": "Stocks",
+    "group": "SORDERQ",
+    "table": "SORDERQ",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "dlvqty",
+      "sorderq",
+      "stocks"
+    ]
+  },
+  {
+    "code": "DOUFLG",
+    "label": "DOUFLG",
+    "category": "Achats",
+    "group": "ITMBPS",
+    "table": "ITMBPS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "douflg",
+      "itmbps",
+      "achats"
+    ]
+  },
+  {
+    "code": "DUDDAT",
+    "label": "DUDDAT",
+    "category": "Stocks",
+    "group": "GACCDUDATE",
+    "table": "GACCDUDATE",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "duddat",
+      "gaccdudate",
+      "stocks"
+    ]
+  },
+  {
+    "code": "EECGES",
+    "label": "EECGES",
+    "category": "Transverse",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "eecges",
+      "itmmaster",
+      "transverse"
+    ]
+  },
+  {
+    "code": "EECICT",
+    "label": "EECICT",
+    "category": "Stocks",
+    "group": "SORDER",
+    "table": "SORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "eecict",
+      "sorder",
+      "stocks"
+    ]
+  },
+  {
+    "code": "EECNUM",
+    "label": "EECNUM",
+    "category": "Achats",
+    "group": "BPARTNER",
+    "table": "BPARTNER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "eecnum",
+      "bpartner",
+      "achats"
+    ]
+  },
+  {
+    "code": "EMETTEUR",
+    "label": "EMETTEUR",
+    "category": "Administration",
+    "group": "AWRKHISSUI",
+    "table": "AWRKHISSUI",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "emetteur",
+      "awrkhissui",
+      "administration"
+    ]
+  },
+  {
+    "code": "ENAFLG",
+    "label": "ENAFLG",
+    "category": "Administration",
+    "group": "AUTILIS",
+    "table": "AUTILIS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "enaflg",
+      "autilis",
+      "administration"
+    ]
+  },
+  {
+    "code": "ENDDAT",
+    "label": "ENDDAT",
+    "category": "Stocks",
+    "group": "ORDERS",
+    "table": "ORDERS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "enddat",
+      "orders",
+      "stocks"
+    ]
+  },
+  {
+    "code": "EVT",
+    "label": "EVT",
+    "category": "Administration",
+    "group": "AUDITH",
+    "table": "AUDITH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "evt",
+      "audith",
+      "administration"
+    ]
+  },
+  {
+    "code": "EXEC",
+    "label": "EXEC",
+    "category": "Administration",
+    "group": "ACCES",
+    "table": "ACCES",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "exec",
+      "acces",
+      "administration"
+    ]
+  },
+  {
+    "code": "EXTQTY",
+    "label": "EXTQTY",
+    "category": "Transverse",
+    "group": "ORDERS",
+    "table": "ORDERS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "extqty",
+      "orders",
+      "transverse"
+    ]
+  },
+  {
+    "code": "EXTRCPDAT",
+    "label": "EXTRCPDAT",
+    "category": "Achats",
+    "group": "PORDERQ",
+    "table": "PORDERQ",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "extrcpdat",
+      "porderq",
+      "achats"
+    ]
+  },
+  {
+    "code": "EXTRCPDAT1",
+    "label": "EXTRCPDAT1",
+    "category": "Achats",
+    "group": "PORDER",
+    "table": "PORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "extrcpdat1",
+      "porder",
+      "achats"
+    ]
+  },
+  {
+    "code": "EXTWST",
+    "label": "EXTWST",
+    "category": "Production",
+    "group": "MFGOPE",
+    "table": "MFGOPE",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "extwst",
+      "mfgope",
+      "production"
+    ]
+  },
+  {
+    "code": "EXYMGTCOD",
+    "label": "EXYMGTCOD",
+    "category": "Stocks",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "exymgtcod",
+      "itmmaster",
+      "stocks"
+    ]
+  },
+  {
+    "code": "FACTUREAVANCE",
+    "label": "FACTUREAVANCE",
+    "category": "Stocks",
+    "group": "B",
+    "table": "B",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "factureavance",
+      "b",
+      "stocks"
+    ]
+  },
+  {
+    "code": "FCY",
+    "label": "FCY",
+    "category": "Stocks",
+    "group": "PINVOICED",
+    "table": "PINVOICED",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "fcy",
+      "pinvoiced",
+      "stocks"
+    ]
+  },
+  {
+    "code": "FCYGRU",
+    "label": "FCYGRU",
+    "category": "Production",
+    "group": "AFCTPRF",
+    "table": "AFCTPRF",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "fcygru",
+      "afctprf",
+      "production"
+    ]
+  },
+  {
+    "code": "FIYNUM",
+    "label": "FIYNUM",
+    "category": "Stocks",
+    "group": "ITMCOST",
+    "table": "ITMCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "fiynum",
+      "itmcost",
+      "stocks"
+    ]
+  },
+  {
+    "code": "FNC",
+    "label": "FNC",
+    "category": "Administration",
+    "group": "AFCTPRF",
+    "table": "AFCTPRF",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "fnc",
+      "afctprf",
+      "administration"
+    ]
+  },
+  {
+    "code": "FORCOD",
+    "label": "FORCOD",
+    "category": "Transverse",
+    "group": "TABFOR",
+    "table": "TABFOR",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "forcod",
+      "tabfor",
+      "transverse"
+    ]
+  },
+  {
+    "code": "FORCODA",
+    "label": "FORCODA",
+    "category": "Transverse",
+    "group": "OVERHEAD",
+    "table": "OVERHEAD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "forcoda",
+      "overhead",
+      "transverse"
+    ]
+  },
+  {
+    "code": "FORCODA_1",
+    "label": "FORCODA_1",
+    "category": "Transverse",
+    "group": "OVERHEAD",
+    "table": "OVERHEAD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "forcoda_1",
+      "overhead",
+      "transverse"
+    ]
+  },
+  {
+    "code": "FORCODB",
+    "label": "FORCODB",
+    "category": "Transverse",
+    "group": "OVERHEAD",
+    "table": "OVERHEAD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "forcodb",
+      "overhead",
+      "transverse"
+    ]
+  },
+  {
+    "code": "FORCODB_1",
+    "label": "FORCODB_1",
+    "category": "Transverse",
+    "group": "OVERHEAD",
+    "table": "OVERHEAD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "forcodb_1",
+      "overhead",
+      "transverse"
+    ]
+  },
+  {
+    "code": "FORCODC",
+    "label": "FORCODC",
+    "category": "Transverse",
+    "group": "OVERHEAD",
+    "table": "OVERHEAD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "forcodc",
+      "overhead",
+      "transverse"
+    ]
+  },
+  {
+    "code": "FORCODC_1",
+    "label": "FORCODC_1",
+    "category": "Transverse",
+    "group": "OVERHEAD",
+    "table": "OVERHEAD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "forcodc_1",
+      "overhead",
+      "transverse"
+    ]
+  },
+  {
+    "code": "FORCODD",
+    "label": "FORCODD",
+    "category": "Transverse",
+    "group": "OVERHEAD",
+    "table": "OVERHEAD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "forcodd",
+      "overhead",
+      "transverse"
+    ]
+  },
+  {
+    "code": "FORCODD_1",
+    "label": "FORCODD_1",
+    "category": "Transverse",
+    "group": "OVERHEAD",
+    "table": "OVERHEAD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "forcodd_1",
+      "overhead",
+      "transverse"
+    ]
+  },
+  {
+    "code": "FORFOR",
+    "label": "FORFOR",
+    "category": "Transverse",
+    "group": "TABFOR",
+    "table": "TABFOR",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "forfor",
+      "tabfor",
+      "transverse"
+    ]
+  },
+  {
+    "code": "FORTYP",
+    "label": "FORTYP",
+    "category": "Transverse",
+    "group": "TABFOR",
+    "table": "TABFOR",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "fortyp",
+      "tabfor",
+      "transverse"
+    ]
+  },
+  {
+    "code": "GLOALL",
+    "label": "GLOALL",
+    "category": "Stocks",
+    "group": "ITMMVT",
+    "table": "ITMMVT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "gloall",
+      "itmmvt",
+      "stocks"
+    ]
+  },
+  {
+    "code": "GROPRI",
+    "label": "GROPRI",
+    "category": "Ventes",
+    "group": "SORDERP",
+    "table": "SORDERP",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "gropri",
+      "sorderp",
+      "ventes"
+    ]
+  },
+  {
+    "code": "GTE",
+    "label": "GTE",
+    "category": "Stocks",
+    "group": "PINVOICE",
+    "table": "PINVOICE",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "gte",
+      "pinvoice",
+      "stocks"
+    ]
+  },
+  {
+    "code": "HLDCOD",
+    "label": "HLDCOD",
+    "category": "Ventes",
+    "group": "SORDER",
+    "table": "SORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "hldcod",
+      "sorder",
+      "ventes"
+    ]
+  },
+  {
+    "code": "HLDCODP",
+    "label": "HLDCODP",
+    "category": "Ventes",
+    "group": "SORDER",
+    "table": "SORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "hldcodp",
+      "sorder",
+      "ventes"
+    ]
+  },
+  {
+    "code": "HLDDAT",
+    "label": "HLDDAT",
+    "category": "Ventes",
+    "group": "SORDER",
+    "table": "SORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "hlddat",
+      "sorder",
+      "ventes"
+    ]
+  },
+  {
+    "code": "HLDTIM",
+    "label": "HLDTIM",
+    "category": "Ventes",
+    "group": "SORDER",
+    "table": "SORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "hldtim",
+      "sorder",
+      "ventes"
+    ]
+  },
+  {
+    "code": "HLDUSR",
+    "label": "HLDUSR",
+    "category": "Ventes",
+    "group": "SORDER",
+    "table": "SORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "hldusr",
+      "sorder",
+      "ventes"
+    ]
+  },
+  {
+    "code": "HOU",
+    "label": "HOU",
+    "category": "Administration",
+    "group": "AUDITH",
+    "table": "AUDITH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "hou",
+      "audith",
+      "administration"
+    ]
+  },
+  {
+    "code": "IBAN",
+    "label": "IBAN",
+    "category": "Achats",
+    "group": "BID",
+    "table": "BID",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "iban",
+      "bid",
+      "achats"
+    ]
+  },
+  {
+    "code": "ICTCTY",
+    "label": "ICTCTY",
+    "category": "Stocks",
+    "group": "SINVOICEV",
+    "table": "SINVOICEV",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "ictcty",
+      "sinvoicev",
+      "stocks"
+    ]
+  },
+  {
+    "code": "ID1",
+    "label": "ID1",
+    "category": "Administration",
+    "group": "AUDITH",
+    "table": "AUDITH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "id1",
+      "audith",
+      "administration"
+    ]
+  },
+  {
+    "code": "ID2",
+    "label": "ID2",
+    "category": "Administration",
+    "group": "AUDITH",
+    "table": "AUDITH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "id2",
+      "audith",
+      "administration"
+    ]
+  },
+  {
+    "code": "IDENT1",
+    "label": "IDENT1",
+    "category": "Production",
+    "group": "ATEXTRA",
+    "table": "ATEXTRA",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "ident1",
+      "atextra",
+      "production"
+    ]
+  },
+  {
+    "code": "IDENT2",
+    "label": "IDENT2",
+    "category": "Transverse",
+    "group": "ATEXTRA",
+    "table": "ATEXTRA",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "ident2",
+      "atextra",
+      "transverse"
+    ]
+  },
+  {
+    "code": "INVDAT",
+    "label": "INVDAT",
+    "category": "Stocks",
+    "group": "SINVOICED",
+    "table": "SINVOICED",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "invdat",
+      "sinvoiced",
+      "stocks"
+    ]
+  },
+  {
+    "code": "INVFLG",
+    "label": "INVFLG",
+    "category": "Stocks",
+    "group": "PRECEIPT",
+    "table": "PRECEIPT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "invflg",
+      "preceipt",
+      "stocks"
+    ]
+  },
+  {
+    "code": "INVQTY",
+    "label": "INVQTY",
+    "category": "Stocks",
+    "group": "SORDERQ",
+    "table": "SORDERQ",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "invqty",
+      "sorderq",
+      "stocks"
+    ]
+  },
+  {
+    "code": "INVREF",
+    "label": "INVREF",
+    "category": "Stocks",
+    "group": "SINVOICEV",
+    "table": "SINVOICEV",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "invref",
+      "sinvoicev",
+      "stocks"
+    ]
+  },
+  {
+    "code": "IPTDAT",
+    "label": "IPTDAT",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "iptdat",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "ITCDAT",
+    "label": "ITCDAT",
+    "category": "Transverse",
+    "group": "ITMCOST",
+    "table": "ITMCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "itcdat",
+      "itmcost",
+      "transverse"
+    ]
+  },
+  {
+    "code": "ITCENDDAT",
+    "label": "ITCENDDAT",
+    "category": "Production",
+    "group": "ITMCOST",
+    "table": "ITMCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "itcenddat",
+      "itmcost",
+      "production"
+    ]
+  },
+  {
+    "code": "ITCSEQ",
+    "label": "ITCSEQ",
+    "category": "Production",
+    "group": "ITMCOST",
+    "table": "ITMCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "itcseq",
+      "itmcost",
+      "production"
+    ]
+  },
+  {
+    "code": "ITCSTRDAT",
+    "label": "ITCSTRDAT",
+    "category": "Production",
+    "group": "ITMCOST",
+    "table": "ITMCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "itcstrdat",
+      "itmcost",
+      "production"
+    ]
+  },
+  {
+    "code": "ITMDES",
+    "label": "ITMDES",
+    "category": "Stocks",
+    "group": "PORDERP",
+    "table": "PORDERP",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "itmdes",
+      "porderp",
+      "stocks"
+    ]
+  },
+  {
+    "code": "ITMDES1",
+    "label": "ITMDES1",
+    "category": "Stocks",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "itmdes1",
+      "itmmaster",
+      "stocks"
+    ]
+  },
+  {
+    "code": "ITMDES2",
+    "label": "ITMDES2",
+    "category": "Stocks",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "itmdes2",
+      "itmmaster",
+      "stocks"
+    ]
+  },
+  {
+    "code": "ITMDES3",
+    "label": "ITMDES3",
+    "category": "Transverse",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "itmdes3",
+      "itmmaster",
+      "transverse"
+    ]
+  },
+  {
+    "code": "ITMDESBPS",
+    "label": "ITMDESBPS",
+    "category": "Achats",
+    "group": "ITMBPS",
+    "table": "ITMBPS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "itmdesbps",
+      "itmbps",
+      "achats"
+    ]
+  },
+  {
+    "code": "ITMMASTER",
+    "label": "ITMMASTER",
+    "category": "Administration",
+    "group": "VDRDEV",
+    "table": "VDRDEV",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "itmmaster",
+      "vdrdev",
+      "administration"
+    ]
+  },
+  {
+    "code": "ITMREF",
+    "label": "ITMREF",
+    "category": "Stocks",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "itmref",
+      "itmmaster",
+      "stocks"
+    ]
+  },
+  {
+    "code": "ITMREFBPC",
+    "label": "ITMREFBPC",
+    "category": "Stocks",
+    "group": "SORDERP",
+    "table": "SORDERP",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "itmrefbpc",
+      "sorderp",
+      "stocks"
+    ]
+  },
+  {
+    "code": "ITMREFBPS",
+    "label": "ITMREFBPS",
+    "category": "Achats",
+    "group": "ITMBPS",
+    "table": "ITMBPS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "itmrefbps",
+      "itmbps",
+      "achats"
+    ]
+  },
+  {
+    "code": "ITMREFORI",
+    "label": "ITMREFORI",
+    "category": "Stocks",
+    "group": "ORDERS",
+    "table": "ORDERS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "itmrefori",
+      "orders",
+      "stocks"
+    ]
+  },
+  {
+    "code": "ITMSTA",
+    "label": "ITMSTA",
+    "category": "Production",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "itmsta",
+      "itmmaster",
+      "production"
+    ]
+  },
+  {
+    "code": "ITMSTD",
+    "label": "ITMSTD",
+    "category": "Transverse",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "itmstd",
+      "itmmaster",
+      "transverse"
+    ]
+  },
+  {
+    "code": "LABTOT",
+    "label": "LABTOT",
+    "category": "Stocks",
+    "group": "ITMCOST",
+    "table": "ITMCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "labtot",
+      "itmcost",
+      "stocks"
+    ]
+  },
+  {
+    "code": "LAN",
+    "label": "LAN",
+    "category": "Production",
+    "group": "ATEXTE",
+    "table": "ATEXTE",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "lan",
+      "atexte",
+      "production"
+    ]
+  },
+  {
+    "code": "LANCHP",
+    "label": "LANCHP",
+    "category": "Stocks",
+    "group": "APLSTD",
+    "table": "APLSTD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "lanchp",
+      "aplstd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "LANDESSHO",
+    "label": "LANDESSHO",
+    "category": "Achats",
+    "group": "TABPAYTERM",
+    "table": "TABPAYTERM",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "landessho",
+      "tabpayterm",
+      "achats"
+    ]
+  },
+  {
+    "code": "LANGUE",
+    "label": "LANGUE",
+    "category": "Production",
+    "group": "ATEXTRA",
+    "table": "ATEXTRA",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "langue",
+      "atextra",
+      "production"
+    ]
+  },
+  {
+    "code": "LANMES",
+    "label": "LANMES",
+    "category": "Stocks",
+    "group": "APLSTD",
+    "table": "APLSTD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "lanmes",
+      "aplstd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "LANNUM",
+    "label": "LANNUM",
+    "category": "Stocks",
+    "group": "APLSTD",
+    "table": "APLSTD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "lannum",
+      "aplstd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "LASISSDAT",
+    "label": "LASISSDAT",
+    "category": "Administration",
+    "group": "ITMMVT",
+    "table": "ITMMVT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "lasissdat",
+      "itmmvt",
+      "administration"
+    ]
+  },
+  {
+    "code": "LASPURDAT",
+    "label": "LASPURDAT",
+    "category": "Achats",
+    "group": "ITMMVT",
+    "table": "ITMMVT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "laspurdat",
+      "itmmvt",
+      "achats"
+    ]
+  },
+  {
+    "code": "LASPURPRI",
+    "label": "LASPURPRI",
+    "category": "Production",
+    "group": "ITMMVT",
+    "table": "ITMMVT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "laspurpri",
+      "itmmvt",
+      "production"
+    ]
+  },
+  {
+    "code": "LASRCPDAT",
+    "label": "LASRCPDAT",
+    "category": "Achats",
+    "group": "ITMMVT",
+    "table": "ITMMVT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "lasrcpdat",
+      "itmmvt",
+      "achats"
+    ]
+  },
+  {
+    "code": "LASRCPPRI",
+    "label": "LASRCPPRI",
+    "category": "Achats",
+    "group": "ITMMVT",
+    "table": "ITMMVT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "lasrcppri",
+      "itmmvt",
+      "achats"
+    ]
+  },
+  {
+    "code": "LEG",
+    "label": "LEG",
+    "category": "Achats",
+    "group": "TABPAYTERM",
+    "table": "TABPAYTERM",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "leg",
+      "tabpayterm",
+      "achats"
+    ]
+  },
+  {
+    "code": "LIFENDDAT",
+    "label": "LIFENDDAT",
+    "category": "Transverse",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "lifenddat",
+      "itmmaster",
+      "transverse"
+    ]
+  },
+  {
+    "code": "LIFSTRDAT",
+    "label": "LIFSTRDAT",
+    "category": "Transverse",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "lifstrdat",
+      "itmmaster",
+      "transverse"
+    ]
+  },
+  {
+    "code": "LIKQTY",
+    "label": "LIKQTY",
+    "category": "Production",
+    "group": "B",
+    "table": "B",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "likqty",
+      "b",
+      "production"
+    ]
+  },
+  {
+    "code": "LIKQTYCOD",
+    "label": "LIKQTYCOD",
+    "category": "Production",
+    "group": "BOMD",
+    "table": "BOMD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "likqtycod",
+      "bomd",
+      "production"
+    ]
+  },
+  {
+    "code": "LINAMT",
+    "label": "LINAMT",
+    "category": "Stocks",
+    "group": "PRETURND",
+    "table": "PRETURND",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "linamt",
+      "preturnd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "LINCLEFLG",
+    "label": "LINCLEFLG",
+    "category": "Achats",
+    "group": "PORDERQ",
+    "table": "PORDERQ",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "lincleflg",
+      "porderq",
+      "achats"
+    ]
+  },
+  {
+    "code": "LOC",
+    "label": "LOC",
+    "category": "Stocks",
+    "group": "STOCK",
+    "table": "STOCK",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "loc",
+      "stock",
+      "stocks"
+    ]
+  },
+  {
+    "code": "LOCTYP",
+    "label": "LOCTYP",
+    "category": "Stocks",
+    "group": "STOCK",
+    "table": "STOCK",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "loctyp",
+      "stock",
+      "stocks"
+    ]
+  },
+  {
+    "code": "LOT",
+    "label": "LOT",
+    "category": "Stocks",
+    "group": "STOCK",
+    "table": "STOCK",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "lot",
+      "stock",
+      "stocks"
+    ]
+  },
+  {
+    "code": "LOTCREDAT",
+    "label": "LOTCREDAT",
+    "category": "Stocks",
+    "group": "STOLOT",
+    "table": "STOLOT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "lotcredat",
+      "stolot",
+      "stocks"
+    ]
+  },
+  {
+    "code": "MACTOT",
+    "label": "MACTOT",
+    "category": "Stocks",
+    "group": "ITMCOST",
+    "table": "ITMCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "mactot",
+      "itmcost",
+      "stocks"
+    ]
+  },
+  {
+    "code": "MATLEV0",
+    "label": "MATLEV0",
+    "category": "Transverse",
+    "group": "ITMCOST",
+    "table": "ITMCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "matlev0",
+      "itmcost",
+      "transverse"
+    ]
+  },
+  {
+    "code": "MATTOT",
+    "label": "MATTOT",
+    "category": "Stocks",
+    "group": "ITMCOST",
+    "table": "ITMCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "mattot",
+      "itmcost",
+      "stocks"
+    ]
+  },
+  {
+    "code": "MATTYP",
+    "label": "MATTYP",
+    "category": "Stocks",
+    "group": "MFGMATTRK",
+    "table": "MFGMATTRK",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "mattyp",
+      "mfgmattrk",
+      "stocks"
+    ]
+  },
+  {
+    "code": "MAXSTO",
+    "label": "MAXSTO",
+    "category": "Stocks",
+    "group": "ITMFACILIT",
+    "table": "ITMFACILIT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "maxsto",
+      "itmfacilit",
+      "stocks"
+    ]
+  },
+  {
+    "code": "MFGLIN",
+    "label": "MFGLIN",
+    "category": "Production",
+    "group": "MFITRK",
+    "table": "MFITRK",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "mfglin",
+      "mfitrk",
+      "production"
+    ]
+  },
+  {
+    "code": "MFGLOTQTY",
+    "label": "MFGLOTQTY",
+    "category": "Transverse",
+    "group": "ITMFACILIT",
+    "table": "ITMFACILIT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "mfglotqty",
+      "itmfacilit",
+      "transverse"
+    ]
+  },
+  {
+    "code": "MFGLTI",
+    "label": "MFGLTI",
+    "category": "Transverse",
+    "group": "ITMFACILIT",
+    "table": "ITMFACILIT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "mfglti",
+      "itmfacilit",
+      "transverse"
+    ]
+  },
+  {
+    "code": "MFGNUM",
+    "label": "MFGNUM",
+    "category": "Stocks",
+    "group": "MFGMAT",
+    "table": "MFGMAT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "mfgnum",
+      "mfgmat",
+      "stocks"
+    ]
+  },
+  {
+    "code": "MFGSTA",
+    "label": "MFGSTA",
+    "category": "Stocks",
+    "group": "MFGHEAD",
+    "table": "MFGHEAD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "mfgsta",
+      "mfghead",
+      "stocks"
+    ]
+  },
+  {
+    "code": "MFGTRKFLG",
+    "label": "MFGTRKFLG",
+    "category": "Stocks",
+    "group": "MFGHEAD",
+    "table": "MFGHEAD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "mfgtrkflg",
+      "mfghead",
+      "stocks"
+    ]
+  },
+  {
+    "code": "MFGTRKNUM",
+    "label": "MFGTRKNUM",
+    "category": "Stocks",
+    "group": "MFGMATTRK",
+    "table": "MFGMATTRK",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "mfgtrknum",
+      "mfgmattrk",
+      "stocks"
+    ]
+  },
+  {
+    "code": "MODIF",
+    "label": "MODIF",
+    "category": "Administration",
+    "group": "ACCES",
+    "table": "ACCES",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "modif",
+      "acces",
+      "administration"
+    ]
+  },
+  {
+    "code": "MODULE",
+    "label": "MODULE",
+    "category": "Production",
+    "group": "APROFIL",
+    "table": "APROFIL",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "module",
+      "aprofil",
+      "production"
+    ]
+  },
+  {
+    "code": "MRPDAT",
+    "label": "MRPDAT",
+    "category": "Stocks",
+    "group": "ORDERS",
+    "table": "ORDERS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "mrpdat",
+      "orders",
+      "stocks"
+    ]
+  },
+  {
+    "code": "MT_FAC",
+    "label": "MT_FAC",
+    "category": "Stocks",
+    "group": "FAC",
+    "table": "FAC",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "mt_fac",
+      "fac",
+      "stocks"
+    ]
+  },
+  {
+    "code": "MT_REC",
+    "label": "MT_REC",
+    "category": "Stocks",
+    "group": "PTD",
+    "table": "PTD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "mt_rec",
+      "ptd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "NAF",
+    "label": "NAF",
+    "category": "Achats",
+    "group": "BPARTNER",
+    "table": "BPARTNER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "naf",
+      "bpartner",
+      "achats"
+    ]
+  },
+  {
+    "code": "NATURE",
+    "label": "NATURE",
+    "category": "Administration",
+    "group": "AWRKHISSUI",
+    "table": "AWRKHISSUI",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "nature",
+      "awrkhissui",
+      "administration"
+    ]
+  },
+  {
+    "code": "NB_REC",
+    "label": "NB_REC",
+    "category": "Stocks",
+    "group": "PTD",
+    "table": "PTD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "nb_rec",
+      "ptd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "NETPRI",
+    "label": "NETPRI",
+    "category": "Stocks",
+    "group": "PORDERP",
+    "table": "PORDERP",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "netpri",
+      "porderp",
+      "stocks"
+    ]
+  },
+  {
+    "code": "NETPRIATI",
+    "label": "NETPRIATI",
+    "category": "Stocks",
+    "group": "SDELIVERYD",
+    "table": "SDELIVERYD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "netpriati",
+      "sdeliveryd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "NETPRINOT",
+    "label": "NETPRINOT",
+    "category": "Stocks",
+    "group": "SORDERP",
+    "table": "SORDERP",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "netprinot",
+      "sorderp",
+      "stocks"
+    ]
+  },
+  {
+    "code": "NEWLTIDAT",
+    "label": "NEWLTIDAT",
+    "category": "Stocks",
+    "group": "STOLOT",
+    "table": "STOLOT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "newltidat",
+      "stolot",
+      "stocks"
+    ]
+  },
+  {
+    "code": "NOCOURT",
+    "label": "NOCOURT",
+    "category": "Transverse",
+    "group": "ATABZON",
+    "table": "ATABZON",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "nocourt",
+      "atabzon",
+      "transverse"
+    ]
+  },
+  {
+    "code": "NOM",
+    "label": "NOM",
+    "category": "Production",
+    "group": "AFONCTION",
+    "table": "AFONCTION",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "nom",
+      "afonction",
+      "production"
+    ]
+  },
+  {
+    "code": "NOMUSR",
+    "label": "NOMUSR",
+    "category": "Administration",
+    "group": "AUTILIS",
+    "table": "AUTILIS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "nomusr",
+      "autilis",
+      "administration"
+    ]
+  },
+  {
+    "code": "NUM",
+    "label": "NUM",
+    "category": "Stocks",
+    "group": "PINVOICED",
+    "table": "PINVOICED",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "num",
+      "pinvoiced",
+      "stocks"
+    ]
+  },
+  {
+    "code": "NUMERO",
+    "label": "NUMERO",
+    "category": "Production",
+    "group": "ATEXTE",
+    "table": "ATEXTE",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "numero",
+      "atexte",
+      "production"
+    ]
+  },
+  {
+    "code": "NUMORI",
+    "label": "NUMORI",
+    "category": "Stocks",
+    "group": "PINVOICED",
+    "table": "PINVOICED",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "numori",
+      "pinvoiced",
+      "stocks"
+    ]
+  },
+  {
+    "code": "NVAL",
+    "label": "NVAL",
+    "category": "Administration",
+    "group": "AUDITL",
+    "table": "AUDITL",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "nval",
+      "auditl",
+      "administration"
+    ]
+  },
+  {
+    "code": "OFS",
+    "label": "OFS",
+    "category": "Transverse",
+    "group": "ITMFACILIT",
+    "table": "ITMFACILIT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "ofs",
+      "itmfacilit",
+      "transverse"
+    ]
+  },
+  {
+    "code": "OPENUM",
+    "label": "OPENUM",
+    "category": "Stocks",
+    "group": "MFGOPE",
+    "table": "MFGOPE",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "openum",
+      "mfgope",
+      "stocks"
+    ]
+  },
+  {
+    "code": "OPT",
+    "label": "OPT",
+    "category": "Administration",
+    "group": "AFCTPRF",
+    "table": "AFCTPRF",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "opt",
+      "afctprf",
+      "administration"
+    ]
+  },
+  {
+    "code": "ORDDAT",
+    "label": "ORDDAT",
+    "category": "Stocks",
+    "group": "SORDER",
+    "table": "SORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "orddat",
+      "sorder",
+      "stocks"
+    ]
+  },
+  {
+    "code": "ORDFLG",
+    "label": "ORDFLG",
+    "category": "Achats",
+    "group": "PREQUIS",
+    "table": "PREQUIS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "ordflg",
+      "prequis",
+      "achats"
+    ]
+  },
+  {
+    "code": "ORDINVATI",
+    "label": "ORDINVATI",
+    "category": "Ventes",
+    "group": "SORDER",
+    "table": "SORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "ordinvati",
+      "sorder",
+      "ventes"
+    ]
+  },
+  {
+    "code": "ORDREF",
+    "label": "ORDREF",
+    "category": "Ventes",
+    "group": "PORDER",
+    "table": "PORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "ordref",
+      "porder",
+      "ventes"
+    ]
+  },
+  {
+    "code": "ORDSTA",
+    "label": "ORDSTA",
+    "category": "Stocks",
+    "group": "SORDER",
+    "table": "SORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "ordsta",
+      "sorder",
+      "stocks"
+    ]
+  },
+  {
+    "code": "ORIFCY",
+    "label": "ORIFCY",
+    "category": "Stocks",
+    "group": "ORDERS",
+    "table": "ORDERS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "orifcy",
+      "orders",
+      "stocks"
+    ]
+  },
+  {
+    "code": "OVAL",
+    "label": "OVAL",
+    "category": "Administration",
+    "group": "AUDITL",
+    "table": "AUDITL",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "oval",
+      "auditl",
+      "administration"
+    ]
+  },
+  {
+    "code": "OVECOD",
+    "label": "OVECOD",
+    "category": "Transverse",
+    "group": "OVERHEAD",
+    "table": "OVERHEAD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "ovecod",
+      "overhead",
+      "transverse"
+    ]
+  },
+  {
+    "code": "OVENAT",
+    "label": "OVENAT",
+    "category": "Transverse",
+    "group": "OVERHEAD",
+    "table": "OVERHEAD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "ovenat",
+      "overhead",
+      "transverse"
+    ]
+  },
+  {
+    "code": "OVENAT_1",
+    "label": "OVENAT_1",
+    "category": "Transverse",
+    "group": "OVERHEAD",
+    "table": "OVERHEAD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "ovenat_1",
+      "overhead",
+      "transverse"
+    ]
+  },
+  {
+    "code": "OVETOT",
+    "label": "OVETOT",
+    "category": "Stocks",
+    "group": "ITMCOST",
+    "table": "ITMCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "ovetot",
+      "itmcost",
+      "stocks"
+    ]
+  },
+  {
+    "code": "PAB1",
+    "label": "PAB1",
+    "category": "Stocks",
+    "group": "BID",
+    "table": "BID",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "pab1",
+      "bid",
+      "stocks"
+    ]
+  },
+  {
+    "code": "PALNUM",
+    "label": "PALNUM",
+    "category": "Stocks",
+    "group": "STOCK",
+    "table": "STOCK",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "palnum",
+      "stock",
+      "stocks"
+    ]
+  },
+  {
+    "code": "PAM",
+    "label": "PAM",
+    "category": "Achats",
+    "group": "TABPAYTERM",
+    "table": "TABPAYTERM",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "pam",
+      "tabpayterm",
+      "achats"
+    ]
+  },
+  {
+    "code": "PCU",
+    "label": "PCU",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "pcu",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "PCUSTUCOE",
+    "label": "PCUSTUCOE",
+    "category": "Stocks",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "pcustucoe",
+      "itmmaster",
+      "stocks"
+    ]
+  },
+  {
+    "code": "PCUSTUCOE_1",
+    "label": "PCUSTUCOE_1",
+    "category": "Achats",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "pcustucoe_1",
+      "itmmaster",
+      "achats"
+    ]
+  },
+  {
+    "code": "PCUSTUCOE_2",
+    "label": "PCUSTUCOE_2",
+    "category": "Achats",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "pcustucoe_2",
+      "itmmaster",
+      "achats"
+    ]
+  },
+  {
+    "code": "PCUSTUCOE_3",
+    "label": "PCUSTUCOE_3",
+    "category": "Achats",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "pcustucoe_3",
+      "itmmaster",
+      "achats"
+    ]
+  },
+  {
+    "code": "PCU_1",
+    "label": "PCU_1",
+    "category": "Stocks",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "pcu_1",
+      "itmmaster",
+      "stocks"
+    ]
+  },
+  {
+    "code": "PCU_2",
+    "label": "PCU_2",
+    "category": "Ventes",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "pcu_2",
+      "itmmaster",
+      "ventes"
+    ]
+  },
+  {
+    "code": "PCU_3",
+    "label": "PCU_3",
+    "category": "Ventes",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "pcu_3",
+      "itmmaster",
+      "ventes"
+    ]
+  },
+  {
+    "code": "PFM",
+    "label": "PFM",
+    "category": "Stocks",
+    "group": "SDELIVERYD",
+    "table": "SDELIVERYD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "pfm",
+      "sdeliveryd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "PHYALL",
+    "label": "PHYALL",
+    "category": "Stocks",
+    "group": "ITMMVT",
+    "table": "ITMMVT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "phyall",
+      "itmmvt",
+      "stocks"
+    ]
+  },
+  {
+    "code": "PHYSTO",
+    "label": "PHYSTO",
+    "category": "Achats",
+    "group": "ITMMVT",
+    "table": "ITMMVT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "physto",
+      "itmmvt",
+      "achats"
+    ]
+  },
+  {
+    "code": "PIDLIN",
+    "label": "PIDLIN",
+    "category": "Stocks",
+    "group": "PINVOICED",
+    "table": "PINVOICED",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "pidlin",
+      "pinvoiced",
+      "stocks"
+    ]
+  },
+  {
+    "code": "PIO",
+    "label": "PIO",
+    "category": "Stocks",
+    "group": "ORDERS",
+    "table": "ORDERS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "pio",
+      "orders",
+      "stocks"
+    ]
+  },
+  {
+    "code": "PJT",
+    "label": "PJT",
+    "category": "Stocks",
+    "group": "PINVOICED",
+    "table": "PINVOICED",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "pjt",
+      "pinvoiced",
+      "stocks"
+    ]
+  },
+  {
+    "code": "PLANNER",
+    "label": "PLANNER",
+    "category": "Stocks",
+    "group": "ITMFACILIT",
+    "table": "ITMFACILIT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "planner",
+      "itmfacilit",
+      "stocks"
+    ]
+  },
+  {
+    "code": "PLMITMREF",
+    "label": "PLMITMREF",
+    "category": "Transverse",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "plmitmref",
+      "itmmaster",
+      "transverse"
+    ]
+  },
+  {
+    "code": "PLNNUM",
+    "label": "PLNNUM",
+    "category": "Production",
+    "group": "ROUTING",
+    "table": "ROUTING",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "plnnum",
+      "routing",
+      "production"
+    ]
+  },
+  {
+    "code": "PNDLIN",
+    "label": "PNDLIN",
+    "category": "Stocks",
+    "group": "PRETURND",
+    "table": "PRETURND",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "pndlin",
+      "preturnd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "PNHFCY",
+    "label": "PNHFCY",
+    "category": "Stocks",
+    "group": "PRETURN",
+    "table": "PRETURN",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "pnhfcy",
+      "preturn",
+      "stocks"
+    ]
+  },
+  {
+    "code": "PNHNUM",
+    "label": "PNHNUM",
+    "category": "Stocks",
+    "group": "PRETURND",
+    "table": "PRETURND",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "pnhnum",
+      "preturnd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "POHNUM",
+    "label": "POHNUM",
+    "category": "Stocks",
+    "group": "PRECEIPTD",
+    "table": "PRECEIPTD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "pohnum",
+      "preceiptd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "POPLIN",
+    "label": "POPLIN",
+    "category": "Stocks",
+    "group": "PORDERQ",
+    "table": "PORDERQ",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "poplin",
+      "porderq",
+      "stocks"
+    ]
+  },
+  {
+    "code": "POPSEQ",
+    "label": "POPSEQ",
+    "category": "Achats",
+    "group": "PORDERP",
+    "table": "PORDERP",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "popseq",
+      "porderp",
+      "achats"
+    ]
+  },
+  {
+    "code": "POQSEQ",
+    "label": "POQSEQ",
+    "category": "Achats",
+    "group": "PORDERQ",
+    "table": "PORDERQ",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "poqseq",
+      "porderq",
+      "achats"
+    ]
+  },
+  {
+    "code": "POSCOD",
+    "label": "POSCOD",
+    "category": "Achats",
+    "group": "BPADDRESS",
+    "table": "BPADDRESS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "poscod",
+      "bpaddress",
+      "achats"
+    ]
+  },
+  {
+    "code": "POT",
+    "label": "POT",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "pot",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "PRFCOD",
+    "label": "PRFCOD",
+    "category": "Administration",
+    "group": "AFCTPRF",
+    "table": "AFCTPRF",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "prfcod",
+      "afctprf",
+      "administration"
+    ]
+  },
+  {
+    "code": "PRFFCT",
+    "label": "PRFFCT",
+    "category": "Administration",
+    "group": "AUTILIS",
+    "table": "AUTILIS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "prffct",
+      "autilis",
+      "administration"
+    ]
+  },
+  {
+    "code": "PRFMEN",
+    "label": "PRFMEN",
+    "category": "Production",
+    "group": "AUTILIS",
+    "table": "AUTILIS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "prfmen",
+      "autilis",
+      "production"
+    ]
+  },
+  {
+    "code": "PRHFCY",
+    "label": "PRHFCY",
+    "category": "Stocks",
+    "group": "PRECEIPTD",
+    "table": "PRECEIPTD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "prhfcy",
+      "preceiptd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "PRINAT",
+    "label": "PRINAT",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "prinat",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "PRIORD",
+    "label": "PRIORD",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "priord",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "PRIVAL",
+    "label": "PRIVAL",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "prival",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "PRQDAT",
+    "label": "PRQDAT",
+    "category": "Achats",
+    "group": "PREQUIS",
+    "table": "PREQUIS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "prqdat",
+      "prequis",
+      "achats"
+    ]
+  },
+  {
+    "code": "PSDLIN",
+    "label": "PSDLIN",
+    "category": "Administration",
+    "group": "PREQUISD",
+    "table": "PREQUISD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "psdlin",
+      "prequisd",
+      "administration"
+    ]
+  },
+  {
+    "code": "PSHNUM",
+    "label": "PSHNUM",
+    "category": "Administration",
+    "group": "PREQUISD",
+    "table": "PREQUISD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "pshnum",
+      "prequisd",
+      "administration"
+    ]
+  },
+  {
+    "code": "PTDLIN",
+    "label": "PTDLIN",
+    "category": "Stocks",
+    "group": "PRECEIPTD",
+    "table": "PRECEIPTD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "ptdlin",
+      "preceiptd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "PTE",
+    "label": "PTE",
+    "category": "Achats",
+    "group": "BPSUPPLIER",
+    "table": "BPSUPPLIER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "pte",
+      "bpsupplier",
+      "achats"
+    ]
+  },
+  {
+    "code": "PTHNUM",
+    "label": "PTHNUM",
+    "category": "Stocks",
+    "group": "PRECEIPTD",
+    "table": "PRECEIPTD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "pthnum",
+      "preceiptd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "PUU",
+    "label": "PUU",
+    "category": "Achats",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "puu",
+      "itmmaster",
+      "achats"
+    ]
+  },
+  {
+    "code": "PUUSTUCOE",
+    "label": "PUUSTUCOE",
+    "category": "Achats",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "puustucoe",
+      "itmmaster",
+      "achats"
+    ]
+  },
+  {
+    "code": "QTECONS",
+    "label": "QTECONS",
+    "category": "Production",
+    "group": "CONSO",
+    "table": "CONSO",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "qtecons",
+      "conso",
+      "production"
+    ]
+  },
+  {
+    "code": "QTECONSPER",
+    "label": "QTECONSPER",
+    "category": "Production",
+    "group": "CONSO",
+    "table": "CONSO",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "qteconsper",
+      "conso",
+      "production"
+    ]
+  },
+  {
+    "code": "QTESTOCK",
+    "label": "QTESTOCK",
+    "category": "Stocks",
+    "group": "B",
+    "table": "B",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "qtestock",
+      "b",
+      "stocks"
+    ]
+  },
+  {
+    "code": "QTE_EXPED",
+    "label": "QTE_EXPED",
+    "category": "Stocks",
+    "group": "S",
+    "table": "S",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "qte_exped",
+      "s",
+      "stocks"
+    ]
+  },
+  {
+    "code": "QTE_SORTIE_DIV",
+    "label": "QTE_SORTIE_DIV",
+    "category": "Stocks",
+    "group": "S",
+    "table": "S",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "qte_sortie_div",
+      "s",
+      "stocks"
+    ]
+  },
+  {
+    "code": "QTY",
+    "label": "QTY",
+    "category": "Stocks",
+    "group": "SORDERQ",
+    "table": "SORDERQ",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "qty",
+      "sorderq",
+      "stocks"
+    ]
+  },
+  {
+    "code": "QTYPCU",
+    "label": "QTYPCU",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "qtypcu",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "QTYPUU",
+    "label": "QTYPUU",
+    "category": "Achats",
+    "group": "PORDERQ",
+    "table": "PORDERQ",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "qtypuu",
+      "porderq",
+      "achats"
+    ]
+  },
+  {
+    "code": "QTYSTU",
+    "label": "QTYSTU",
+    "category": "Stocks",
+    "group": "STOCK",
+    "table": "STOCK",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "qtystu",
+      "stock",
+      "stocks"
+    ]
+  },
+  {
+    "code": "QTYSTUACT",
+    "label": "QTYSTUACT",
+    "category": "Stocks",
+    "group": "STOALL",
+    "table": "STOALL",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "qtystuact",
+      "stoall",
+      "stocks"
+    ]
+  },
+  {
+    "code": "QTYSTUAVO",
+    "label": "QTYSTUAVO",
+    "category": "Stocks",
+    "group": "F",
+    "table": "F",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "qtystuavo",
+      "f",
+      "stocks"
+    ]
+  },
+  {
+    "code": "QTYSTUDES",
+    "label": "QTYSTUDES",
+    "category": "Stocks",
+    "group": "SCHGD",
+    "table": "SCHGD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "qtystudes",
+      "schgd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "QTYSTUFAC",
+    "label": "QTYSTUFAC",
+    "category": "Stocks",
+    "group": "F",
+    "table": "F",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "qtystufac",
+      "f",
+      "stocks"
+    ]
+  },
+  {
+    "code": "QTYUOM",
+    "label": "QTYUOM",
+    "category": "Stocks",
+    "group": "PINVOICED",
+    "table": "PINVOICED",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "qtyuom",
+      "pinvoiced",
+      "stocks"
+    ]
+  },
+  {
+    "code": "QUALTI",
+    "label": "QUALTI",
+    "category": "Transverse",
+    "group": "ITMFACILIT",
+    "table": "ITMFACILIT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "qualti",
+      "itmfacilit",
+      "transverse"
+    ]
+  },
+  {
+    "code": "RATMLT",
+    "label": "RATMLT",
+    "category": "Stocks",
+    "group": "PINVOICE",
+    "table": "PINVOICE",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "ratmlt",
+      "pinvoice",
+      "stocks"
+    ]
+  },
+  {
+    "code": "RCPCLEFLG",
+    "label": "RCPCLEFLG",
+    "category": "Ventes",
+    "group": "PORDERQ",
+    "table": "PORDERQ",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "rcpcleflg",
+      "porderq",
+      "ventes"
+    ]
+  },
+  {
+    "code": "RCPDAT",
+    "label": "RCPDAT",
+    "category": "Stocks",
+    "group": "PRECEIPTD",
+    "table": "PRECEIPTD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "rcpdat",
+      "preceiptd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "RCPFLG",
+    "label": "RCPFLG",
+    "category": "Ventes",
+    "group": "PORDER",
+    "table": "PORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "rcpflg",
+      "porder",
+      "ventes"
+    ]
+  },
+  {
+    "code": "RCPQTYPUU",
+    "label": "RCPQTYPUU",
+    "category": "Achats",
+    "group": "PORDERQ",
+    "table": "PORDERQ",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "rcpqtypuu",
+      "porderq",
+      "achats"
+    ]
+  },
+  {
+    "code": "REFPER",
+    "label": "REFPER",
+    "category": "Stocks",
+    "group": "STOLOT",
+    "table": "STOLOT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "refper",
+      "stolot",
+      "stocks"
+    ]
+  },
+  {
+    "code": "REGFLG",
+    "label": "REGFLG",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "regflg",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "REJSTO",
+    "label": "REJSTO",
+    "category": "Achats",
+    "group": "ITMMVT",
+    "table": "ITMMVT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "rejsto",
+      "itmmvt",
+      "achats"
+    ]
+  },
+  {
+    "code": "REOCOD",
+    "label": "REOCOD",
+    "category": "Production",
+    "group": "ITMFACILIT",
+    "table": "ITMFACILIT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "reocod",
+      "itmfacilit",
+      "production"
+    ]
+  },
+  {
+    "code": "REOMINQTY",
+    "label": "REOMINQTY",
+    "category": "Transverse",
+    "group": "ITMFACILIT",
+    "table": "ITMFACILIT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "reominqty",
+      "itmfacilit",
+      "transverse"
+    ]
+  },
+  {
+    "code": "REOPOL",
+    "label": "REOPOL",
+    "category": "Transverse",
+    "group": "ITMFACILIT",
+    "table": "ITMFACILIT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "reopol",
+      "itmfacilit",
+      "transverse"
+    ]
+  },
+  {
+    "code": "REOTSD",
+    "label": "REOTSD",
+    "category": "Stocks",
+    "group": "ITMFACILIT",
+    "table": "ITMFACILIT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "reotsd",
+      "itmfacilit",
+      "stocks"
+    ]
+  },
+  {
+    "code": "REP",
+    "label": "REP",
+    "category": "Stocks",
+    "group": "BPCUSTOMER",
     "table": "BPCUSTOMER",
-    "description": "Identifiant du client pour les flux de sortie.",
-    "keywords": ["client", "tiers", "expédition"]
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "rep",
+      "bpcustomer",
+      "stocks"
+    ]
+  },
+  {
+    "code": "REP_1",
+    "label": "REP_1",
+    "category": "Stocks",
+    "group": "SDELIVERY",
+    "table": "SDELIVERY",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "rep_1",
+      "sdelivery",
+      "stocks"
+    ]
+  },
+  {
+    "code": "REQUSR",
+    "label": "REQUSR",
+    "category": "Achats",
+    "group": "PREQUIS",
+    "table": "PREQUIS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "requsr",
+      "prequis",
+      "achats"
+    ]
+  },
+  {
+    "code": "RETQTY",
+    "label": "RETQTY",
+    "category": "Stocks",
+    "group": "MFGMAT",
+    "table": "MFGMAT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "retqty",
+      "mfgmat",
+      "stocks"
+    ]
+  },
+  {
+    "code": "RMNEXTQTY",
+    "label": "RMNEXTQTY",
+    "category": "Production",
+    "group": "MFGITM",
+    "table": "MFGITM",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "rmnextqty",
+      "mfgitm",
+      "production"
+    ]
+  },
+  {
+    "code": "ROUALT",
+    "label": "ROUALT",
+    "category": "Production",
+    "group": "ROUTING",
+    "table": "ROUTING",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "roualt",
+      "routing",
+      "production"
+    ]
+  },
+  {
+    "code": "ROUNUM",
+    "label": "ROUNUM",
+    "category": "Transverse",
+    "group": "XITMVERSIO",
+    "table": "XITMVERSIO",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "rounum",
+      "xitmversio",
+      "transverse"
+    ]
+  },
+  {
+    "code": "ROWID",
+    "label": "ROWID",
+    "category": "Transverse",
+    "group": "ITMCOST",
+    "table": "ITMCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "rowid",
+      "itmcost",
+      "transverse"
+    ]
+  },
+  {
+    "code": "ROWIDMAX",
+    "label": "ROWIDMAX",
+    "category": "Transverse",
+    "group": "T1",
+    "table": "T1",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "rowidmax",
+      "t1",
+      "transverse"
+    ]
+  },
+  {
+    "code": "RTNDAT",
+    "label": "RTNDAT",
+    "category": "Stocks",
+    "group": "PRETURND",
+    "table": "PRETURND",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "rtndat",
+      "preturnd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "RTNQTY",
+    "label": "RTNQTY",
+    "category": "Stocks",
+    "group": "SDELIVERYD",
+    "table": "SDELIVERYD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "rtnqty",
+      "sdeliveryd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "RTNSTA",
+    "label": "RTNSTA",
+    "category": "Stocks",
+    "group": "SDELIVERY",
+    "table": "SDELIVERY",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "rtnsta",
+      "sdelivery",
+      "stocks"
+    ]
+  },
+  {
+    "code": "SAFSTO",
+    "label": "SAFSTO",
+    "category": "Transverse",
+    "group": "ITMFACILIT",
+    "table": "ITMFACILIT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "safsto",
+      "itmfacilit",
+      "transverse"
+    ]
+  },
+  {
+    "code": "SALFCY",
+    "label": "SALFCY",
+    "category": "Stocks",
+    "group": "SORDERQ",
+    "table": "SORDERQ",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "salfcy",
+      "sorderq",
+      "stocks"
+    ]
+  },
+  {
+    "code": "SAU",
+    "label": "SAU",
+    "category": "Stocks",
+    "group": "SORDERP",
+    "table": "SORDERP",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "sau",
+      "sorderp",
+      "stocks"
+    ]
+  },
+  {
+    "code": "SCOTOT",
+    "label": "SCOTOT",
+    "category": "Stocks",
+    "group": "ITMCOST",
+    "table": "ITMCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "scotot",
+      "itmcost",
+      "stocks"
+    ]
+  },
+  {
+    "code": "SDDLIN",
+    "label": "SDDLIN",
+    "category": "Stocks",
+    "group": "SDELIVERYD",
+    "table": "SDELIVERYD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "sddlin",
+      "sdeliveryd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "SDHNUM",
+    "label": "SDHNUM",
+    "category": "Stocks",
+    "group": "SDELIVERYD",
+    "table": "SDELIVERYD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "sdhnum",
+      "sdeliveryd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "SEAKEY",
+    "label": "SEAKEY",
+    "category": "Transverse",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "seakey",
+      "itmmaster",
+      "transverse"
+    ]
+  },
+  {
+    "code": "SEQ",
+    "label": "SEQ",
+    "category": "Administration",
+    "group": "AUDITH",
+    "table": "AUDITH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "seq",
+      "audith",
+      "administration"
+    ]
+  },
+  {
+    "code": "SHIDAT",
+    "label": "SHIDAT",
+    "category": "Stocks",
+    "group": "SDELIVERYD",
+    "table": "SDELIVERYD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "shidat",
+      "sdeliveryd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "SHL",
+    "label": "SHL",
+    "category": "Production",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "shl",
+      "itmmaster",
+      "production"
+    ]
+  },
+  {
+    "code": "SHLDAT",
+    "label": "SHLDAT",
+    "category": "Stocks",
+    "group": "STOLOT",
+    "table": "STOLOT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "shldat",
+      "stolot",
+      "stocks"
+    ]
+  },
+  {
+    "code": "SHLLTIUOM",
+    "label": "SHLLTIUOM",
+    "category": "Production",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "shlltiuom",
+      "itmmaster",
+      "production"
+    ]
+  },
+  {
+    "code": "SHTMATNBR",
+    "label": "SHTMATNBR",
+    "category": "Stocks",
+    "group": "MFGHEAD",
+    "table": "MFGHEAD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "shtmatnbr",
+      "mfghead",
+      "stocks"
+    ]
+  },
+  {
+    "code": "SIMOPECST",
+    "label": "SIMOPECST",
+    "category": "Transverse",
+    "group": "WORKCOST",
+    "table": "WORKCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "simopecst",
+      "workcost",
+      "transverse"
+    ]
+  },
+  {
+    "code": "SIMSETCST",
+    "label": "SIMSETCST",
+    "category": "Transverse",
+    "group": "WORKCOST",
+    "table": "WORKCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "simsetcst",
+      "workcost",
+      "transverse"
+    ]
+  },
+  {
+    "code": "SIVTYP",
+    "label": "SIVTYP",
+    "category": "Stocks",
+    "group": "SINVOICE",
+    "table": "SINVOICE",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "sivtyp",
+      "sinvoice",
+      "stocks"
+    ]
+  },
+  {
+    "code": "SLO",
+    "label": "SLO",
+    "category": "Stocks",
+    "group": "STOLOT",
+    "table": "STOLOT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "slo",
+      "stolot",
+      "stocks"
+    ]
+  },
+  {
+    "code": "SNS",
+    "label": "SNS",
+    "category": "Stocks",
+    "group": "PINVOICE",
+    "table": "PINVOICE",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "sns",
+      "pinvoice",
+      "stocks"
+    ]
+  },
+  {
+    "code": "SOHCAT",
+    "label": "SOHCAT",
+    "category": "Stocks",
+    "group": "SORDERQ",
+    "table": "SORDERQ",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "sohcat",
+      "sorderq",
+      "stocks"
+    ]
+  },
+  {
+    "code": "SOHNUM",
+    "label": "SOHNUM",
+    "category": "Stocks",
+    "group": "SORDERP",
+    "table": "SORDERP",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "sohnum",
+      "sorderp",
+      "stocks"
+    ]
+  },
+  {
+    "code": "SOPLIN",
+    "label": "SOPLIN",
+    "category": "Stocks",
+    "group": "SORDERP",
+    "table": "SORDERP",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "soplin",
+      "sorderp",
+      "stocks"
+    ]
+  },
+  {
+    "code": "SOPSEQ",
+    "label": "SOPSEQ",
+    "category": "Stocks",
+    "group": "SORDERP",
+    "table": "SORDERP",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "sopseq",
+      "sorderp",
+      "stocks"
+    ]
+  },
+  {
+    "code": "SOQSEQ",
+    "label": "SOQSEQ",
+    "category": "Stocks",
+    "group": "SORDERQ",
+    "table": "SORDERQ",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "soqseq",
+      "sorderq",
+      "stocks"
+    ]
+  },
+  {
+    "code": "SOQSTA",
+    "label": "SOQSTA",
+    "category": "Stocks",
+    "group": "SORDERP",
+    "table": "SORDERP",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "soqsta",
+      "sorderp",
+      "stocks"
+    ]
+  },
+  {
+    "code": "STA",
+    "label": "STA",
+    "category": "Stocks",
+    "group": "STOCK",
+    "table": "STOCK",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "sta",
+      "stock",
+      "stocks"
+    ]
+  },
+  {
+    "code": "STDOPECST",
+    "label": "STDOPECST",
+    "category": "Transverse",
+    "group": "WORKCOST",
+    "table": "WORKCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "stdopecst",
+      "workcost",
+      "transverse"
+    ]
+  },
+  {
+    "code": "STDSETCST",
+    "label": "STDSETCST",
+    "category": "Transverse",
+    "group": "WORKCOST",
+    "table": "WORKCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "stdsetcst",
+      "workcost",
+      "transverse"
+    ]
+  },
+  {
+    "code": "STDWST",
+    "label": "STDWST",
+    "category": "Stocks",
+    "group": "MFGOPE",
+    "table": "MFGOPE",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "stdwst",
+      "mfgope",
+      "stocks"
+    ]
+  },
+  {
+    "code": "STOCOU",
+    "label": "STOCOU",
+    "category": "Stocks",
+    "group": "STOCK",
+    "table": "STOCK",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "stocou",
+      "stock",
+      "stocks"
+    ]
+  },
+  {
+    "code": "STOFCY",
+    "label": "STOFCY",
+    "category": "Stocks",
+    "group": "ITMFACILIT",
+    "table": "ITMFACILIT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "stofcy",
+      "itmfacilit",
+      "stocks"
+    ]
+  },
+  {
+    "code": "STOLOC",
+    "label": "STOLOC",
+    "category": "Stocks",
+    "group": "WORKSTATIO",
+    "table": "WORKSTATIO",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "stoloc",
+      "workstatio",
+      "stocks"
+    ]
+  },
+  {
+    "code": "STOMGTCOD",
+    "label": "STOMGTCOD",
+    "category": "Stocks",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "stomgtcod",
+      "itmmaster",
+      "stocks"
+    ]
+  },
+  {
+    "code": "STRDAT",
+    "label": "STRDAT",
+    "category": "Stocks",
+    "group": "ORDERS",
+    "table": "ORDERS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "strdat",
+      "orders",
+      "stocks"
+    ]
+  },
+  {
+    "code": "STU",
+    "label": "STU",
+    "category": "Stocks",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "stu",
+      "itmmaster",
+      "stocks"
+    ]
+  },
+  {
+    "code": "TABPAYTERM",
+    "label": "TABPAYTERM",
+    "category": "Transverse",
+    "group": "VDRTEST",
+    "table": "VDRTEST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "tabpayterm",
+      "vdrtest",
+      "transverse"
+    ]
+  },
+  {
+    "code": "TBL",
+    "label": "TBL",
+    "category": "Administration",
+    "group": "AUDITH",
+    "table": "AUDITH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "tbl",
+      "audith",
+      "administration"
+    ]
+  },
+  {
+    "code": "TCLCOD",
+    "label": "TCLCOD",
+    "category": "Stocks",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "tclcod",
+      "itmmaster",
+      "stocks"
+    ]
+  },
+  {
+    "code": "TEL",
+    "label": "TEL",
+    "category": "Stocks",
+    "group": "BPADDRESS",
+    "table": "BPADDRESS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "tel",
+      "bpaddress",
+      "stocks"
+    ]
+  },
+  {
+    "code": "TEXTE",
+    "label": "TEXTE",
+    "category": "Production",
+    "group": "ATEXTRA",
+    "table": "ATEXTRA",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "texte",
+      "atextra",
+      "production"
+    ]
+  },
+  {
+    "code": "TOTLINAMT",
+    "label": "TOTLINAMT",
+    "category": "Stocks",
+    "group": "PORDER",
+    "table": "PORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "totlinamt",
+      "porder",
+      "stocks"
+    ]
+  },
+  {
+    "code": "TRKLAST",
+    "label": "TRKLAST",
+    "category": "Stocks",
+    "group": "MFGITM",
+    "table": "MFGITM",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "trklast",
+      "mfgitm",
+      "stocks"
+    ]
+  },
+  {
+    "code": "TRSFAM",
+    "label": "TRSFAM",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "trsfam",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "TRSTYP",
+    "label": "TRSTYP",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "trstyp",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "TSICOD",
+    "label": "TSICOD",
+    "category": "Achats",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "tsicod",
+      "itmmaster",
+      "achats"
+    ]
+  },
+  {
+    "code": "TSICOD_1",
+    "label": "TSICOD_1",
+    "category": "Stocks",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "tsicod_1",
+      "itmmaster",
+      "stocks"
+    ]
+  },
+  {
+    "code": "TSICOD_2",
+    "label": "TSICOD_2",
+    "category": "Stocks",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "tsicod_2",
+      "itmmaster",
+      "stocks"
+    ]
+  },
+  {
+    "code": "TSICOD_3",
+    "label": "TSICOD_3",
+    "category": "Transverse",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "tsicod_3",
+      "itmmaster",
+      "transverse"
+    ]
+  },
+  {
+    "code": "TSICOD_4",
+    "label": "TSICOD_4",
+    "category": "Stocks",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "tsicod_4",
+      "itmmaster",
+      "stocks"
+    ]
+  },
+  {
+    "code": "TXTNUM",
+    "label": "TXTNUM",
+    "category": "Transverse",
+    "group": "AREFTXT",
+    "table": "AREFTXT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "txtnum",
+      "areftxt",
+      "transverse"
+    ]
+  },
+  {
+    "code": "TYP",
+    "label": "TYP",
+    "category": "Stocks",
+    "group": "GACCDUDATE",
+    "table": "GACCDUDATE",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "typ",
+      "gaccdudate",
+      "stocks"
+    ]
+  },
+  {
+    "code": "TYPEVT",
+    "label": "TYPEVT",
+    "category": "Administration",
+    "group": "AWRKHISSUI",
+    "table": "AWRKHISSUI",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "typevt",
+      "awrkhissui",
+      "administration"
+    ]
+  },
+  {
+    "code": "UID",
+    "label": "UID",
+    "category": "Transverse",
+    "group": "ITMCOST",
+    "table": "ITMCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "uid",
+      "itmcost",
+      "transverse"
+    ]
+  },
+  {
+    "code": "UOM",
+    "label": "UOM",
+    "category": "Stocks",
+    "group": "PRECEIPTD",
+    "table": "PRECEIPTD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "uom",
+      "preceiptd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "UOMCPLQTY",
+    "label": "UOMCPLQTY",
+    "category": "Stocks",
+    "group": "MFGITMTRK",
+    "table": "MFGITMTRK",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "uomcplqty",
+      "mfgitmtrk",
+      "stocks"
+    ]
+  },
+  {
+    "code": "UOMPUUCOE",
+    "label": "UOMPUUCOE",
+    "category": "Stocks",
+    "group": "PINVOICED",
+    "table": "PINVOICED",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "uompuucoe",
+      "pinvoiced",
+      "stocks"
+    ]
+  },
+  {
+    "code": "UPDCOD",
+    "label": "UPDCOD",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "updcod",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "UPDDAT",
+    "label": "UPDDAT",
+    "category": "Achats",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "upddat",
+      "itmmaster",
+      "achats"
+    ]
+  },
+  {
+    "code": "UPDUSR",
+    "label": "UPDUSR",
+    "category": "Transverse",
+    "group": "XITMMODDET",
+    "table": "XITMMODDET",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "updusr",
+      "xitmmoddet",
+      "transverse"
+    ]
+  },
+  {
+    "code": "USEQTY",
+    "label": "USEQTY",
+    "category": "Stocks",
+    "group": "MFGMAT",
+    "table": "MFGMAT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "useqty",
+      "mfgmat",
+      "stocks"
+    ]
+  },
+  {
+    "code": "USESTA",
+    "label": "USESTA",
+    "category": "Production",
+    "group": "BOM",
+    "table": "BOM",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "usesta",
+      "bom",
+      "production"
+    ]
+  },
+  {
+    "code": "USR",
+    "label": "USR",
+    "category": "Administration",
+    "group": "AUTILIS",
+    "table": "AUTILIS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "usr",
+      "autilis",
+      "administration"
+    ]
+  },
+  {
+    "code": "UVYDAY1",
+    "label": "UVYDAY1",
+    "category": "Stocks",
+    "group": "BPDLVCUST",
+    "table": "BPDLVCUST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "uvyday1",
+      "bpdlvcust",
+      "stocks"
+    ]
+  },
+  {
+    "code": "UVYDAY2",
+    "label": "UVYDAY2",
+    "category": "Stocks",
+    "group": "BPDLVCUST",
+    "table": "BPDLVCUST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "uvyday2",
+      "bpdlvcust",
+      "stocks"
+    ]
+  },
+  {
+    "code": "UVYDAY3",
+    "label": "UVYDAY3",
+    "category": "Stocks",
+    "group": "BPDLVCUST",
+    "table": "BPDLVCUST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "uvyday3",
+      "bpdlvcust",
+      "stocks"
+    ]
+  },
+  {
+    "code": "UVYDAY4",
+    "label": "UVYDAY4",
+    "category": "Stocks",
+    "group": "BPDLVCUST",
+    "table": "BPDLVCUST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "uvyday4",
+      "bpdlvcust",
+      "stocks"
+    ]
+  },
+  {
+    "code": "UVYDAY5",
+    "label": "UVYDAY5",
+    "category": "Stocks",
+    "group": "BPDLVCUST",
+    "table": "BPDLVCUST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "uvyday5",
+      "bpdlvcust",
+      "stocks"
+    ]
+  },
+  {
+    "code": "UVYDAY6",
+    "label": "UVYDAY6",
+    "category": "Stocks",
+    "group": "BPDLVCUST",
+    "table": "BPDLVCUST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "uvyday6",
+      "bpdlvcust",
+      "stocks"
+    ]
+  },
+  {
+    "code": "UVYDAY7",
+    "label": "UVYDAY7",
+    "category": "Stocks",
+    "group": "BPDLVCUST",
+    "table": "BPDLVCUST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "uvyday7",
+      "bpdlvcust",
+      "stocks"
+    ]
+  },
+  {
+    "code": "VAC",
+    "label": "VAC",
+    "category": "Stocks",
+    "group": "PINVOICE",
+    "table": "PINVOICE",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "vac",
+      "pinvoice",
+      "stocks"
+    ]
+  },
+  {
+    "code": "VACBPR",
+    "label": "VACBPR",
+    "category": "Stocks",
+    "group": "SDELIVERY",
+    "table": "SDELIVERY",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "vacbpr",
+      "sdelivery",
+      "stocks"
+    ]
+  },
+  {
+    "code": "VACITM",
+    "label": "VACITM",
+    "category": "Transverse",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "vacitm",
+      "itmmaster",
+      "transverse"
+    ]
+  },
+  {
+    "code": "VALEUR",
+    "label": "VALEUR",
+    "category": "Transverse",
+    "group": "XITMMODDET",
+    "table": "XITMMODDET",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "valeur",
+      "xitmmoddet",
+      "transverse"
+    ]
+  },
+  {
+    "code": "VALEURPREC",
+    "label": "VALEURPREC",
+    "category": "Transverse",
+    "group": "XITMMODDET",
+    "table": "XITMMODDET",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "valeurprec",
+      "xitmmoddet",
+      "transverse"
+    ]
+  },
+  {
+    "code": "VARORD",
+    "label": "VARORD",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "varord",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "VARVAL",
+    "label": "VARVAL",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "varval",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "VCRDES",
+    "label": "VCRDES",
+    "category": "Stocks",
+    "group": "SCHGH",
+    "table": "SCHGH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "vcrdes",
+      "schgh",
+      "stocks"
+    ]
+  },
+  {
+    "code": "VCRLIN",
+    "label": "VCRLIN",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "vcrlin",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "VCRLINORI",
+    "label": "VCRLINORI",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "vcrlinori",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "VCRNUM",
+    "label": "VCRNUM",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "vcrnum",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "VCRNUMORI",
+    "label": "VCRNUMORI",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "vcrnumori",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "VCRSEQ",
+    "label": "VCRSEQ",
+    "category": "Stocks",
+    "group": "CPTANALIN",
+    "table": "CPTANALIN",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "vcrseq",
+      "cptanalin",
+      "stocks"
+    ]
+  },
+  {
+    "code": "VCRTYP",
+    "label": "VCRTYP",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "vcrtyp",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "VCRTYPORI",
+    "label": "VCRTYPORI",
+    "category": "Stocks",
+    "group": "STOJOU",
+    "table": "STOJOU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "vcrtypori",
+      "stojou",
+      "stocks"
+    ]
+  },
+  {
+    "code": "VLTCCE",
+    "label": "VLTCCE",
+    "category": "Transverse",
+    "group": "WORKCOST",
+    "table": "WORKCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "vltcce",
+      "workcost",
+      "transverse"
+    ]
+  },
+  {
+    "code": "VLTCOD",
+    "label": "VLTCOD",
+    "category": "Achats",
+    "group": "ITMFACILIT",
+    "table": "ITMFACILIT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "vltcod",
+      "itmfacilit",
+      "achats"
+    ]
+  },
+  {
+    "code": "VLTFCY",
+    "label": "VLTFCY",
+    "category": "Transverse",
+    "group": "WORKCOST",
+    "table": "WORKCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "vltfcy",
+      "workcost",
+      "transverse"
+    ]
+  },
+  {
+    "code": "VLTOT",
+    "label": "VLTOT",
+    "category": "Stocks",
+    "group": "ZCOUSTD",
+    "table": "ZCOUSTD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "vltot",
+      "zcoustd",
+      "stocks"
+    ]
+  },
+  {
+    "code": "VLTTOT",
+    "label": "VLTTOT",
+    "category": "Production",
+    "group": "ITMCOST",
+    "table": "ITMCOST",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "vlttot",
+      "itmcost",
+      "production"
+    ]
+  },
+  {
+    "code": "WEB",
+    "label": "WEB",
+    "category": "Stocks",
+    "group": "BPADDRESS",
+    "table": "BPADDRESS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "web",
+      "bpaddress",
+      "stocks"
+    ]
+  },
+  {
+    "code": "WEB_4",
+    "label": "WEB_4",
+    "category": "Stocks",
+    "group": "BPADDRESS",
+    "table": "BPADDRESS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "web_4",
+      "bpaddress",
+      "stocks"
+    ]
+  },
+  {
+    "code": "WEU",
+    "label": "WEU",
+    "category": "Stocks",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "weu",
+      "itmmaster",
+      "stocks"
+    ]
+  },
+  {
+    "code": "WIPNUM",
+    "label": "WIPNUM",
+    "category": "Stocks",
+    "group": "ORDERS",
+    "table": "ORDERS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "wipnum",
+      "orders",
+      "stocks"
+    ]
+  },
+  {
+    "code": "WIPSTA",
+    "label": "WIPSTA",
+    "category": "Transverse",
+    "group": "ORDERS",
+    "table": "ORDERS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "wipsta",
+      "orders",
+      "transverse"
+    ]
+  },
+  {
+    "code": "WIPTYP",
+    "label": "WIPTYP",
+    "category": "Transverse",
+    "group": "ORDERS",
+    "table": "ORDERS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "wiptyp",
+      "orders",
+      "transverse"
+    ]
+  },
+  {
+    "code": "WST",
+    "label": "WST",
+    "category": "Stocks",
+    "group": "WORKSTATIO",
+    "table": "WORKSTATIO",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "wst",
+      "workstatio",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XACTIF",
+    "label": "XACTIF",
+    "category": "Transverse",
+    "group": "XFICHCTRLH",
+    "table": "XFICHCTRLH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xactif",
+      "xfichctrlh",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XAPPDAT",
+    "label": "XAPPDAT",
+    "category": "Achats",
+    "group": "PORDER",
+    "table": "PORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xappdat",
+      "porder",
+      "achats"
+    ]
+  },
+  {
+    "code": "XAPPTIM",
+    "label": "XAPPTIM",
+    "category": "Achats",
+    "group": "PORDER",
+    "table": "PORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xapptim",
+      "porder",
+      "achats"
+    ]
+  },
+  {
+    "code": "XAR",
+    "label": "XAR",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xar",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XATTENTE",
+    "label": "XATTENTE",
+    "category": "Transverse",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xattente",
+      "itmmaster",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XBPCLOT",
+    "label": "XBPCLOT",
+    "category": "Stocks",
+    "group": "SORDERQ",
+    "table": "SORDERQ",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xbpclot",
+      "sorderq",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XBPSAGR",
+    "label": "XBPSAGR",
+    "category": "Achats",
+    "group": "BPSUPPLIER",
+    "table": "BPSUPPLIER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xbpsagr",
+      "bpsupplier",
+      "achats"
+    ]
+  },
+  {
+    "code": "XCAMDAT",
+    "label": "XCAMDAT",
+    "category": "Achats",
+    "group": "PORDER",
+    "table": "PORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xcamdat",
+      "porder",
+      "achats"
+    ]
+  },
+  {
+    "code": "XCAMNBPAL",
+    "label": "XCAMNBPAL",
+    "category": "Achats",
+    "group": "PORDER",
+    "table": "PORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xcamnbpal",
+      "porder",
+      "achats"
+    ]
+  },
+  {
+    "code": "XCAMTIM",
+    "label": "XCAMTIM",
+    "category": "Achats",
+    "group": "PORDER",
+    "table": "PORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xcamtim",
+      "porder",
+      "achats"
+    ]
+  },
+  {
+    "code": "XCLIFOU",
+    "label": "XCLIFOU",
+    "category": "Transverse",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xclifou",
+      "itmmaster",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XCLODAT",
+    "label": "XCLODAT",
+    "category": "Qualité",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xclodat",
+      "xrequesth",
+      "qualité"
+    ]
+  },
+  {
+    "code": "XCOALIB",
+    "label": "XCOALIB",
+    "category": "Transverse",
+    "group": "XFICHCTRLD",
+    "table": "XFICHCTRLD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xcoalib",
+      "xfichctrld",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XCODCTRL",
+    "label": "XCODCTRL",
+    "category": "Transverse",
+    "group": "XFICHCTRLD",
+    "table": "XFICHCTRLD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xcodctrl",
+      "xfichctrld",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XCODEFICH",
+    "label": "XCODEFICH",
+    "category": "Transverse",
+    "group": "XFICHCTRLD",
+    "table": "XFICHCTRLD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xcodefich",
+      "xfichctrld",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XCODEMETH",
+    "label": "XCODEMETH",
+    "category": "Transverse",
+    "group": "XFICHCTRLD",
+    "table": "XFICHCTRLD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xcodemeth",
+      "xfichctrld",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XCOEHUFHUM",
+    "label": "XCOEHUFHUM",
+    "category": "Stocks",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xcoehufhum",
+      "itmmaster",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XCOMMENT",
+    "label": "XCOMMENT",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xcomment",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XCOMPLET",
+    "label": "XCOMPLET",
+    "category": "Production",
+    "group": "BOM",
+    "table": "BOM",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xcomplet",
+      "bom",
+      "production"
+    ]
+  },
+  {
+    "code": "XCOMPO",
+    "label": "XCOMPO",
+    "category": "Stocks",
+    "group": "MFGMAT",
+    "table": "MFGMAT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xcompo",
+      "mfgmat",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XCONDSTO",
+    "label": "XCONDSTO",
+    "category": "Transverse",
+    "group": "XSTABETUS",
+    "table": "XSTABETUS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xcondsto",
+      "xstabetus",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XDATTHDEB",
+    "label": "XDATTHDEB",
+    "category": "Transverse",
+    "group": "XSTABETUS",
+    "table": "XSTABETUS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xdatthdeb",
+      "xstabetus",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XDLVDATORI",
+    "label": "XDLVDATORI",
+    "category": "Stocks",
+    "group": "SORDERQ",
+    "table": "SORDERQ",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xdlvdatori",
+      "sorderq",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XENDDAT",
+    "label": "XENDDAT",
+    "category": "Qualité",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xenddat",
+      "xrequesth",
+      "qualité"
+    ]
+  },
+  {
+    "code": "XETUDES",
+    "label": "XETUDES",
+    "category": "Transverse",
+    "group": "XSTABETU",
+    "table": "XSTABETU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xetudes",
+      "xstabetu",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XETUNUM",
+    "label": "XETUNUM",
+    "category": "Transverse",
+    "group": "XSTABETUS",
+    "table": "XSTABETUS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xetunum",
+      "xstabetus",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XETUSTA",
+    "label": "XETUSTA",
+    "category": "Transverse",
+    "group": "XSTABETU",
+    "table": "XSTABETU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xetusta",
+      "xstabetu",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XEXTRCPDAT",
+    "label": "XEXTRCPDAT",
+    "category": "Achats",
+    "group": "PORDERQ",
+    "table": "PORDERQ",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xextrcpdat",
+      "porderq",
+      "achats"
+    ]
+  },
+  {
+    "code": "XFABRIQUANT",
+    "label": "XFABRIQUANT",
+    "category": "Achats",
+    "group": "ITMBPS",
+    "table": "ITMBPS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xfabriquant",
+      "itmbps",
+      "achats"
+    ]
+  },
+  {
+    "code": "XFAMITG",
+    "label": "XFAMITG",
+    "category": "Stocks",
+    "group": "ITMCATEG",
+    "table": "ITMCATEG",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xfamitg",
+      "itmcateg",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XFAMTAR",
+    "label": "XFAMTAR",
+    "category": "Stocks",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xfamtar",
+      "itmmaster",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XFAVFLG",
+    "label": "XFAVFLG",
+    "category": "Stocks",
+    "group": "STOCK",
+    "table": "STOCK",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xfavflg",
+      "stock",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XFCYADD",
+    "label": "XFCYADD",
+    "category": "Achats",
+    "group": "PORDER",
+    "table": "PORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xfcyadd",
+      "porder",
+      "achats"
+    ]
+  },
+  {
+    "code": "XGESCOUT",
+    "label": "XGESCOUT",
+    "category": "Production",
+    "group": "XITMVERSIO",
+    "table": "XITMVERSIO",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xgescout",
+      "xitmversio",
+      "production"
+    ]
+  },
+  {
+    "code": "XITMREF",
+    "label": "XITMREF",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xitmref",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XLOT",
+    "label": "XLOT",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xlot",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XLOTPF",
+    "label": "XLOTPF",
+    "category": "Transverse",
+    "group": "XSTABETU",
+    "table": "XSTABETU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xlotpf",
+      "xstabetu",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XMOTIF",
+    "label": "XMOTIF",
+    "category": "Stocks",
+    "group": "SCHGH",
+    "table": "SCHGH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xmotif",
+      "schgh",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XNUMCAS",
+    "label": "XNUMCAS",
+    "category": "Transverse",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xnumcas",
+      "itmmaster",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XOUVDAT",
+    "label": "XOUVDAT",
+    "category": "Qualité",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xouvdat",
+      "xrequesth",
+      "qualité"
+    ]
+  },
+  {
+    "code": "XPACKNAME",
+    "label": "XPACKNAME",
+    "category": "Transverse",
+    "group": "XSTABETU",
+    "table": "XSTABETU",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xpackname",
+      "xstabetu",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XPCUTYP",
+    "label": "XPCUTYP",
+    "category": "Achats",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xpcutyp",
+      "itmmaster",
+      "achats"
+    ]
+  },
+  {
+    "code": "XPCUTYP_1",
+    "label": "XPCUTYP_1",
+    "category": "Achats",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xpcutyp_1",
+      "itmmaster",
+      "achats"
+    ]
+  },
+  {
+    "code": "XPCUTYP_2",
+    "label": "XPCUTYP_2",
+    "category": "Achats",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xpcutyp_2",
+      "itmmaster",
+      "achats"
+    ]
+  },
+  {
+    "code": "XPCUTYP_3",
+    "label": "XPCUTYP_3",
+    "category": "Achats",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xpcutyp_3",
+      "itmmaster",
+      "achats"
+    ]
+  },
+  {
+    "code": "XPLANCTRL",
+    "label": "XPLANCTRL",
+    "category": "Transverse",
+    "group": "ITMFACILIT",
+    "table": "ITMFACILIT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xplanctrl",
+      "itmfacilit",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XPLANCTRL_1",
+    "label": "XPLANCTRL_1",
+    "category": "Achats",
+    "group": "ITMFACILIT",
+    "table": "ITMFACILIT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xplanctrl_1",
+      "itmfacilit",
+      "achats"
+    ]
+  },
+  {
+    "code": "XPLANCTRL_2",
+    "label": "XPLANCTRL_2",
+    "category": "Achats",
+    "group": "ITMFACILIT",
+    "table": "ITMFACILIT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xplanctrl_2",
+      "itmfacilit",
+      "achats"
+    ]
+  },
+  {
+    "code": "XPLANCTRL_3",
+    "label": "XPLANCTRL_3",
+    "category": "Transverse",
+    "group": "ITMFACILIT",
+    "table": "ITMFACILIT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xplanctrl_3",
+      "itmfacilit",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XPLANCTRL_4",
+    "label": "XPLANCTRL_4",
+    "category": "Transverse",
+    "group": "ITMFACILIT",
+    "table": "ITMFACILIT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xplanctrl_4",
+      "itmfacilit",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XPLANIF",
+    "label": "XPLANIF",
+    "category": "Production",
+    "group": "XITMVERSIO",
+    "table": "XITMVERSIO",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xplanif",
+      "xitmversio",
+      "production"
+    ]
+  },
+  {
+    "code": "XPOINET",
+    "label": "XPOINET",
+    "category": "Stocks",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xpoinet",
+      "itmmaster",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XPRHFCY",
+    "label": "XPRHFCY",
+    "category": "Achats",
+    "group": "PORDER",
+    "table": "PORDER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xprhfcy",
+      "porder",
+      "achats"
+    ]
+  },
+  {
+    "code": "XPROVCUST",
+    "label": "XPROVCUST",
+    "category": "Stocks",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xprovcust",
+      "itmmaster",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XREADYPROD",
+    "label": "XREADYPROD",
+    "category": "Production",
+    "group": "MFGHEAD",
+    "table": "MFGHEAD",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xreadyprod",
+      "mfghead",
+      "production"
+    ]
+  },
+  {
+    "code": "XREQNUM",
+    "label": "XREQNUM",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xreqnum",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XSTA",
+    "label": "XSTA",
+    "category": "Stocks",
+    "group": "PORDERQ",
+    "table": "PORDERQ",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xsta",
+      "porderq",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XSTADAT",
+    "label": "XSTADAT",
+    "category": "Transverse",
+    "group": "XITMMODDET",
+    "table": "XITMMODDET",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xstadat",
+      "xitmmoddet",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XSTAFORCE",
+    "label": "XSTAFORCE",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xstaforce",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XSTAT00",
+    "label": "XSTAT00",
+    "category": "Stocks",
+    "group": "XITMSTAT",
+    "table": "XITMSTAT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xstat00",
+      "xitmstat",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XSTAT06",
+    "label": "XSTAT06",
+    "category": "Stocks",
+    "group": "XITMSTAT",
+    "table": "XITMSTAT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xstat06",
+      "xitmstat",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XSTAT12",
+    "label": "XSTAT12",
+    "category": "Stocks",
+    "group": "XITMSTAT",
+    "table": "XITMSTAT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xstat12",
+      "xitmstat",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XSTATUT",
+    "label": "XSTATUT",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xstatut",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XSTKCLASS",
+    "label": "XSTKCLASS",
+    "category": "Stocks",
+    "group": "I",
+    "table": "I",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xstkclass",
+      "i",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XTAIBATMAX",
+    "label": "XTAIBATMAX",
+    "category": "Transverse",
+    "group": "XITMVERSIO",
+    "table": "XITMVERSIO",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xtaibatmax",
+      "xitmversio",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XTIMEPT",
+    "label": "XTIMEPT",
+    "category": "Transverse",
+    "group": "XSTABETUS",
+    "table": "XSTABETUS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xtimept",
+      "xstabetus",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XTRANSAC",
+    "label": "XTRANSAC",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xtransac",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XTYPCOUT",
+    "label": "XTYPCOUT",
+    "category": "Transverse",
+    "group": "XITMVERSIO",
+    "table": "XITMVERSIO",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xtypcout",
+      "xitmversio",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XVALCQFLG",
+    "label": "XVALCQFLG",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvalcqflg",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVALCQFLG_1",
+    "label": "XVALCQFLG_1",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvalcqflg_1",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVALCQFLG_2",
+    "label": "XVALCQFLG_2",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvalcqflg_2",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVALCQFLG_3",
+    "label": "XVALCQFLG_3",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvalcqflg_3",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVALCQFLG_4",
+    "label": "XVALCQFLG_4",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvalcqflg_4",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVALCQFLG_5",
+    "label": "XVALCQFLG_5",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvalcqflg_5",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVALCQFLG_6",
+    "label": "XVALCQFLG_6",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvalcqflg_6",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVALCQFLG_7",
+    "label": "XVALCQFLG_7",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvalcqflg_7",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVALCQFLG_8",
+    "label": "XVALCQFLG_8",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvalcqflg_8",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVALCQFLG_9",
+    "label": "XVALCQFLG_9",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvalcqflg_9",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVALCQWST",
+    "label": "XVALCQWST",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvalcqwst",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVALCQWST_1",
+    "label": "XVALCQWST_1",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvalcqwst_1",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVALCQWST_2",
+    "label": "XVALCQWST_2",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvalcqwst_2",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVALCQWST_3",
+    "label": "XVALCQWST_3",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvalcqwst_3",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVALCQWST_4",
+    "label": "XVALCQWST_4",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvalcqwst_4",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVALCQWST_5",
+    "label": "XVALCQWST_5",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvalcqwst_5",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVALCQWST_6",
+    "label": "XVALCQWST_6",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvalcqwst_6",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVALCQWST_7",
+    "label": "XVALCQWST_7",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvalcqwst_7",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVALCQWST_8",
+    "label": "XVALCQWST_8",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvalcqwst_8",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVALCQWST_9",
+    "label": "XVALCQWST_9",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvalcqwst_9",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVALDAT",
+    "label": "XVALDAT",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvaldat",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVCRLINORI",
+    "label": "XVCRLINORI",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvcrlinori",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVCRNUMORI",
+    "label": "XVCRNUMORI",
+    "category": "Stocks",
+    "group": "XREQUESTH",
+    "table": "XREQUESTH",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xvcrnumori",
+      "xrequesth",
+      "stocks"
+    ]
+  },
+  {
+    "code": "XVERENDDAT",
+    "label": "XVERENDDAT",
+    "category": "Production",
+    "group": "XITMVERSIO",
+    "table": "XITMVERSIO",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xverenddat",
+      "xitmversio",
+      "production"
+    ]
+  },
+  {
+    "code": "XVERSBLOQ",
+    "label": "XVERSBLOQ",
+    "category": "Production",
+    "group": "XITMVERSIO",
+    "table": "XITMVERSIO",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xversbloq",
+      "xitmversio",
+      "production"
+    ]
+  },
+  {
+    "code": "XVERSDES1",
+    "label": "XVERSDES1",
+    "category": "Transverse",
+    "group": "XITMVERSIO",
+    "table": "XITMVERSIO",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xversdes1",
+      "xitmversio",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XVERSDES2",
+    "label": "XVERSDES2",
+    "category": "Transverse",
+    "group": "XITMVERSIO",
+    "table": "XITMVERSIO",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xversdes2",
+      "xitmversio",
+      "transverse"
+    ]
+  },
+  {
+    "code": "XVERSION",
+    "label": "XVERSION",
+    "category": "Production",
+    "group": "XITMVERSIO",
+    "table": "XITMVERSIO",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xversion",
+      "xitmversio",
+      "production"
+    ]
+  },
+  {
+    "code": "XVERSTRDAT",
+    "label": "XVERSTRDAT",
+    "category": "Production",
+    "group": "XITMVERSIO",
+    "table": "XITMVERSIO",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "xverstrdat",
+      "xitmversio",
+      "production"
+    ]
+  },
+  {
+    "code": "YACTCOD",
+    "label": "YACTCOD",
+    "category": "Stocks",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "yactcod",
+      "itmmaster",
+      "stocks"
+    ]
+  },
+  {
+    "code": "YALIVUSR",
+    "label": "YALIVUSR",
+    "category": "Achats",
+    "group": "PREQUIS",
+    "table": "PREQUIS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "yalivusr",
+      "prequis",
+      "achats"
+    ]
+  },
+  {
+    "code": "YBPSCERT",
+    "label": "YBPSCERT",
+    "category": "Achats",
+    "group": "ITMBPS",
+    "table": "ITMBPS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "ybpscert",
+      "itmbps",
+      "achats"
+    ]
+  },
+  {
+    "code": "YCLEICPE",
+    "label": "YCLEICPE",
+    "category": "Stocks",
+    "group": "YITMLEGIS",
+    "table": "YITMLEGIS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "ycleicpe",
+      "yitmlegis",
+      "stocks"
+    ]
+  },
+  {
+    "code": "YCODDNGPHY",
+    "label": "YCODDNGPHY",
+    "category": "Stocks",
+    "group": "YITMLEGIS",
+    "table": "YITMLEGIS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "ycoddngphy",
+      "yitmlegis",
+      "stocks"
+    ]
+  },
+  {
+    "code": "YCODDNGSAN",
+    "label": "YCODDNGSAN",
+    "category": "Stocks",
+    "group": "YITMLEGIS",
+    "table": "YITMLEGIS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "ycoddngsan",
+      "yitmlegis",
+      "stocks"
+    ]
+  },
+  {
+    "code": "YCODENV",
+    "label": "YCODENV",
+    "category": "Stocks",
+    "group": "YITMLEGIS",
+    "table": "YITMLEGIS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "ycodenv",
+      "yitmlegis",
+      "stocks"
+    ]
+  },
+  {
+    "code": "YFABRIQUAN1",
+    "label": "YFABRIQUAN1",
+    "category": "Achats",
+    "group": "ITMBPS",
+    "table": "ITMBPS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "yfabriquan1",
+      "itmbps",
+      "achats"
+    ]
+  },
+  {
+    "code": "YFABRIQUAN2",
+    "label": "YFABRIQUAN2",
+    "category": "Achats",
+    "group": "ITMBPS",
+    "table": "ITMBPS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "yfabriquan2",
+      "itmbps",
+      "achats"
+    ]
+  },
+  {
+    "code": "YFABRIQUAN3",
+    "label": "YFABRIQUAN3",
+    "category": "Achats",
+    "group": "ITMBPS",
+    "table": "ITMBPS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "yfabriquan3",
+      "itmbps",
+      "achats"
+    ]
+  },
+  {
+    "code": "YFABRIQUAN4",
+    "label": "YFABRIQUAN4",
+    "category": "Achats",
+    "group": "ITMBPS",
+    "table": "ITMBPS",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "yfabriquan4",
+      "itmbps",
+      "achats"
+    ]
+  },
+  {
+    "code": "YFAMLOT",
+    "label": "YFAMLOT",
+    "category": "Transverse",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "yfamlot",
+      "itmmaster",
+      "transverse"
+    ]
+  },
+  {
+    "code": "YSTADE",
+    "label": "YSTADE",
+    "category": "Transverse",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "ystade",
+      "itmmaster",
+      "transverse"
+    ]
+  },
+  {
+    "code": "YVOLUTION",
+    "label": "YVOLUTION",
+    "category": "Transverse",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "yvolution",
+      "itmmaster",
+      "transverse"
+    ]
+  },
+  {
+    "code": "YWST",
+    "label": "YWST",
+    "category": "Transverse",
+    "group": "YWRKEDT",
+    "table": "YWRKEDT",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "ywst",
+      "ywrkedt",
+      "transverse"
+    ]
+  },
+  {
+    "code": "ZDATE",
+    "label": "ZDATE",
+    "category": "Stocks",
+    "group": "ZSTOCKDATE",
+    "table": "ZSTOCKDATE",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "zdate",
+      "zstockdate",
+      "stocks"
+    ]
+  },
+  {
+    "code": "ZITMREF",
+    "label": "ZITMREF",
+    "category": "Stocks",
+    "group": "ZSTOCKDATE",
+    "table": "ZSTOCKDATE",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "zitmref",
+      "zstockdate",
+      "stocks"
+    ]
+  },
+  {
+    "code": "ZLOTVAL",
+    "label": "ZLOTVAL",
+    "category": "Production",
+    "group": "BOM",
+    "table": "BOM",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "zlotval",
+      "bom",
+      "production"
+    ]
+  },
+  {
+    "code": "ZNUMEDI",
+    "label": "ZNUMEDI",
+    "category": "Production",
+    "group": "BOM",
+    "table": "BOM",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "znumedi",
+      "bom",
+      "production"
+    ]
+  },
+  {
+    "code": "ZONE",
+    "label": "ZONE",
+    "category": "Production",
+    "group": "ATEXTRA",
+    "table": "ATEXTRA",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "zone",
+      "atextra",
+      "production"
+    ]
+  },
+  {
+    "code": "ZPCOD",
+    "label": "ZPCOD",
+    "category": "Stocks",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "zpcod",
+      "itmmaster",
+      "stocks"
+    ]
+  },
+  {
+    "code": "ZREFINSTR",
+    "label": "ZREFINSTR",
+    "category": "Transverse",
+    "group": "ITMMASTER",
+    "table": "ITMMASTER",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "zrefinstr",
+      "itmmaster",
+      "transverse"
+    ]
+  },
+  {
+    "code": "ZSTOCK",
+    "label": "ZSTOCK",
+    "category": "Stocks",
+    "group": "ZSTOCKDATE",
+    "table": "ZSTOCKDATE",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "zstock",
+      "zstockdate",
+      "stocks"
+    ]
+  },
+  {
+    "code": "ZSTOFCY",
+    "label": "ZSTOFCY",
+    "category": "Stocks",
+    "group": "ZSTOCKDATE",
+    "table": "ZSTOCKDATE",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "zstofcy",
+      "zstockdate",
+      "stocks"
+    ]
+  },
+  {
+    "code": "ZYIELD",
+    "label": "ZYIELD",
+    "category": "Production",
+    "group": "BOM",
+    "table": "BOM",
+    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "keywords": [
+      "zyield",
+      "bom",
+      "production"
+    ]
   }
 ]
