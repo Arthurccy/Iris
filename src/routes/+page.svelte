@@ -1,4 +1,4 @@
-﻿<script lang="ts">
+<script lang="ts">
 	import { browser } from '$app/environment';
 	import { X } from 'lucide-svelte';
 	import FieldSelectorPanel from '../lib/components/FieldSelectorPanel.svelte';
@@ -110,14 +110,14 @@
 	{#if isResultsOpen}
 		<div class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
 			<button
-				class="absolute inset-0 bg-slate-950/55"
+				class="absolute inset-0 bg-slate-950/60 backdrop-blur-sm transition-opacity duration-300"
 				type="button"
 				aria-label="Fermer la fenêtre des résultats"
 				onclick={closeResults}
 			></button>
 
 			<div
-				class="relative z-10 flex max-h-[92vh] w-full max-w-7xl flex-col overflow-hidden rounded-[2rem] border border-white/70 bg-white shadow-2xl"
+				class="relative z-10 flex max-h-[92vh] w-full max-w-7xl flex-col overflow-hidden rounded-[2rem] border border-white/70 bg-white shadow-2xl transition-all duration-300 transform scale-100"
 				role="dialog"
 				aria-modal="true"
 				aria-label="Résultats de matching"

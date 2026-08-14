@@ -136,13 +136,16 @@ def build_catalog(rows: list[list[str]]) -> tuple[list[dict], list[dict]]:
         for field in fields:
             field_domains[field][domain] += 1
 
+        tables_list = ", ".join(sorted(tables)) if tables else "inconnues"
+        description = f"Extraction de données basée sur les tables : {tables_list}."
+        
         catalog.append(
             {
                 "id": code.lower(),
                 "title": title,
                 "domain": domain,
                 "system": "Sage X3",
-                "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+                "description": description,
                 "fields": sorted(fields),
                 "sql": sql,
                 "owner": record.get("CREUSR_0", "").strip() or "Non renseigné",

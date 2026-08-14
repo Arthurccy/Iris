@@ -4,7 +4,7 @@
     "title": "Facture non réceptionnée",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, PINVOICE, PINVOICED, PORDER, PORDERQ, PRECEIPTD.",
     "fields": [
       "ACCDAT",
       "AMTNOTLIN",
@@ -32,7 +32,7 @@
     "title": "Sales order released from hold",
     "domain": "Ventes",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ATEXTRA, SORDER.",
     "fields": [
       "CODFIC",
       "CUR",
@@ -60,7 +60,7 @@
     "title": "Textes utilisés",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AREFTXT, ATEXTE.",
     "fields": [
       "CLES",
       "CODFIC",
@@ -82,7 +82,7 @@
     "title": "TESTOMDJSI",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : inconnues.",
     "fields": [],
     "sql": "SELECT LOT_0 From STOLOT Where LOCATE('132',LOT_0)<>0",
     "owner": "JSI",
@@ -95,7 +95,7 @@
     "title": "Comptage ENR",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : inconnues.",
     "fields": [],
     "sql": "select count(*) from PREQUIS",
     "owner": "BATCH",
@@ -108,7 +108,7 @@
     "title": "TESTOMDJSI",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : inconnues.",
     "fields": [],
     "sql": "SELECT * From PREQUISD Where PSHNUM_0='DA1711000008'",
     "owner": "GDEL",
@@ -121,7 +121,7 @@
     "title": "TESTOMDJSI",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : inconnues.",
     "fields": [],
     "sql": "SELECT * From PREQUISD",
     "owner": "DDU",
@@ -134,7 +134,7 @@
     "title": "Test 2018",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : inconnues.",
     "fields": [],
     "sql": "SELECT TCLCOD_0 , Count(*)  FROM ITMMASTER  GROUP BY  TCLCOD_0",
     "owner": "VVOY",
@@ -147,7 +147,7 @@
     "title": "recherche SQL VTVD",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : inconnues.",
     "fields": [],
     "sql": "select * from STOLOT",
     "owner": "VVOY",
@@ -160,7 +160,7 @@
     "title": "Clients sans commandes",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AFCTFCY, BPCUSTOMER, SORDER.",
     "fields": [
       "BPCNAM",
       "BPCNUM",
@@ -182,7 +182,7 @@
     "title": "Sales order on manual hold",
     "domain": "Ventes",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ATEXTRA, SORDER.",
     "fields": [
       "CODFIC",
       "CUR",
@@ -209,7 +209,7 @@
     "title": "Récupératon UID ITMCOST",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMCOST.",
     "fields": [
       "CREDAT",
       "ITMREF",
@@ -226,7 +226,7 @@
     "title": "DA a Receptionner",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPSUPPLIER, PORDER, PORDERQ, PREQUIS, PREQUISD, PREQUISO.",
     "fields": [
       "BPSNAM",
       "BPSNUM",
@@ -255,7 +255,7 @@
     "title": "Stock prêt pour livraison",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : SDELIVERY, SDELIVERYD, SORDER, STOALL, STOCK.",
     "fields": [
       "BPAADD",
       "BPCORD",
@@ -291,7 +291,7 @@
     "title": "Audit suppression version",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AUDITH, AUDITL, AUTILIS, I, VDRDEV.",
     "fields": [
       "ADOUSR",
       "COL",
@@ -320,7 +320,7 @@
     "title": "Test ZACCES3",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, STOJOU.",
     "fields": [
       "ACTQTY",
       "AMTORD",
@@ -368,7 +368,7 @@
     "title": "Test YMATSHORT",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : STOCK, STOLOT.",
     "fields": [
       "BPSLOT",
       "ITMREF",
@@ -391,7 +391,7 @@
     "title": "Articles Labo détails fourn.",
     "domain": "Qualité",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMBPS, ITMFACILIT, ITMMASTER.",
     "fields": [
       "BPSNAM",
       "BPSNUM",
@@ -413,7 +413,7 @@
     "title": "QC FLUID/STAB A TRAITER",
     "domain": "Qualité",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMMASTER, XREQUESTH.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -438,7 +438,7 @@
     "title": "LOG-Liste OF non soldés/postes",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMMASTER, MFGHEAD, MFGITM, MFGOPE.",
     "fields": [
       "EXTWST",
       "ITMDES1",
@@ -460,7 +460,7 @@
     "title": "METH-Plan(s) Ctrl Vides",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPARTNER, ITMBPS, ITMFACILIT, ITMMASTER.",
     "fields": [
       "BPRNAM",
       "BPRNUM",
@@ -490,7 +490,7 @@
     "title": "Articles titrés dans Nomencl.",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AT1, AT2, B, I, VDRTEST.",
     "fields": [
       "ATEXTRA",
       "BOMALT",
@@ -519,7 +519,7 @@
     "title": "GDD - Extract Activité (PF).",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BOMD, ITMCOST, ITMMASTER, STOCK, STOLOT.",
     "fields": [
       "CPNITMREF",
       "CSTTYP",
@@ -548,7 +548,7 @@
     "title": "QC ORDER A CLOTURER",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITM, XREQUESTH.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -571,7 +571,7 @@
     "title": "QC FLUID A TRAITER",
     "domain": "Qualité",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITM, XREQUESTH.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -594,7 +594,7 @@
     "title": "Fournisseurs Inactifs",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : VDRTEST.",
     "fields": [
       "BPSUPPLIER"
     ],
@@ -609,7 +609,7 @@
     "title": "PLA-Libération Lots",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMMASTER, MFGHEAD, MFGITMTRK, XREQUESTH.",
     "fields": [
       "ENDDAT",
       "IPTDAT",
@@ -660,7 +660,7 @@
     "title": "AQ - Lots passés en R*",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : STOCK, STOJOU.",
     "fields": [
       "IPTDAT",
       "ITMREF",
@@ -680,7 +680,7 @@
     "title": "DIR - Destruction Articles",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ATEXTRA, BOMD, ITMCOST, ITMFACILIT, ITMMASTER, STOCK, XITMSTAT, XITMVERSIO.",
     "fields": [
       "BOMALT",
       "CODFIC",
@@ -721,7 +721,7 @@
     "title": "Portefeuille de commandes cli",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPCUSTOMER, CPTANALIN, ITMMASTER, SDELIVERYD, SINVOICED, SORDER, SORDERP, SORDERQ, STOALL, STOCK.",
     "fields": [
       "AMTNOTLIN",
       "BPCNAM",
@@ -766,7 +766,7 @@
     "title": "Analyse sortie de stock",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : B, F, ITMFACILIT, ITMMASTER, S, SINVOICE, SINVOICED, STOCK, STOJOU.",
     "fields": [
       "ACCDAT",
       "AMTNOTLIN",
@@ -807,7 +807,7 @@
     "title": "Planning de réception",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPADDRESS, BPARTNER, BPSUPPLIER, ITMBPS, ITMMASTER, PORDER, PORDERQ.",
     "fields": [
       "BPAADD",
       "BPAADDLIG",
@@ -870,7 +870,7 @@
     "title": "Code Projet Reception non fact",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : C, P, PRECEIPT.",
     "fields": [
       "ABRFIC",
       "ANALIG",
@@ -899,7 +899,7 @@
     "title": "Signataire DA",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AUTILIS, AWRKHISSUI, CPTANALIN, PREQUIS, PREQUISD.",
     "fields": [
       "ABRFIC",
       "ANALIG",
@@ -935,7 +935,7 @@
     "title": "Extraction Demandeur/PAL DA",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AUTILIS, BPSUPPLIER, PREQUIS, PREQUISD.",
     "fields": [
       "BPSNAM",
       "BPSNUM",
@@ -959,7 +959,7 @@
     "title": "Liste Fournisseurs2",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BID, BPADDRESS, BPARTNER, BPSUPPLIER, TABPAYTERM.",
     "fields": [
       "BPAADD",
       "BPAADDLIG",
@@ -993,7 +993,7 @@
     "title": "Cslt ligne fact Achats+lots",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMFACILIT, ITMMASTER, PINVOICE, PINVOICED, PINVOICEV, STOLOT.",
     "fields": [
       "ACCDAT",
       "AMTATILIN",
@@ -1040,7 +1040,7 @@
     "title": "Retournée non créditée",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, PINVOICE, PINVOICED, PORDER, PORDERQ, PRETURN, PRETURND.",
     "fields": [
       "ACCDAT",
       "AMTNOTLIN",
@@ -1074,7 +1074,7 @@
     "title": "Facture non réceptionnée",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, PINVOICE, PINVOICED, PORDER, PORDERQ, PRECEIPTD.",
     "fields": [
       "ACCDAT",
       "AMTNOTLIN",
@@ -1102,7 +1102,7 @@
     "title": "Réception non facturée",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, PINVOICE, PINVOICED, PORDER, PORDERQ, PRECEIPT, PRECEIPTD.",
     "fields": [
       "ACCDAT",
       "AMTNOTLIN",
@@ -1136,7 +1136,7 @@
     "title": "Work order shortages",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : APLSTD, ITMFACILIT, ITMMASTER, ITMMVT, MFGHEAD, ORDERS, STOALL.",
     "fields": [
       "ALLTYP",
       "BPRNUM",
@@ -1178,7 +1178,7 @@
     "title": "Articles sans commandes",
     "domain": "Ventes",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AFCTFCY, ITMMASTER, SORDERQ.",
     "fields": [
       "FCY",
       "FNC",
@@ -1199,7 +1199,7 @@
     "title": "Retournée non créditée",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, PINVOICE, PINVOICED, PORDER, PORDERQ, PRETURN, PRETURND.",
     "fields": [
       "ACCDAT",
       "AMTNOTLIN",
@@ -1233,7 +1233,7 @@
     "title": "Conditions de paiement",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : VDRTEST.",
     "fields": [
       "TABPAYTERM"
     ],
@@ -1248,7 +1248,7 @@
     "title": "Articles sans mouvement",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AFCTFCY, ATEXTRA, ITMMASTER, ITMMVT.",
     "fields": [
       "FCY",
       "FNC",
@@ -1274,7 +1274,7 @@
     "title": "ZDAATTEN",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : inconnues.",
     "fields": [],
     "sql": "# Liste des DA par acheteur  # non commandees / completes / Signées  #   # VTVD Fev 2018 : filtre sur DA soldées (CLEFLG < 2)  # VTVD Jan 2020 : ajout montant HT  #  select PSHNUM_0, PRQDAT_0, REQUSR_0, LINNBR_0, YALIVUSR_0, TOTPRQ_0  FROM ATABDIV , PREQUIS   WHERE NUMTAB_0 = 1220  AND A1_0 = REQUSR_0  AND A2_0 = %1%  AND ORDFLG_0 < 2  AND XCOMPLET_0 = 2  And APPFLG_0 not in (1,6)  AND CLEFLG_0 < 2   order by 1 asc;",
     "owner": "VVOY",
@@ -1287,7 +1287,7 @@
     "title": "Réception non facturée",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, PINVOICE, PINVOICED, PORDER, PORDERQ, PRECEIPT, PRECEIPTD.",
     "fields": [
       "ACCDAT",
       "AMTNOTLIN",
@@ -1321,7 +1321,7 @@
     "title": "Réception non facturée",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, PINVOICE, PINVOICED, PORDER, PORDERQ, PRECEIPT, PRECEIPTD.",
     "fields": [
       "ACCDAT",
       "AMTNOTLIN",
@@ -1355,7 +1355,7 @@
     "title": "YDACOC",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AUTILIS, AWRKHISSUI, CPTANALIN, PREQUIS, PREQUISD.",
     "fields": [
       "ABRFIC",
       "ANALIG",
@@ -1391,7 +1391,7 @@
     "title": "Parametres Signature DA",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : U0, U1.",
     "fields": [
       "ENAFLG",
       "NOMUSR",
@@ -1408,7 +1408,7 @@
     "title": "Nb DA saisie / Createur",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AUTILIS, PREQUIS.",
     "fields": [
       "CREDAT",
       "CREUSR",
@@ -1427,7 +1427,7 @@
     "title": "Adresses Fournisseurs",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPADDRESS, DUP.",
     "fields": [
       "BPAADD",
       "BPAADDFLG",
@@ -1445,7 +1445,7 @@
     "title": "Droits fonction GESPAY",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLACS",
@@ -1473,7 +1473,7 @@
     "title": "ZPOH32S",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : CPTANALIN, FAC, PINVOICE, PINVOICED, PORDER, PORDERP, PORDERQ, PREQUISO, PTD.",
     "fields": [
       "ABRFIC",
       "ACC_1",
@@ -1519,7 +1519,7 @@
     "title": "Adresses clients",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPADDRESS, BPARTNER, BPCUSTOMER, BPDLVCUST.",
     "fields": [
       "BPAADD",
       "BPAADDFLG",
@@ -1558,7 +1558,7 @@
     "title": "Adresses fabricants",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPADDRESS, BPARTNER.",
     "fields": [
       "BPAADD",
       "BPANUM",
@@ -1578,7 +1578,7 @@
     "title": "DA Attente NVOE",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : inconnues.",
     "fields": [],
     "sql": "# Liste des DA pour NVOE acheteur  # non commandees / completes / Signées  #   # VTVD Fev 2018 : filtre sur DA soldées (CLEFLG < 2)  #  select PSHNUM_0, PRQDAT_0, REQUSR_0, LINNBR_0, YALIVUSR_0  FROM ATABDIV , PREQUIS  WHERE NUMTAB_0 = 1220  AND A1_0 = REQUSR_0  AND A2_0 = 'NVOE'  AND ORDFLG_0 < 2  AND XCOMPLET_0 = 2  And APPFLG_0 not in (1,6)  AND CLEFLG_0 < 2   order by 1 asc;;",
     "owner": "VVOY",
@@ -1591,7 +1591,7 @@
     "title": "DA Attente CLUC",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : inconnues.",
     "fields": [],
     "sql": "# Liste des DA pour NVOE acheteur  # non commandees / completes / Signées  #   # VTVD Avril 2020 : vreation par recopie requete ZDANVOE  #  select PSHNUM_0, PRQDAT_0, REQUSR_0, LINNBR_0, YALIVUSR_0  FROM ATABDIV , PREQUIS  WHERE NUMTAB_0 = 1220  AND A1_0 = REQUSR_0  AND A2_0 = 'CLUC'  AND ORDFLG_0 < 2  AND XCOMPLET_0 = 2  And APPFLG_0 not in (1,6)  AND CLEFLG_0 < 2   order by 1 asc;;",
     "owner": "VVOY",
@@ -1604,7 +1604,7 @@
     "title": "DA Attente FVER",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : inconnues.",
     "fields": [],
     "sql": "# Liste des DA pour NVOE acheteur  # non commandees / completes / Signées  #   # VTVD Avril 2020 : vreation par recopie requete ZDANVOE  #  select PSHNUM_0, PRQDAT_0, REQUSR_0, LINNBR_0, YALIVUSR_0  FROM ATABDIV , PREQUIS  WHERE NUMTAB_0 = 1220  AND A1_0 = REQUSR_0  AND A2_0 = 'FVER'  AND ORDFLG_0 < 2  AND XCOMPLET_0 = 2  And APPFLG_0 not in (1,6)  AND CLEFLG_0 < 2   order by 1 asc;;",
     "owner": "VVOY",
@@ -1617,7 +1617,7 @@
     "title": "Lots recontrôle /péremption",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMCATEG, ITMMASTER, STOCK, STOLOT, ZCOUSTD.",
     "fields": [
       "ARTICLE",
       "EXYMGTCOD",
@@ -1646,7 +1646,7 @@
     "title": "Articles sans coût standard",
     "domain": "Ventes",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ATEXTRA, ITMCATEG, ITMCOST, ITMMASTER, SORDERP.",
     "fields": [
       "CODFIC",
       "CREDAT",
@@ -1679,7 +1679,7 @@
     "title": "COST-Coût du niveau",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ATEXTRA, BOM, ITMCOST, ITMMASTER, XITMVERSIO.",
     "fields": [
       "BOMALT",
       "CLCQTY",
@@ -1727,7 +1727,7 @@
     "title": "Statut stock alloué change",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMMASTER, STOALL, STOCK, STOLOT.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -1754,7 +1754,7 @@
     "title": "Stock arrivant en péremp.",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMMASTER, STOCK, STOLOC, STOLOT.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -1780,7 +1780,7 @@
     "title": "Liste des nomenclatures",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BOM, BOMD, ITMMASTER, XITMVERSIO.",
     "fields": [
       "BASQTY",
       "BOMALT",
@@ -1806,7 +1806,7 @@
     "title": "AQ - Nb lots valorisés",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMMASTER, XREQUESTH.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -1828,7 +1828,7 @@
     "title": "Stock de stabilité",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMMASTER, STOCK.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -1848,7 +1848,7 @@
     "title": "Date ref. lot fab dif lot mtr",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMMASTER, MFGITMTRK, MFGMAT, STOLOT.",
     "fields": [
       "ITMDES1",
       "ITMDES2",
@@ -1871,7 +1871,7 @@
     "title": "Article sans cout standard",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ATEXTRA, ITMCOST, ITMMASTER.",
     "fields": [
       "CODFIC",
       "CREDAT",
@@ -1900,7 +1900,7 @@
     "title": "Changement de statut vers Q",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : SCHGD, SCHGH, STOJOU.",
     "fields": [
       "IPTDAT",
       "ITMREF",
@@ -1931,7 +1931,7 @@
     "title": "Consultation Factures Vente",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPADDRESS, SINVOICE, SINVOICED, SINVOICEV, SORDER.",
     "fields": [
       "BPAADD",
       "BPANUM",
@@ -1964,7 +1964,7 @@
     "title": "Valorisation des stocks",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ATEXTRA, ITMCOST, ITMMASTER, STOCK, STOLOTFCY.",
     "fields": [
       "AVC",
       "CODFIC",
@@ -2002,7 +2002,7 @@
     "title": "PPV",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, PINVOICE, PINVOICED, PORDER, PORDERP, PRECEIPTD, ZCOUSTD.",
     "fields": [
       "ACCCOD",
       "ARTICLE",
@@ -2039,7 +2039,7 @@
     "title": "Reappro Stock Interne",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMMASTER, STOJOU, STOLOCAFF.",
     "fields": [
       "ACTQTY",
       "ITMDES1",
@@ -2061,7 +2061,7 @@
     "title": "Audit Finances",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AUDITH, AUDITL, AUTILIS, BPARTNER.",
     "fields": [
       "ADOUSR",
       "ADRCLI",
@@ -2091,7 +2091,7 @@
     "title": "COST-Coût du niveau",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ATEXTRA, ITMCOST, ITMMASTER.",
     "fields": [
       "CLCQTY",
       "CODFIC",
@@ -2130,7 +2130,7 @@
     "title": "Modifications art. en attente",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ATABZON, ATEXTE, ITMMASTER, XITMMODDET.",
     "fields": [
       "CODFIC",
       "CODZON",
@@ -2159,7 +2159,7 @@
     "title": "PLA-Libération Lots -2",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMMASTER, MFGHEAD, MFGITMTRK, XREQUESTH.",
     "fields": [
       "ENDDAT",
       "IPTDAT",
@@ -2210,7 +2210,7 @@
     "title": "Palette externalisable",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMMASTER, STOCK, STOLOT, XITMSTAT.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -2232,7 +2232,7 @@
     "title": "Gestionnaire achat article",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ATEXTRA, AUTILIS, ITMFACILIT, ITMMASTER.",
     "fields": [
       "CODFIC",
       "IDENT1",
@@ -2262,7 +2262,7 @@
     "title": "AQ - Nb Unités Expédiés",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMMASTER, STOJOU.",
     "fields": [
       "IPTDAT",
       "ITMDES1",
@@ -2284,7 +2284,7 @@
     "title": "Qte dispo sur emp. de conso",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMMASTER, MFGHEAD, MFGMAT, MFGOPE, STOCK, WORKSTATIO.",
     "fields": [
       "BOMOPE",
       "BOMSEQ",
@@ -2314,7 +2314,7 @@
     "title": "Derniers N° Palette",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : STOCK.",
     "fields": [
       "PALNUM",
       "SLO"
@@ -2330,7 +2330,7 @@
     "title": "Composants BOM",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BOM, BOMD, BPADDRESS, BPARTNER, BPSUPPLIER, ITMBPS, ITMCOST, ITMFACILIT, ITMMASTER, ITMMVT.",
     "fields": [
       "BOMALT",
       "BOMSEQ",
@@ -2383,7 +2383,7 @@
     "title": "Stock à date",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMMASTER, YITMLEGIS, ZSTOCKDATE.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -2411,7 +2411,7 @@
     "title": "Lien article fournisseur",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPADDRESS, BPARTNER, BPSUPPLIER, ITMBPS, ITMMASTER.",
     "fields": [
       "BPAADD",
       "BPAADDLIG",
@@ -2447,7 +2447,7 @@
     "title": "Extraction Prev Conso",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMMASTER, ITMSALES, ORDERS.",
     "fields": [
       "BASPRI",
       "EXTQTY",
@@ -2472,7 +2472,7 @@
     "title": "AQ - Lead time Récept-Valorisa",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMMASTER, PRECEIPTD, STOLOT, XREQUESTH.",
     "fields": [
       "BPSLOT",
       "ITMDES1",
@@ -2503,7 +2503,7 @@
     "title": "Droits d'accès Fournisseur",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AFCTPRF, AFONCTION, APROFIL, ATEXTE, ATEXTRA, AUTILIS.",
     "fields": [
       "ALLACS",
       "CODINT",
@@ -2537,7 +2537,7 @@
     "title": "Droits sur articles.",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -2560,7 +2560,7 @@
     "title": "Droits d'accès Commande Achat",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AFCTPRF, AFONCTION, APROFIL, ATEXTE, ATEXTRA, AUTILIS.",
     "fields": [
       "ALLACS",
       "CODINT",
@@ -2594,7 +2594,7 @@
     "title": "Profils actifs AQ (Lots).",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCCOD, AUTILIS.",
     "fields": [
       "ACSUSR",
       "CODACC",
@@ -2611,7 +2611,7 @@
     "title": "Profils actifs AQ (Lots).",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCCOD, AUTILIS.",
     "fields": [
       "ACSUSR",
       "CODACC",
@@ -2629,7 +2629,7 @@
     "title": "Profils commande groupe.",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, AFCTPRF, AUTILIS.",
     "fields": [
       "CODACC",
       "ENAFLG",
@@ -2650,7 +2650,7 @@
     "title": "Droits d'accès Règlement",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AFCTPRF, AFONCTION, APROFIL, ATEXTE, ATEXTRA, AUTILIS.",
     "fields": [
       "ALLACS",
       "CODINT",
@@ -2684,7 +2684,7 @@
     "title": "Droits d'accès Retour Client",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AFCTPRF, AFONCTION, APROFIL, ATEXTE, ATEXTRA, AUTILIS.",
     "fields": [
       "ALLACS",
       "CODINT",
@@ -2718,7 +2718,7 @@
     "title": "Droits d'accès Retour Client",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AFCTPRF, AFONCTION, APROFIL, ATEXTE, ATEXTRA, AUTILIS.",
     "fields": [
       "ALLACS",
       "CODINT",
@@ -2752,7 +2752,7 @@
     "title": "Droits d'accès Stocks",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AFCTPRF, AFONCTION, APROFIL, ATEXTE, ATEXTRA, AUTILIS.",
     "fields": [
       "ALLACS",
       "CODINT",
@@ -2786,7 +2786,7 @@
     "title": "Droits d'accès Articles",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AFCTPRF, AFONCTION, APROFIL, ATEXTE, ATEXTRA, AUTILIS.",
     "fields": [
       "ALLACS",
       "CODINT",
@@ -2820,7 +2820,7 @@
     "title": "Droits d'accès Coût standard",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AFCTPRF, AFONCTION, APROFIL, ATEXTE, ATEXTRA, AUTILIS.",
     "fields": [
       "ALLACS",
       "CODINT",
@@ -2854,7 +2854,7 @@
     "title": "Droits sur RIB",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLACS",
@@ -2882,7 +2882,7 @@
     "title": "Droits modif clients.",
     "domain": "Ventes",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLACS",
@@ -2910,7 +2910,7 @@
     "title": "Droits sur GESBPS",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -2933,7 +2933,7 @@
     "title": "Droits sur commandes.",
     "domain": "Ventes",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -2956,7 +2956,7 @@
     "title": "Droits sur articles.",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -2979,7 +2979,7 @@
     "title": "Remise magnétique.",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -3002,7 +3002,7 @@
     "title": "Entrée divers",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -3025,7 +3025,7 @@
     "title": "Control factures",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -3048,7 +3048,7 @@
     "title": "Gestion retours",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -3071,7 +3071,7 @@
     "title": "Utilisteurs et fonctions.",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLACS",
@@ -3095,7 +3095,7 @@
     "title": "Utilisteurs fonctions accés.",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLACS",
@@ -3123,7 +3123,7 @@
     "title": "Utilisteurs fonctions lots.",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLACS",
@@ -3151,7 +3151,7 @@
     "title": "Utilisteurs fonctions lots.",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLACS",
@@ -3179,7 +3179,7 @@
     "title": "Utilisteurs fonctions GESSMO.",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLACS",
@@ -3207,7 +3207,7 @@
     "title": "Utilisteurs fonctions GESSMO.",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLACS",
@@ -3235,7 +3235,7 @@
     "title": "Utilisteurs fonctions GESSDH2.",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLACS",
@@ -3263,7 +3263,7 @@
     "title": "Utilisteurs fonctions GESSCS.",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLACS",
@@ -3291,7 +3291,7 @@
     "title": "Utilisteurs fonctions GESSDH2.",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLACS",
@@ -3315,7 +3315,7 @@
     "title": "Accés qualipharm.",
     "domain": "Qualité",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -3338,7 +3338,7 @@
     "title": "Utilisteurs modif lots.",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLACS",
@@ -3366,7 +3366,7 @@
     "title": "OTIF Fournisseur",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, PORDERQ, PRECEIPTD.",
     "fields": [
       "BPSNAM",
       "BPSNUM",
@@ -3393,7 +3393,7 @@
     "title": "Consultation lignes commandes",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPCUSTOMER, ITMMASTER, SORDER, SORDERP, SORDERQ.",
     "fields": [
       "ALLQTY",
       "BPCNAM",
@@ -3431,7 +3431,7 @@
     "title": "Articles sans coût standard",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ATEXTRA, AUTILIS, BPSUPPLIER, ITMCOST, ITMFACILIT, ITMMASTER, ITMMVT, PORDERP, PRECEIPTD.",
     "fields": [
       "BPSNAM",
       "BPSNUM",
@@ -3486,7 +3486,7 @@
     "title": "Stock RD",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : A, STOCK.",
     "fields": [
       "CREDAT",
       "ITMREF",
@@ -3505,7 +3505,7 @@
     "title": "QC ORDER A CLOTURER CHIMIE",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITM, XREQUESTH.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -3528,7 +3528,7 @@
     "title": "QC ORDER A CLOTURER PHARMA",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITM, XREQUESTH.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -3551,7 +3551,7 @@
     "title": "QC STABA TRAITER",
     "domain": "Qualité",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITM, XREQUESTH.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -3574,7 +3574,7 @@
     "title": "AQ - Suivi conso OF",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMMASTER, MFGMATTRK, STOJOU, XREQUESTH.",
     "fields": [
       "IPTDAT",
       "ITMDES1",
@@ -3605,7 +3605,7 @@
     "title": "FIN - Section de valorisation",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ATEXTRA, OVERHEAD, TABFOR, WORKCOST.",
     "fields": [
       "BRDCOD",
       "BUDOPECST",
@@ -3650,7 +3650,7 @@
     "title": "Articles sans coût standard 2",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ATEXTRA, BPSUPPLIER, ITMCOST, ITMFACILIT, ITMMASTER, ITMMVT, ORD, PORDERP, PRECEIPTD.",
     "fields": [
       "BPSNAM",
       "BPSNUM",
@@ -3704,7 +3704,7 @@
     "title": "QC Order par lot frn",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, STOLOT, XREQUESTH.",
     "fields": [
       "BPSLOT",
       "BPSNAM",
@@ -3730,7 +3730,7 @@
     "title": "AQ - Lead time Récept-Valorisa",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : APLSTD, ITMMASTER, MFGITM, STOLOT, XREQUESTH.",
     "fields": [
       "CPLQTY",
       "ITMDES1",
@@ -3761,7 +3761,7 @@
     "title": "AQ - Lead time Decl.-Valorisa",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : APLSTD, ITMMASTER, MFGITM, STOLOT, XREQUESTH.",
     "fields": [
       "CPLQTY",
       "ITMDES1",
@@ -3792,7 +3792,7 @@
     "title": "balance agee clients Clarity",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPCUSTOMER, GACCDUDATE, SINVOICE.",
     "fields": [
       "ACCCOD",
       "BCGCOD",
@@ -3821,7 +3821,7 @@
     "title": "Stock a Date par emplacement",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : A, I, L, STOJOU.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -3845,7 +3845,7 @@
     "title": "COPRODUITS",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : B, I2, ITMMASTER.",
     "fields": [
       "BOMALT",
       "CPNITMREF",
@@ -3865,7 +3865,7 @@
     "title": "ACH1 - Comm. en cours (Qty 0)",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMBPS, ITMMASTER, PORDER, PORDERP, PORDERQ, XITMSTAT.",
     "fields": [
       "BPSNAM",
       "BPSNUM",
@@ -3893,7 +3893,7 @@
     "title": "Products Catalogue",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ATEXTRA, ITMCOST, ITMFACILIT, ITMMASTER, ITMMVT.",
     "fields": [
       "ABCCLS",
       "AVC",
@@ -3925,7 +3925,7 @@
     "title": "PLA - Projection de Stock(s)",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : APLSTD, ATEXTRA, ITMMASTER, MFGITM, ORDERS, STOJOU, XITMSTAT.",
     "fields": [
       "CODFIC",
       "ENDDAT",
@@ -3973,7 +3973,7 @@
     "title": "Valorisation Stock est. nb Pal",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ATEXTRA, ITMCOST, ITMMASTER, STOCK, STOLOT, STOLOTFCY, XITMSTAT.",
     "fields": [
       "AVC",
       "BPSLOT",
@@ -4019,7 +4019,7 @@
     "title": "Droits d'accès",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AFCTPRF, AFONCTION, APROFIL, ATEXTE, ATEXTRA, AUTILIS.",
     "fields": [
       "ALLACS",
       "CODINT",
@@ -4053,7 +4053,7 @@
     "title": "Suivi réception & QC Order",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, PRECEIPT, STOLOT, XREQUESTH.",
     "fields": [
       "BPSLOT",
       "BPSNAM",
@@ -4085,7 +4085,7 @@
     "title": "Gestion d'accès - Utilisateurs",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : inconnues.",
     "fields": [],
     "sql": "select USR_0 , LOGIN_0, NOMUSR_0  ,  PRFMEN_0 , PRFFCT_0 ,         CASE ENAFLG_0         WHEN 1 THEN 'Inactif'         ELSE        'Actif' END ,         convert(nvarchar(10),CREDAT_0,103) CREDAT,          convert(nvarchar(10),DATCONN_0 , 103)CONNDAT  from AUTILIS  where    USRCONNECT_0 <> 1  and PRFFCT_0 = 'ADMIN'  and (ENAFLG_0 = %1% or %1% = '')  order by 1",
     "owner": "VVOY",
@@ -4098,7 +4098,7 @@
     "title": "Consommation OF",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : CONSO, ITMMASTER, MFGHEAD, MFGITM, MFGMAT, MFITRK.",
     "fields": [
       "CPLQTY",
       "ITMDES1",
@@ -4126,7 +4126,7 @@
     "title": "Liste Clients",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BID, BPADDRESS, BPARTNER, BPCUSTOMER, TABPAYTERM.",
     "fields": [
       "BICCOD",
       "BIDNUM",
@@ -4165,7 +4165,7 @@
     "title": "Liste Fournisseurs",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BID, BPADDRESS, BPARTNER, BPSUPPLIER, TABPAYTERM.",
     "fields": [
       "ABCCLS",
       "BICCOD",
@@ -4206,7 +4206,7 @@
     "title": "Liste des nomenclatures - Fi",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BOM, BOMD, ITMCOST, ITMFACILIT, ITMMASTER, ITMMVT, PRECEIPTD, XITMVERSIO.",
     "fields": [
       "BASQTY",
       "BOMALT",
@@ -4248,7 +4248,7 @@
     "title": "Gestion d'accès - Code+Profil",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : inconnues.",
     "fields": [],
     "sql": "select USR_0 , LOGIN_0, NOMUSR_0  , PRFMEN_0 ,  TEXTE_0 , PRFFCT_0    from AUTILIS a, ATEXTRA t  where ENAFLG_0 = 2  and   USRCONNECT_0 <> 1  and LANGUE_0 = 'FRA'   and CODFIC_0 = 'APROFIL'   and IDENT2_0 = PRFMEN_0  order by 1",
     "owner": "VVOY",
@@ -4261,7 +4261,7 @@
     "title": "Gestion d'accès - Util. Actifs",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AUTILIS, F, P, T, X.",
     "fields": [
       "CODEXT",
       "CODFIC",
@@ -4289,7 +4289,7 @@
     "title": "WorkSheet imprimée",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : A, I, W, X, YWRKEDT.",
     "fields": [
       "CREDAT",
       "CREUSR",
@@ -4313,7 +4313,7 @@
     "title": "Gestion d'accès - Profils MENU",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : APROFIL, T.",
     "fields": [
       "CODPRF",
       "IDENT2"
@@ -4329,7 +4329,7 @@
     "title": "Gestion d'accès - Profils MENU",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AFCTFCT, T.",
     "fields": [
       "IDENT1",
       "PRFCOD"
@@ -4345,7 +4345,7 @@
     "title": "Gestion d'accès - Profils FCTS",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AFCTPRF, AFONCTION, ATEXTE, ATEXTRA.",
     "fields": [
       "ACS",
       "CODEXT",
@@ -4371,7 +4371,7 @@
     "title": "Gestion d'accès - Habilitation",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCCOD, T.",
     "fields": [
       "CODACC",
       "IDENT1"
@@ -4387,7 +4387,7 @@
     "title": "Gestion d'accès - Code+Profil",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, ATEXTRA.",
     "fields": [
       "CODACC",
       "CODFIC",
@@ -4407,7 +4407,7 @@
     "title": "rquete cout",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : CST, ITMCOST, ITMFACILIT, ITMMASTER, ITMSALES, T1.",
     "fields": [
       "BASPRI",
       "BRDCOD",
@@ -4444,7 +4444,7 @@
     "title": "Saisie reglement",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -4467,7 +4467,7 @@
     "title": "Validation retours",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -4490,7 +4490,7 @@
     "title": "Session inventaires",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -4513,7 +4513,7 @@
     "title": "Profils commande groupe.",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -4537,7 +4537,7 @@
     "title": "Génération remises",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -4560,7 +4560,7 @@
     "title": "Vérification Nomenclatures",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BOM, ITMMASTER, XITMVERSIO.",
     "fields": [
       "BOMALT",
       "CREDAT",
@@ -4586,7 +4586,7 @@
     "title": "AQ - Suivi conso OF 2",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMMASTER, MFGMATTRK, STOJOU, XREQUESTH.",
     "fields": [
       "IPTDAT",
       "ITMDES1",
@@ -4617,7 +4617,7 @@
     "title": "Mouvement de stock (Achat)-BKP",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMMASTER, STOJOU.",
     "fields": [
       "CCE",
       "CCE_1",
@@ -4639,7 +4639,7 @@
     "title": "Mouvement de stock (Achat)",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, STOJOU.",
     "fields": [
       "ACTQTY",
       "AMTORD",
@@ -4689,7 +4689,7 @@
     "title": "STAB - Echéances stabilité",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ATEXTRA, ITMMASTER, XREQUESTH, XSTABETU, XSTABETUS.",
     "fields": [
       "CODFIC",
       "IDENT1",
@@ -4723,7 +4723,7 @@
     "title": "Méthode contrôle par article",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMFACILIT, ITMMASTER, XFICHCTRLD, XFICHCTRLH.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -4751,7 +4751,7 @@
     "title": "Utilisteurs et fonctions.",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : AFC, AFO, AFT, ATXT, AUT, VDRPROD.",
     "fields": [
       "ACS",
       "AFCTFCT",
@@ -4785,7 +4785,7 @@
     "title": "Vérification Gammes",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMMASTER, ROUTING, XITMVERSIO.",
     "fields": [
       "CREDAT",
       "CREUSR",
@@ -4811,7 +4811,7 @@
     "title": "Version complète",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMMASTER, XITMVERSIO.",
     "fields": [
       "BOMALT",
       "CREDAT",
@@ -4844,7 +4844,7 @@
     "title": "Commandes achat en cours",
     "domain": "Ventes",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ACLOB, BPSUPPLIER, ITMMASTER, PORDER, PORDERP, PORDERQ, PRECEIPTD.",
     "fields": [
       "BPSNAM",
       "BPSNUM",
@@ -4889,7 +4889,7 @@
     "title": "Consultation lignes livraisons",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPCUSTOMER, MFGMAT, SDELIVERY, SDELIVERYD, STOJOU.",
     "fields": [
       "BPAADD",
       "BPCGRU",
@@ -4940,7 +4940,7 @@
     "title": "Cas d’emploi avec versions",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BOM, BOMD, ITMMASTER, XITMVERSIO.",
     "fields": [
       "BASQTY",
       "BOMALT",
@@ -4967,7 +4967,7 @@
     "title": "Articles et données MDM + dés.",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ATEXTRA, ITMFACILIT, ITMMASTER, ITMSALES.",
     "fields": [
       "ACCCOD",
       "BASPRI",
@@ -5033,7 +5033,7 @@
     "title": "Verif Création Ver. Prod/Fin",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMFACILIT, ITMMASTER, XITMVERSIO.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -5056,7 +5056,7 @@
     "title": "Export RIB fournisseurs",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BID, BPADDRESS, BPARTNER, BPSUPPLIER.",
     "fields": [
       "ACCCOD",
       "BICCOD",
@@ -5098,7 +5098,7 @@
     "title": "DPC Ventes",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPCUSTOMER, ITMMASTER, SORDER, SORDERP, SORDERQ.",
     "fields": [
       "BPCNAM",
       "BPCNUM",
@@ -5129,7 +5129,7 @@
     "title": "IRSN V2",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMMASTER, MFGHEADTRK, SDELIVERY, STOJOU, STOLOT.",
     "fields": [
       "ITMREF",
       "LOC",
@@ -5157,7 +5157,7 @@
     "title": "Suivi récept/QC Order lot frn",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, PRECEIPT, STOLOT, XREQUESTH.",
     "fields": [
       "BPSLOT",
       "BPSNAM",
@@ -5189,7 +5189,7 @@
     "title": "DPC Ventes/Consult ligne comma",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : BPCUSTOMER, ITMMASTER, SORDER, SORDERP, SORDERQ.",
     "fields": [
       "ALLQTY",
       "BPCNAM",
@@ -5227,7 +5227,7 @@
     "title": "Suivi du stock CQPC",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMFACILIT, ITMMASTER, STOCK, STOLOCAFF.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -5250,7 +5250,7 @@
     "title": "Alertes commandes stock CQPC",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMFACILIT, ITMMASTER, STOCK, STOLOCAFF.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -5273,7 +5273,7 @@
     "title": "Suivi du stock CQPC",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Requête importée automatiquement depuis l'export SQL Sage X3.",
+    "description": "Extraction de données basée sur les tables : ITMFACILIT, ITMMASTER, STOCK, STOLOCAFF.",
     "fields": [
       "ITMDES1",
       "ITMREF",

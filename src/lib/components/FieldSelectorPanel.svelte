@@ -135,7 +135,7 @@
 					<p class="text-lg font-semibold text-slate-950">{selectedCodes.length} champ(s)</p>
 				</div>
 				<button
-					class="inline-flex size-9 items-center justify-center rounded-md border border-slate-200 text-slate-600 transition hover:border-corporate-200 hover:text-corporate-700 disabled:cursor-not-allowed disabled:opacity-40"
+					class="inline-flex size-9 items-center justify-center rounded-md border border-slate-200 text-slate-600 transition-all duration-300 hover:border-corporate-200 hover:text-corporate-700 hover:shadow hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
 					type="button"
 					disabled={selectedCodes.length === 0}
 					onclick={onClearSelection}
@@ -149,7 +149,7 @@
 			{#if selectedFields.length > 0}
 				<div class="mt-4 max-h-56 space-y-2 overflow-y-auto pr-1">
 					{#each selectedFields as field}
-						<div class="flex items-start gap-2 rounded-md border border-corporate-100 bg-corporate-50 px-3 py-2">
+						<div class="group flex items-start gap-2 rounded-md border border-corporate-100 bg-corporate-50 px-3 py-2 transition-all duration-300 hover:shadow-md hover:border-corporate-200">
 							<div class="min-w-0 flex-1">
 								<p class="truncate text-sm font-semibold text-corporate-950">{field.label}</p>
 								<p class="truncate text-xs text-corporate-700">{field.code} · {field.table}</p>
@@ -173,7 +173,7 @@
 			{/if}
 
 			<button
-				class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-md px-4 py-3 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:bg-slate-300 enabled:bg-corporate-600 enabled:hover:bg-corporate-700"
+				class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-md px-4 py-3 text-sm font-semibold text-white transition-all duration-300 hover:shadow-md hover:scale-[1.02] disabled:hover:scale-100 disabled:hover:shadow-none disabled:cursor-not-allowed disabled:bg-slate-300 enabled:bg-corporate-600 enabled:hover:bg-corporate-700"
 				type="button"
 				disabled={selectedCodes.length === 0}
 				onclick={onOpenResults}

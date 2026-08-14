@@ -83,7 +83,7 @@
 
 			<div class="grid gap-4">
 				{#each matches as query, index}
-					<article class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+					<article class="group rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:shadow-md hover:border-corporate-200">
 						<div class="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
 							<div class="space-y-3">
 								<div class="flex flex-wrap items-center gap-2">
@@ -131,7 +131,7 @@
 								</div>
 							</div>
 
-							<div class="overflow-hidden rounded-md border border-slate-800 bg-slate-950 text-white">
+							<div class="overflow-hidden rounded-md border border-slate-800 bg-slate-900 text-slate-300 shadow-inner transition-colors duration-300 group-hover:border-slate-700">
 								<div class="flex items-center justify-between gap-3 border-b border-white/10 px-4 py-3">
 									<div class="flex items-center gap-2 text-sm font-semibold text-slate-100">
 										<FileCode2 class="size-4" />
@@ -151,7 +151,7 @@
 										{/if}
 									</button>
 								</div>
-								<pre class="max-h-80 overflow-auto whitespace-pre-wrap break-words p-4 text-xs leading-6 text-slate-100">{query.sql}</pre>
+								<pre class="max-h-80 overflow-auto whitespace-pre-wrap break-words p-4 text-sm font-mono leading-relaxed text-slate-100 selection:bg-corporate-500 selection:text-white">{query.sql}</pre>
 							</div>
 						</div>
 
@@ -177,7 +177,7 @@
 					</div>
 
 					<a
-						class="inline-flex items-center justify-center gap-2 rounded-md bg-corporate-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-corporate-700"
+						class="inline-flex items-center justify-center gap-2 rounded-md bg-corporate-600 px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-corporate-700 hover:shadow-lg hover:scale-105"
 						href={fallbackHref}
 					>
 						<Mail class="size-4" />
