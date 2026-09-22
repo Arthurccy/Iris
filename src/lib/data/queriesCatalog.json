@@ -4,7 +4,7 @@
     "title": "Facture non réceptionnée",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, PINVOICE, PINVOICED, PORDER, PORDERQ, PRECEIPTD.",
+    "description": "Cette extraction permet d'identifier les lignes de factures d'achat enregistrées pour des articles gérés en stock qui n'ont pas encore fait l'objet d'un bon de réception. Elle sert à repérer les livraisons en attente et à régulariser les écarts entre la facturation fournisseur et la réception réelle des marchandises.",
     "fields": [
       "ACCDAT",
       "AMTNOTLIN",
@@ -32,7 +32,7 @@
     "title": "Sales order released from hold",
     "domain": "Ventes",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ATEXTRA, SORDER.",
+    "description": "Cette extraction permet de lister les commandes de ventes dont le blocage a été levé sur une période donnée. Elle affiche le détail des commandes concernées, leur montant, le dernier motif de blocage enregistré ainsi que l'utilisateur et la date de déblocage.",
     "fields": [
       "CODFIC",
       "CUR",
@@ -60,7 +60,7 @@
     "title": "Textes utilisés",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AREFTXT, ATEXTE.",
+    "description": "Cette extraction permet d'identifier l'ensemble des textes personnalisés rédigés en français, en précisant le module, la table et le champ Sage X3 dans lesquels ils sont utilisés.",
     "fields": [
       "CLES",
       "CODFIC",
@@ -82,7 +82,7 @@
     "title": "TESTOMDJSI",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : inconnues.",
+    "description": "Cette extraction liste l'ensemble des numéros de lots de stock dont l'identifiant contient la séquence « 132 ». Elle permet de rechercher et d'identifier rapidement des lots spécifiques pour des besoins de suivi ou de contrôle en gestion des stocks.",
     "fields": [],
     "sql": "SELECT LOT_0 From STOLOT Where LOCATE('132',LOT_0)<>0",
     "owner": "JSI",
@@ -95,7 +95,7 @@
     "title": "Comptage ENR",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : inconnues.",
+    "description": "Cette extraction donne le nombre total de demandes d'achat enregistrées dans Sage X3. Elle permet d'évaluer le volume global des expressions de besoins d'approvisionnement créées dans le système.",
     "fields": [],
     "sql": "select count(*) from PREQUIS",
     "owner": "BATCH",
@@ -108,7 +108,7 @@
     "title": "TESTOMDJSI",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : inconnues.",
+    "description": "Cette extraction permet de consulter l'intégralité des lignes de détail relatives à la demande d'achat n° DA1711000008. Elle affiche notamment les articles, les quantités et les informations d'approvisionnement associées à ce document.",
     "fields": [],
     "sql": "SELECT * From PREQUISD Where PSHNUM_0='DA1711000008'",
     "owner": "GDEL",
@@ -121,7 +121,7 @@
     "title": "TESTOMDJSI",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : inconnues.",
+    "description": "Cette requête extrait l'ensemble des lignes de demandes d'achat enregistrées dans le système.",
     "fields": [],
     "sql": "SELECT * From PREQUISD",
     "owner": "DDU",
@@ -134,7 +134,7 @@
     "title": "Test 2018",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : inconnues.",
+    "description": "Elle donne le nombre total d'articles enregistrés dans l'ERP, regroupés par catégorie d'articles.",
     "fields": [],
     "sql": "SELECT TCLCOD_0 , Count(*)  FROM ITMMASTER  GROUP BY  TCLCOD_0",
     "owner": "VVOY",
@@ -147,7 +147,7 @@
     "title": "recherche SQL VTVD",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : inconnues.",
+    "description": "Cette extraction technique permet de consulter l'intégralité du registre des lots de stock.",
     "fields": [],
     "sql": "select * from STOLOT",
     "owner": "VVOY",
@@ -160,7 +160,7 @@
     "title": "Clients sans commandes",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AFCTFCY, BPCUSTOMER, SORDER.",
+    "description": "Elle permet d'identifier les comptes clients n'ayant passé aucune commande de vente depuis une période donnée.",
     "fields": [
       "BPCNAM",
       "BPCNUM",
@@ -182,7 +182,7 @@
     "title": "Sales order on manual hold",
     "domain": "Ventes",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ATEXTRA, SORDER.",
+    "description": "Cette requête liste les commandes de vente placées en blocage manuel, en précisant le motif ainsi que l'utilisateur responsable.",
     "fields": [
       "CODFIC",
       "CUR",
@@ -209,7 +209,7 @@
     "title": "Récupératon UID ITMCOST",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMCOST.",
+    "description": "Elle extrait les identifiants uniques (UID) des enregistrements de coûts d'articles créés à une date spécifique.",
     "fields": [
       "CREDAT",
       "ITMREF",
@@ -226,7 +226,7 @@
     "title": "DA a Receptionner",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPSUPPLIER, PORDER, PORDERQ, PREQUIS, PREQUISD, PREQUISO.",
+    "description": "Permet d'identifier les demandes d'achat transformées en commandes qui sont toujours en attente de réception globale ou partielle.",
     "fields": [
       "BPSNAM",
       "BPSNUM",
@@ -255,7 +255,7 @@
     "title": "Stock prêt pour livraison",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : SDELIVERY, SDELIVERYD, SORDER, STOALL, STOCK.",
+    "description": "Cette extraction permet de suivre le stock réservé et préparé pour les bons de livraison en cours de traitement. Elle détaille pour chaque expédition les informations de la commande client, l'adresse de livraison, les lots attribués ainsi que la valeur des marchandises prêtes à être expédiées.",
     "fields": [
       "BPAADD",
       "BPCORD",
@@ -291,7 +291,7 @@
     "title": "Audit suppression version",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AUDITH, AUDITL, AUTILIS, I, VDRDEV.",
+    "description": "Cette extraction permet de consulter l'historique des suppressions de versions d'articles enregistrées dans Sage X3. Elle identifie précisemment l'article et la version supprimés, la date et l'heure de l'opération, ainsi que l'utilisateur qui en est l'auteur.",
     "fields": [
       "ADOUSR",
       "COL",
@@ -320,7 +320,7 @@
     "title": "Test ZACCES3",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, STOJOU.",
+    "description": "Cette extraction permet de consulter l'historique des mouvements de stock valorisés (quantités et montants) par site, article, lot et type de transaction sur une période donnée, en y associant le fournisseur d'origine et les axes analytiques.",
     "fields": [
       "ACTQTY",
       "AMTORD",
@@ -368,7 +368,7 @@
     "title": "Test YMATSHORT",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : STOCK, STOLOT.",
+    "description": "Cette extraction permet de consulter les quantités de stock actives d'un article spécifique (hors stock rebuté), regroupées par lot et par statut. Elle donne aux utilisateurs métier une visibilité sur les volumes disponibles ainsi que sur les dates clés de péremption et de péremption/réanalyse des lots.",
     "fields": [
       "BPSLOT",
       "ITMREF",
@@ -391,7 +391,7 @@
     "title": "Articles Labo détails fourn.",
     "domain": "Qualité",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMBPS, ITMFACILIT, ITMMASTER.",
+    "description": "Cette requête permet d'extraire la liste des articles de laboratoire (références L-CQPC) du site VDP1F, en affichant leurs caractéristiques de stock et le détail des fournisseurs associés (nom, référence fournisseur et unité d'achat).",
     "fields": [
       "BPSNAM",
       "BPSNUM",
@@ -413,7 +413,7 @@
     "title": "QC FLUID/STAB A TRAITER",
     "domain": "Qualité",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMMASTER, XREQUESTH.",
+    "description": "Cette extraction liste les demandes de contrôle qualité en cours pour les secteurs « Fluides » et « Stabilité ». Elle permet d'identifier les contrôles Fluides arrivant à échéance dans les 3 jours ainsi que l'ensemble des contrôles Stabilité non finalisés.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -438,7 +438,7 @@
     "title": "LOG-Liste OF non soldés/postes",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMMASTER, MFGHEAD, MFGITM, MFGOPE.",
+    "description": "Cette extraction permet de lister les ordres de fabrication (OF) en cours et non soldés par poste de charge. Elle affiche la quantité restant à produire pour chaque article afin de faciliter le suivi et la planification de la production.",
     "fields": [
       "EXTWST",
       "ITMDES1",
@@ -460,7 +460,7 @@
     "title": "METH-Plan(s) Ctrl Vides",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPARTNER, ITMBPS, ITMFACILIT, ITMMASTER.",
+    "description": "Cette extraction permet d'identifier les articles actifs et leurs fournisseurs référencés qui ne disposent d'aucun plan de contrôle qualité renseigné sur leur site. Elle aide les équipes Achats et Méthodes à repérer les fiches articles incomplètes afin d'en assurer la mise en conformité.",
     "fields": [
       "BPRNAM",
       "BPRNUM",
@@ -490,7 +490,7 @@
     "title": "Articles titrés dans Nomencl.",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AT1, AT2, B, I, VDRTEST.",
+    "description": "Cette requête permet d'identifier les composants \"titrés\" (non gérés en stock) et actifs intégrés dans les nomenclatures de production, en affichant l'article parent correspondant ainsi que le détail du composant utilisé.",
     "fields": [
       "ATEXTRA",
       "BOMALT",
@@ -519,7 +519,7 @@
     "title": "GDD - Extract Activité (PF).",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BOMD, ITMCOST, ITMMASTER, STOCK, STOLOT.",
+    "description": "Cette extraction présente le détail des stocks par article et par lot (quantités, valorisation au coût de revient et dates de péremption) pour les produits qui ne sont pas utilisés comme composants dans des nomenclatures. Elle permet d'analyser et de piloter la valeur globale du stock des produits finis et indépendants.",
     "fields": [
       "CPNITMREF",
       "CSTTYP",
@@ -548,7 +548,7 @@
     "title": "QC ORDER A CLOTURER",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITM, XREQUESTH.",
+    "description": "Cette extraction liste l'ensemble des ordres de contrôle qualité qui ont été validés mais restent non clôturés. Elle permet aux équipes Qualité et Stocks d'identifier les dossiers en cours afin d'en finaliser le traitement et la clôture.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -571,7 +571,7 @@
     "title": "QC FLUID A TRAITER",
     "domain": "Qualité",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITM, XREQUESTH.",
+    "description": "Cette extraction liste les ordres de contrôle qualité non clos concernant les produits fluides qui doivent être traités à court terme. Elle permet aux équipes Qualité de piloter facilement les contrôles en cours ou en attente sur ces articles.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -594,7 +594,7 @@
     "title": "Fournisseurs Inactifs",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : VDRTEST.",
+    "description": "Cette extraction identifie les fournisseurs créés au cours des 6 dernières semaines qui sont actuellement inactifs. Elle permet aux équipes Achats de suivre et de contrôler les fiches fournisseurs récentes qui n'ont pas encore été activées ou qui ont été bloquées.",
     "fields": [
       "BPSUPPLIER"
     ],
@@ -609,7 +609,7 @@
     "title": "PLA-Libération Lots",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMMASTER, MFGHEAD, MFGITMTRK, XREQUESTH.",
+    "description": "Cette requête permet de suivre les demandes de libération et les contrôles qualité des lots issus des ordres de fabrication. Elle récapitule l'état d'avancement des étapes de validation qualité ainsi que les dates et quantités réelles fabriquées.",
     "fields": [
       "ENDDAT",
       "IPTDAT",
@@ -660,7 +660,7 @@
     "title": "AQ - Lots passés en R*",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : STOCK, STOJOU.",
+    "description": "Cette extraction permet d'identifier l'historique des lots d'articles ayant basculé vers un statut de refus ou de rebut (statuts commençant par 'R') sur une période sélectionnée. Elle croise ces mouvements historiques avec le stock présent afin d'afficher la quantité et le statut actuels de ces lots.",
     "fields": [
       "IPTDAT",
       "ITMREF",
@@ -680,7 +680,7 @@
     "title": "DIR - Destruction Articles",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ATEXTRA, BOMD, ITMCOST, ITMFACILIT, ITMMASTER, STOCK, XITMSTAT, XITMVERSIO.",
+    "description": "Cette extraction permet de lister et d'évaluer financièrement au coût standard le stock disponible des composants (sur le site FAMB1) rattachés à des catégories d'articles ciblées pour la destruction, en fonction de la période de validité de leurs versions.",
     "fields": [
       "BOMALT",
       "CODFIC",
@@ -721,7 +721,7 @@
     "title": "Portefeuille de commandes cli",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPCUSTOMER, CPTANALIN, ITMMASTER, SDELIVERYD, SINVOICED, SORDER, SORDERP, SORDERQ, STOALL, STOCK.",
+    "description": "Cette extraction permet de suivre le portefeuille de commandes clients en détaillant, pour chaque ligne d'article, les quantités et montants commandés, les lots attribués, ainsi que l'état d'avancement des livraisons et de la facturation.",
     "fields": [
       "AMTNOTLIN",
       "BPCNAM",
@@ -766,7 +766,7 @@
     "title": "Analyse sortie de stock",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : B, F, ITMFACILIT, ITMMASTER, S, SINVOICE, SINVOICED, STOCK, STOJOU.",
+    "description": "Cette extraction permet d'analyser l'état des stocks actuels par site, article et lot, en le croisant avec les mouvements de sortie (expéditions et sorties diverses) ainsi que les montants facturés et crédités depuis une date donnée.",
     "fields": [
       "ACCDAT",
       "AMTNOTLIN",
@@ -807,7 +807,7 @@
     "title": "Planning de réception",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPADDRESS, BPARTNER, BPSUPPLIER, ITMBPS, ITMMASTER, PORDER, PORDERQ.",
+    "description": "Cette extraction permet de consulter le planning des réceptions d'achats à venir pour les commandes en cours d'articles gérés en stock. Elle détaille les dates de livraison prévues, les quantités attendues, ainsi que les informations complètes sur les transporteurs, fournisseurs et fabricants associés.",
     "fields": [
       "BPAADD",
       "BPAADDLIG",
@@ -870,7 +870,7 @@
     "title": "Code Projet Reception non fact",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : C, P, PRECEIPT.",
+    "description": "Cette extraction liste les réceptions d'achats non encore totalement facturées qui sont rattachées à un projet. Elle permet de visualiser, pour chaque ligne de réception, la commande d'origine, la date de réception et les axes d'imputation analytique correspondants.",
     "fields": [
       "ABRFIC",
       "ANALIG",
@@ -899,7 +899,7 @@
     "title": "Signataire DA",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AUTILIS, AWRKHISSUI, CPTANALIN, PREQUIS, PREQUISD.",
+    "description": "Cette extraction permet de comptabiliser les demandes d'achat entièrement signées et validées, en identifiant les différents intervenants du processus (créateur, demandeur et signataire du workflow) ainsi que leur section analytique d'imputation.",
     "fields": [
       "ABRFIC",
       "ANALIG",
@@ -935,7 +935,7 @@
     "title": "Extraction Demandeur/PAL DA",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AUTILIS, BPSUPPLIER, PREQUIS, PREQUISD.",
+    "description": "Cette extraction permet de consulter les demandes d'achat en identifiant pour chacune le demandeur, le valideur, le fournisseur associé et le statut de commande.",
     "fields": [
       "BPSNAM",
       "BPSNUM",
@@ -959,7 +959,7 @@
     "title": "Liste Fournisseurs2",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BID, BPADDRESS, BPARTNER, BPSUPPLIER, TABPAYTERM.",
+    "description": "Cette extraction permet d'obtenir la liste des fournisseurs avec leurs coordonnées principales, leurs identifiants fiscaux (TVA intracommunautaire et SIRET/SIREN) ainsi que leurs conditions de paiement. Elle offre la possibilité de filtrer les résultats selon le statut actif ou inactif des comptes fournisseurs.",
     "fields": [
       "BPAADD",
       "BPAADDLIG",
@@ -993,7 +993,7 @@
     "title": "Cslt ligne fact Achats+lots",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMFACILIT, ITMMASTER, PINVOICE, PINVOICED, PINVOICEV, STOLOT.",
+    "description": "Affiche le détail comptable et logistique des lignes de factures d'achat avec traçabilité des lots et calcul des prix unitaires.",
     "fields": [
       "ACCDAT",
       "AMTATILIN",
@@ -1040,7 +1040,7 @@
     "title": "Retournée non créditée",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, PINVOICE, PINVOICED, PORDER, PORDERQ, PRETURN, PRETURND.",
+    "description": "Identifie les retours de marchandises vers les fournisseurs pour lesquels aucun avoir n'a encore été comptabilisé.",
     "fields": [
       "ACCDAT",
       "AMTNOTLIN",
@@ -1074,7 +1074,7 @@
     "title": "Facture non réceptionnée",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, PINVOICE, PINVOICED, PORDER, PORDERQ, PRECEIPTD.",
+    "description": "Liste les factures d'achat enregistrées en comptabilité mais dont la réception physique des marchandises est manquante.",
     "fields": [
       "ACCDAT",
       "AMTNOTLIN",
@@ -1102,7 +1102,7 @@
     "title": "Réception non facturée",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, PINVOICE, PINVOICED, PORDER, PORDERQ, PRECEIPT, PRECEIPTD.",
+    "description": "Permet de suivre les réceptions de marchandises en attente de leur facture fournisseur correspondante (factures non parvenues).",
     "fields": [
       "ACCDAT",
       "AMTNOTLIN",
@@ -1136,7 +1136,7 @@
     "title": "Work order shortages",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : APLSTD, ITMFACILIT, ITMMASTER, ITMMVT, MFGHEAD, ORDERS, STOALL.",
+    "description": "Identifie les ordres de fabrication (OF) qui présentent des manques ou des ruptures de stock sur leurs composants.",
     "fields": [
       "ALLTYP",
       "BPRNUM",
@@ -1178,7 +1178,7 @@
     "title": "Articles sans commandes",
     "domain": "Ventes",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AFCTFCY, ITMMASTER, SORDERQ.",
+    "description": "Elle extrait les articles du catalogue n'ayant enregistré aucune ligne de commande de vente depuis une date sélectionnée.",
     "fields": [
       "FCY",
       "FNC",
@@ -1199,7 +1199,7 @@
     "title": "Retournée non créditée",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, PINVOICE, PINVOICED, PORDER, PORDERQ, PRETURN, PRETURND.",
+    "description": "Liste les retours fournisseurs qui n'ont pas encore fait l'objet d'un avoir, avec une compatibilité élargie sur la gestion des dates SQL.",
     "fields": [
       "ACCDAT",
       "AMTNOTLIN",
@@ -1233,7 +1233,7 @@
     "title": "Conditions de paiement",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : VDRTEST.",
+    "description": "Extraction de la table de référence des conditions de paiement et modes de règlement configurés dans Sage X3.",
     "fields": [
       "TABPAYTERM"
     ],
@@ -1248,7 +1248,7 @@
     "title": "Articles sans mouvement",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AFCTFCY, ATEXTRA, ITMMASTER, ITMMVT.",
+    "description": "Identifie les articles n'ayant enregistré aucun mouvement de stock sur un site donné depuis un nombre de jours défini. Elle permet de repérer le stock dormant ou obsolète.",
     "fields": [
       "FCY",
       "FNC",
@@ -1274,7 +1274,7 @@
     "title": "ZDAATTEN",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : inconnues.",
+    "description": "Extrait les demandes d'achat complètes, signées et non soldées en attente d'être transformées en commandes par un acheteur spécifique.",
     "fields": [],
     "sql": "# Liste des DA par acheteur  # non commandees / completes / Signées  #   # VTVD Fev 2018 : filtre sur DA soldées (CLEFLG < 2)  # VTVD Jan 2020 : ajout montant HT  #  select PSHNUM_0, PRQDAT_0, REQUSR_0, LINNBR_0, YALIVUSR_0, TOTPRQ_0  FROM ATABDIV , PREQUIS   WHERE NUMTAB_0 = 1220  AND A1_0 = REQUSR_0  AND A2_0 = %1%  AND ORDFLG_0 < 2  AND XCOMPLET_0 = 2  And APPFLG_0 not in (1,6)  AND CLEFLG_0 < 2   order by 1 asc;",
     "owner": "VVOY",
@@ -1287,7 +1287,7 @@
     "title": "Réception non facturée",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, PINVOICE, PINVOICED, PORDER, PORDERQ, PRECEIPT, PRECEIPTD.",
+    "description": "Liste les réceptions de marchandises fournisseurs qui ne sont pas encore intégralement facturées. Elle permet le suivi des factures non parvenues (FAE) et le contrôle des restes à facturer.",
     "fields": [
       "ACCDAT",
       "AMTNOTLIN",
@@ -1321,7 +1321,7 @@
     "title": "Réception non facturée",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, PINVOICE, PINVOICED, PORDER, PORDERQ, PRECEIPT, PRECEIPTD.",
+    "description": "Identifie les réceptions fournisseurs en attente de facturation afin de contrôler les écarts de quantité/prix et d'anticiper les régularisations comptables.",
     "fields": [
       "ACCDAT",
       "AMTNOTLIN",
@@ -1355,7 +1355,7 @@
     "title": "YDACOC",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AUTILIS, AWRKHISSUI, CPTANALIN, PREQUIS, PREQUISD.",
+    "description": "Détaille les demandes d'achat signées en affichant l'ensemble des intervenants (créateur, demandeur, valideur du workflow) ainsi que leur imputation analytique.",
     "fields": [
       "ABRFIC",
       "ANALIG",
@@ -1391,7 +1391,7 @@
     "title": "Parametres Signature DA",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : U0, U1.",
+    "description": "Affiche la matrice des règles de validation des demandes d'achat en associant chaque utilisateur demandeur à son valideur désigné.",
     "fields": [
       "ENAFLG",
       "NOMUSR",
@@ -1408,7 +1408,7 @@
     "title": "Nb DA saisie / Createur",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AUTILIS, PREQUIS.",
+    "description": "Comptabilise le nombre de demandes d'achat saisies par utilisateur sur une période donnée afin de mesurer l'activité de réquisition.",
     "fields": [
       "CREDAT",
       "CREUSR",
@@ -1427,7 +1427,7 @@
     "title": "Adresses Fournisseurs",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPADDRESS, DUP.",
+    "description": "Identifie les fiches fournisseurs disposant de plusieurs adresses enregistrées pour faciliter le contrôle et la maintenance du référentiel tiers.",
     "fields": [
       "BPAADD",
       "BPAADDFLG",
@@ -1445,7 +1445,7 @@
     "title": "Droits fonction GESPAY",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Liste les utilisateurs actifs disposant des autorisations et droits d'accès à la fonction de gestion des règlements (GESPAY).",
     "fields": [
       "ACS",
       "ALLACS",
@@ -1473,7 +1473,7 @@
     "title": "ZPOH32S",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : CPTANALIN, FAC, PINVOICE, PINVOICED, PORDER, PORDERP, PORDERQ, PREQUISO, PTD.",
+    "description": "Offre un suivi consolidé des lignes de commande d'achat avec leur origine (DA), leur ventilation analytique ainsi que leur avancement en réception et facturation.",
     "fields": [
       "ABRFIC",
       "ACC_1",
@@ -1519,7 +1519,7 @@
     "title": "Adresses clients",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPADDRESS, BPARTNER, BPCUSTOMER, BPDLVCUST.",
+    "description": "Extrait la liste des adresses clients en précisant leur fonction (livraison ou facturation), leurs coordonnées et leurs jours de réception autorisés.",
     "fields": [
       "BPAADD",
       "BPAADDFLG",
@@ -1558,7 +1558,7 @@
     "title": "Adresses fabricants",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPADDRESS, BPARTNER.",
+    "description": "Présente l'ensemble des adresses postales enregistrées pour les tiers référencés comme fabricants dans le système.",
     "fields": [
       "BPAADD",
       "BPANUM",
@@ -1578,7 +1578,7 @@
     "title": "DA Attente NVOE",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : inconnues.",
+    "description": "Affiche les demandes d'achat signées et non soldées attribuées à l'acheteur NVOE en attente de transformation en commande.",
     "fields": [],
     "sql": "# Liste des DA pour NVOE acheteur  # non commandees / completes / Signées  #   # VTVD Fev 2018 : filtre sur DA soldées (CLEFLG < 2)  #  select PSHNUM_0, PRQDAT_0, REQUSR_0, LINNBR_0, YALIVUSR_0  FROM ATABDIV , PREQUIS  WHERE NUMTAB_0 = 1220  AND A1_0 = REQUSR_0  AND A2_0 = 'NVOE'  AND ORDFLG_0 < 2  AND XCOMPLET_0 = 2  And APPFLG_0 not in (1,6)  AND CLEFLG_0 < 2   order by 1 asc;;",
     "owner": "VVOY",
@@ -1591,7 +1591,7 @@
     "title": "DA Attente CLUC",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : inconnues.",
+    "description": "Affiche les demandes d'achat signées et non soldées attribuées à l'acheteur CLUC en attente de transformation en commande.",
     "fields": [],
     "sql": "# Liste des DA pour NVOE acheteur  # non commandees / completes / Signées  #   # VTVD Avril 2020 : vreation par recopie requete ZDANVOE  #  select PSHNUM_0, PRQDAT_0, REQUSR_0, LINNBR_0, YALIVUSR_0  FROM ATABDIV , PREQUIS  WHERE NUMTAB_0 = 1220  AND A1_0 = REQUSR_0  AND A2_0 = 'CLUC'  AND ORDFLG_0 < 2  AND XCOMPLET_0 = 2  And APPFLG_0 not in (1,6)  AND CLEFLG_0 < 2   order by 1 asc;;",
     "owner": "VVOY",
@@ -1604,7 +1604,7 @@
     "title": "DA Attente FVER",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : inconnues.",
+    "description": "Affiche les demandes d'achat signées et non soldées attribuées à l'acheteur FVER en attente de transformation en commande.",
     "fields": [],
     "sql": "# Liste des DA pour NVOE acheteur  # non commandees / completes / Signées  #   # VTVD Avril 2020 : vreation par recopie requete ZDANVOE  #  select PSHNUM_0, PRQDAT_0, REQUSR_0, LINNBR_0, YALIVUSR_0  FROM ATABDIV , PREQUIS  WHERE NUMTAB_0 = 1220  AND A1_0 = REQUSR_0  AND A2_0 = 'FVER'  AND ORDFLG_0 < 2  AND XCOMPLET_0 = 2  And APPFLG_0 not in (1,6)  AND CLEFLG_0 < 2   order by 1 asc;;",
     "owner": "VVOY",
@@ -1617,7 +1617,7 @@
     "title": "Lots recontrôle /péremption",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMCATEG, ITMMASTER, STOCK, STOLOT, ZCOUSTD.",
+    "description": "Cette requête liste les lots en stock arrivant à date de recontrôle ou de péremption, avec leurs quantités, statuts et valorisations. Elle permet de surveiller la qualité et la fraîcheur des stocks.",
     "fields": [
       "ARTICLE",
       "EXYMGTCOD",
@@ -1646,7 +1646,7 @@
     "title": "Articles sans coût standard",
     "domain": "Ventes",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ATEXTRA, ITMCATEG, ITMCOST, ITMMASTER, SORDERP.",
+    "description": "Cet extrait identifie les articles présents dans les commandes de vente en cours qui ne disposent d'aucun coût standard valide en vigueur. Il permet de corriger les manques de valorisation avant la facturation et l'analyse des marges.",
     "fields": [
       "CODFIC",
       "CREDAT",
@@ -1679,7 +1679,7 @@
     "title": "COST-Coût du niveau",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ATEXTRA, BOM, ITMCOST, ITMMASTER, XITMVERSIO.",
+    "description": "Cette requête détaille le coût standard d'un article (matières, machines, main-d'œuvre, frais généraux) décomposé par niveau et multi-niveaux. Elle est utile pour analyser précisément la structure du coût de revient de la fabrication.",
     "fields": [
       "BOMALT",
       "CLCQTY",
@@ -1727,7 +1727,7 @@
     "title": "Statut stock alloué change",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMMASTER, STOALL, STOCK, STOLOT.",
+    "description": "Elle liste les stocks actuellement alloués à des pièces dont les lots approchent de leur date de péremption ou de recontrôle. Cela permet d'anticiper le déblocage ou la réallocation des réservations sur des lots valides.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -1754,7 +1754,7 @@
     "title": "Stock arrivant en péremp.",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMMASTER, STOCK, STOLOC, STOLOT.",
+    "description": "Cette requête identifie les quantités de stock physique approchant de leur date de péremption selon le type d'emplacement magasin. Elle aide à prioriser la sortie ou le déstockage de ces lots sensibles.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -1780,7 +1780,7 @@
     "title": "Liste des nomenclatures",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BOM, BOMD, ITMMASTER, XITMVERSIO.",
+    "description": "Cet extrait permet de consulter l'intégralité des nomenclatures de fabrication avec la liste des composants, leurs quantités et les versions actives. Il facilite le contrôle des structures de produits et des compositions.",
     "fields": [
       "BASQTY",
       "BOMALT",
@@ -1806,7 +1806,7 @@
     "title": "AQ - Nb lots valorisés",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMMASTER, XREQUESTH.",
+    "description": "Ce rapport fournit un suivi Assurance Qualité en comptabilisant le nombre de lots soumis à des modifications de statut forcées sur une période donnée. Il permet d'analyser les décisions et l'activité du contrôle qualité.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -1828,7 +1828,7 @@
     "title": "Stock de stabilité",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMMASTER, STOCK.",
+    "description": "Elle extrait les quantités en stock et la date de première réception pour les articles gérés en échantillons ou stabilité. Cela facilite le suivi logistique des lots conservés pour des tests de stabilité.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -1848,7 +1848,7 @@
     "title": "Date ref. lot fab dif lot mtr",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMMASTER, MFGITMTRK, MFGMAT, STOLOT.",
+    "description": "Ce contrôle détecte les écarts entre la date de référence d'un lot fabriqué et celle des composants ou matières premières consommés. Il garantit la cohérence des règles de traçabilité et de péremption.",
     "fields": [
       "ITMDES1",
       "ITMDES2",
@@ -1871,7 +1871,7 @@
     "title": "Article sans cout standard",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ATEXTRA, ITMCOST, ITMMASTER.",
+    "description": "Cette extraction répertorie les articles gérés en stock pour lesquels aucun coût standard en vigueur n'a été calculé. Elle permet au contrôle de gestion d'identifier les fiches articles à régulariser.",
     "fields": [
       "CODFIC",
       "CREDAT",
@@ -1900,7 +1900,7 @@
     "title": "Changement de statut vers Q",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : SCHGD, SCHGH, STOJOU.",
+    "description": "Ce rapport retrace l'historique des mouvements de stock ayant entraîné un passage vers le statut de contrôle qualité (Q ou R). Il permet de suivre les motifs de blocage et les décisions qualité.",
     "fields": [
       "IPTDAT",
       "ITMREF",
@@ -1931,7 +1931,7 @@
     "title": "Consultation Factures Vente",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPADDRESS, SINVOICE, SINVOICED, SINVOICEV, SORDER.",
+    "description": "Cet extrait détaille les lignes de factures de vente avec l'adresse de livraison, l'Incoterm, la commande liée et les articles facturés. Il permet de contrôler la facturation client et le suivi administratif des ventes.",
     "fields": [
       "BPAADD",
       "BPANUM",
@@ -1964,7 +1964,7 @@
     "title": "Valorisation des stocks",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ATEXTRA, ITMCOST, ITMMASTER, STOCK, STOLOTFCY.",
+    "description": "Elle calcule la valorisation globale du stock par site, lot et article en comparant le coût standard et le prix moyen pondéré (PMP). C'est un outil clé pour le suivi financier des inventaires et la clôture comptable.",
     "fields": [
       "AVC",
       "CODFIC",
@@ -2002,7 +2002,7 @@
     "title": "PPV",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, PINVOICE, PINVOICED, PORDER, PORDERP, PRECEIPTD, ZCOUSTD.",
+    "description": "Cette requête mesure les écarts de prix d'achat (PPV) en comparant les prix de commande, de réception, de facturation et le coût standard de l'article. Elle permet au contrôle de gestion et aux achats de suivre la performance fournisseurs.",
     "fields": [
       "ACCCOD",
       "ARTICLE",
@@ -2039,7 +2039,7 @@
     "title": "Reappro Stock Interne",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMMASTER, STOJOU, STOLOCAFF.",
+    "description": "Cet état identifie les emplacements de stockage dont le stock actuel est inférieur au seuil de réapprovisionnement défini. Il permet aux magaziniers d'anticiper les réapprovisionnements internes de picking.",
     "fields": [
       "ACTQTY",
       "ITMDES1",
@@ -2061,7 +2061,7 @@
     "title": "Audit Finances",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AUDITH, AUDITL, AUTILIS, BPARTNER.",
+    "description": "Cette extraction trace l'historique des modifications, créations et suppressions effectuées sur les fiches fournisseurs et les coordonnées bancaires sur une période donnée.",
     "fields": [
       "ADOUSR",
       "ADRCLI",
@@ -2091,7 +2091,7 @@
     "title": "COST-Coût du niveau",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ATEXTRA, ITMCOST, ITMMASTER.",
+    "description": "Ce rapport détaille la décomposition du coût de revient calculé (matières, main-d'œuvre, machines, sous-traitance) pour chaque article et site sur un exercice donné.",
     "fields": [
       "CLCQTY",
       "CODFIC",
@@ -2130,7 +2130,7 @@
     "title": "Modifications art. en attente",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ATABZON, ATEXTE, ITMMASTER, XITMMODDET.",
+    "description": "Cette requête liste les articles en attente de validation ayant subi des modifications de fiche, en affichant l'ancienne valeur, la nouvelle et l'utilisateur concerné.",
     "fields": [
       "CODFIC",
       "CODZON",
@@ -2159,7 +2159,7 @@
     "title": "PLA-Libération Lots -2",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMMASTER, MFGHEAD, MFGITMTRK, XREQUESTH.",
+    "description": "Elle permet de suivre l'état d'avancement du contrôle qualité et de libération des lots d'articles liés aux ordres de fabrication.",
     "fields": [
       "ENDDAT",
       "IPTDAT",
@@ -2210,7 +2210,7 @@
     "title": "Palette externalisable",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMMASTER, STOCK, STOLOT, XITMSTAT.",
+    "description": "Cette extraction identifie les palettes en stock éligibles à l'externalisation qui ne sont actuellement engagées dans aucune commande ou ordre de fabrication.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -2232,7 +2232,7 @@
     "title": "Gestionnaire achat article",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ATEXTRA, AUTILIS, ITMFACILIT, ITMMASTER.",
+    "description": "Ce rapport dresse la liste des articles actifs d'un site en identifiant le gestionnaire ou planificateur d'achat qui leur est affecté.",
     "fields": [
       "CODFIC",
       "IDENT1",
@@ -2262,7 +2262,7 @@
     "title": "AQ - Nb Unités Expédiés",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMMASTER, STOJOU.",
+    "description": "Elle calcule le cumul des quantités d'articles expédiées par lot sur une période donnée à des fins d'analyse qualité.",
     "fields": [
       "IPTDAT",
       "ITMDES1",
@@ -2284,7 +2284,7 @@
     "title": "Qte dispo sur emp. de conso",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMMASTER, MFGHEAD, MFGMAT, MFGOPE, STOCK, WORKSTATIO.",
+    "description": "Cette requête compare les besoins en composants restants pour un ordre de fabrication avec le stock disponible directement sur l'emplacement de consommation du poste de travail.",
     "fields": [
       "BOMOPE",
       "BOMSEQ",
@@ -2314,7 +2314,7 @@
     "title": "Derniers N° Palette",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : STOCK.",
+    "description": "Elle affiche les derniers numéros de palettes enregistrés en stock afin de contrôler la numérotation récente.",
     "fields": [
       "PALNUM",
       "SLO"
@@ -2330,7 +2330,7 @@
     "title": "Composants BOM",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BOM, BOMD, BPADDRESS, BPARTNER, BPSUPPLIER, ITMBPS, ITMCOST, ITMFACILIT, ITMMASTER, ITMMVT.",
+    "description": "Ce rapport extrait la structure détaillée des nomenclatures de fabrication avec leurs composants, fournisseurs, fabricants et coûts associés.",
     "fields": [
       "BOMALT",
       "BOMSEQ",
@@ -2383,7 +2383,7 @@
     "title": "Stock à date",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMMASTER, YITMLEGIS, ZSTOCKDATE.",
+    "description": "Elle restitue l'état des stocks à une date précise par article et site, en intégrant le poids total et les données de classification réglementaire.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -2411,7 +2411,7 @@
     "title": "Lien article fournisseur",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPADDRESS, BPARTNER, BPSUPPLIER, ITMBPS, ITMMASTER.",
+    "description": "Cette extraction dresse le catalogue du référentiel articles-fournisseurs en précisant les coordonnées du fournisseur et des fabricants associés.",
     "fields": [
       "BPAADD",
       "BPAADDLIG",
@@ -2447,7 +2447,7 @@
     "title": "Extraction Prev Conso",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMMASTER, ITMSALES, ORDERS.",
+    "description": "Elle génère un tableau synthétique des prévisions de consommation d'articles ventilées mois par mois sur l'année sélectionnée.",
     "fields": [
       "BASPRI",
       "EXTQTY",
@@ -2472,7 +2472,7 @@
     "title": "AQ - Lead time Récept-Valorisa",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMMASTER, PRECEIPTD, STOLOT, XREQUESTH.",
+    "description": "Ce rapport mesure le délai en jours (lead time) entre la date de réception d'un lot marchandise et sa date de validation par l'assurance qualité.",
     "fields": [
       "BPSLOT",
       "ITMDES1",
@@ -2503,7 +2503,7 @@
     "title": "Droits d'accès Fournisseur",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AFCTPRF, AFONCTION, APROFIL, ATEXTE, ATEXTRA, AUTILIS.",
+    "description": "Cette requête permet d'auditer les droits d'accès et profils utilisateurs autorisés à utiliser la fonction de gestion des fournisseurs.",
     "fields": [
       "ALLACS",
       "CODINT",
@@ -2537,7 +2537,7 @@
     "title": "Droits sur articles.",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Identifie les utilisateurs actifs disposant de droits d'accès à la fonction de proposition de paiement.",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -2560,7 +2560,7 @@
     "title": "Droits d'accès Commande Achat",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AFCTPRF, AFONCTION, APROFIL, ATEXTE, ATEXTRA, AUTILIS.",
+    "description": "Liste les utilisateurs actifs autorisés à accéder et à gérer les commandes d'achat dans le système.",
     "fields": [
       "ALLACS",
       "CODINT",
@@ -2594,7 +2594,7 @@
     "title": "Profils actifs AQ (Lots).",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCCOD, AUTILIS.",
+    "description": "Extrait les profils fonctionnels et les codes d'accès associés à chaque utilisateur pour le suivi des autorisations.",
     "fields": [
       "ACSUSR",
       "CODACC",
@@ -2611,7 +2611,7 @@
     "title": "Profils actifs AQ (Lots).",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCCOD, AUTILIS.",
+    "description": "Présente le statut d'activité (actif ou inactif) et les profils fonctionnels attribués aux utilisateurs à des fins d'audit de sécurité.",
     "fields": [
       "ACSUSR",
       "CODACC",
@@ -2629,7 +2629,7 @@
     "title": "Profils commande groupe.",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, AFCTPRF, AUTILIS.",
+    "description": "Liste les utilisateurs actifs qui possèdent des droits d'accès à la gestion des commandes de sous-traitance.",
     "fields": [
       "CODACC",
       "ENAFLG",
@@ -2650,7 +2650,7 @@
     "title": "Droits d'accès Règlement",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AFCTPRF, AFONCTION, APROFIL, ATEXTE, ATEXTRA, AUTILIS.",
+    "description": "Identifie l'ensemble des utilisateurs autorisés à accéder aux fonctions de trésorerie, de remboursement et de règlement.",
     "fields": [
       "ALLACS",
       "CODINT",
@@ -2684,7 +2684,7 @@
     "title": "Droits d'accès Retour Client",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AFCTPRF, AFONCTION, APROFIL, ATEXTE, ATEXTRA, AUTILIS.",
+    "description": "Recense les utilisateurs habilités à effectuer ou consulter des retours de marchandises à destination des fournisseurs.",
     "fields": [
       "ALLACS",
       "CODINT",
@@ -2718,7 +2718,7 @@
     "title": "Droits d'accès Retour Client",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AFCTPRF, AFONCTION, APROFIL, ATEXTE, ATEXTRA, AUTILIS.",
+    "description": "Identifie les utilisateurs disposant des droits nécessaires pour enregistrer et traiter les retours de produits clients.",
     "fields": [
       "ALLACS",
       "CODINT",
@@ -2752,7 +2752,7 @@
     "title": "Droits d'accès Stocks",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AFCTPRF, AFONCTION, APROFIL, ATEXTE, ATEXTRA, AUTILIS.",
+    "description": "Liste les utilisateurs autorisés à effectuer des mouvements, saisies ou consultations dans le module de gestion des stocks.",
     "fields": [
       "ALLACS",
       "CODINT",
@@ -2786,7 +2786,7 @@
     "title": "Droits d'accès Articles",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AFCTPRF, AFONCTION, APROFIL, ATEXTE, ATEXTRA, AUTILIS.",
+    "description": "Affiche les utilisateurs habilités à consulter ou modifier la base des articles et leurs données par site.",
     "fields": [
       "ALLACS",
       "CODINT",
@@ -2820,7 +2820,7 @@
     "title": "Droits d'accès Coût standard",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AFCTPRF, AFONCTION, APROFIL, ATEXTE, ATEXTRA, AUTILIS.",
+    "description": "Identifie les utilisateurs ayant la permission de consulter ou calculer les structures et fiches de coûts standards.",
     "fields": [
       "ALLACS",
       "CODINT",
@@ -2854,7 +2854,7 @@
     "title": "Droits sur RIB",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Liste les utilisateurs spécifiquement habilités à modifier les fiches fournisseurs ainsi que leurs coordonnées bancaires (RIB).",
     "fields": [
       "ACS",
       "ALLACS",
@@ -2882,7 +2882,7 @@
     "title": "Droits modif clients.",
     "domain": "Ventes",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Recense les utilisateurs disposant du droit de modification sur les fiches d'information client.",
     "fields": [
       "ACS",
       "ALLACS",
@@ -2910,7 +2910,7 @@
     "title": "Droits sur GESBPS",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Identifie les utilisateurs actifs autorisés à consulter et traiter les demandes d'achat.",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -2933,7 +2933,7 @@
     "title": "Droits sur commandes.",
     "domain": "Ventes",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Affiche la liste des utilisateurs actifs disposant d'autorisations sur la gestion des commandes d'achat.",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -2956,7 +2956,7 @@
     "title": "Droits sur articles.",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Identifie les utilisateurs actifs ayant des droits d'accès et de modification sur la fiche article (GESITM) ou bénéficiant d'un profil administrateur.",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -2979,7 +2979,7 @@
     "title": "Remise magnétique.",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Liste les utilisateurs actifs autorisés à accéder à la fonction de création et gestion des remises magnétiques (FICMAG).",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -3002,7 +3002,7 @@
     "title": "Entrée divers",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Répertorie les utilisateurs actifs disposant de droits pour effectuer des opérations de mouvements de stock via les entrées et sorties diverses (GESSMR).",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -3025,7 +3025,7 @@
     "title": "Control factures",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Permet de lister les utilisateurs actifs autorisés à contrôler et saisir des factures d'achat (GESPIH).",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -3048,7 +3048,7 @@
     "title": "Gestion retours",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Identifie les utilisateurs actifs ayant les autorisations nécessaires pour enregistrer et gérer les retours de marchandises fournisseurs (GESPNH).",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -3071,7 +3071,7 @@
     "title": "Utilisteurs et fonctions.",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Extrait la liste des utilisateurs actifs selon un profil et une fonction Sage X3 spécifiques passés en paramètre.",
     "fields": [
       "ACS",
       "ALLACS",
@@ -3095,7 +3095,7 @@
     "title": "Utilisteurs fonctions accés.",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Affiche les utilisateurs actifs ayant accès à une fonction paramétrée, en détaillant leurs droits précis (consultation, modification, exécution) via les codes d'accès.",
     "fields": [
       "ACS",
       "ALLACS",
@@ -3123,7 +3123,7 @@
     "title": "Utilisteurs fonctions lots.",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Liste les utilisateurs actifs autorisés à modifier les lots de stock (GESSCS) et disposant de codes d'accès liés au suivi qualité.",
     "fields": [
       "ACS",
       "ALLACS",
@@ -3151,7 +3151,7 @@
     "title": "Utilisteurs fonctions lots.",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Identifie les utilisateurs ayant la possibilité de modifier les statuts de stock dans le module de contrôle qualité Qualipharm (GESXQP).",
     "fields": [
       "ACS",
       "ALLACS",
@@ -3179,7 +3179,7 @@
     "title": "Utilisteurs fonctions GESSMO.",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Répertorie les utilisateurs actifs ayant accès à la fonction de modification de stock GESSMO associés au code d'accès BONS.",
     "fields": [
       "ACS",
       "ALLACS",
@@ -3207,7 +3207,7 @@
     "title": "Utilisteurs fonctions GESSMO.",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Liste les utilisateurs actifs autorisés sur la fonction de mouvements/modifications de stock GESSMO avec le code d'accès DES02.",
     "fields": [
       "ACS",
       "ALLACS",
@@ -3235,7 +3235,7 @@
     "title": "Utilisteurs fonctions GESSDH2.",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Donne la liste des utilisateurs actifs et leurs autorisations d'accès globales aux fonctions du système.",
     "fields": [
       "ACS",
       "ALLACS",
@@ -3263,7 +3263,7 @@
     "title": "Utilisteurs fonctions GESSCS.",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Identifie les utilisateurs actifs disposant d'accès à la modification de lots (GESSCS) sous le code d'accès YPROTRN.",
     "fields": [
       "ACS",
       "ALLACS",
@@ -3291,7 +3291,7 @@
     "title": "Utilisteurs fonctions GESSDH2.",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Permet de lister les utilisateurs actifs qui possèdent des droits sur la gestion et la saisie des bons de livraison clients (GESSDH).",
     "fields": [
       "ACS",
       "ALLACS",
@@ -3315,7 +3315,7 @@
     "title": "Accés qualipharm.",
     "domain": "Qualité",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Répertorie l'ensemble des utilisateurs actifs ayant accès aux modules et fonctions de contrôle qualité Qualipharm (GESXQP).",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -3338,7 +3338,7 @@
     "title": "Utilisteurs modif lots.",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Liste les utilisateurs actifs disposant de droits d'accès ou de modification sur les fonctions de contrôle qualité des lots ainsi que sur les fiches fournisseurs.",
     "fields": [
       "ACS",
       "ALLACS",
@@ -3366,7 +3366,7 @@
     "title": "OTIF Fournisseur",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, PORDERQ, PRECEIPTD.",
+    "description": "Mesure la performance de livraison des fournisseurs (OTIF) en comparant les dates et quantités prévues sur les commandes d'achat soldées aux réceptions réelles.",
     "fields": [
       "BPSNAM",
       "BPSNUM",
@@ -3393,7 +3393,7 @@
     "title": "Consultation lignes commandes",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPCUSTOMER, ITMMASTER, SORDER, SORDERP, SORDERQ.",
+    "description": "Donne un suivi détaillé des lignes de commandes clients avec leurs statuts, quantités (commandées, allouées, livrées, facturées) et montants financiers.",
     "fields": [
       "ALLQTY",
       "BPCNAM",
@@ -3431,7 +3431,7 @@
     "title": "Articles sans coût standard",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ATEXTRA, AUTILIS, BPSUPPLIER, ITMCOST, ITMFACILIT, ITMMASTER, ITMMVT, PORDERP, PRECEIPTD.",
+    "description": "Identifie les articles gérés en stock qui ne possèdent pas de coût standard valide en cours de validité pour un acheteur donné.",
     "fields": [
       "BPSNAM",
       "BPSNUM",
@@ -3486,7 +3486,7 @@
     "title": "Stock RD",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : A, STOCK.",
+    "description": "Affiche la liste des lots actuellement en stock sous le statut R&D (RD) ainsi que leur date de création initiale.",
     "fields": [
       "CREDAT",
       "ITMREF",
@@ -3505,7 +3505,7 @@
     "title": "QC ORDER A CLOTURER CHIMIE",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITM, XREQUESTH.",
+    "description": "Liste les ordres de contrôle qualité (QC Orders) validés par le service CQ mais non encore clos pour l'activité Chimie.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -3528,7 +3528,7 @@
     "title": "QC ORDER A CLOTURER PHARMA",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITM, XREQUESTH.",
+    "description": "Identifie les ordres de contrôle qualité (QC Orders) validés par le service CQ mais toujours en attente de clôture pour le secteur Pharmacie.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -3551,7 +3551,7 @@
     "title": "QC STABA TRAITER",
     "domain": "Qualité",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITM, XREQUESTH.",
+    "description": "Extrait les ordres de contrôle qualité non clos relatifs aux études de stabilité produit à traiter sous court délai.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -3574,7 +3574,7 @@
     "title": "AQ - Suivi conso OF",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMMASTER, MFGMATTRK, STOJOU, XREQUESTH.",
+    "description": "Permet le suivi Qualité des consommations de matières et composants par Ordre de Fabrication (OF) en y associant l'état des QC Orders.",
     "fields": [
       "IPTDAT",
       "ITMDES1",
@@ -3605,7 +3605,7 @@
     "title": "FIN - Section de valorisation",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ATEXTRA, OVERHEAD, TABFOR, WORKCOST.",
+    "description": "Présente la configuration des sections de valorisation industrielle ainsi que les coefficients et formules de frais généraux appliqués aux coûts.",
     "fields": [
       "BRDCOD",
       "BUDOPECST",
@@ -3650,7 +3650,7 @@
     "title": "Articles sans coût standard 2",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ATEXTRA, BPSUPPLIER, ITMCOST, ITMFACILIT, ITMMASTER, ITMMVT, ORD, PORDERP, PRECEIPTD.",
+    "description": "Recherche les articles valorisés sans coût standard valide tout en identifiant le statut de leurs encours d'ordres de fabrication ou d'achat.",
     "fields": [
       "BPSNAM",
       "BPSNUM",
@@ -3704,7 +3704,7 @@
     "title": "QC Order par lot frn",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, STOLOT, XREQUESTH.",
+    "description": "Extrait les demandes de contrôle qualité (QC Orders) et les statuts associés à un numéro de lot fournisseur particulier.",
     "fields": [
       "BPSLOT",
       "BPSNAM",
@@ -3730,7 +3730,7 @@
     "title": "AQ - Lead time Récept-Valorisa",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : APLSTD, ITMMASTER, MFGITM, STOLOT, XREQUESTH.",
+    "description": "Calcule le délai de traitement Qualité (Lead Time) entre la date de réception d'un lot d'achat et sa date de valorisation/validation.",
     "fields": [
       "CPLQTY",
       "ITMDES1",
@@ -3761,7 +3761,7 @@
     "title": "AQ - Lead time Decl.-Valorisa",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : APLSTD, ITMMASTER, MFGITM, STOLOT, XREQUESTH.",
+    "description": "Mesure le délai (Lead Time) entre le dernier suivi de fabrication d'un lot produit et sa date de validation finale par le contrôle qualité.",
     "fields": [
       "CPLQTY",
       "ITMDES1",
@@ -3792,7 +3792,7 @@
     "title": "balance agee clients Clarity",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPCUSTOMER, GACCDUDATE, SINVOICE.",
+    "description": "Génère la balance âgée des créances clients par site, en ventilant les soldes restants dus par tranches d'ancienneté d'échéance.",
     "fields": [
       "ACCCOD",
       "BCGCOD",
@@ -3821,7 +3821,7 @@
     "title": "Stock a Date par emplacement",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : A, I, L, STOJOU.",
+    "description": "Permet de consulter l'état des stocks récapitulé à une date précise, détaillé par emplacement, lot, statut et type d'emplacement.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -3845,7 +3845,7 @@
     "title": "COPRODUITS",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : B, I2, ITMMASTER.",
+    "description": "Extrait la liste des coproduits et composants associés aux articles dans les nomenclatures de production.",
     "fields": [
       "BOMALT",
       "CPNITMREF",
@@ -3865,7 +3865,7 @@
     "title": "ACH1 - Comm. en cours (Qty 0)",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMBPS, ITMMASTER, PORDER, PORDERP, PORDERQ, XITMSTAT.",
+    "description": "Liste les commandes d'achat en cours dont la livraison est attendue, identifiant les reliquats non encore reçus.",
     "fields": [
       "BPSNAM",
       "BPSNUM",
@@ -3893,7 +3893,7 @@
     "title": "Products Catalogue",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ATEXTRA, ITMCOST, ITMFACILIT, ITMMASTER, ITMMVT.",
+    "description": "Génère un catalogue des articles incluant les niveaux de stock (physique, contrôle, rebut), le stock de sécurité et les coûts standards.",
     "fields": [
       "ABCCLS",
       "AVC",
@@ -3925,7 +3925,7 @@
     "title": "PLA - Projection de Stock(s)",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : APLSTD, ATEXTRA, ITMMASTER, MFGITM, ORDERS, STOJOU, XITMSTAT.",
+    "description": "Reconstitue le stock projeté d'un article en listant l'ensemble des mouvements futurs d'entrée et de sortie (achats, ventes, ordres de fabrication).",
     "fields": [
       "CODFIC",
       "ENDDAT",
@@ -3973,7 +3973,7 @@
     "title": "Valorisation Stock est. nb Pal",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ATEXTRA, ITMCOST, ITMMASTER, STOCK, STOLOT, STOLOTFCY, XITMSTAT.",
+    "description": "Calcule la valorisation du stock au coût standard par lot et fournit une estimation du nombre équivalent de palettes.",
     "fields": [
       "AVC",
       "BPSLOT",
@@ -4019,7 +4019,7 @@
     "title": "Droits d'accès",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AFCTPRF, AFONCTION, APROFIL, ATEXTE, ATEXTRA, AUTILIS.",
+    "description": "Extrait la liste des utilisateurs actifs et détaille leurs profils ainsi que leurs droits d'accès aux fonctions du système.",
     "fields": [
       "ALLACS",
       "CODINT",
@@ -4053,7 +4053,7 @@
     "title": "Suivi réception & QC Order",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, PRECEIPT, STOLOT, XREQUESTH.",
+    "description": "Permet le suivi des réceptions fournisseurs en faisant le lien avec le statut des demandes d'analyse du contrôle qualité.",
     "fields": [
       "BPSLOT",
       "BPSNAM",
@@ -4085,7 +4085,7 @@
     "title": "Gestion d'accès - Utilisateurs",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : inconnues.",
+    "description": "Identifie les utilisateurs possédant un profil administrateur, en affichant leur état d'activité et leur dernière date de connexion.",
     "fields": [],
     "sql": "select USR_0 , LOGIN_0, NOMUSR_0  ,  PRFMEN_0 , PRFFCT_0 ,         CASE ENAFLG_0         WHEN 1 THEN 'Inactif'         ELSE        'Actif' END ,         convert(nvarchar(10),CREDAT_0,103) CREDAT,          convert(nvarchar(10),DATCONN_0 , 103)CONNDAT  from AUTILIS  where    USRCONNECT_0 <> 1  and PRFFCT_0 = 'ADMIN'  and (ENAFLG_0 = %1% or %1% = '')  order by 1",
     "owner": "VVOY",
@@ -4098,7 +4098,7 @@
     "title": "Consommation OF",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : CONSO, ITMMASTER, MFGHEAD, MFGITM, MFGMAT, MFITRK.",
+    "description": "Analyse les consommations réelles de composants et matières premières par rapport aux quantités produites sur les ordres de fabrication.",
     "fields": [
       "CPLQTY",
       "ITMDES1",
@@ -4126,7 +4126,7 @@
     "title": "Liste Clients",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BID, BPADDRESS, BPARTNER, BPCUSTOMER, TABPAYTERM.",
+    "description": "Exporte la fiche récapitulative des clients avec leurs coordonnées principales, conditions de paiement et coordonnées bancaires.",
     "fields": [
       "BICCOD",
       "BIDNUM",
@@ -4165,7 +4165,7 @@
     "title": "Liste Fournisseurs",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BID, BPADDRESS, BPARTNER, BPSUPPLIER, TABPAYTERM.",
+    "description": "Exporte le référentiel des fournisseurs en intégrant leurs adresses, conditions de règlement, classe ABC et informations bancaires.",
     "fields": [
       "ABCCLS",
       "BICCOD",
@@ -4206,7 +4206,7 @@
     "title": "Liste des nomenclatures - Fi",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BOM, BOMD, ITMCOST, ITMFACILIT, ITMMASTER, ITMMVT, PRECEIPTD, XITMVERSIO.",
+    "description": "Détaille la composition des nomenclatures de production avec la liste des composants, les quantités de base, les versions et les coûts associés.",
     "fields": [
       "BASQTY",
       "BOMALT",
@@ -4248,7 +4248,7 @@
     "title": "Gestion d'accès - Code+Profil",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : inconnues.",
+    "description": "Liste les utilisateurs actifs du système ainsi que le libellé de leur profil menu principal.",
     "fields": [],
     "sql": "select USR_0 , LOGIN_0, NOMUSR_0  , PRFMEN_0 ,  TEXTE_0 , PRFFCT_0    from AUTILIS a, ATEXTRA t  where ENAFLG_0 = 2  and   USRCONNECT_0 <> 1  and LANGUE_0 = 'FRA'   and CODFIC_0 = 'APROFIL'   and IDENT2_0 = PRFMEN_0  order by 1",
     "owner": "VVOY",
@@ -4261,7 +4261,7 @@
     "title": "Gestion d'accès - Util. Actifs",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AUTILIS, F, P, T, X.",
+    "description": "Fournit une matrice détaillée des autorisations et fonctions accessibles pour chaque utilisateur actif en fonction de ses profils.",
     "fields": [
       "CODEXT",
       "CODFIC",
@@ -4289,7 +4289,7 @@
     "title": "WorkSheet imprimée",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : A, I, W, X, YWRKEDT.",
+    "description": "Permet de consulter la liste des fiches de travail (WorkSheets) éditées par poste et utilisateur sur une période donnée. Elle facilite le suivi des instructions de production et des lots associés.",
     "fields": [
       "CREDAT",
       "CREUSR",
@@ -4313,7 +4313,7 @@
     "title": "Gestion d'accès - Profils MENU",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : APROFIL, T.",
+    "description": "Extrait la liste de l'ensemble des profils menus paramétrés dans le système avec leurs libellés en français. Utile pour avoir une vue d'ensemble de la structure des menus applicatifs.",
     "fields": [
       "CODPRF",
       "IDENT2"
@@ -4329,7 +4329,7 @@
     "title": "Gestion d'accès - Profils MENU",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AFCTFCT, T.",
+    "description": "Affiche les profils de fonctions utilisateur enregistrés dans l'ERP avec leur désignation. Cela permet de répertorier les rôles fonctionnels existants.",
     "fields": [
       "IDENT1",
       "PRFCOD"
@@ -4345,7 +4345,7 @@
     "title": "Gestion d'accès - Profils FCTS",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AFCTPRF, AFONCTION, ATEXTE, ATEXTRA.",
+    "description": "Détaille les autorisations et droits d'accès applicables à chaque profil pour l'ensemble des fonctions de l'ERP. Elle sert à effectuer l'audit précis de la matrice des droits utilisateurs.",
     "fields": [
       "ACS",
       "CODEXT",
@@ -4371,7 +4371,7 @@
     "title": "Gestion d'accès - Habilitation",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCCOD, T.",
+    "description": "Répertorie le référentiel des codes d'accès de sécurité définis dans Sage X3. Elle permet d'identifier la liste des clés de protection des objets métiers.",
     "fields": [
       "CODACC",
       "IDENT1"
@@ -4387,7 +4387,7 @@
     "title": "Gestion d'accès - Code+Profil",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, ATEXTRA.",
+    "description": "Permet de vérifier l'association entre les profils utilisateurs et les codes d'accès de sécurité attribués. Elle garantit le contrôle de la sécurité fine au niveau des profils.",
     "fields": [
       "CODACC",
       "CODFIC",
@@ -4407,7 +4407,7 @@
     "title": "rquete cout",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : CST, ITMCOST, ITMFACILIT, ITMMASTER, ITMSALES, T1.",
+    "description": "Génère une fiche synthétique par article combinant données de réapprovisionnement, prix de vente de base et coûts de revient (standards et actualisés). Elle est essentielle pour le suivi technico-économique du catalogue article.",
     "fields": [
       "BASPRI",
       "BRDCOD",
@@ -4444,7 +4444,7 @@
     "title": "Saisie reglement",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Identifie l'ensemble des utilisateurs actifs habilités à saisir les règlements clients/fournisseurs (fonction GESPAY). Elle sert à auditer les accès sensibles du module Trésorerie.",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -4467,7 +4467,7 @@
     "title": "Validation retours",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Liste les utilisateurs actifs disposant des droits pour effectuer la validation et le traitement des retours (fonction FUNPNHTRT).",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -4490,7 +4490,7 @@
     "title": "Session inventaires",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Répertorie les utilisateurs actifs autorisés à créer et gérer les sessions d'inventaire de stock (fonction GESSNX).",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -4513,7 +4513,7 @@
     "title": "Profils commande groupe.",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Extrait la liste des utilisateurs actifs bénéficiant de droits d'accès sur une fonction Sage X3 spécifique transmise en paramètre.",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -4537,7 +4537,7 @@
     "title": "Génération remises",
     "domain": "Administration",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACCES, AFCTFCT, AFCTPRF, AUTILIS.",
+    "description": "Identifie les utilisateurs actifs autorisés à générer les bordereaux de remise en banque (fonction GENBORREM).",
     "fields": [
       "ACS",
       "ALLFCT",
@@ -4560,7 +4560,7 @@
     "title": "Vérification Nomenclatures",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BOM, ITMMASTER, XITMVERSIO.",
+    "description": "Permet de contrôler et d'auditer les alternatives de nomenclatures de fabrication associées aux articles, en vérifiant leurs statuts, versions et liaisons de coûts.",
     "fields": [
       "BOMALT",
       "CREDAT",
@@ -4586,7 +4586,7 @@
     "title": "AQ - Suivi conso OF 2",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMMASTER, MFGMATTRK, STOJOU, XREQUESTH.",
+    "description": "Assure le suivi Assurance Qualité des consommations de composants par Ordre de Fabrication (OF), en croisant les lots consommés avec les ordres de contrôle QC.",
     "fields": [
       "IPTDAT",
       "ITMDES1",
@@ -4617,7 +4617,7 @@
     "title": "Mouvement de stock (Achat)-BKP",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMMASTER, STOJOU.",
+    "description": "Fournit l'historique détaillé des mouvements de stock (notamment achats) par article, lot et site. Elle intègre la valorisation financière et les imputations analytiques associées.",
     "fields": [
       "CCE",
       "CCE_1",
@@ -4639,7 +4639,7 @@
     "title": "Mouvement de stock (Achat)",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, STOJOU.",
+    "description": "Permet de suivre les mouvements de stock liés aux achats (réceptions, ajustements) par article, lot et fournisseur, avec le détail des quantités et des valeurs comptables ou analytiques.",
     "fields": [
       "ACTQTY",
       "AMTORD",
@@ -4689,7 +4689,7 @@
     "title": "STAB - Echéances stabilité",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ATEXTRA, ITMMASTER, XREQUESTH, XSTABETU, XSTABETUS.",
+    "description": "Liste les échéances des études de stabilité en cours pour les articles et leurs lots, en indiquant les conditions de stockage, les points de temps et le statut du contrôle qualité.",
     "fields": [
       "CODFIC",
       "IDENT1",
@@ -4723,7 +4723,7 @@
     "title": "Méthode contrôle par article",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMFACILIT, ITMMASTER, XFICHCTRLD, XFICHCTRLH.",
+    "description": "Permet de consulter les fiches et méthodes de contrôle qualité associées aux articles selon leur plan de contrôle configuré en établissement.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -4751,7 +4751,7 @@
     "title": "Utilisteurs et fonctions.",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : AFC, AFO, AFT, ATXT, AUT, VDRPROD.",
+    "description": "Recense les utilisateurs actifs de Sage X3 et détaille leurs droits et options d'accès aux différentes fonctions applicatives selon leur profil.",
     "fields": [
       "ACS",
       "AFCTFCT",
@@ -4785,7 +4785,7 @@
     "title": "Vérification Gammes",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMMASTER, ROUTING, XITMVERSIO.",
+    "description": "Permet de contrôler les gammes de fabrication associées aux articles, en affichant l'alternative, le plan d'entête, le statut et les versions de coût/planification.",
     "fields": [
       "CREDAT",
       "CREUSR",
@@ -4811,7 +4811,7 @@
     "title": "Version complète",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMMASTER, XITMVERSIO.",
+    "description": "Donne une vue complète du référentiel des versions d'articles, incluant leurs dates de validité, les alternatives de nomenclature et de gamme rattachées ainsi que les tailles de lot.",
     "fields": [
       "BOMALT",
       "CREDAT",
@@ -4844,7 +4844,7 @@
     "title": "Commandes achat en cours",
     "domain": "Ventes",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ACLOB, BPSUPPLIER, ITMMASTER, PORDER, PORDERP, PORDERQ, PRECEIPTD.",
+    "description": "Affiche le détail des commandes d'achat non soldées, en comparant les quantités commandées et reçues avec une conversion en palettes et une visibilité sur les dates de réception prévues.",
     "fields": [
       "BPSNAM",
       "BPSNUM",
@@ -4889,7 +4889,7 @@
     "title": "Consultation lignes livraisons",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPCUSTOMER, MFGMAT, SDELIVERY, SDELIVERYD, STOJOU.",
+    "description": "Permet de consulter les lignes de livraison clients expédiées avec les détails tarifaires, les numéros de lot et l'ordre de fabrication (OF) d'origine.",
     "fields": [
       "BPAADD",
       "BPCGRU",
@@ -4940,7 +4940,7 @@
     "title": "Cas d’emploi avec versions",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BOM, BOMD, ITMMASTER, XITMVERSIO.",
+    "description": "Identifie les cas d'emploi des composants dans les nomenclatures de fabrication, en précisant les coefficients de lien et la validité des versions d'articles.",
     "fields": [
       "BASQTY",
       "BOMALT",
@@ -4967,7 +4967,7 @@
     "title": "Articles et données MDM + dés.",
     "domain": "Transverse",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ATEXTRA, ITMFACILIT, ITMMASTER, ITMSALES.",
+    "description": "Extrait le référentiel complet des données d'article (MDM), incluant les catégories, groupes statistiques, unités, comptes comptables et règles de réapprovisionnement.",
     "fields": [
       "ACCCOD",
       "BASPRI",
@@ -5033,7 +5033,7 @@
     "title": "Verif Création Ver. Prod/Fin",
     "domain": "Production",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMFACILIT, ITMMASTER, XITMVERSIO.",
+    "description": "Détecte les anomalies de paramétrage sur les articles en identifiant ceux pour lesquels il manque une version Production ou une version Finance sur la période donnée.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -5056,7 +5056,7 @@
     "title": "Export RIB fournisseurs",
     "domain": "Achats",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BID, BPADDRESS, BPARTNER, BPSUPPLIER.",
+    "description": "Extrait la fiche identité des fournisseurs avec leurs coordonnées postales, identifiants fiscaux et coordonnées bancaires (IBAN / BIC).",
     "fields": [
       "ACCCOD",
       "BICCOD",
@@ -5098,7 +5098,7 @@
     "title": "DPC Ventes",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPCUSTOMER, ITMMASTER, SORDER, SORDERP, SORDERQ.",
+    "description": "Fournit un état des ventes par ligne de commande client, en affichant les quantités, numéros de lot externes, dates d'expédition prévues et montants HT.",
     "fields": [
       "BPCNAM",
       "BPCNUM",
@@ -5129,7 +5129,7 @@
     "title": "IRSN V2",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMMASTER, MFGHEADTRK, SDELIVERY, STOJOU, STOLOT.",
+    "description": "Trace l'historique chronologique des mouvements de stock (production, consommation, livraison, destruction) par lot et emplacement pour le suivi réglementaire IRSN.",
     "fields": [
       "ITMREF",
       "LOC",
@@ -5157,7 +5157,7 @@
     "title": "Suivi récept/QC Order lot frn",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPSUPPLIER, ITMMASTER, PRECEIPT, STOLOT, XREQUESTH.",
+    "description": "Permet de suivre les lots reçus des fournisseurs et l'état d'avancement de leurs demandes de contrôle qualité (QC) rattachées.",
     "fields": [
       "BPSLOT",
       "BPSNAM",
@@ -5189,7 +5189,7 @@
     "title": "DPC Ventes/Consult ligne comma",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : BPCUSTOMER, ITMMASTER, SORDER, SORDERP, SORDERQ.",
+    "description": "Cette extraction permet de consulter le détail des lignes de commandes de ventes avec leur état d'avancement (quantités allouées, livrées, facturées) ainsi que les montants et dates associées. Elle facilite le suivi précis des engagements clients et de l'exécution des commandes.",
     "fields": [
       "ALLQTY",
       "BPCNAM",
@@ -5227,7 +5227,7 @@
     "title": "Suivi du stock CQPC",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMFACILIT, ITMMASTER, STOCK, STOLOCAFF.",
+    "description": "Cet état fournit un suivi global des stocks du laboratoire (zone CQPC) en les comparant aux seuils de réapprovisionnement et de stock maximum. Il permet d'identifier rapidement les articles à commander, en surstock ou en rupture.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -5250,7 +5250,7 @@
     "title": "Alertes commandes stock CQPC",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMFACILIT, ITMMASTER, STOCK, STOLOCAFF.",
+    "description": "Cette requête cible uniquement les articles du laboratoire (zone CQPC) en rupture ou ayant atteint leur seuil d'alerte. Elle sert d'outil de pilotage pour déclencher rapidement les réapprovisionnements d'achats nécessaires.",
     "fields": [
       "ITMDES1",
       "ITMREF",
@@ -5273,7 +5273,7 @@
     "title": "Suivi du stock CQPC",
     "domain": "Stocks",
     "system": "Sage X3",
-    "description": "Extraction de données basée sur les tables : ITMFACILIT, ITMMASTER, STOCK, STOLOCAFF.",
+    "description": "Cet extrait détaille la présence en stock des articles du laboratoire (zone CQPC) par emplacement physique tout en identifiant les surstockages ou les ruptures. Il aide à l'optimisation du rangement et à la préparation des inventaires sur cette zone.",
     "fields": [
       "ITMDES1",
       "ITMREF",
