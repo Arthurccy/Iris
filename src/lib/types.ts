@@ -36,3 +36,34 @@ export type MatchResults = {
 	totalExact: number;
 	totalPartial: number;
 };
+
+export type MiscTableItem = {
+	code: string;
+	shortLabel: string;
+	label: string;
+	isActive: boolean;
+	parameters?: Record<string, string | number>;
+	notes?: string;
+};
+
+export type MiscTableDefinition = {
+	numtab: number;
+	name: string;
+	title: string;
+	category: string;
+	description: string;
+	usedInFields: string[];
+	usedInScreens: string[];
+	items: MiscTableItem[];
+};
+
+export type MiscTableRequest = {
+	numtab: number;
+	tableTitle: string;
+	code: string;
+	shortLabel: string;
+	label: string;
+	reason: string;
+	requesterName: string;
+	requesterEmail: string;
+};

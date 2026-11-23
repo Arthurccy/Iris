@@ -1,0 +1,484 @@
+[
+  {
+    "numtab": 20,
+    "name": "REBUT",
+    "title": "Motifs de rebut et rejet fabrication",
+    "category": "Production",
+    "description": "Motifs de rejet déclarés lors du suivi d'ordre de fabrication (matières perdues, casse, purges ou défauts de conformité en atelier).",
+    "usedInFields": ["REOCOD", "XREJMOT", "MFGTRK"],
+    "usedInScreens": ["GESMFG — Ordres de fabrication", "GESMTK — Suivi d'atelier et déclarations"],
+    "items": [
+      {
+        "code": "CASS_FLAC",
+        "shortLabel": "Casse flacon",
+        "label": "Casse flacon ou ampoule en cours de conditionnement sur ligne",
+        "isActive": true
+      },
+      {
+        "code": "PURGE_REG",
+        "shortLabel": "Purge réglage",
+        "label": "Perte matière consommée lors du calage et réglage machine",
+        "isActive": true
+      },
+      {
+        "code": "DOS_HORSN",
+        "shortLabel": "Défaut dosage",
+        "label": "Volume, poids unitaire ou dosage hors tolérance spécifiée",
+        "isActive": true
+      },
+      {
+        "code": "ASPEC_DEF",
+        "shortLabel": "Défaut aspect",
+        "label": "Non-conformité visuelle (coloration, particules, turbidité)",
+        "isActive": true
+      },
+      {
+        "code": "CONT_PART",
+        "shortLabel": "Contamination",
+        "label": "Suspicion de contamination particulaire ou corps étranger",
+        "isActive": true
+      },
+      {
+        "code": "COLL_ETIQ",
+        "shortLabel": "Défaut étiquette",
+        "label": "Défaut d'étiquetage, collage, sertissage ou marquage lot",
+        "isActive": true
+      },
+      {
+        "code": "REB_DEMAR",
+        "shortLabel": "Perte démarrage",
+        "label": "Pertes matières constatées au redémarrage après arrêt de ligne",
+        "isActive": true
+      }
+    ]
+  },
+  {
+    "numtab": 21,
+    "name": "STALOT",
+    "title": "Motifs de statut et blocage de lot",
+    "category": "Qualité",
+    "description": "Justification des changements de statuts de stock (A : Accepté, Q : Quarantaine, R : Rejeté) et mise en quarantaine conservatoire.",
+    "usedInFields": ["QLYCTLDAT", "STA", "XSTAFORCE", "LOT"],
+    "usedInScreens": ["GESSLO — Gestion des lots", "GESSTK — Changement de statut de stock"],
+    "items": [
+      {
+        "code": "ATT_ANAL",
+        "shortLabel": "Attente analyses",
+        "label": "Attente des résultats analytiques physico-chimiques du laboratoire CQ",
+        "isActive": true
+      },
+      {
+        "code": "ATT_MICRO",
+        "shortLabel": "Attente microbiol.",
+        "label": "Attente des résultats d'analyses microbiologiques (temps d'incubation)",
+        "isActive": true
+      },
+      {
+        "code": "DEV_OOS",
+        "shortLabel": "Déviation OOS",
+        "label": "Lot consigné suite à résultat hors spécification (OOS) ou déviation atelier",
+        "isActive": true
+      },
+      {
+        "code": "AUD_CLIENT",
+        "shortLabel": "Attente client",
+        "label": "Lot en attente de visa formel de libération par le donneur d'ordre",
+        "isActive": true
+      },
+      {
+        "code": "PERIM_PROCH",
+        "shortLabel": "Péremption proche",
+        "label": "Échéance de réanalyse atteinte ou proximité date de péremption",
+        "isActive": true
+      },
+      {
+        "code": "NON_CONF",
+        "shortLabel": "Non-conformité",
+        "label": "Rejet définitif suite à décision qualité pour non-conformité majeure",
+        "isActive": true
+      },
+      {
+        "code": "QUAR_REG",
+        "shortLabel": "Quarantaine",
+        "label": "Mise en quarantaine réglementaire obligatoire dès réception",
+        "isActive": true
+      }
+    ]
+  },
+  {
+    "numtab": 22,
+    "name": "MOTMVT",
+    "title": "Motifs de mouvements de stock",
+    "category": "Stocks",
+    "description": "Justification obligatoire des transferts d'emplacements, prélèvements et régularisations diverses dans les magasins.",
+    "usedInFields": ["PJT", "MVTPRV", "STODAT"],
+    "usedInScreens": ["GESSTK — Mouvements internes", "GESCHG — Changement d'emplacement"],
+    "items": [
+      {
+        "code": "ECHANT_AQ",
+        "shortLabel": "Échantillothèque",
+        "label": "Prélèvement d'échantillons officiels pour l'échantillothèque et le CQ",
+        "isActive": true
+      },
+      {
+        "code": "STAB_ECHE",
+        "shortLabel": "Étude stabilité",
+        "label": "Prélèvement pour mise en enceinte de stabilité ICH",
+        "isActive": true
+      },
+      {
+        "code": "REGUL_INV",
+        "shortLabel": "Régularisation",
+        "label": "Ajustement suite à inventaire tournant ou inventaire fiscal",
+        "isActive": true
+      },
+      {
+        "code": "SORT_DEST",
+        "shortLabel": "Destruction",
+        "label": "Sortie définitive du stock vers la filière d'incinération / destruction",
+        "isActive": true
+      },
+      {
+        "code": "TRANS_ATEL",
+        "shortLabel": "Transfert atelier",
+        "label": "Mise à disposition matière dans le sas de pesée ou de production",
+        "isActive": true
+      },
+      {
+        "code": "RETO_FRN",
+        "shortLabel": "Retour fournisseur",
+        "label": "Sortie de stock pour renvoi d'articles non conformes au fournisseur",
+        "isActive": true
+      },
+      {
+        "code": "PREL_DEV",
+        "shortLabel": "Essai R&D",
+        "label": "Prélèvement matière pour essais galéniques ou de transposition",
+        "isActive": true
+      }
+    ]
+  },
+  {
+    "numtab": 30,
+    "name": "TYPCOND",
+    "title": "Types et unités de conditionnement",
+    "category": "Stocks",
+    "description": "Unités d'emballage et de manutention utilisées pour le stockage, les pesées et les expéditions.",
+    "usedInFields": ["PCK", "PCKCAP", "ITMPCK"],
+    "usedInScreens": ["GESITM — Fiche article", "GESPRE — Préparation des expéditions"],
+    "items": [
+      {
+        "code": "PAL_EUR",
+        "shortLabel": "Palette Europe",
+        "label": "Palette bois normalisée EUR 800 x 1200 mm",
+        "isActive": true
+      },
+      {
+        "code": "PAL_CHEP",
+        "shortLabel": "Palette CHEP",
+        "label": "Palette bleue locative CHEP 800 x 1200 mm",
+        "isActive": true
+      },
+      {
+        "code": "FUT_PEHD",
+        "shortLabel": "Fût PEHD 200L",
+        "label": "Fût plastique étanche haute densité 200 Litres",
+        "isActive": true
+      },
+      {
+        "code": "FUT_INOX",
+        "shortLabel": "Fût Inox pharma",
+        "label": "Fût inox 316L avec fermeture clamp certifiée pharmaceutique",
+        "isActive": true
+      },
+      {
+        "code": "IBC_1000",
+        "shortLabel": "Container IBC",
+        "label": "Conteneur IBC cubique de 1000 Litres sur palette acier",
+        "isActive": true
+      },
+      {
+        "code": "CART_STD",
+        "shortLabel": "Carton standard",
+        "label": "Carton d'emballage double cannelure agréé transport",
+        "isActive": true
+      },
+      {
+        "code": "BOX_ISO",
+        "shortLabel": "Caisse isotherme",
+        "label": "Emballage isotherme qualifié pour transport sous chaîne du froid",
+        "isActive": true
+      }
+    ]
+  },
+  {
+    "numtab": 40,
+    "name": "AGRFRN",
+    "title": "Statuts d'agrément et qualification fournisseur",
+    "category": "Achats",
+    "description": "Niveau d'audit, de certification et d'autorisation d'approvisionnement des tiers fabricants et fournisseurs.",
+    "usedInFields": ["YBPSCERT", "BPSNUM", "ITMBPS"],
+    "usedInScreens": ["GESBPS — Tiers fournisseurs", "GESITP — Article-Fournisseur"],
+    "items": [
+      {
+        "code": "QUAL_AUD",
+        "shortLabel": "Qualifié audit",
+        "label": "Fournisseur audité sur site avec rapport conforme sans réserve majeure",
+        "isActive": true
+      },
+      {
+        "code": "QUAL_HIST",
+        "shortLabel": "Qualifié historique",
+        "label": "Qualifié sur historique de livraisons conformes supérieures à 12 mois",
+        "isActive": true
+      },
+      {
+        "code": "DEROG_CQ",
+        "shortLabel": "Dérogation CQ",
+        "label": "Approvisionnement ponctuel autorisé sous dérogation qualité",
+        "isActive": true
+      },
+      {
+        "code": "AUD_RECO",
+        "shortLabel": "Reconduction audit",
+        "label": "Fournisseur dont l'audit annuel doit être reconduit sous 60 jours",
+        "isActive": true
+      },
+      {
+        "code": "SUSP_QUAL",
+        "shortLabel": "Suspendu qualité",
+        "label": "Statut suspendu suite à incident qualité ou réclamation non soldée",
+        "isActive": true
+      },
+      {
+        "code": "NOUV_SOURC",
+        "shortLabel": "En qualification",
+        "label": "Nouveau fabricant en phase d'évaluation et d'homologation",
+        "isActive": true
+      }
+    ]
+  },
+  {
+    "numtab": 201,
+    "name": "XSTADE",
+    "title": "Stades d'industrialisation et maturité produit",
+    "category": "Production",
+    "description": "Table spécifique Valdepharm caractérisant le niveau de transposition et de validation industrielle du produit.",
+    "usedInFields": ["YSTADE", "ITMMASTER"],
+    "usedInScreens": ["GESITM — Articles", "GESBOM — Nomenclatures de fabrication"],
+    "items": [
+      {
+        "code": "DEV_LAB",
+        "shortLabel": "Développement",
+        "label": "Stade de formulation et d'essais au laboratoire galénique",
+        "isActive": true
+      },
+      {
+        "code": "PILOT_LOT",
+        "shortLabel": "Lot pilote",
+        "label": "Lots pilotes et validation de procédé à l'échelle pilote",
+        "isActive": true
+      },
+      {
+        "code": "TRANS_IND",
+        "shortLabel": "Transposition",
+        "label": "Transposition industrielle et premier lot de validation en atelier",
+        "isActive": true
+      },
+      {
+        "code": "COMM_ACT",
+        "shortLabel": "Commercialisé",
+        "label": "Produit validé en phase d'exploitation commerciale régulière",
+        "isActive": true
+      },
+      {
+        "code": "FIN_VIE",
+        "shortLabel": "Fin de vie",
+        "label": "Produit en phase d'arrêt progressif ou de transfert de site",
+        "isActive": true
+      },
+      {
+        "code": "OBSOLETE",
+        "shortLabel": "Obsolète",
+        "label": "Produit clôturé, aucune nouvelle fabrication autorisée",
+        "isActive": false
+      }
+    ]
+  },
+  {
+    "numtab": 205,
+    "name": "XSTABCOND",
+    "title": "Conditions de conservation pour stabilités",
+    "category": "Qualité",
+    "description": "Conditions thermo-hygrométriques des enceintes climatiques selon les directives ICH pour les études de stabilité.",
+    "usedInFields": ["XTIMEPT", "XSTABETUS"],
+    "usedInScreens": ["GESSLO — Lots", "GESSTK — Suivi des stabilités"],
+    "items": [
+      {
+        "code": "25C_60HR",
+        "shortLabel": "25°C / 60% HR",
+        "label": "Enceinte climatique 25°C ± 2°C / 60% HR ± 5% (ICH Zone II standard)",
+        "isActive": true
+      },
+      {
+        "code": "30C_65HR",
+        "shortLabel": "30°C / 65% HR",
+        "label": "Enceinte climatique 30°C ± 2°C / 65% HR ± 5% (ICH Zone IVa intermédiaire)",
+        "isActive": true
+      },
+      {
+        "code": "30C_75HR",
+        "shortLabel": "30°C / 75% HR",
+        "label": "Enceinte climatique 30°C ± 2°C / 75% HR ± 5% (ICH Zone IVb climat chaud)",
+        "isActive": true
+      },
+      {
+        "code": "40C_75HR",
+        "shortLabel": "40°C / 75% HR",
+        "label": "Enceinte climatique 40°C ± 2°C / 75% HR ± 5% (Condition accélérée ICH)",
+        "isActive": true
+      },
+      {
+        "code": "05C_AMB",
+        "shortLabel": "Chambre 5°C",
+        "label": "Chambre froide positive 5°C ± 3°C sans régulation hygrométrique",
+        "isActive": true
+      },
+      {
+        "code": "NEG_20C",
+        "shortLabel": "Congélateur -20°C",
+        "label": "Enceinte grand froid -20°C ± 5°C pour échantillons thermosensibles",
+        "isActive": true
+      }
+    ]
+  },
+  {
+    "numtab": 210,
+    "name": "XICPECAT",
+    "title": "Rubriques et classements ICPE",
+    "category": "Administration",
+    "description": "Nomenclature des Installations Classées pour la Protection de l'Environnement et seuils Seveso du site.",
+    "usedInFields": ["YCLEICPE", "YCODDNGPHY", "YITMLEGIS"],
+    "usedInScreens": ["GESITM — Données de législation", "GESSTK — Gestion des stocks"],
+    "items": [
+      {
+        "code": "1436_DEP",
+        "shortLabel": "R.1436 Décl.",
+        "label": "Rubrique 1436 — Liquides inflammables de catégorie 2 ou 3 (Régime Déclaration)",
+        "isActive": true
+      },
+      {
+        "code": "1450_AUT",
+        "shortLabel": "R.1450 Auto.",
+        "label": "Rubrique 1450 — Solides facilement inflammables (Régime Autorisation)",
+        "isActive": true
+      },
+      {
+        "code": "4330_SEV",
+        "shortLabel": "R.4330 Seveso",
+        "label": "Rubrique 4330 — Liquides inflammables à point éclair bas (Régime Seveso)",
+        "isActive": true
+      },
+      {
+        "code": "4734_EAU",
+        "shortLabel": "R.4734 Enviro.",
+        "label": "Rubrique 4734 — Produits dangereux pour l'environnement aquatique chronique",
+        "isActive": true
+      },
+      {
+        "code": "NON_CLASS",
+        "shortLabel": "Non classé",
+        "label": "Matière ou produit non soumis à classement ICPE",
+        "isActive": true
+      }
+    ]
+  },
+  {
+    "numtab": 220,
+    "name": "XZONESTK",
+    "title": "Zones de stockage et contraintes magasin",
+    "category": "Stocks",
+    "description": "Affectation des segments d'implantation physique dans les magasins et règles de cohabitation.",
+    "usedInFields": ["LOC", "XSTKCLASS", "ITMMVT"],
+    "usedInScreens": ["GESLOC — Emplacements de stock", "GESSTK — Mouvements internes"],
+    "items": [
+      {
+        "code": "MAG_CHIM",
+        "shortLabel": "Magasin Chimie",
+        "label": "Magasin central matières premières chimiques solides et poudres",
+        "isActive": true
+      },
+      {
+        "code": "MAG_INFL",
+        "shortLabel": "Bunker Solvants",
+        "label": "Local spécifique ventilé antidéflagrant pour liquides inflammables",
+        "isActive": true
+      },
+      {
+        "code": "MAG_FRIGO",
+        "shortLabel": "Chambre froide",
+        "label": "Chambre froide positive 2°C à 8°C avec enregistrement de température",
+        "isActive": true
+      },
+      {
+        "code": "SAS_QUAR",
+        "shortLabel": "Sas Quarantaine",
+        "label": "Zone physique d'isolement en attente de libération par le CQ",
+        "isActive": true
+      },
+      {
+        "code": "SAS_DEST",
+        "shortLabel": "Sas Destruction",
+        "label": "Zone d'isolement sécurisée pour produits en attente d'enlèvement filière déchet",
+        "isActive": true
+      },
+      {
+        "code": "QUAI_EXP",
+        "shortLabel": "Quai Expédition",
+        "label": "Zone tampon de consolidation des expéditions produits finis",
+        "isActive": true
+      }
+    ]
+  },
+  {
+    "numtab": 230,
+    "name": "XBLQCLI",
+    "title": "Motifs de blocage commande client",
+    "category": "Ventes",
+    "description": "Raisons de suspension ou blocage de la préparation d'une commande client.",
+    "usedInFields": ["SOHNUM", "HLDCOD"],
+    "usedInScreens": ["GESSOH — Commandes de vente", "GESSDH — Livraisons"],
+    "items": [
+      {
+        "code": "DEP_ENCO",
+        "shortLabel": "Dépassement encours",
+        "label": "Plafond d'encours ou d'assurance-crédit client dépassé",
+        "isActive": true
+      },
+      {
+        "code": "BLOC_CQ",
+        "shortLabel": "Attente libération CQ",
+        "label": "Lots commandés en attente de visa de libération finale par l'AQ",
+        "isActive": true
+      },
+      {
+        "code": "RUT_STOCK",
+        "shortLabel": "Rupture de stock",
+        "label": "Disponibilité physique insuffisante pour expédition complète",
+        "isActive": true
+      },
+      {
+        "code": "SUSP_REG",
+        "shortLabel": "Attente compta",
+        "label": "Facture antérieure en litige ou attente règlement préalable",
+        "isActive": true
+      },
+      {
+        "code": "MODIF_REC",
+        "shortLabel": "Demande client",
+        "label": "Modification de date ou de conditionnement demandée par le client",
+        "isActive": true
+      }
+    ]
+  }
+]
