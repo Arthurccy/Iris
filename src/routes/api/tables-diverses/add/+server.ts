@@ -22,7 +22,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		const cleanA1 = String(param_a1 || '').trim();
 		const cleanN1 = param_n1 !== undefined && param_n1 !== '' ? parseFloat(param_n1) : 0;
 
-		const schema = env.SAGE_DB_SCHEMA || 'VDRSANDB';
+		const schema = process.env.SAGE_DB_SCHEMA || env.SAGE_DB_SCHEMA || 'VDRSANDB';
 
 		// Script SQL équivalent pour traçabilité ou exécution manuelle
 		const sqlScript = `

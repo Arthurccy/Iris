@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import sql from 'mssql';
 import { env } from '$env/dynamic/private';
 import miscTablesData from '$lib/data/miscTablesCatalog.json';
@@ -6,14 +7,14 @@ import type { MiscTableDefinition } from '$lib/types';
 let pool: sql.ConnectionPool | null = null;
 
 export function getDbConfig(): sql.config | null {
-	const server = env.SAGE_DB_SERVER || '10.103.7.128';
-	const port = parseInt(env.SAGE_DB_PORT || '1433', 10);
-	const database = env.SAGE_DB_NAME || 'x3v6';
-	const user = env.SAGE_DB_USER;
-	const password = env.SAGE_DB_PASSWORD;
-	const domain = env.SAGE_DB_DOMAIN;
+	const server = process.env.SAGE_DB_SERVER || env.SAGE_DB_SERVER || '10.103.7.128';
+	const port = parseInt(process.env.SAGE_DB_PORT || env.SAGE_DB_PORT || '1433', 10);
+	const database = process.env.SAGE_DB_NAME || env.SAGE_DB_NAME || 'x3v6';
+	const user = process.env.SAGE_DB_USER || env.SAGE_DB_USER;
+	const password = process.env.SAGE_DB_PASSWORD || env.SAGE_DB_PASSWORD;
+	const domain = process.env.SAGE_DB_DOMAIN || env.SAGE_DB_DOMAIN;
 
-	// If no user is defined, we cannot connect in pure SQL auth
+	// Si aucun utilisateur n'est configuré, on ne tente pas de connexion
 	if (!user) {
 		return null;
 	}
@@ -46,8 +47,9 @@ export async function getPool(): Promise<sql.ConnectionPool | null> {
 	if (!pool) {
 		try {
 			pool = await new sql.ConnectionPool(config).connect();
+			console.log(`[IRIS] Connecté avec succès à SQL Server ${config.server}:${config.port}/${config.database} (Utilisateur: ${config.user})`);
 		} catch (err) {
-			console.error('Erreur de connexion SQL Server Sage X3:', err);
+			console.error('[IRIS] Erreur de connexion SQL Server Sage X3:', err);
 			pool = null;
 			return null;
 		}
@@ -68,7 +70,7 @@ export async function getLiveOrCachedTables(): Promise<{
 	}
 
 	try {
-		const schema = env.SAGE_DB_SCHEMA || 'VDRSANDB';
+		const schema = process.env.SAGE_DB_SCHEMA || env.SAGE_DB_SCHEMA || 'VDRSANDB';
 
 		// 1. Obtenir les titres des tables diverses depuis ATEXTRA
 		const titlesResult = await activePool.request().query(`
@@ -155,7 +157,7 @@ export async function getLiveOrCachedTables(): Promise<{
 			tables
 		};
 	} catch (err) {
-		console.error('Erreur lors de la lecture SQL Server live:', err);
+		console.error('[IRIS] Erreur lors de la lecture SQL Server live:', err);
 		return {
 			isLive: false,
 			tables: miscTablesData as MiscTableDefinition[]
