@@ -1,6 +1,6 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { getPool } from '$lib/server/db';
+import { getPool, getLastDbError } from '$lib/server/db';
 import { env } from '$env/dynamic/private';
 
 export const POST: RequestHandler = async ({ request }) => {
@@ -28,9 +28,10 @@ export const POST: RequestHandler = async ({ request }) => {
 
 		const activePool = await getPool();
 		if (!activePool) {
+			const dbErr = getLastDbError();
 			return json(
 				{
-					error: "Connexion directe à la base SQL Server Sage X3 non disponible (identifiants SQL non configurés ou droits d'écriture absents sur ce serveur). Veuillez transmettre votre demande par e-mail au Support 3636.",
+					error: `Échec de connexion directe SQL Server (10.103.7.128:1433 / ${schema}) : ${dbErr || 'Connexion refusée ou délai dépassé'}. Veuillez vérifier les identifiants ou transmettre votre demande par e-mail au Support 3636.`,
 					canEmail: true
 				},
 				{ status: 503 }

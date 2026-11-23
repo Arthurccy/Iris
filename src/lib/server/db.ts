@@ -5,6 +5,11 @@ import miscTablesData from '$lib/data/miscTablesCatalog.json';
 import type { MiscTableDefinition } from '$lib/types';
 
 let pool: sql.ConnectionPool | null = null;
+let lastDbError: string | null = null;
+
+export function getLastDbError(): string | null {
+	return lastDbError;
+}
 
 export function getDbConfig(): sql.config | null {
 	const server = process.env.SAGE_DB_SERVER || env.SAGE_DB_SERVER || '10.103.7.128';
@@ -16,6 +21,7 @@ export function getDbConfig(): sql.config | null {
 
 	// Si aucun utilisateur n'est configuré, on ne tente pas de connexion
 	if (!user) {
+		lastDbError = 'La variable SAGE_DB_USER est vide ou non définie.';
 		return null;
 	}
 
@@ -30,8 +36,8 @@ export function getDbConfig(): sql.config | null {
 			encrypt: false,
 			trustServerCertificate: true,
 			enableArithAbort: true,
-			connectTimeout: 5000,
-			requestTimeout: 10000
+			connectTimeout: 15000,
+			requestTimeout: 20000
 		}
 	};
 
@@ -48,8 +54,11 @@ export async function getPool(): Promise<sql.ConnectionPool | null> {
 		try {
 			pool = await new sql.ConnectionPool(config).connect();
 			console.log(`[IRIS] Connecté avec succès à SQL Server ${config.server}:${config.port}/${config.database} (Utilisateur: ${config.user})`);
+			lastDbError = null;
 		} catch (err) {
-			console.error('[IRIS] Erreur de connexion SQL Server Sage X3:', err);
+			const errorMsg = (err as Error).message || String(err);
+			console.error('[IRIS] Erreur de connexion SQL Server Sage X3:', errorMsg);
+			lastDbError = errorMsg;
 			pool = null;
 			return null;
 		}
