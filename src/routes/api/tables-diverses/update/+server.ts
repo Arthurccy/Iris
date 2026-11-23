@@ -16,13 +16,16 @@ export const POST: RequestHandler = async ({ request }) => {
 		}
 
 		const cleanNumtab = parseInt(String(numtab), 10);
-		const cleanCode = String(code).trim().toUpperCase();
-		const cleanLong = String(libelle_long).trim();
-		const cleanShort = String(libelle_court || cleanLong.slice(0, 15)).trim();
-		const cleanA1 = String(param_a1 || '').trim();
+		const cleanCode = String(code).trim().toUpperCase().slice(0, 15);
+		const cleanLong = String(libelle_long).trim().slice(0, 30);
+		const cleanShort = String(libelle_court || cleanLong.slice(0, 12)).trim().slice(0, 12);
+		const cleanA1 = String(param_a1 || '').trim().slice(0, 10);
 		const cleanN1 = param_n1 !== undefined && param_n1 !== '' ? parseFloat(param_n1) : 0;
-		const cleanUser = String(demandeur || 'IRIS').trim().slice(0, 10).toUpperCase() || 'IRIS';
+		// Dans Sage X3, UPDUSR_0 est de type AUS (longueur stricte 5 caractères max).
+		// On affecte l'identifiant applicatif IRIS (4 car.) pour éviter l'erreur SQL 8152 (String or binary data would be truncated).
+		const cleanUser = 'IRIS';
 		const cleanReason = String(motif || '').trim();
+		const cleanRequester = String(demandeur || 'IRIS').trim();
 
 		const schema = process.env.SAGE_DB_SCHEMA || env.SAGE_DB_SCHEMA || 'VDRSANDB';
 
@@ -105,6 +108,7 @@ export const POST: RequestHandler = async ({ request }) => {
 			`);
 
 			await transaction.commit();
+			console.log(`[AUDIT GESTDU] Modification #${cleanNumtab} [${cleanCode}] par "${cleanRequester}" - Motif: "${cleanReason}"`);
 
 			return json({
 				success: true,

@@ -101,10 +101,10 @@
 		const target = e.target as HTMLInputElement;
 		formLabel = target.value;
 
-		// Si ajout et libellé court non personnalisé, auto-compléter avec les 15 premiers caractères
+		// Si ajout et libellé court non personnalisé, auto-compléter avec les 12 premiers caractères (standard Sage X3 SHODES)
 		if (formMode === 'add') {
-			if (!formShortLabel || formShortLabel === formLabel.slice(0, 14)) {
-				formShortLabel = formLabel.slice(0, 15);
+			if (!formShortLabel || formShortLabel === formLabel.slice(0, 11)) {
+				formShortLabel = formLabel.slice(0, 12);
 			}
 		}
 	}
@@ -184,8 +184,8 @@
 				body: JSON.stringify({
 					numtab: table.numtab,
 					code: formCode.trim().toUpperCase(),
-					libelle_long: formLabel.trim(),
-					libelle_court: formShortLabel.trim() || formLabel.trim().slice(0, 15),
+					libelle_long: formLabel.trim().slice(0, 30),
+					libelle_court: (formShortLabel.trim() || formLabel.trim()).slice(0, 12),
 					demandeur: requesterName.trim(),
 					motif: formReason.trim()
 				})
@@ -250,8 +250,8 @@
 			'',
 			`3. DÉTAILS DE LA VALEUR (${actionType.toUpperCase()}) :`,
 			`- Code technique X3 (CODE_0) : ${formCode.trim().toUpperCase() || 'À définir'}`,
-			`- Désignation complète (LNGDES) : ${formLabel.trim() || 'Non renseignée'}`,
-			`- Libellé court (SHODES) : ${formShortLabel.trim() || formLabel.trim().slice(0, 15) || 'Non renseigné'}`,
+			`- Désignation complète (LNGDES) : ${formLabel.trim().slice(0, 30) || 'Non renseignée'}`,
+			`- Libellé court (SHODES) : ${(formShortLabel.trim() || formLabel.trim()).slice(0, 12) || 'Non renseigné'}`,
 			'',
 			'Merci de bien vouloir procéder à l\'enregistrement dans la fonction GESTDU de Sage X3.',
 			'',
@@ -565,7 +565,7 @@
 									<label for="formShortLabel" class="block font-bold text-slate-900 mb-1">
 										Libellé court
 										<span class="text-[11px] font-normal text-slate-500 ml-1">
-											(Abréviation max 15 car.)
+											(Abréviation max 12 car.)
 										</span>
 									</label>
 									<input
@@ -573,7 +573,7 @@
 										type="text"
 										class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
 										placeholder="Auto-complété ou personnalisé"
-										maxlength="15"
+										maxlength="12"
 										bind:value={formShortLabel}
 									/>
 									<p class="mt-1 text-[10px] text-slate-500">
@@ -587,7 +587,7 @@
 								<label for="formLabel" class="block font-bold text-slate-900 mb-1">
 									Désignation complète officielle <span class="text-rose-600">*</span>
 									<span class="text-[11px] font-normal text-slate-500 ml-1">
-										(Le nom complet affiché dans les fiches et listes Sage X3)
+										(Nom complet affiché dans Sage X3, max 30 car.)
 									</span>
 								</label>
 								<input
@@ -595,6 +595,7 @@
 									type="text"
 									class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-xs sm:text-sm font-medium text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
 									placeholder="Ex : Balance Mettler Toledo PM400 salle de pesée n°2"
+									maxlength="30"
 									value={formLabel}
 									oninput={handleLabelInput}
 									required
@@ -680,7 +681,7 @@
 									</div>
 									<div>
 										<span class="text-slate-500">Libellé court :</span>
-										<strong class="text-slate-900">{formShortLabel || formLabel.slice(0, 15)}</strong>
+										<strong class="text-slate-900">{(formShortLabel || formLabel).slice(0, 12)}</strong>
 									</div>
 									<div>
 										<span class="text-slate-500">Environnement :</span>
