@@ -270,28 +270,28 @@
 
 <svelte:window onkeydown={handleKeydown} />
 
-<!-- Conteneur modal dynamique centré au milieu de l'écran -->
-<div class="fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-xs p-3 sm:p-6 flex items-center justify-center">
+<!-- Conteneur modal dynamique : aligné en items-start avec my-auto pour un centrage parfait SANS jamais tronquer le haut -->
+<div class="fixed inset-0 z-50 overflow-y-auto bg-slate-950/75 backdrop-blur-xs p-3 sm:p-6 md:p-8 flex justify-center items-start">
 	<!-- Arrière-plan cliquable pour fermer -->
 	<button
-		class="fixed inset-0 w-full h-full cursor-default"
+		class="fixed inset-0 w-full h-full cursor-default -z-10"
 		type="button"
 		aria-label="Fermer la fenêtre"
 		onclick={onClose}
 	></button>
 
-	<!-- Boîte de dialogue dynamique centrée (responsive, largeur adaptée au mode consultation ou saisie) -->
+	<!-- Boîte de dialogue dynamique centrée (responsive, hauteur contenue à 82vh pour garantir la visibilité complète) -->
 	<div
-		class="relative z-10 my-auto flex w-full {formMode !== 'none' ? 'max-w-3xl' : 'max-w-5xl lg:max-w-6xl'} flex-col max-h-[90vh] overflow-hidden rounded-2xl border-2 border-slate-300 bg-white shadow-2xl transition-all"
+		class="relative z-10 my-auto flex w-full {formMode !== 'none' ? 'max-w-3xl' : 'max-w-5xl lg:max-w-6xl'} flex-col max-h-[82vh] overflow-hidden rounded-2xl border-2 border-slate-300 bg-white shadow-2xl transition-all"
 		role="dialog"
 		aria-modal="true"
 		aria-label={`Table diverse #${table.numtab}`}
 		tabindex="-1"
 	>
-		<!-- En-tête FIXE (toujours 100% visible) -->
-		<div class="shrink-0 flex items-center justify-between gap-3 px-5 py-3.5 bg-slate-100 border-b border-slate-300">
-			<div class="space-y-1">
-				<div class="flex items-center gap-2">
+		<!-- En-tête FIXE (toujours 100% visible, marges généreuses et aérées) -->
+		<div class="shrink-0 flex items-center justify-between gap-4 px-6 py-4 bg-slate-100 border-b border-slate-300">
+			<div class="space-y-1.5">
+				<div class="flex flex-wrap items-center gap-2">
 					<span class="rounded bg-corporate-700 font-mono text-[11px] font-bold text-white px-2.5 py-0.5 shadow-2xs">
 						Table #{table.numtab}
 					</span>
@@ -308,11 +308,11 @@
 						</span>
 					{/if}
 				</div>
-				<h2 class="text-lg sm:text-xl font-extrabold text-slate-950">{table.title}</h2>
+				<h2 class="text-lg sm:text-xl font-extrabold text-slate-950 leading-tight">{table.title}</h2>
 			</div>
 
 			<button
-				class="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-bold text-slate-800 shadow-2xs hover:bg-slate-100 transition"
+				class="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-bold text-slate-800 shadow-2xs hover:bg-slate-100 transition shrink-0"
 				type="button"
 				onclick={onClose}
 			>
