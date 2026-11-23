@@ -590,18 +590,6 @@
 					</tbody>
 				</table>
 			</div>
-													<Clipboard class="size-3 text-slate-400" />
-													<span>Copier</span>
-												{/if}
-											</button>
-										</div>
-									</td>
-								</tr>
-							{/each}
-						{/if}
-					</tbody>
-				</table>
-			</div>
 		</div>
 	</div>
 </div>
