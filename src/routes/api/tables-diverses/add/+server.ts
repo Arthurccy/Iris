@@ -1,6 +1,6 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { getPool, getLastDbError } from '$lib/server/db';
+import { getPool, getLastDbError, getTableColumns, buildSafeInsert } from '$lib/server/db';
 import { env } from '$env/dynamic/private';
 
 export const POST: RequestHandler = async ({ request }) => {
@@ -32,9 +32,9 @@ export const POST: RequestHandler = async ({ request }) => {
 		// Script SQL équivalent pour traçabilité ou exécution manuelle
 		const sqlScript = `
 -- Demande d'insertion : ${cleanRequester} | Motif : ${cleanReason || 'Non spécifié'}
--- 1. Insertion de la valeur dans la table diverse #${cleanNumtab}
-INSERT INTO ${schema}.ATABDIV (NUMTAB_0, CODE_0, A1_0, N1_0, UPDDAT_0, UPDUSR_0)
-VALUES (${cleanNumtab}, '${cleanCode.replace(/'/g, "''")}', '${cleanA1.replace(/'/g, "''")}', ${cleanN1}, GETDATE(), '${cleanUser}');
+-- 1. Insertion de la valeur dans la table diverse #${cleanNumtab} (avec valeurs par défaut Sage X3 pour toutes colonnes NOT NULL)
+INSERT INTO ${schema}.ATABDIV (NUMTAB_0, CODE_0, A1_0, A2_0, N1_0, N2_0, DEFVAL_0, SOC_0, CREDAT_0, CREUSR_0, UPDDAT_0, UPDUSR_0)
+VALUES (${cleanNumtab}, '${cleanCode.replace(/'/g, "''")}', '${cleanA1.replace(/'/g, "''")}', '', ${cleanN1}, 0, 0, '', GETDATE(), '${cleanUser}', GETDATE(), '${cleanUser}');
 
 -- 2. Désignation longue dans le dictionnaire des textes traduits
 INSERT INTO ${schema}.ATEXTRA (CODFIC_0, ZONE_0, LANGUE_0, IDENT1_0, IDENT2_0, TEXTE_0)
@@ -72,38 +72,76 @@ VALUES ('ATABDIV', 'SHODES', 'FRA', '${cleanNumtab}', '${cleanCode.replace(/'/g,
 			);
 		}
 
+		// Récupération dynamique des métadonnées de colonnes pour respecter strictement le schéma NOT NULL de Sage X3
+		const atabdivCols = await getTableColumns(activePool, schema, 'ATABDIV');
+		const atextraCols = await getTableColumns(activePool, schema, 'ATEXTRA');
+		console.log(`[SCHEMA ATABDIV] ${atabdivCols.length} colonnes détectées:`, atabdivCols.map((c) => c.name).join(', '));
+
 		const transaction = activePool.transaction();
 		await transaction.begin();
 
 		try {
+			// 1. Insertion sécurisée dans ATABDIV
+			const atabdivInsert = buildSafeInsert(schema, 'ATABDIV', atabdivCols, {
+				NUMTAB_0: cleanNumtab,
+				CODE_0: cleanCode,
+				A1_0: cleanA1,
+				A2_0: '',
+				N1_0: cleanN1,
+				N2_0: 0,
+				DEFVAL_0: 0,
+				SOC_0: '',
+				CREDAT_0: new Date(),
+				CREUSR_0: cleanUser,
+				UPDDAT_0: new Date(),
+				UPDUSR_0: cleanUser
+			});
+
 			const req1 = transaction.request();
-			req1.input('numtab', cleanNumtab);
-			req1.input('code', cleanCode);
-			req1.input('a1', cleanA1);
-			req1.input('n1', cleanN1);
-			req1.input('user', cleanUser);
-			await req1.query(`
-				INSERT INTO ${schema}.ATABDIV (NUMTAB_0, CODE_0, A1_0, N1_0, UPDDAT_0, UPDUSR_0)
-				VALUES (@numtab, @code, @a1, @n1, GETDATE(), @user);
-			`);
+			for (const [k, v] of Object.entries(atabdivInsert.params)) {
+				req1.input(k, v);
+			}
+			await req1.query(atabdivInsert.query);
+
+			// 2. Insertion sécurisée dans ATEXTRA (LNGDES)
+			const atextraLongInsert = buildSafeInsert(schema, 'ATEXTRA', atextraCols, {
+				CODFIC_0: 'ATABDIV',
+				ZONE_0: 'LNGDES',
+				LANGUE_0: 'FRA',
+				IDENT1_0: String(cleanNumtab),
+				IDENT2_0: cleanCode,
+				TEXTE_0: cleanLong,
+				CREDAT_0: new Date(),
+				CREUSR_0: cleanUser,
+				UPDDAT_0: new Date(),
+				UPDUSR_0: cleanUser
+			});
 
 			const req2 = transaction.request();
-			req2.input('numtabStr', String(cleanNumtab));
-			req2.input('code', cleanCode);
-			req2.input('longLabel', cleanLong);
-			await req2.query(`
-				INSERT INTO ${schema}.ATEXTRA (CODFIC_0, ZONE_0, LANGUE_0, IDENT1_0, IDENT2_0, TEXTE_0)
-				VALUES ('ATABDIV', 'LNGDES', 'FRA', @numtabStr, @code, @longLabel);
-			`);
+			for (const [k, v] of Object.entries(atextraLongInsert.params)) {
+				req2.input(k, v);
+			}
+			await req2.query(atextraLongInsert.query);
+
+			// 3. Insertion sécurisée dans ATEXTRA (SHODES)
+			const atextraShortInsert = buildSafeInsert(schema, 'ATEXTRA', atextraCols, {
+				CODFIC_0: 'ATABDIV',
+				ZONE_0: 'SHODES',
+				LANGUE_0: 'FRA',
+				IDENT1_0: String(cleanNumtab),
+				IDENT2_0: cleanCode,
+				TEXTE_0: cleanShort,
+				CREDAT_0: new Date(),
+				CREUSR_0: cleanUser,
+				UPDDAT_0: new Date(),
+				UPDUSR_0: cleanUser
+			});
 
 			const req3 = transaction.request();
-			req3.input('numtabStr', String(cleanNumtab));
-			req3.input('code', cleanCode);
-			req3.input('shortLabel', cleanShort);
-			await req3.query(`
-				INSERT INTO ${schema}.ATEXTRA (CODFIC_0, ZONE_0, LANGUE_0, IDENT1_0, IDENT2_0, TEXTE_0)
-				VALUES ('ATABDIV', 'SHODES', 'FRA', @numtabStr, @code, @shortLabel);
-			`);
+			for (const [k, v] of Object.entries(atextraShortInsert.params)) {
+				req3.input(k, v);
+			}
+			await req3.query(atextraShortInsert.query);
 
 			await transaction.commit();
 			console.log(`[AUDIT GESTDU] Ajout #${cleanNumtab} [${cleanCode}] par "${cleanRequester}" - Motif: "${cleanReason}"`);
@@ -134,3 +172,4 @@ VALUES ('ATABDIV', 'SHODES', 'FRA', '${cleanNumtab}', '${cleanCode.replace(/'/g,
 		return json({ error: (err as Error).message }, { status: 500 });
 	}
 };
+

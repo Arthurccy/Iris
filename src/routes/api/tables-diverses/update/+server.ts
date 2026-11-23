@@ -1,6 +1,6 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { getPool, getLastDbError } from '$lib/server/db';
+import { getPool, getLastDbError, getTableColumns, buildSafeInsert } from '$lib/server/db';
 import { env } from '$env/dynamic/private';
 
 export const POST: RequestHandler = async ({ request }) => {
@@ -41,6 +41,9 @@ export const POST: RequestHandler = async ({ request }) => {
 			);
 		}
 
+		// Récupération dynamique des métadonnées de colonnes pour ATEXTRA en cas d'insertion
+		const atextraCols = await getTableColumns(activePool, schema, 'ATEXTRA');
+
 		// Mode LIVE : Exécution directe dans la base SANDBOX
 		const transaction = activePool.transaction();
 		await transaction.begin();
@@ -60,52 +63,86 @@ export const POST: RequestHandler = async ({ request }) => {
 			`);
 
 			// 2. Mise à jour ou insertion du libellé long dans ATEXTRA
-			const req2 = transaction.request();
-			req2.input('numtabStr', String(cleanNumtab));
-			req2.input('code', cleanCode);
-			req2.input('longLabel', cleanLong);
-			await req2.query(`
-				IF EXISTS (
-					SELECT 1 FROM ${schema}.ATEXTRA 
+			const checkLong = await transaction.request()
+				.input('numtabStr', String(cleanNumtab))
+				.input('code', cleanCode)
+				.query(`
+					SELECT COUNT(*) AS cnt FROM ${schema}.ATEXTRA 
 					WHERE CODFIC_0 = 'ATABDIV' AND ZONE_0 = 'LNGDES' AND LANGUE_0 = 'FRA'
 					  AND IDENT1_0 = @numtabStr AND IDENT2_0 = @code
-				)
-				BEGIN
+				`);
+
+			if (checkLong.recordset[0].cnt > 0) {
+				const reqLongUpdate = transaction.request();
+				reqLongUpdate.input('numtabStr', String(cleanNumtab));
+				reqLongUpdate.input('code', cleanCode);
+				reqLongUpdate.input('longLabel', cleanLong);
+				await reqLongUpdate.query(`
 					UPDATE ${schema}.ATEXTRA
-					SET TEXTE_0 = @longLabel
+					SET TEXTE_0 = @longLabel, UPDDAT_0 = GETDATE()
 					WHERE CODFIC_0 = 'ATABDIV' AND ZONE_0 = 'LNGDES' AND LANGUE_0 = 'FRA'
 					  AND IDENT1_0 = @numtabStr AND IDENT2_0 = @code;
-				END
-				ELSE
-				BEGIN
-					INSERT INTO ${schema}.ATEXTRA (CODFIC_0, ZONE_0, LANGUE_0, IDENT1_0, IDENT2_0, TEXTE_0)
-					VALUES ('ATABDIV', 'LNGDES', 'FRA', @numtabStr, @code, @longLabel);
-				END
-			`);
+				`);
+			} else {
+				const insertLong = buildSafeInsert(schema, 'ATEXTRA', atextraCols, {
+					CODFIC_0: 'ATABDIV',
+					ZONE_0: 'LNGDES',
+					LANGUE_0: 'FRA',
+					IDENT1_0: String(cleanNumtab),
+					IDENT2_0: cleanCode,
+					TEXTE_0: cleanLong,
+					CREDAT_0: new Date(),
+					CREUSR_0: cleanUser,
+					UPDDAT_0: new Date(),
+					UPDUSR_0: cleanUser
+				});
+				const reqLongInsert = transaction.request();
+				for (const [k, v] of Object.entries(insertLong.params)) {
+					reqLongInsert.input(k, v);
+				}
+				await reqLongInsert.query(insertLong.query);
+			}
 
 			// 3. Mise à jour ou insertion du libellé court dans ATEXTRA
-			const req3 = transaction.request();
-			req3.input('numtabStr', String(cleanNumtab));
-			req3.input('code', cleanCode);
-			req3.input('shortLabel', cleanShort);
-			await req3.query(`
-				IF EXISTS (
-					SELECT 1 FROM ${schema}.ATEXTRA 
+			const checkShort = await transaction.request()
+				.input('numtabStr', String(cleanNumtab))
+				.input('code', cleanCode)
+				.query(`
+					SELECT COUNT(*) AS cnt FROM ${schema}.ATEXTRA 
 					WHERE CODFIC_0 = 'ATABDIV' AND ZONE_0 = 'SHODES' AND LANGUE_0 = 'FRA'
 					  AND IDENT1_0 = @numtabStr AND IDENT2_0 = @code
-				)
-				BEGIN
+				`);
+
+			if (checkShort.recordset[0].cnt > 0) {
+				const reqShortUpdate = transaction.request();
+				reqShortUpdate.input('numtabStr', String(cleanNumtab));
+				reqShortUpdate.input('code', cleanCode);
+				reqShortUpdate.input('shortLabel', cleanShort);
+				await reqShortUpdate.query(`
 					UPDATE ${schema}.ATEXTRA
-					SET TEXTE_0 = @shortLabel
+					SET TEXTE_0 = @shortLabel, UPDDAT_0 = GETDATE()
 					WHERE CODFIC_0 = 'ATABDIV' AND ZONE_0 = 'SHODES' AND LANGUE_0 = 'FRA'
 					  AND IDENT1_0 = @numtabStr AND IDENT2_0 = @code;
-				END
-				ELSE
-				BEGIN
-					INSERT INTO ${schema}.ATEXTRA (CODFIC_0, ZONE_0, LANGUE_0, IDENT1_0, IDENT2_0, TEXTE_0)
-					VALUES ('ATABDIV', 'SHODES', 'FRA', @numtabStr, @code, @shortLabel);
-				END
-			`);
+				`);
+			} else {
+				const insertShort = buildSafeInsert(schema, 'ATEXTRA', atextraCols, {
+					CODFIC_0: 'ATABDIV',
+					ZONE_0: 'SHODES',
+					LANGUE_0: 'FRA',
+					IDENT1_0: String(cleanNumtab),
+					IDENT2_0: cleanCode,
+					TEXTE_0: cleanShort,
+					CREDAT_0: new Date(),
+					CREUSR_0: cleanUser,
+					UPDDAT_0: new Date(),
+					UPDUSR_0: cleanUser
+				});
+				const reqShortInsert = transaction.request();
+				for (const [k, v] of Object.entries(insertShort.params)) {
+					reqShortInsert.input(k, v);
+				}
+				await reqShortInsert.query(insertShort.query);
+			}
 
 			await transaction.commit();
 			console.log(`[AUDIT GESTDU] Modification #${cleanNumtab} [${cleanCode}] par "${cleanRequester}" - Motif: "${cleanReason}"`);
@@ -135,3 +172,4 @@ export const POST: RequestHandler = async ({ request }) => {
 		return json({ error: (err as Error).message }, { status: 500 });
 	}
 };
+

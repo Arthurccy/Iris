@@ -173,3 +173,94 @@ export async function getLiveOrCachedTables(): Promise<{
 		};
 	}
 }
+
+export interface ColumnMeta {
+	name: string;
+	type: string;
+	isNullable: boolean;
+	isIdentity: boolean;
+}
+
+export async function getTableColumns(
+	pool: sql.ConnectionPool,
+	schema: string,
+	tableName: string
+): Promise<ColumnMeta[]> {
+	const res = await pool.request()
+		.input('schema', schema)
+		.input('table', tableName)
+		.query(`
+			SELECT 
+				COLUMN_NAME, 
+				DATA_TYPE, 
+				CASE WHEN IS_NULLABLE = 'YES' THEN 1 ELSE 0 END AS IS_NULLABLE,
+				COLUMNPROPERTY(OBJECT_ID(TABLE_SCHEMA + '.' + TABLE_NAME), COLUMN_NAME, 'IsIdentity') AS IS_IDENTITY
+			FROM INFORMATION_SCHEMA.COLUMNS
+			WHERE TABLE_SCHEMA = @schema AND TABLE_NAME = @table
+		`);
+
+	return res.recordset.map((r: any) => ({
+		name: r.COLUMN_NAME,
+		type: String(r.DATA_TYPE).toLowerCase(),
+		isNullable: r.IS_NULLABLE === 1,
+		isIdentity: r.IS_IDENTITY === 1
+	}));
+}
+
+export function buildSafeInsert(
+	schema: string,
+	tableName: string,
+	columns: ColumnMeta[],
+	explicitValues: Record<string, any>
+): { query: string; params: Record<string, any> } {
+	const cols: string[] = [];
+	const placeholders: string[] = [];
+	const params: Record<string, any> = {};
+	let idx = 0;
+
+	for (const col of columns) {
+		// Ignorer la colonne IDENTITY (ex: ROWID auto-incrémenté)
+		if (col.isIdentity || col.name.toUpperCase() === 'ROWID') {
+			continue;
+		}
+
+		const colName = col.name;
+		const paramName = `p_${idx++}`;
+		cols.push(colName);
+		placeholders.push(`@${paramName}`);
+
+		let val: any;
+		if (explicitValues[colName] !== undefined && explicitValues[colName] !== null) {
+			val = explicitValues[colName];
+		} else {
+			// Valeurs par défaut strictes Sage X3 pour satisfaire les contraintes NOT NULL
+			if (
+				col.type.includes('int') ||
+				col.type.includes('decimal') ||
+				col.type.includes('numeric') ||
+				col.type.includes('float') ||
+				col.type.includes('real') ||
+				col.type.includes('money') ||
+				col.type.includes('bit')
+			) {
+				val = 0;
+			} else if (col.type.includes('date') || col.type.includes('time')) {
+				val = new Date();
+			} else if (col.type.includes('binary') || col.type.includes('image')) {
+				val = Buffer.alloc(0);
+			} else {
+				val = '';
+			}
+		}
+
+		params[paramName] = val;
+	}
+
+	const query = `
+		INSERT INTO ${schema}.${tableName} (${cols.join(', ')})
+		VALUES (${placeholders.join(', ')});
+	`;
+
+	return { query, params };
+}
+
