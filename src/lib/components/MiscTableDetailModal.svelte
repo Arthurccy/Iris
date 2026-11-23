@@ -59,6 +59,15 @@
 		localItems = [...table.items];
 	});
 
+	// Verrouillage propre du scroll de la page quand la modale est ouverte
+	$effect(() => {
+		const originalOverflow = document.body.style.overflow;
+		document.body.style.overflow = 'hidden';
+		return () => {
+			document.body.style.overflow = originalOverflow;
+		};
+	});
+
 	const existingCodes = $derived(localItems.map((i) => i.code.toUpperCase()));
 
 	const filteredItems = $derived.by(() => {
@@ -271,78 +280,78 @@
 		onclick={onClose}
 	></button>
 
-	<!-- Boîte de dialogue dynamique centrée (responsive, largeur confortable et hauteur équilibrée) -->
+	<!-- Boîte de dialogue dynamique centrée (responsive, largeur adaptée au mode consultation ou saisie) -->
 	<div
-		class="relative z-10 my-auto flex w-full max-w-5xl lg:max-w-6xl flex-col max-h-[90vh] overflow-hidden rounded-2xl border-2 border-slate-300 bg-white shadow-2xl transition-all"
+		class="relative z-10 my-auto flex w-full {formMode !== 'none' ? 'max-w-3xl' : 'max-w-5xl lg:max-w-6xl'} flex-col max-h-[90vh] overflow-hidden rounded-2xl border-2 border-slate-300 bg-white shadow-2xl transition-all"
 		role="dialog"
 		aria-modal="true"
 		aria-label={`Table diverse #${table.numtab}`}
 		tabindex="-1"
 	>
-			<!-- En-tête FIXE (toujours 100% visible) -->
-			<div class="shrink-0 flex items-center justify-between gap-3 px-5 py-3.5 bg-slate-100 border-b border-slate-300">
-				<div class="space-y-1">
-					<div class="flex items-center gap-2">
-						<span class="rounded bg-corporate-700 font-mono text-[11px] font-bold text-white px-2.5 py-0.5 shadow-2xs">
-							Table #{table.numtab}
+		<!-- En-tête FIXE (toujours 100% visible) -->
+		<div class="shrink-0 flex items-center justify-between gap-3 px-5 py-3.5 bg-slate-100 border-b border-slate-300">
+			<div class="space-y-1">
+				<div class="flex items-center gap-2">
+					<span class="rounded bg-corporate-700 font-mono text-[11px] font-bold text-white px-2.5 py-0.5 shadow-2xs">
+						Table #{table.numtab}
+					</span>
+					<span class="rounded bg-slate-200 text-slate-900 text-[11px] font-bold px-2 py-0.5">
+						{table.category}
+					</span>
+					{#if table.numtab >= 1000}
+						<span class="rounded bg-amber-100 text-amber-950 border border-amber-300 text-[11px] font-bold px-2 py-0.5">
+							Spécifique Valdepharm
 						</span>
-						<span class="rounded bg-slate-200 text-slate-900 text-[11px] font-bold px-2 py-0.5">
-							{table.category}
+					{:else}
+						<span class="rounded bg-blue-100 text-blue-950 border border-blue-300 text-[11px] font-bold px-2 py-0.5">
+							Standard Sage X3
 						</span>
-						{#if table.numtab >= 1000}
-							<span class="rounded bg-amber-100 text-amber-950 border border-amber-300 text-[11px] font-bold px-2 py-0.5">
-								Spécifique Valdepharm
-							</span>
-						{:else}
-							<span class="rounded bg-blue-100 text-blue-950 border border-blue-300 text-[11px] font-bold px-2 py-0.5">
-								Standard Sage X3
-							</span>
-						{/if}
-					</div>
-					<h2 class="text-lg sm:text-xl font-extrabold text-slate-950">{table.title}</h2>
+					{/if}
 				</div>
-
-				<button
-					class="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-bold text-slate-800 shadow-2xs hover:bg-slate-100 transition"
-					type="button"
-					onclick={onClose}
-				>
-					<X class="size-4 text-slate-600" />
-					<span>Fermer</span>
-				</button>
+				<h2 class="text-lg sm:text-xl font-extrabold text-slate-950">{table.title}</h2>
 			</div>
+
+			<button
+				class="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-bold text-slate-800 shadow-2xs hover:bg-slate-100 transition"
+				type="button"
+				onclick={onClose}
+			>
+				<X class="size-4 text-slate-600" />
+				<span>Fermer</span>
+			</button>
+		</div>
 
 		<!-- Corps défilable -->
 		<div class="modal-scroll overscroll-contain overflow-y-auto p-5 space-y-4">
-			
-			<!-- Information métier claire -->
-			<div class="rounded-xl border border-slate-200 bg-slate-50 p-3.5 text-xs text-slate-700 space-y-1">
-				<div class="flex items-center justify-between font-semibold text-slate-900">
-					<span>{table.description || `Table diverse numéro ${table.numtab} de Sage X3.`}</span>
-					<span class="text-[11px] text-slate-500 font-mono">X3 : GESTDU</span>
-				</div>
-				<p class="text-[11px] text-slate-500 leading-relaxed">
-					Cette table alimente les menus déroulants de vos écrans Sage X3. Vous pouvez y ajouter de nouveaux choix ou corriger les libellés existants.
-				</p>
-			</div>
-
-			<!-- Barre d'outils : Recherche + Bouton Ajouter -->
-			<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-				<div class="relative flex-1 max-w-sm">
-					<Search class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
-					<input
-						class="w-full rounded-xl border border-slate-300 bg-white pl-9 pr-3 py-2 text-xs font-medium text-slate-950 outline-none transition focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
-						type="search"
-						placeholder="Rechercher parmi les valeurs de cette table..."
-						bind:value={itemSearch}
-					/>
+			{#if formMode === 'none'}
+				<!-- VUE 1 : CONSULTATION & TABLEAU COMPLET DES VALEURS -->
+				<!-- Information métier claire -->
+				<div class="rounded-xl border border-slate-200 bg-slate-50 p-3.5 text-xs text-slate-700 space-y-1">
+					<div class="flex items-center justify-between font-semibold text-slate-900">
+						<span>{table.description || `Table diverse numéro ${table.numtab} de Sage X3.`}</span>
+						<span class="text-[11px] text-slate-500 font-mono">X3 : GESTDU</span>
+					</div>
+					<p class="text-[11px] text-slate-500 leading-relaxed">
+						Cette table alimente les menus déroulants de vos écrans Sage X3. Vous pouvez y ajouter de nouveaux choix ou corriger les libellés existants.
+					</p>
 				</div>
 
-				<div class="flex items-center gap-2.5">
-					<span class="text-xs font-semibold text-slate-600">
-						{filteredItems.length} entrée(s)
-					</span>
-					{#if formMode === 'none'}
+				<!-- Barre d'outils : Recherche + Bouton Ajouter -->
+				<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+					<div class="relative flex-1 max-w-sm">
+						<Search class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
+						<input
+							class="w-full rounded-xl border border-slate-300 bg-white pl-9 pr-3 py-2 text-xs font-medium text-slate-950 outline-none transition focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
+							type="search"
+							placeholder="Rechercher parmi les valeurs de cette table..."
+							bind:value={itemSearch}
+						/>
+					</div>
+
+					<div class="flex items-center gap-2.5">
+						<span class="text-xs font-semibold text-slate-600">
+							{filteredItems.length} entrée(s)
+						</span>
 						<button
 							type="button"
 							class="inline-flex items-center gap-1.5 rounded-xl bg-corporate-700 hover:bg-corporate-800 px-3.5 py-2 text-xs font-bold text-white shadow-xs transition"
@@ -351,17 +360,83 @@
 							<Plus class="size-4" />
 							<span>Ajouter une valeur</span>
 						</button>
-					{/if}
+					</div>
 				</div>
-			</div>
 
-			<!-- FORMULAIRE GUIDÉ AVEC GARDE-FOUS (Ajout ou Modification) -->
-			{#if formMode !== 'none'}
+				<!-- TABLEAU DES VALEURS EXISTANTES -->
+				<div class="rounded-xl border border-slate-300 bg-white overflow-hidden shadow-xs">
+					<table class="w-full text-left text-xs border-collapse">
+						<thead>
+							<tr class="border-b-2 border-slate-200 bg-slate-100 text-[11px] font-bold text-slate-800 uppercase tracking-wider">
+								<th class="py-2.5 px-3 w-32">Code X3</th>
+								<th class="py-2.5 px-3 w-48">Libellé court</th>
+								<th class="py-2.5 px-3">Désignation complète officielle</th>
+								<th class="py-2.5 px-3 text-right w-44">Actions</th>
+							</tr>
+						</thead>
+						<tbody class="divide-y divide-slate-200">
+							{#if filteredItems.length === 0}
+								<tr>
+									<td colspan="4" class="py-8 text-center text-slate-500 font-medium">
+										Aucune entrée ne correspond à votre recherche "{itemSearch}".
+									</td>
+								</tr>
+							{:else}
+								{#each filteredItems as item}
+									<tr class="hover:bg-slate-50 transition group">
+										<td class="py-2 px-3 font-mono font-bold text-slate-950">
+											<span class="rounded bg-slate-100 px-2 py-0.5 border border-slate-300 shadow-2xs">
+												{item.code}
+											</span>
+										</td>
+										<td class="py-2 px-3 text-slate-800 font-medium">
+											{item.shortLabel || '-'}
+										</td>
+										<td class="py-2 px-3 text-slate-950 font-bold">
+											{item.label}
+										</td>
+										<td class="py-2 px-3 text-right">
+											<div class="inline-flex items-center gap-1.5">
+												<button
+													type="button"
+													class="inline-flex items-center gap-1 rounded-md border border-amber-300 bg-amber-50/80 px-2.5 py-1 text-[11px] font-bold text-amber-950 hover:bg-amber-100 shadow-2xs transition"
+													onclick={() => openEditForm(item)}
+													title="Modifier les libellés de cette valeur"
+												>
+													<Pencil class="size-3 text-amber-700" />
+													<span>Modifier</span>
+												</button>
+
+												<button
+													type="button"
+													class="inline-flex items-center gap-1 rounded-md border border-slate-300 bg-white px-2.5 py-1 text-[11px] font-bold text-slate-800 hover:bg-slate-100 shadow-2xs transition"
+													onclick={() => copyCode(item.code)}
+													title="Copier le code technique"
+												>
+													{#if copiedCode === item.code}
+														<Check class="size-3 text-emerald-600" />
+														<span class="text-emerald-800">Copié</span>
+													{:else}
+														<Clipboard class="size-3 text-slate-500" />
+														<span>Copier</span>
+													{/if}
+												</button>
+											</div>
+										</td>
+									</tr>
+								{/each}
+							{/if}
+						</tbody>
+					</table>
+				</div>
+
+			{:else}
+				<!-- VUE 2 : FORMULAIRE DÉDIÉ ET CENTRÉ (Ajout ou Modification) -->
 				<div class="rounded-2xl border-2 {
 					formMode === 'edit'
 						? 'border-amber-300 bg-amber-50/50'
 						: 'border-corporate-200 bg-corporate-50/50'
-				} p-4 sm:p-5 transition-all space-y-4 shadow-sm">
+				} p-4 sm:p-6 transition-all space-y-4 shadow-sm">
 					
 					<!-- En-tête formulaire -->
 					<div class="flex items-center justify-between pb-3 border-b {
@@ -414,7 +489,7 @@
 											id="requesterName"
 											type="text"
 											class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
-											placeholder="Ex : Alain Prost / Service IT"
+											placeholder="Ex : Alain Prost / Informatique"
 											bind:value={requesterName}
 											required
 										/>
@@ -428,7 +503,7 @@
 											id="formReason"
 											type="text"
 											class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
-											placeholder="Ex: Qualification nouvel équipement ou nouveau format flacon"
+											placeholder="Ex : Qualification nouvel équipement ou nouveau format flacon"
 											bind:value={formReason}
 											required
 										/>
@@ -680,73 +755,6 @@
 					{/if}
 				</div>
 			{/if}
-
-			<!-- TABLEAU DES VALEURS EXISTANTES (SANS PARAMÈTRES A1/N1 INUTILES) -->
-			<div class="rounded-xl border border-slate-300 bg-white overflow-hidden shadow-xs">
-				<table class="w-full text-left text-xs border-collapse">
-					<thead>
-						<tr class="border-b-2 border-slate-200 bg-slate-100 text-[11px] font-bold text-slate-800 uppercase tracking-wider">
-							<th class="py-2.5 px-3 w-32">Code X3</th>
-							<th class="py-2.5 px-3 w-48">Libellé court</th>
-							<th class="py-2.5 px-3">Désignation complète officielle</th>
-							<th class="py-2.5 px-3 text-right w-44">Actions</th>
-						</tr>
-					</thead>
-					<tbody class="divide-y divide-slate-200">
-						{#if filteredItems.length === 0}
-							<tr>
-								<td colspan="4" class="py-8 text-center text-slate-500 font-medium">
-									Aucune entrée ne correspond à votre recherche "{itemSearch}".
-								</td>
-							</tr>
-						{:else}
-							{#each filteredItems as item}
-								<tr class="hover:bg-slate-50 transition group">
-									<td class="py-2 px-3 font-mono font-bold text-slate-950">
-										<span class="rounded bg-slate-100 px-2 py-0.5 border border-slate-300 shadow-2xs">
-											{item.code}
-										</span>
-									</td>
-									<td class="py-2 px-3 text-slate-800 font-medium">
-										{item.shortLabel || '-'}
-									</td>
-									<td class="py-2 px-3 text-slate-950 font-bold">
-										{item.label}
-									</td>
-									<td class="py-2 px-3 text-right">
-										<div class="inline-flex items-center gap-1.5">
-											<button
-												type="button"
-												class="inline-flex items-center gap-1 rounded-md border border-amber-300 bg-amber-50/80 px-2.5 py-1 text-[11px] font-bold text-amber-950 hover:bg-amber-100 shadow-2xs transition"
-												onclick={() => openEditForm(item)}
-												title="Modifier les libellés de cette valeur"
-											>
-												<Pencil class="size-3 text-amber-700" />
-												<span>Modifier</span>
-											</button>
-
-											<button
-												type="button"
-												class="inline-flex items-center gap-1 rounded-md border border-slate-300 bg-white px-2.5 py-1 text-[11px] font-bold text-slate-800 hover:bg-slate-100 shadow-2xs transition"
-												onclick={() => copyCode(item.code)}
-												title="Copier le code technique"
-											>
-												{#if copiedCode === item.code}
-													<Check class="size-3 text-emerald-600" />
-													<span class="text-emerald-800">Copié</span>
-												{:else}
-													<Clipboard class="size-3 text-slate-500" />
-													<span>Copier</span>
-												{/if}
-											</button>
-										</div>
-									</td>
-								</tr>
-							{/each}
-						{/if}
-					</tbody>
-				</table>
-			</div>
 		</div>
 	</div>
 </div>
