@@ -6,7 +6,7 @@ import { env } from '$env/dynamic/private';
 export const POST: RequestHandler = async ({ request }) => {
 	try {
 		const body = await request.json();
-		const { numtab, code, libelle_long, libelle_court, param_a1, param_n1 } = body;
+		const { numtab, code, libelle_long, libelle_court, param_a1, param_n1, demandeur, motif } = body;
 
 		if (!numtab || !code || !libelle_long) {
 			return json(
@@ -21,23 +21,20 @@ export const POST: RequestHandler = async ({ request }) => {
 		const cleanShort = String(libelle_court || cleanLong.slice(0, 15)).trim();
 		const cleanA1 = String(param_a1 || '').trim();
 		const cleanN1 = param_n1 !== undefined && param_n1 !== '' ? parseFloat(param_n1) : 0;
+		const cleanUser = String(demandeur || 'IRIS').trim().slice(0, 10).toUpperCase() || 'IRIS';
+		const cleanReason = String(motif || '').trim();
 
 		const schema = process.env.SAGE_DB_SCHEMA || env.SAGE_DB_SCHEMA || 'VDRSANDB';
 
 		const activePool = await getPool();
 		if (!activePool) {
-			return json({
-				success: true,
-				mode: 'script_only',
-				message: `Modifications enregistrées localement (la base SANDBOX n'est pas connectée en direct).`,
-				item: {
-					code: cleanCode,
-					shortLabel: cleanShort,
-					label: cleanLong,
-					param_a1: cleanA1,
-					param_n1: String(cleanN1)
-				}
-			});
+			return json(
+				{
+					error: "Connexion directe à la base SQL Server Sage X3 non disponible (identifiants SQL non configurés ou droits d'écriture absents sur ce serveur). Veuillez transmettre votre demande par e-mail au Support 3636.",
+					canEmail: true
+				},
+				{ status: 503 }
+			);
 		}
 
 		// Mode LIVE : Exécution directe dans la base SANDBOX
@@ -51,9 +48,10 @@ export const POST: RequestHandler = async ({ request }) => {
 			req1.input('code', cleanCode);
 			req1.input('a1', cleanA1);
 			req1.input('n1', cleanN1);
+			req1.input('user', cleanUser);
 			await req1.query(`
 				UPDATE ${schema}.ATABDIV
-				SET A1_0 = @a1, N1_0 = @n1, UPDDAT_0 = GETDATE(), UPDUSR_0 = 'IRIS'
+				SET A1_0 = @a1, N1_0 = @n1, UPDDAT_0 = GETDATE(), UPDUSR_0 = @user
 				WHERE NUMTAB_0 = @numtab AND CODE_0 = @code;
 			`);
 

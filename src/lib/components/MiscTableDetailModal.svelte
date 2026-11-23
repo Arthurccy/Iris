@@ -3,8 +3,6 @@
 		AlertCircle,
 		Check,
 		CheckCircle2,
-		ChevronDown,
-		ChevronUp,
 		Clipboard,
 		Database,
 		Lock,
@@ -14,7 +12,6 @@
 		Search,
 		ShieldAlert,
 		ShieldCheck,
-		Sparkles,
 		X
 	} from 'lucide-svelte';
 	import type { MiscTableDefinition, MiscTableItem } from '$lib/types';
@@ -36,17 +33,12 @@
 	let itemSearch = $state('');
 	let formMode = $state<'none' | 'add' | 'edit'>('none');
 
-	// Champs du formulaire
+	// Traçabilité & Champs du formulaire
+	let requesterName = $state('');
+	let formReason = $state('');
 	let formCode = $state('');
 	let formShortLabel = $state('');
 	let formLabel = $state('');
-	let formParamA1 = $state('');
-	let formParamN1 = $state('');
-	let formReason = $state('');
-	let requesterName = $state('');
-
-	// Volet paramètres avancés (A1/N1)
-	let showAdvancedParams = $state(false);
 
 	// Garde-fou : étape de confirmation
 	let isConfirming = $state(false);
@@ -76,9 +68,7 @@
 			(item) =>
 				item.code.toLowerCase().includes(term) ||
 				(item.shortLabel && item.shortLabel.toLowerCase().includes(term)) ||
-				(item.label && item.label.toLowerCase().includes(term)) ||
-				(item.param_a1 && item.param_a1.toLowerCase().includes(term)) ||
-				(item.param_n1 && String(item.param_n1).toLowerCase().includes(term))
+				(item.label && item.label.toLowerCase().includes(term))
 		);
 	});
 
@@ -98,48 +88,16 @@
 		formCode = normalizeX3Code(target.value);
 	}
 
-	// Suggestion automatique de code et de libellé court dès la saisie de la désignation
 	function handleLabelInput(e: Event) {
 		const target = e.target as HTMLInputElement;
 		formLabel = target.value;
 
-		// Si ajout et libellé court non personnalisé, auto-compléter
+		// Si ajout et libellé court non personnalisé, auto-compléter avec les 15 premiers caractères
 		if (formMode === 'add') {
 			if (!formShortLabel || formShortLabel === formLabel.slice(0, 14)) {
 				formShortLabel = formLabel.slice(0, 15);
 			}
-
-			// Si code encore vide, suggérer automatiquement
-			if (!formCode) {
-				generateCodeFromLabel();
-			}
 		}
-	}
-
-	function generateCodeFromLabel() {
-		if (!formLabel.trim()) return;
-		const words = formLabel
-			.normalize('NFD')
-			.replace(/[\u0300-\u036f]/g, '')
-			.toUpperCase()
-			.replace(/[^A-Z0-9\s]/g, '')
-			.split(/\s+/)
-			.filter(Boolean);
-
-		let candidate = '';
-		if (words.length === 1) {
-			candidate = words[0].slice(0, 10);
-		} else if (words.length === 2) {
-			candidate = `${words[0].slice(0, 6)}_${words[1].slice(0, 6)}`;
-		} else {
-			candidate = words.map((w) => w.slice(0, 3)).join('_').slice(0, 15);
-		}
-
-		candidate = candidate.slice(0, 15);
-		if (existingCodes.includes(candidate)) {
-			candidate = `${candidate.slice(0, 12)}_01`;
-		}
-		formCode = candidate;
 	}
 
 	const isCodeDuplicate = $derived.by(() => {
@@ -149,9 +107,12 @@
 		return existingCodes.includes(clean);
 	});
 
+	// Validation stricte : Code, Désignation, Demandeur et Motif requis pour se couvrir
 	const canProceedToConfirm = $derived(
 		formCode.trim().length >= 1 &&
 		formLabel.trim().length >= 2 &&
+		requesterName.trim().length >= 2 &&
+		formReason.trim().length >= 3 &&
 		!isCodeDuplicate &&
 		!isSubmitting
 	);
@@ -161,10 +122,8 @@
 		formCode = '';
 		formShortLabel = '';
 		formLabel = '';
-		formParamA1 = '';
-		formParamN1 = '';
+		requesterName = '';
 		formReason = '';
-		showAdvancedParams = false;
 		isConfirming = false;
 		submitResult = null;
 	}
@@ -174,10 +133,8 @@
 		formCode = item.code;
 		formShortLabel = item.shortLabel || '';
 		formLabel = item.label || '';
-		formParamA1 = item.param_a1 || '';
-		formParamN1 = item.param_n1 !== undefined ? String(item.param_n1) : '';
+		requesterName = '';
 		formReason = '';
-		showAdvancedParams = Boolean(item.param_a1 || (item.param_n1 !== undefined && item.param_n1 !== ''));
 		isConfirming = false;
 		submitResult = null;
 	}
@@ -220,8 +177,8 @@
 					code: formCode.trim().toUpperCase(),
 					libelle_long: formLabel.trim(),
 					libelle_court: formShortLabel.trim() || formLabel.trim().slice(0, 15),
-					param_a1: formParamA1.trim(),
-					param_n1: formParamN1.trim()
+					demandeur: requesterName.trim(),
+					motif: formReason.trim()
 				})
 			});
 
@@ -229,7 +186,7 @@
 			if (!res.ok) {
 				submitResult = {
 					success: false,
-					error: data.error || 'Erreur lors de l\'enregistrement.'
+					error: data.error || "Erreur lors de l'enregistrement en base."
 				};
 				isConfirming = false;
 			} else {
@@ -263,25 +220,31 @@
 		}
 	}
 
+	// Lien email officiel de demande cadrée et traçable pour se couvrir
 	const mailHref = $derived.by(() => {
-		const actionType = formMode === 'edit' ? 'Modification' : 'Ajout';
-		const subject = `[IRIS - Sage X3] Demande de ${actionType} table diverse #${table.numtab} : ${formCode.trim().toUpperCase()}`;
+		const actionType = formMode === 'edit' ? 'Modification' : 'Création';
+		const subject = `[IRIS - Sage X3] Demande de ${actionType} table diverse #${table.numtab} (${table.title}) - Code : ${formCode.trim().toUpperCase() || '(à définir)'}`;
 		const body = [
-			'Bonjour,',
+			'Bonjour l\'équipe Support Sage X3,',
 			'',
-			`Dans le cadre de l'utilisation de Sage X3 Valdepharm, je sollicite l'application de la modification suivante :`,
-			`- Numéro de table : #${table.numtab}`,
-			`- Intitulé : ${table.title}`,
-			`- Domaine : ${table.category}`,
+			`Dans le cadre des activités sur le site Valdepharm, je vous transmets la demande formelle suivante :`,
 			'',
-			`Détails de la valeur (${actionType}) :`,
-			`- Code (CODE_0) : ${formCode.trim().toUpperCase()}`,
-			`- Libellé long (LNGDES) : ${formLabel.trim()}`,
-			`- Libellé court (SHODES) : ${formShortLabel.trim() || formLabel.trim().slice(0, 15)}`,
-			`- Paramètre alphanumérique A1 : ${formParamA1.trim() || '(vide)'}`,
-			`- Paramètre numérique N1 : ${formParamN1.trim() || '0'}`,
+			'1. RÉFÉRENTIEL CONCERNÉ :',
+			`- Table diverse numéro : #${table.numtab}`,
+			`- Intitulé officiel : ${table.title}`,
+			`- Domaine / Catégorie : ${table.category}`,
+			'',
+			'2. CADRAGE & TRAÇABILITÉ (GESTION DES CHANGEMENTS) :',
+			`- Demandeur (Nom & Service) : ${requesterName.trim() || 'Non spécifié'}`,
 			`- Motif / Justification métier : ${formReason.trim() || 'Non spécifié'}`,
-			`- Demandeur : ${requesterName.trim() || 'Utilisateur métier'}`,
+			`- Date de la demande : ${new Date().toLocaleDateString('fr-FR')}`,
+			'',
+			`3. DÉTAILS DE LA VALEUR (${actionType.toUpperCase()}) :`,
+			`- Code technique X3 (CODE_0) : ${formCode.trim().toUpperCase() || 'À définir'}`,
+			`- Désignation complète (LNGDES) : ${formLabel.trim() || 'Non renseignée'}`,
+			`- Libellé court (SHODES) : ${formShortLabel.trim() || formLabel.trim().slice(0, 15) || 'Non renseigné'}`,
+			'',
+			'Merci de bien vouloir procéder à l\'enregistrement dans la fonction GESTDU de Sage X3.',
 			'',
 			'Application IRIS — Portail métier Sage X3 Valdepharm.'
 		].join('\n');
@@ -430,51 +393,60 @@
 						</button>
 					</div>
 
-					<!-- ÉTAPE 1 : Saisie guidée -->
+					<!-- ÉTAPE 1 : Saisie guidée & Cadrée -->
 					{#if !isConfirming}
 						<form onsubmit={requestConfirmation} class="space-y-4 text-xs">
 							
-							<!-- 1. Champ principal : La Désignation métier -->
-							<div>
-								<label for="formLabel" class="block font-bold text-slate-900 mb-1">
-									Désignation complète <span class="text-rose-600">*</span>
-									<span class="text-[11px] font-normal text-slate-500 ml-1">
-										(Le nom complet qui s'affichera dans vos écrans Sage X3)
-									</span>
-								</label>
-								<input
-									id="formLabel"
-									type="text"
-									class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-xs sm:text-sm font-medium text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
-									placeholder="Ex : Flacon verre ambré 500ml type I ou Balance Mettler Toledo PM400..."
-									value={formLabel}
-									oninput={handleLabelInput}
-									required
-								/>
+							<!-- 1. Cadrage & Traçabilité (Obligatoire pour se couvrir) -->
+							<div class="rounded-xl border border-corporate-200 bg-corporate-50/70 p-3.5 space-y-2.5">
+								<div class="flex items-center gap-2 font-bold text-corporate-950">
+									<ShieldCheck class="size-4 text-corporate-700" />
+									<span>Cadrage & Traçabilité de la demande (Gestion des changements)</span>
+								</div>
+								<p class="text-[11px] text-corporate-800 leading-relaxed">
+									Pour garantir la conformité et l'auditabilité sur le site Valdepharm, veuillez obligatoirement identifier le demandeur et justifier le besoin métier.
+								</p>
+
+								<div class="grid gap-3 sm:grid-cols-2 pt-1">
+									<div>
+										<label for="requesterName" class="block font-bold text-slate-900 mb-1">
+											Demandeur (Nom & Service) <span class="text-rose-600">*</span>
+										</label>
+										<input
+											id="requesterName"
+											type="text"
+											class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
+											placeholder="Ex: Nicolas P. / CQ Physico ou Équipe Pesée"
+											bind:value={requesterName}
+											required
+										/>
+									</div>
+
+									<div>
+										<label for="formReason" class="block font-bold text-slate-900 mb-1">
+											Motif / Justification métier <span class="text-rose-600">*</span>
+										</label>
+										<input
+											id="formReason"
+											type="text"
+											class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
+											placeholder="Ex: Qualification nouvel équipement ou nouveau format flacon"
+											bind:value={formReason}
+											required
+										/>
+									</div>
+								</div>
 							</div>
 
 							<!-- 2. Code X3 et Libellé court -->
 							<div class="grid gap-4 sm:grid-cols-2">
 								<div>
-									<div class="flex items-center justify-between mb-1">
-										<label for="formCode" class="block font-bold text-slate-900">
-											Code technique X3
-											{#if formMode === 'add'}
-												<span class="text-rose-600">*</span>
-											{/if}
-										</label>
-										{#if formMode === 'add' && formLabel.trim()}
-											<button
-												type="button"
-												class="inline-flex items-center gap-1 text-[11px] font-bold text-corporate-700 hover:text-corporate-900 transition"
-												onclick={generateCodeFromLabel}
-												title="Générer un code normalisé à partir de la désignation"
-											>
-												<Sparkles class="size-3" />
-												<span>Suggérer le code</span>
-											</button>
+									<label for="formCode" class="block font-bold text-slate-900 mb-1">
+										Code technique Sage X3
+										{#if formMode === 'add'}
+											<span class="text-rose-600">*</span>
 										{/if}
-									</div>
+									</label>
 
 									<div class="relative">
 										<input
@@ -487,7 +459,7 @@
 														? 'border-rose-400 bg-rose-50 text-rose-950'
 														: 'border-slate-300 bg-white text-slate-950 focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100'
 											}"
-											placeholder="Ex: FLAC_500ML"
+											placeholder="Ex: BAL01 ou FLAC_500"
 											maxlength="15"
 											readonly={formMode === 'edit'}
 											value={formCode}
@@ -499,24 +471,19 @@
 										{/if}
 									</div>
 
-									<!-- Aide et validation sur le code -->
+									<!-- Garde-fous sur le code -->
 									{#if formMode === 'edit'}
 										<p class="mt-1 text-[10px] text-slate-500 font-medium">
-											Garde-fou : Le code technique est verrouillé pour préserver les historiques de lots et de mouvements.
+											Garde-fou : Le code est verrouillé car il sert de clé primaire dans les historiques et mouvements ERP.
 										</p>
 									{:else if isCodeDuplicate}
 										<p class="mt-1 text-[11px] font-bold text-rose-600 flex items-center gap-1">
 											<ShieldAlert class="size-3.5 shrink-0" />
-											<span>Garde-fou : Ce code existe déjà dans cette table. Choisissez-en un autre.</span>
+											<span>Garde-fou : Ce code existe déjà dans la table #{table.numtab}. Choisissez-en un autre.</span>
 										</p>
 									{:else}
 										<p class="mt-1 text-[10px] text-slate-500">
-											Généré automatiquement. Max 15 caractères, sans espace ni accent.
-											{#if table.items && table.items.length > 0}
-												<span class="block text-slate-600 mt-0.5">
-													Exemples existants : <strong class="font-mono">{table.items.slice(0, 3).map((i) => i.code).join(', ')}</strong>
-												</span>
-											{/if}
+											Max 15 caractères, sans espace ni accent (majuscules automatiques).
 										</p>
 									{/if}
 								</div>
@@ -525,80 +492,49 @@
 									<label for="formShortLabel" class="block font-bold text-slate-900 mb-1">
 										Libellé court
 										<span class="text-[11px] font-normal text-slate-500 ml-1">
-											(Abréviation max 15 caractères)
+											(Abréviation max 15 car.)
 										</span>
 									</label>
 									<input
 										id="formShortLabel"
 										type="text"
 										class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
-										placeholder="Auto-complété"
+										placeholder="Auto-complété ou personnalisé"
 										maxlength="15"
 										bind:value={formShortLabel}
 									/>
 									<p class="mt-1 text-[10px] text-slate-500">
-										Utilisé dans les colonnes étroites ou les listes d'écrans compactes.
+										Utilisé dans les colonnes étroites ou menus compacts de Sage X3.
 									</p>
 								</div>
 							</div>
 
-							<!-- 3. Volet repliable : Paramètres avancés X3 (A1 / N1) -->
-							<div class="pt-2 border-t border-slate-200">
-								<button
-									type="button"
-									class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-slate-950 transition select-none"
-									onclick={() => (showAdvancedParams = !showAdvancedParams)}
-								>
-									{#if showAdvancedParams}
-										<ChevronUp class="size-3.5 text-slate-500" />
-										<span>Masquer les paramètres techniques avancés (A1, N1)</span>
-									{:else}
-										<ChevronDown class="size-3.5 text-slate-500" />
-										<span>Afficher les paramètres techniques avancés (A1, N1 - Optionnel)</span>
-									{/if}
-								</button>
-
-								{#if showAdvancedParams}
-									<div class="mt-3 p-3 rounded-xl bg-white border border-slate-200 grid gap-3 sm:grid-cols-2 text-xs">
-										<div>
-											<label for="formParamA1" class="block font-semibold text-slate-800 mb-1">
-												Paramètre texte libre (A1)
-											</label>
-											<input
-												id="formParamA1"
-												type="text"
-												class="w-full rounded-lg border border-slate-300 bg-white px-2.5 py-1.5 font-mono text-xs text-slate-900 outline-none focus:border-corporate-600"
-												placeholder="Optionnel"
-												bind:value={formParamA1}
-											/>
-											<p class="mt-1 text-[10px] text-slate-500">Pour les tables nécessitant un identifiant annexe.</p>
-										</div>
-
-										<div>
-											<label for="formParamN1" class="block font-semibold text-slate-800 mb-1">
-												Paramètre numérique libre (N1)
-											</label>
-											<input
-												id="formParamN1"
-												type="number"
-												step="any"
-												class="w-full rounded-lg border border-slate-300 bg-white px-2.5 py-1.5 font-mono text-xs text-slate-900 outline-none focus:border-corporate-600"
-												placeholder="Ex: 0.000"
-												bind:value={formParamN1}
-											/>
-											<p class="mt-1 text-[10px] text-slate-500">Pour les tables associées à un coefficient ou niveau.</p>
-										</div>
-									</div>
-								{/if}
+							<!-- 3. Désignation complète -->
+							<div>
+								<label for="formLabel" class="block font-bold text-slate-900 mb-1">
+									Désignation complète officielle <span class="text-rose-600">*</span>
+									<span class="text-[11px] font-normal text-slate-500 ml-1">
+										(Le nom complet affiché dans les fiches et listes Sage X3)
+									</span>
+								</label>
+								<input
+									id="formLabel"
+									type="text"
+									class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-xs sm:text-sm font-medium text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
+									placeholder="Ex : Balance Mettler Toledo PM400 salle de pesée n°2"
+									value={formLabel}
+									oninput={handleLabelInput}
+									required
+								/>
 							</div>
 
 							<!-- Actions principales du formulaire -->
 							<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-3 border-t border-slate-200">
 								<p class="text-[11px] text-slate-500 font-medium">
-									* Champs obligatoires. Une vérification vous sera présentée avant enregistrement.
+									* Champs obligatoires pour valider la traçabilité.
 								</p>
 
-								<div class="flex items-center gap-2">
+								<div class="flex flex-wrap items-center gap-2">
 									<button
 										type="button"
 										class="rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs font-bold text-slate-700 hover:bg-slate-100 transition shadow-2xs"
@@ -607,51 +543,58 @@
 										Annuler
 									</button>
 
+									<!-- Action officielle GxP pour se couvrir -->
 									<a
 										href={mailHref}
-										class="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs font-bold text-slate-700 hover:bg-slate-100 transition shadow-2xs"
-										title="Transmettre par messagerie au support 3636"
+										class="inline-flex items-center gap-1.5 rounded-xl bg-corporate-700 hover:bg-corporate-800 text-white px-4 py-2 text-xs font-bold shadow-xs transition"
+										title="Transmettre la demande officielle par messagerie au support 3636"
 									>
-										<Mail class="size-3.5 text-slate-500" />
-										<span>Transmettre au support</span>
+										<Mail class="size-3.5" />
+										<span>Transmettre au Support 3636</span>
 									</a>
 
+									<!-- Action directe SANDBOX -->
 									<button
 										type="submit"
-										class="inline-flex items-center gap-1.5 rounded-xl {
-											formMode === 'edit'
-												? 'bg-amber-600 hover:bg-amber-700 text-white'
-												: 'bg-corporate-700 hover:bg-corporate-800 text-white'
-										} px-4 py-2 text-xs font-extrabold shadow-xs disabled:opacity-40 disabled:cursor-not-allowed transition"
+										class="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-900 px-3.5 py-2 text-xs font-bold shadow-2xs disabled:opacity-40 disabled:cursor-not-allowed transition"
 										disabled={!canProceedToConfirm}
+										title="Enregistrer directement dans la base SANDBOX"
 									>
 										{#if formMode === 'edit'}
-											<Check class="size-4" />
-											<span>Valider la modification</span>
+											<Check class="size-3.5 text-amber-600" />
+											<span>Écrire en direct (SANDBOX)</span>
 										{:else}
-											<Plus class="size-4" />
-											<span>Enregistrer la valeur</span>
+											<Database class="size-3.5 text-corporate-700" />
+											<span>Écrire en direct (SANDBOX)</span>
 										{/if}
 									</button>
 								</div>
 							</div>
 						</form>
 
-					<!-- ÉTAPE 2 : GARDE-FOU & CONFIRMATION AVANT ÉCRITURE -->
+					<!-- ÉTAPE 2 : GARDE-FOU & CONFIRMATION AVANT ÉCRITURE DIRECTE -->
 					{:else}
 						<div class="rounded-xl border-2 border-corporate-300 bg-white p-4 space-y-3">
 							<div class="flex items-center gap-2 text-corporate-900 font-extrabold text-sm pb-2 border-b border-corporate-100">
 								<ShieldCheck class="size-5 text-corporate-700 shrink-0" />
-								<span>Confirmation avant enregistrement dans Sage X3</span>
+								<span>Validation de responsabilité avant écriture dans Sage X3</span>
 							</div>
 
 							<div class="text-xs text-slate-700 space-y-2">
 								<p>
-									Veuillez vérifier les informations ci-dessous avant d'appliquer l'opération :
+									Veuillez vérifier les informations ci-dessous. En confirmant, cette écriture sera enregistrée avec votre identifiant :
 								</p>
 								<div class="rounded-lg bg-slate-50 border border-slate-200 p-3 space-y-1.5 font-medium">
 									<div>
-										<span class="text-slate-500">Table cible :</span>
+										<span class="text-slate-500">Demandeur & Service :</span>
+										<strong class="text-corporate-900">{requesterName}</strong>
+									</div>
+									<div>
+										<span class="text-slate-500">Motif de la demande :</span>
+										<strong class="text-slate-900">{formReason}</strong>
+									</div>
+									<div>
+										<span class="text-slate-500">Table diverse cible :</span>
 										<strong class="text-slate-900">Table #{table.numtab} ({table.title})</strong>
 									</div>
 									<div>
@@ -659,7 +602,7 @@
 										<strong class="font-mono text-corporate-800 font-bold bg-white px-2 py-0.5 rounded border border-slate-200">{formCode}</strong>
 									</div>
 									<div>
-										<span class="text-slate-500">Désignation officielle :</span>
+										<span class="text-slate-500">Désignation complète :</span>
 										<strong class="text-slate-900">{formLabel}</strong>
 									</div>
 									<div>
@@ -668,7 +611,7 @@
 									</div>
 									<div>
 										<span class="text-slate-500">Environnement :</span>
-										<strong class="text-amber-900">SANDBOX (FRVDRVMAS46)</strong>
+										<strong class="text-amber-900">Base SANDBOX (FRVDRVMAS46)</strong>
 									</div>
 								</div>
 							</div>
@@ -690,10 +633,10 @@
 									disabled={isSubmitting}
 								>
 									{#if isSubmitting}
-										<span>Écriture en cours en base...</span>
+										<span>Connexion et écriture en base...</span>
 									{:else}
 										<Database class="size-4" />
-										<span>Confirmer et enregistrer</span>
+										<span>Confirmer l'écriture directe</span>
 									{/if}
 								</button>
 							</div>
@@ -702,18 +645,37 @@
 
 					<!-- Résultat / Notification -->
 					{#if submitResult}
-						<div class="rounded-xl border-2 p-3 text-xs {
+						<div class="rounded-xl border-2 p-3.5 text-xs {
 							submitResult.success
 								? 'border-emerald-300 bg-emerald-50 text-emerald-950 font-semibold'
-								: 'border-rose-300 bg-rose-50 text-rose-950 font-semibold'
+								: 'border-rose-300 bg-rose-50 text-rose-950'
 						}">
-							<div class="flex items-center gap-2">
+							<div class="flex items-start gap-2.5">
 								{#if submitResult.success}
-									<CheckCircle2 class="size-5 text-emerald-600 shrink-0" />
-									<span>{submitResult.message}</span>
+									<CheckCircle2 class="size-5 text-emerald-600 shrink-0 mt-0.5" />
+									<div class="space-y-1">
+										<p class="font-bold">{submitResult.message}</p>
+										<p class="text-[11px] text-emerald-800 font-normal">
+											L'entrée a été enregistrée avec traçabilité dans Sage X3 SANDBOX.
+										</p>
+									</div>
 								{:else}
-									<AlertCircle class="size-5 text-rose-600 shrink-0" />
-									<span>Erreur : {submitResult.error}</span>
+									<AlertCircle class="size-5 text-rose-600 shrink-0 mt-0.5" />
+									<div class="space-y-2 flex-1">
+										<p class="font-bold">L'enregistrement direct a échoué :</p>
+										<p class="text-rose-900 font-medium bg-white/80 p-2.5 rounded-lg border border-rose-200 leading-relaxed">
+											{submitResult.error}
+										</p>
+										<div class="pt-1 flex items-center gap-2">
+											<a
+												href={mailHref}
+												class="inline-flex items-center gap-1.5 rounded-lg bg-corporate-700 hover:bg-corporate-800 text-white px-3 py-1.5 text-xs font-bold shadow-xs transition"
+											>
+												<Mail class="size-3.5" />
+												<span>Transmettre cette demande au Support 3636</span>
+											</a>
+										</div>
+									</div>
 								{/if}
 							</div>
 						</div>
@@ -721,23 +683,21 @@
 				</div>
 			{/if}
 
-			<!-- TABLEAU DES VALEURS EXISTANTES -->
+			<!-- TABLEAU DES VALEURS EXISTANTES (SANS PARAMÈTRES A1/N1 INUTILES) -->
 			<div class="rounded-xl border border-slate-300 bg-white overflow-hidden shadow-xs">
 				<table class="w-full text-left text-xs border-collapse">
 					<thead>
 						<tr class="border-b-2 border-slate-200 bg-slate-100 text-[11px] font-bold text-slate-800 uppercase tracking-wider">
-							<th class="py-2.5 px-3 w-28">Code X3</th>
-							<th class="py-2.5 px-3 w-44">Libellé court</th>
+							<th class="py-2.5 px-3 w-32">Code X3</th>
+							<th class="py-2.5 px-3 w-48">Libellé court</th>
 							<th class="py-2.5 px-3">Désignation complète officielle</th>
-							<th class="py-2.5 px-3 font-mono w-24">Param A1</th>
-							<th class="py-2.5 px-3 font-mono w-24">Param N1</th>
 							<th class="py-2.5 px-3 text-right w-44">Actions</th>
 						</tr>
 					</thead>
 					<tbody class="divide-y divide-slate-200">
 						{#if filteredItems.length === 0}
 							<tr>
-								<td colspan="6" class="py-8 text-center text-slate-500 font-medium">
+								<td colspan="4" class="py-8 text-center text-slate-500 font-medium">
 									Aucune entrée ne correspond à votre recherche "{itemSearch}".
 								</td>
 							</tr>
@@ -755,19 +715,13 @@
 									<td class="py-2 px-3 text-slate-950 font-bold">
 										{item.label}
 									</td>
-									<td class="py-2 px-3 font-mono text-[11px] text-slate-700 font-semibold">
-										{item.param_a1 ? item.param_a1 : '-'}
-									</td>
-									<td class="py-2 px-3 font-mono text-[11px] text-slate-700 font-semibold">
-										{item.param_n1 !== undefined && item.param_n1 !== '' ? item.param_n1 : '-'}
-									</td>
 									<td class="py-2 px-3 text-right">
 										<div class="inline-flex items-center gap-1.5">
 											<button
 												type="button"
 												class="inline-flex items-center gap-1 rounded-md border border-amber-300 bg-amber-50/80 px-2.5 py-1 text-[11px] font-bold text-amber-950 hover:bg-amber-100 shadow-2xs transition"
 												onclick={() => openEditForm(item)}
-												title="Modifier les libellés ou paramètres de cette valeur"
+												title="Modifier les libellés de cette valeur"
 											>
 												<Pencil class="size-3 text-amber-700" />
 												<span>Modifier</span>
