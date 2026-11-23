@@ -22,6 +22,17 @@ export type QueryDefinition = {
 
 export type QueryMatch = QueryDefinition & {
 	matchedCount: number;
+	matchedFields: string[];
+	missingFields: string[];
 	extraFields: string[];
 	matchRate: number;
+	coverageRate: number;
+	isExact: boolean;
+};
+
+export type MatchResults = {
+	exact: QueryMatch[];
+	partial: QueryMatch[];
+	totalExact: number;
+	totalPartial: number;
 };

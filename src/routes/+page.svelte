@@ -17,6 +17,7 @@
 	let selectedCodes = $state<string[]>([]);
 	let searchTerm = $state('');
 	let isResultsOpen = $state(false);
+	let activeCategoryFilter = $state<CategoryName | null>(null);
 
 	const filteredFields = $derived(filterFields(dictionary, searchTerm));
 	const groupedFields = $derived.by(() =>
@@ -37,7 +38,7 @@
 			left.label.localeCompare(right.label, 'fr')
 		)
 	);
-	const matches = $derived(matchQueries(selectedCodes, queries));
+	const matchResults = $derived(matchQueries(selectedCodes, queries));
 	const fallbackHref = $derived(buildFallbackMail(selectedFields, fallbackMailbox));
 
 	function toggleField(code: string) {
@@ -56,6 +57,10 @@
 
 	function closeResults() {
 		isResultsOpen = false;
+	}
+
+	function handleCategoryFilter(category: CategoryName | null) {
+		activeCategoryFilter = category;
 	}
 
 	function handleWindowKeydown(event: KeyboardEvent) {
@@ -82,66 +87,81 @@
 </script>
 
 <svelte:head>
-	<title>IRIS X3 Query Finder</title>
+	<title>IRIS — Exploration des requêtes Sage X3</title>
 	<meta
 		name="description"
-		content="Interface de consultation read-only pour retrouver des requêtes Sage X3 à partir de champs métiers."
+		content="Interface interne de consultation read-only pour retrouver les requêtes Sage X3 à partir des champs métiers."
 	/>
 </svelte:head>
 
 <svelte:window onkeydown={handleWindowKeydown} />
 
-<div class="relative isolate overflow-hidden">
-	<div class="absolute inset-0 -z-10 bg-grid bg-[size:22px_22px] opacity-40"></div>
-	<div class="flex min-h-screen w-full flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8 lg:py-8 2xl:px-10">
+<div class="relative isolate overflow-hidden min-h-screen bg-slate-50/60">
+	<div class="absolute inset-0 -z-10 bg-grid bg-[size:24px_24px] opacity-30"></div>
+	
+	<main class="w-full px-4 py-5 sm:px-6 lg:px-8 2xl:px-10 max-w-[1920px] mx-auto">
 		<FieldSelectorPanel
 			{categories}
 			{groupedFields}
 			{selectedCodes}
 			{selectedFields}
 			{searchTerm}
+			{matchResults}
+			{activeCategoryFilter}
 			onToggleField={toggleField}
 			onClearSelection={clearSelection}
 			onOpenResults={openResults}
 			onSearchChange={(value) => (searchTerm = value)}
+			onSelectCategoryFilter={handleCategoryFilter}
 		/>
-	</div>
+	</main>
 
 	{#if isResultsOpen}
-		<div class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+		<div class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5">
 			<button
-				class="absolute inset-0 bg-slate-950/60 backdrop-blur-sm transition-opacity duration-300"
+				class="absolute inset-0 bg-slate-950/60 backdrop-blur-xs transition-opacity duration-200"
 				type="button"
 				aria-label="Fermer la fenêtre des résultats"
 				onclick={closeResults}
 			></button>
 
 			<div
-				class="relative z-10 flex max-h-[92vh] w-full max-w-7xl flex-col overflow-hidden rounded-[2rem] border border-white/70 bg-white shadow-2xl transition-all duration-300 transform scale-100"
+				class="relative z-10 flex max-h-[94vh] w-full max-w-7xl flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl transition-all duration-200"
 				role="dialog"
 				aria-modal="true"
-				aria-label="Résultats de matching"
+				aria-label="Résultats du matching"
 				tabindex="-1"
 			>
-				<div class="section-divider flex items-center justify-between gap-3 px-5 py-4 sm:px-6">
+				<div class="section-divider flex items-center justify-between gap-3 px-5 py-3.5 bg-slate-50/80">
 					<div>
-						<p class="text-xs font-semibold uppercase tracking-[0.2em] text-corporate-700">Résultats</p>
-						<p class="text-sm text-slate-600">{matches.length} requête(s) trouvée(s)</p>
+						<p class="text-xs font-semibold uppercase tracking-[0.2em] text-corporate-700">Explorateur IRIS</p>
+						<p class="text-xs text-slate-600">
+							{#if matchResults.totalExact > 0}
+								<span class="font-semibold text-emerald-700">{matchResults.totalExact} requête(s) exacte(s)</span>
+								{#if matchResults.totalPartial > 0}
+									· {matchResults.totalPartial} approchante(s)
+								{/if}
+							{:else if matchResults.totalPartial > 0}
+								<span class="font-semibold text-amber-700">0 correspondance exacte</span> · {matchResults.totalPartial} requête(s) approchante(s)
+							{:else}
+								<span>0 requête correspondante</span>
+							{/if}
+						</p>
 					</div>
 					<button
-						class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+						class="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100"
 						type="button"
 						onclick={closeResults}
 					>
-						<X class="size-4" />
+						<X class="size-3.5" />
 						Fermer
 					</button>
 				</div>
 
-				<div class="modal-scroll overscroll-contain overflow-y-auto p-3 sm:p-4">
+				<div class="modal-scroll overscroll-contain overflow-y-auto p-4 sm:p-5">
 					<QueryResults
 						{selectedFields}
-						{matches}
+						{matchResults}
 						fallbackMailTo={fallbackMailbox}
 						{fallbackHref}
 					/>

@@ -7553,925 +7553,1187 @@
   },
   {
     "code": "XPOINET",
-    "label": "XPOINET",
+    "label": "Poids net article (spécifique)",
     "category": "Stocks",
     "group": "ITMMASTER",
     "table": "ITMMASTER",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Poids net unitaire de l'article utilisé pour les calculs logistiques et de pesée.",
     "keywords": [
       "xpoinet",
       "itmmaster",
-      "stocks"
+      "stocks",
+      "poids",
+      "net",
+      "masse"
     ]
   },
   {
     "code": "XPRHFCY",
-    "label": "XPRHFCY",
+    "label": "Site de réception prévu",
     "category": "Achats",
     "group": "PORDER",
     "table": "PORDER",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Site Sage X3 désigné pour la livraison physique de la commande fournisseur.",
     "keywords": [
       "xprhfcy",
       "porder",
-      "achats"
+      "achats",
+      "site",
+      "reception",
+      "livraison"
     ]
   },
   {
     "code": "XPROVCUST",
-    "label": "XPROVCUST",
+    "label": "Client donneur d'ordre",
     "category": "Stocks",
     "group": "ITMMASTER",
     "table": "ITMMASTER",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Code client ou donneur d'ordre propriétaire de l'article ou de la matière confiée.",
     "keywords": [
       "xprovcust",
       "itmmaster",
-      "stocks"
+      "stocks",
+      "client",
+      "donneur",
+      "ordre",
+      "proprietaire"
     ]
   },
   {
     "code": "XREADYPROD",
-    "label": "XREADYPROD",
+    "label": "Prêt pour production",
     "category": "Production",
     "group": "MFGHEAD",
     "table": "MFGHEAD",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Indicateur confirmant que l'ordre de fabrication a validé ses prérequis et peut être lancé en atelier.",
     "keywords": [
       "xreadyprod",
       "mfghead",
-      "production"
+      "production",
+      "ordre",
+      "fabrication",
+      "pret",
+      "lancement"
     ]
   },
   {
     "code": "XREQNUM",
-    "label": "XREQNUM",
+    "label": "Numéro de demande CQ (QC Order)",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Identifiant unique de la demande d'analyse ou de contrôle qualité pour un lot.",
     "keywords": [
       "xreqnum",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "demande",
+      "cq",
+      "qc",
+      "order",
+      "analyse"
     ]
   },
   {
     "code": "XSTA",
-    "label": "XSTA",
+    "label": "Statut ligne de commande achat",
     "category": "Stocks",
     "group": "PORDERQ",
     "table": "PORDERQ",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "État d'avancement de la ligne d'achat (en attente, reçue, soldée ou annulée).",
     "keywords": [
       "xsta",
       "porderq",
-      "stocks"
+      "stocks",
+      "achats",
+      "statut",
+      "commande",
+      "ligne"
     ]
   },
   {
     "code": "XSTADAT",
-    "label": "XSTADAT",
+    "label": "Date de statut de modification",
     "category": "Transverse",
     "group": "XITMMODDET",
     "table": "XITMMODDET",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Date d'enregistrement du changement de statut pour la modification article.",
     "keywords": [
       "xstadat",
       "xitmmoddet",
-      "transverse"
+      "transverse",
+      "date",
+      "statut",
+      "modification",
+      "article"
     ]
   },
   {
     "code": "XSTAFORCE",
-    "label": "XSTAFORCE",
+    "label": "Forçage statut CQ",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Indicateur de décision exceptionnelle ou de forçage du statut qualité lors du contrôle.",
     "keywords": [
       "xstaforce",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "forcage",
+      "statut",
+      "derogation"
     ]
   },
   {
     "code": "XSTAT00",
-    "label": "XSTAT00",
+    "label": "Famille statistique article 1",
     "category": "Stocks",
     "group": "XITMSTAT",
     "table": "XITMSTAT",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Premier axe de classification statistique et de reporting pour l'article (ex. statut destruction).",
     "keywords": [
       "xstat00",
       "xitmstat",
-      "stocks"
+      "stocks",
+      "statistique",
+      "famille",
+      "classification"
     ]
   },
   {
     "code": "XSTAT06",
-    "label": "XSTAT06",
+    "label": "Famille statistique palette",
     "category": "Stocks",
     "group": "XITMSTAT",
     "table": "XITMSTAT",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Classification logistique pour la gestion des palettes et la manutention externe.",
     "keywords": [
       "xstat06",
       "xitmstat",
-      "stocks"
+      "stocks",
+      "palette",
+      "statistique",
+      "logistique"
     ]
   },
   {
     "code": "XSTAT12",
-    "label": "XSTAT12",
+    "label": "Famille statistique valorisation",
     "category": "Stocks",
     "group": "XITMSTAT",
     "table": "XITMSTAT",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Classification analytique utilisée pour l'estimation du nombre de palettes et la valorisation du stock.",
     "keywords": [
       "xstat12",
       "xitmstat",
-      "stocks"
+      "stocks",
+      "valorisation",
+      "estimation",
+      "palettes"
     ]
   },
   {
     "code": "XSTATUT",
-    "label": "XSTATUT",
+    "label": "Statut du contrôle qualité",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "État de progression de la demande de contrôle (en attente, en cours, conforme, rejeté ou clôturé).",
     "keywords": [
       "xstatut",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "statut",
+      "controle",
+      "cq"
     ]
   },
   {
     "code": "XSTKCLASS",
-    "label": "XSTKCLASS",
+    "label": "Classe de stockage",
     "category": "Stocks",
     "group": "I",
     "table": "I",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Classification de l'emplacement et des règles de stockage associées.",
     "keywords": [
       "xstkclass",
       "i",
-      "stocks"
+      "stocks",
+      "classe",
+      "stockage",
+      "emplacement"
     ]
   },
   {
     "code": "XTAIBATMAX",
-    "label": "XTAIBATMAX",
+    "label": "Taille de lot maximale",
     "category": "Transverse",
     "group": "XITMVERSIO",
     "table": "XITMVERSIO",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Taille maximale autorisée pour un lot de fabrication sous cette version de formule.",
     "keywords": [
       "xtaibatmax",
       "xitmversio",
-      "transverse"
+      "transverse",
+      "production",
+      "taille",
+      "lot",
+      "maximum",
+      "batch"
     ]
   },
   {
     "code": "XTIMEPT",
-    "label": "XTIMEPT",
+    "label": "Point de temps stabilité",
     "category": "Transverse",
     "group": "XSTABETUS",
     "table": "XSTABETUS",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Échéance ou intervalle temporel de test dans l'étude de stabilité d'un produit (ex. T0, T3M, T6M).",
     "keywords": [
       "xtimept",
       "xstabetus",
-      "transverse"
+      "transverse",
+      "qualite",
+      "stabilite",
+      "echeance",
+      "temps"
     ]
   },
   {
     "code": "XTRANSAC",
-    "label": "XTRANSAC",
+    "label": "Type de transaction CQ",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Code identifiant le type d'opération de contrôle qualité (réception, déclaration OF, stabilité).",
     "keywords": [
       "xtransac",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "transaction",
+      "operation"
     ]
   },
   {
     "code": "XTYPCOUT",
-    "label": "XTYPCOUT",
+    "label": "Type de coût version",
     "category": "Transverse",
     "group": "XITMVERSIO",
     "table": "XITMVERSIO",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Méthode de calcul ou type de valorisation du coût associée à la version de fabrication.",
     "keywords": [
       "xtypcout",
       "xitmversio",
-      "transverse"
+      "transverse",
+      "cout",
+      "valorisation",
+      "version"
     ]
   },
   {
     "code": "XVALCQFLG",
-    "label": "XVALCQFLG",
+    "label": "Validation CQ globale",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Indicateur confirmant l'obtention de l'ensemble des validations qualité.",
     "keywords": [
       "xvalcqflg",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "validation",
+      "global",
+      "cq"
     ]
   },
   {
     "code": "XVALCQFLG_1",
-    "label": "XVALCQFLG_1",
+    "label": "Validation étape CQ 1",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Indicateur de validation qualité pour le poste ou palier d'analyse numéro 1.",
     "keywords": [
       "xvalcqflg_1",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "validation",
+      "palier",
+      "1"
     ]
   },
   {
     "code": "XVALCQFLG_2",
-    "label": "XVALCQFLG_2",
+    "label": "Validation étape CQ 2",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Indicateur de validation qualité pour le poste ou palier d'analyse numéro 2.",
     "keywords": [
       "xvalcqflg_2",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "validation",
+      "palier",
+      "2"
     ]
   },
   {
     "code": "XVALCQFLG_3",
-    "label": "XVALCQFLG_3",
+    "label": "Validation étape CQ 3",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Indicateur de validation qualité pour le poste ou palier d'analyse numéro 3.",
     "keywords": [
       "xvalcqflg_3",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "validation",
+      "palier",
+      "3"
     ]
   },
   {
     "code": "XVALCQFLG_4",
-    "label": "XVALCQFLG_4",
+    "label": "Validation étape CQ 4",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Indicateur de validation qualité pour le poste ou palier d'analyse numéro 4.",
     "keywords": [
       "xvalcqflg_4",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "validation",
+      "palier",
+      "4"
     ]
   },
   {
     "code": "XVALCQFLG_5",
-    "label": "XVALCQFLG_5",
+    "label": "Validation étape CQ 5",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Indicateur de validation qualité pour le poste ou palier d'analyse numéro 5.",
     "keywords": [
       "xvalcqflg_5",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "validation",
+      "palier",
+      "5"
     ]
   },
   {
     "code": "XVALCQFLG_6",
-    "label": "XVALCQFLG_6",
+    "label": "Validation étape CQ 6",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Indicateur de validation qualité pour le poste ou palier d'analyse numéro 6.",
     "keywords": [
       "xvalcqflg_6",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "validation",
+      "palier",
+      "6"
     ]
   },
   {
     "code": "XVALCQFLG_7",
-    "label": "XVALCQFLG_7",
+    "label": "Validation étape CQ 7",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Indicateur de validation qualité pour le poste ou palier d'analyse numéro 7.",
     "keywords": [
       "xvalcqflg_7",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "validation",
+      "palier",
+      "7"
     ]
   },
   {
     "code": "XVALCQFLG_8",
-    "label": "XVALCQFLG_8",
+    "label": "Validation étape CQ 8",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Indicateur de validation qualité pour le poste ou palier d'analyse numéro 8.",
     "keywords": [
       "xvalcqflg_8",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "validation",
+      "palier",
+      "8"
     ]
   },
   {
     "code": "XVALCQFLG_9",
-    "label": "XVALCQFLG_9",
+    "label": "Validation étape CQ 9",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Indicateur de validation qualité pour le poste ou palier d'analyse numéro 9.",
     "keywords": [
       "xvalcqflg_9",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "validation",
+      "palier",
+      "9"
     ]
   },
   {
     "code": "XVALCQWST",
-    "label": "XVALCQWST",
+    "label": "Poste de travail CQ principal",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Poste de charge ou laboratoire effectuant l'analyse qualité principale.",
     "keywords": [
       "xvalcqwst",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "poste",
+      "laboratoire"
     ]
   },
   {
     "code": "XVALCQWST_1",
-    "label": "XVALCQWST_1",
+    "label": "Poste de travail CQ 1",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Code du banc d'analyse ou laboratoire assigné à l'étape de contrôle 1.",
     "keywords": [
       "xvalcqwst_1",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "poste",
+      "banc",
+      "1"
     ]
   },
   {
     "code": "XVALCQWST_2",
-    "label": "XVALCQWST_2",
+    "label": "Poste de travail CQ 2",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Code du banc d'analyse ou laboratoire assigné à l'étape de contrôle 2.",
     "keywords": [
       "xvalcqwst_2",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "poste",
+      "banc",
+      "2"
     ]
   },
   {
     "code": "XVALCQWST_3",
-    "label": "XVALCQWST_3",
+    "label": "Poste de travail CQ 3",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Code du banc d'analyse ou laboratoire assigné à l'étape de contrôle 3.",
     "keywords": [
       "xvalcqwst_3",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "poste",
+      "banc",
+      "3"
     ]
   },
   {
     "code": "XVALCQWST_4",
-    "label": "XVALCQWST_4",
+    "label": "Poste de travail CQ 4",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Code du banc d'analyse ou laboratoire assigné à l'étape de contrôle 4.",
     "keywords": [
       "xvalcqwst_4",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "poste",
+      "banc",
+      "4"
     ]
   },
   {
     "code": "XVALCQWST_5",
-    "label": "XVALCQWST_5",
+    "label": "Poste de travail CQ 5",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Code du banc d'analyse ou laboratoire assigné à l'étape de contrôle 5.",
     "keywords": [
       "xvalcqwst_5",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "poste",
+      "banc",
+      "5"
     ]
   },
   {
     "code": "XVALCQWST_6",
-    "label": "XVALCQWST_6",
+    "label": "Poste de travail CQ 6",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Code du banc d'analyse ou laboratoire assigné à l'étape de contrôle 6.",
     "keywords": [
       "xvalcqwst_6",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "poste",
+      "banc",
+      "6"
     ]
   },
   {
     "code": "XVALCQWST_7",
-    "label": "XVALCQWST_7",
+    "label": "Poste de travail CQ 7",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Code du banc d'analyse ou laboratoire assigné à l'étape de contrôle 7.",
     "keywords": [
       "xvalcqwst_7",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "poste",
+      "banc",
+      "7"
     ]
   },
   {
     "code": "XVALCQWST_8",
-    "label": "XVALCQWST_8",
+    "label": "Poste de travail CQ 8",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Code du banc d'analyse ou laboratoire assigné à l'étape de contrôle 8.",
     "keywords": [
       "xvalcqwst_8",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "poste",
+      "banc",
+      "8"
     ]
   },
   {
     "code": "XVALCQWST_9",
-    "label": "XVALCQWST_9",
+    "label": "Poste de travail CQ 9",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Code du banc d'analyse ou laboratoire assigné à l'étape de contrôle 9.",
     "keywords": [
       "xvalcqwst_9",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "poste",
+      "banc",
+      "9"
     ]
   },
   {
     "code": "XVALDAT",
-    "label": "XVALDAT",
+    "label": "Date de validation CQ",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Date officielle à laquelle la décision de conformité qualité a été enregistrée.",
     "keywords": [
       "xvaldat",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "date",
+      "validation",
+      "decision"
     ]
   },
   {
     "code": "XVCRLINORI",
-    "label": "XVCRLINORI",
+    "label": "Ligne de pièce d'origine CQ",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Numéro de ligne du document source (réception, déclaration OF) ayant généré la demande CQ.",
     "keywords": [
-      "xvcrlinori",
+      "xvcarlinori",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "ligne",
+      "piece",
+      "origine"
     ]
   },
   {
     "code": "XVCRNUMORI",
-    "label": "XVCRNUMORI",
+    "label": "Pièce d'origine CQ",
     "category": "Stocks",
     "group": "XREQUESTH",
     "table": "XREQUESTH",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Numéro de la pièce source (bon de réception, ordre de fabrication) déclenchant le contrôle.",
     "keywords": [
       "xvcrnumori",
       "xrequesth",
-      "stocks"
+      "stocks",
+      "qualite",
+      "piece",
+      "reception",
+      "of"
     ]
   },
   {
     "code": "XVERENDDAT",
-    "label": "XVERENDDAT",
+    "label": "Date de fin validité version",
     "category": "Production",
     "group": "XITMVERSIO",
     "table": "XITMVERSIO",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Date d'expiration ou de fin d'application de cette version de formule ou procédé.",
     "keywords": [
       "xverenddat",
       "xitmversio",
-      "production"
+      "production",
+      "date",
+      "fin",
+      "validite",
+      "version"
     ]
   },
   {
     "code": "XVERSBLOQ",
-    "label": "XVERSBLOQ",
+    "label": "Version bloquée",
     "category": "Production",
     "group": "XITMVERSIO",
     "table": "XITMVERSIO",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Indicateur précisant si l'utilisation de cette version de fabrication est suspendue.",
     "keywords": [
       "xversbloq",
       "xitmversio",
-      "production"
+      "production",
+      "bloque",
+      "suspension",
+      "version"
     ]
   },
   {
     "code": "XVERSDES1",
-    "label": "XVERSDES1",
+    "label": "Désignation 1 version article",
     "category": "Transverse",
     "group": "XITMVERSIO",
     "table": "XITMVERSIO",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Libellé descriptif principal caractérisant cette version de formule ou nomenclature.",
     "keywords": [
       "xversdes1",
       "xitmversio",
-      "transverse"
+      "transverse",
+      "designation",
+      "libelle",
+      "version"
     ]
   },
   {
     "code": "XVERSDES2",
-    "label": "XVERSDES2",
+    "label": "Désignation 2 version article",
     "category": "Transverse",
     "group": "XITMVERSIO",
     "table": "XITMVERSIO",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Texte descriptif complémentaire ou commentaire technique sur la version.",
     "keywords": [
       "xversdes2",
       "xitmversio",
-      "transverse"
+      "transverse",
+      "designation",
+      "complementaire",
+      "version"
     ]
   },
   {
     "code": "XVERSION",
-    "label": "XVERSION",
+    "label": "Numéro de version article",
     "category": "Production",
     "group": "XITMVERSIO",
     "table": "XITMVERSIO",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Indice ou référence de révision industrielle de l'article.",
     "keywords": [
       "xversion",
       "xitmversio",
-      "production"
+      "production",
+      "version",
+      "revision",
+      "indice"
     ]
   },
   {
     "code": "XVERSTRDAT",
-    "label": "XVERSTRDAT",
+    "label": "Date début validité version",
     "category": "Production",
     "group": "XITMVERSIO",
     "table": "XITMVERSIO",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Date à partir de laquelle cette version d'article peut être mise en production.",
     "keywords": [
       "xverstrdat",
       "xitmversio",
-      "production"
+      "production",
+      "date",
+      "debut",
+      "validite",
+      "version"
     ]
   },
   {
     "code": "YACTCOD",
-    "label": "YACTCOD",
+    "label": "Code d'activité article",
     "category": "Stocks",
     "group": "ITMMASTER",
     "table": "ITMMASTER",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Code régissant les paramètres d'activation ou fonctionnalités spécifiques pour cet article.",
     "keywords": [
       "yactcod",
       "itmmaster",
-      "stocks"
+      "stocks",
+      "activite",
+      "code"
     ]
   },
   {
     "code": "YALIVUSR",
-    "label": "YALIVUSR",
+    "label": "Destinataire livraison (demande achat)",
     "category": "Achats",
     "group": "PREQUIS",
     "table": "PREQUIS",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Utilisateur interne à qui le matériel ou service commandé doit être remis.",
     "keywords": [
       "yalivusr",
       "prequis",
-      "achats"
+      "achats",
+      "destinataire",
+      "livraison",
+      "utilisateur",
+      "demande"
     ]
   },
   {
     "code": "YBPSCERT",
-    "label": "YBPSCERT",
+    "label": "Certification qualité fournisseur",
     "category": "Achats",
     "group": "ITMBPS",
     "table": "ITMBPS",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Statut d'agrément, audit ou certification qualité du fournisseur pour cet article.",
     "keywords": [
       "ybpscert",
       "itmbps",
-      "achats"
+      "achats",
+      "certification",
+      "agrement",
+      "fournisseur",
+      "audit"
     ]
   },
   {
     "code": "YCLEICPE",
-    "label": "YCLEICPE",
+    "label": "Classement ICPE",
     "category": "Stocks",
     "group": "YITMLEGIS",
     "table": "YITMLEGIS",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Rubrique réglementaire relative aux installations classées pour la protection de l'environnement.",
     "keywords": [
       "ycleicpe",
       "yitmlegis",
-      "stocks"
+      "stocks",
+      "icpe",
+      "classement",
+      "environnement",
+      "reglementation"
     ]
   },
   {
     "code": "YCODDNGPHY",
-    "label": "YCODDNGPHY",
+    "label": "Danger physique (SGH/CLP)",
     "category": "Stocks",
     "group": "YITMLEGIS",
     "table": "YITMLEGIS",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Classification de danger physique pour la matière (inflammable, comburant, explosif).",
     "keywords": [
       "ycoddngphy",
       "yitmlegis",
-      "stocks"
+      "stocks",
+      "danger",
+      "physique",
+      "securite",
+      "clp"
     ]
   },
   {
     "code": "YCODDNGSAN",
-    "label": "YCODDNGSAN",
+    "label": "Danger santé (SGH/CLP)",
     "category": "Stocks",
     "group": "YITMLEGIS",
     "table": "YITMLEGIS",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Classification de toxicité ou danger pour la santé humaine (toxicité aiguë, irritation).",
     "keywords": [
       "ycoddngsan",
       "yitmlegis",
-      "stocks"
+      "stocks",
+      "danger",
+      "sante",
+      "toxicite",
+      "securite"
     ]
   },
   {
     "code": "YCODENV",
-    "label": "YCODENV",
+    "label": "Danger environnement (SGH/CLP)",
     "category": "Stocks",
     "group": "YITMLEGIS",
     "table": "YITMLEGIS",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Classification de danger et écotoxicité pour l'environnement aquatique et terrestre.",
     "keywords": [
       "ycodenv",
       "yitmlegis",
-      "stocks"
+      "stocks",
+      "danger",
+      "environnement",
+      "pollution",
+      "ecotoxicite"
     ]
   },
   {
     "code": "YFABRIQUAN1",
-    "label": "YFABRIQUAN1",
+    "label": "Fabricant agréé 1",
     "category": "Achats",
     "group": "ITMBPS",
     "table": "ITMBPS",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Nom ou code du premier site de fabrication qualifié pour cet article fournisseur.",
     "keywords": [
       "yfabriquan1",
       "itmbps",
-      "achats"
+      "achats",
+      "fabricant",
+      "agrement",
+      "source",
+      "1"
     ]
   },
   {
     "code": "YFABRIQUAN2",
-    "label": "YFABRIQUAN2",
+    "label": "Fabricant agréé 2",
     "category": "Achats",
     "group": "ITMBPS",
     "table": "ITMBPS",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Nom ou code du deuxième site de fabrication qualifié pour cet article fournisseur.",
     "keywords": [
       "yfabriquan2",
       "itmbps",
-      "achats"
+      "achats",
+      "fabricant",
+      "agrement",
+      "source",
+      "2"
     ]
   },
   {
     "code": "YFABRIQUAN3",
-    "label": "YFABRIQUAN3",
+    "label": "Fabricant agréé 3",
     "category": "Achats",
     "group": "ITMBPS",
     "table": "ITMBPS",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Nom ou code du troisième site de fabrication qualifié pour cet article fournisseur.",
     "keywords": [
       "yfabriquan3",
       "itmbps",
-      "achats"
+      "achats",
+      "fabricant",
+      "agrement",
+      "source",
+      "3"
     ]
   },
   {
     "code": "YFABRIQUAN4",
-    "label": "YFABRIQUAN4",
+    "label": "Fabricant agréé 4",
     "category": "Achats",
     "group": "ITMBPS",
     "table": "ITMBPS",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Nom ou code du quatrième site de fabrication qualifié pour cet article fournisseur.",
     "keywords": [
       "yfabriquan4",
       "itmbps",
-      "achats"
+      "achats",
+      "fabricant",
+      "agrement",
+      "source",
+      "4"
     ]
   },
   {
     "code": "YFAMLOT",
-    "label": "YFAMLOT",
+    "label": "Famille de lot article",
     "category": "Transverse",
     "group": "ITMMASTER",
     "table": "ITMMASTER",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Typologie ou groupe de numérotation et de traçabilité des lots pour le produit.",
     "keywords": [
       "yfamlot",
       "itmmaster",
-      "transverse"
+      "transverse",
+      "famille",
+      "lot",
+      "tracabilite"
     ]
   },
   {
     "code": "YSTADE",
-    "label": "YSTADE",
+    "label": "Stade d'industrialisation",
     "category": "Transverse",
     "group": "ITMMASTER",
     "table": "ITMMASTER",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Niveau de maturité du produit (développement, transposition, commercial, fin de vie).",
     "keywords": [
       "ystade",
       "itmmaster",
-      "transverse"
+      "transverse",
+      "stade",
+      "developpement",
+      "maturite"
     ]
   },
   {
     "code": "YVOLUTION",
-    "label": "YVOLUTION",
+    "label": "Indice d'évolution produit",
     "category": "Transverse",
     "group": "ITMMASTER",
     "table": "ITMMASTER",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Numéro de révision ou palier technique de la fiche article.",
     "keywords": [
       "yvolution",
       "itmmaster",
-      "transverse"
+      "transverse",
+      "evolution",
+      "revision",
+      "indice"
     ]
   },
   {
     "code": "YWST",
-    "label": "YWST",
+    "label": "Poste de travail Worksheet",
     "category": "Transverse",
     "group": "YWRKEDT",
     "table": "YWRKEDT",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Poste d'impression rattaché à la fiche de suivi de fabrication atelier.",
     "keywords": [
       "ywst",
       "ywrkedt",
-      "transverse"
+      "transverse",
+      "poste",
+      "worksheet",
+      "fabrication"
     ]
   },
   {
     "code": "ZDATE",
-    "label": "ZDATE",
+    "label": "Date d'arrêté stock",
     "category": "Stocks",
     "group": "ZSTOCKDATE",
     "table": "ZSTOCKDATE",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Date de référence de l'inventaire ou de la photographie historique du stock.",
     "keywords": [
       "zdate",
       "zstockdate",
-      "stocks"
+      "stocks",
+      "date",
+      "arrete",
+      "historique"
     ]
   },
   {
     "code": "ZITMREF",
-    "label": "ZITMREF",
+    "label": "Référence article (stock à date)",
     "category": "Stocks",
     "group": "ZSTOCKDATE",
     "table": "ZSTOCKDATE",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Code unique de l'article dans la table de stock historique à date.",
     "keywords": [
       "zitmref",
       "zstockdate",
-      "stocks"
+      "stocks",
+      "article",
+      "reference",
+      "date"
     ]
   },
   {
     "code": "ZLOTVAL",
-    "label": "ZLOTVAL",
+    "label": "Valorisation lot nomenclature",
     "category": "Production",
     "group": "BOM",
     "table": "BOM",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Indicateur d'éligibilité du composant pour le calcul du coût de revient dans la nomenclature.",
     "keywords": [
       "zlotval",
       "bom",
-      "production"
+      "production",
+      "lot",
+      "validation",
+      "cout",
+      "nomenclature"
     ]
   },
   {
     "code": "ZNUMEDI",
-    "label": "ZNUMEDI",
+    "label": "Numéro d'édition nomenclature",
     "category": "Production",
     "group": "BOM",
     "table": "BOM",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Indice d'impression ou de diffusion officielle de la formule de production.",
     "keywords": [
       "znumedi",
       "bom",
-      "production"
+      "production",
+      "edition",
+      "revision",
+      "nomenclature"
     ]
   },
   {
     "code": "ZONE",
-    "label": "ZONE",
+    "label": "Zone traduite ATEXTRA",
     "category": "Production",
     "group": "ATEXTRA",
     "table": "ATEXTRA",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Nom du champ textuel multilingue stocké dans la table de traduction ATEXTRA.",
     "keywords": [
       "zone",
       "atextra",
-      "production"
+      "production",
+      "zone",
+      "traduction",
+      "langue",
+      "libelle"
     ]
   },
   {
     "code": "ZPCOD",
-    "label": "ZPCOD",
+    "label": "Code convention/projet",
     "category": "Stocks",
     "group": "ITMMASTER",
     "table": "ITMMASTER",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Identifiant de rattachement conventionnel ou projet spécifique pour l'article.",
     "keywords": [
       "zpcod",
       "itmmaster",
-      "stocks"
+      "stocks",
+      "code",
+      "projet",
+      "convention"
     ]
   },
   {
     "code": "ZREFINSTR",
-    "label": "ZREFINSTR",
+    "label": "Référence instruction fabrication",
     "category": "Transverse",
     "group": "ITMMASTER",
     "table": "ITMMASTER",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Numéro du dossier technique, mode opératoire ou instruction de travail associée à l'article.",
     "keywords": [
       "zrefinstr",
       "itmmaster",
-      "transverse"
+      "transverse",
+      "instruction",
+      "dossier",
+      "fabrication",
+      "methode"
     ]
   },
   {
     "code": "ZSTOCK",
-    "label": "ZSTOCK",
+    "label": "Quantité en stock à date",
     "category": "Stocks",
     "group": "ZSTOCKDATE",
     "table": "ZSTOCKDATE",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Quantité physique constatée en stock à la date d'arrêté historique.",
     "keywords": [
       "zstock",
       "zstockdate",
-      "stocks"
+      "stocks",
+      "quantite",
+      "stock",
+      "volume"
     ]
   },
   {
     "code": "ZSTOFCY",
-    "label": "ZSTOFCY",
+    "label": "Site stockage à date",
     "category": "Stocks",
     "group": "ZSTOCKDATE",
     "table": "ZSTOCKDATE",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Établissement ou site de stockage concerné par l'inventaire historique.",
     "keywords": [
       "zstofcy",
       "zstockdate",
-      "stocks"
+      "stocks",
+      "site",
+      "stockage",
+      "etablissement"
     ]
   },
   {
     "code": "ZYIELD",
-    "label": "ZYIELD",
+    "label": "Rendement formule/nomenclature",
     "category": "Production",
     "group": "BOM",
     "table": "BOM",
-    "description": "Champ détecté automatiquement dans les requêtes SQL Sage X3.",
+    "description": "Coefficient de rendement ou de perte prévu pour le composant dans la nomenclature.",
     "keywords": [
       "zyield",
       "bom",
-      "production"
+      "production",
+      "rendement",
+      "perte",
+      "nomenclature",
+      "composant"
     ]
   }
 ]
