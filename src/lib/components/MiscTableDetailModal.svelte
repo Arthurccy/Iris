@@ -271,11 +271,11 @@
 		onclick={onClose}
 	></button>
 
-	<!-- Wrapper de centrage vertical ancré en haut (items-start) pour garantir que le haut est TOUJOURS visible -->
-	<div class="min-h-full flex items-start justify-center p-3 sm:p-6 pt-5 sm:pt-8 pb-16 pointer-events-none">
+	<!-- Wrapper de positionnement ancré en haut (items-start) pour garantir que le haut est TOUJOURS visible avec marge généreuse -->
+	<div class="min-h-full flex items-start justify-center px-3 sm:px-6 pt-10 sm:pt-14 pb-16 pointer-events-none">
 		<!-- Boîte de dialogue centrée avec marge haute/basse garantie -->
 		<div
-			class="relative pointer-events-auto flex w-full max-w-5xl flex-col max-h-[85vh] overflow-hidden rounded-2xl border-2 border-slate-300 bg-white shadow-2xl"
+			class="relative pointer-events-auto flex w-full max-w-5xl flex-col max-h-[82vh] overflow-hidden rounded-2xl border-2 border-slate-300 bg-white shadow-2xl"
 			role="dialog"
 			aria-modal="true"
 			aria-label={`Table diverse #${table.numtab}`}
