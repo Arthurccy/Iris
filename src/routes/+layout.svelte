@@ -59,9 +59,9 @@
 
 			<!-- Informations & Support 3636 -->
 			<div class="flex items-center gap-3">
-				<div class="hidden md:flex items-center gap-1.5 text-xs text-slate-500 bg-slate-50 px-2.5 py-1 rounded-full border border-slate-200">
-					<ShieldCheck class="size-3.5 text-corporate-700" />
-					<span>Environnement Production</span>
+				<div class="hidden md:flex items-center gap-1.5 text-xs font-semibold text-amber-900 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200">
+					<Database class="size-3.5 text-amber-700" />
+					<span>SANDBOX (FRVDRVMAS46)</span>
 				</div>
 
 				<a

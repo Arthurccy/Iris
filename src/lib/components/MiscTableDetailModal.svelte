@@ -235,18 +235,18 @@
 		<div class="section-divider flex items-center justify-between gap-3 px-5 py-4 bg-slate-50/90">
 			<div>
 				<div class="flex items-center gap-2">
-					<span class="rounded bg-corporate-100 font-mono text-[11px] font-semibold text-corporate-800 px-2 py-0.5">
-						Table diverse #{table.numtab}
+					<span class="rounded bg-corporate-700 font-mono text-[11px] font-bold text-white px-2.5 py-0.5 shadow-2xs">
+						Table #{table.numtab}
 					</span>
-					<span class="rounded bg-slate-200 text-slate-700 text-[11px] font-medium px-2 py-0.5">
+					<span class="rounded bg-slate-200 text-slate-900 text-[11px] font-bold px-2 py-0.5">
 						{table.category}
 					</span>
 					{#if table.numtab >= 1000}
-						<span class="rounded bg-amber-100 text-amber-800 text-[11px] font-medium px-2 py-0.5">
+						<span class="rounded bg-amber-100 text-amber-950 border border-amber-300 text-[11px] font-bold px-2 py-0.5">
 							Spécifique Valdepharm
 						</span>
 					{:else}
-						<span class="rounded bg-blue-100 text-blue-800 text-[11px] font-medium px-2 py-0.5">
+						<span class="rounded bg-blue-100 text-blue-950 border border-blue-300 text-[11px] font-bold px-2 py-0.5">
 							Standard Sage X3
 						</span>
 					{/if}
@@ -297,7 +297,7 @@
 					{#if formMode === 'none'}
 						<button
 							type="button"
-							class="inline-flex items-center gap-1.5 rounded-lg bg-corporate-600 px-3 py-1.5 text-xs font-semibold text-white shadow-xs transition hover:bg-corporate-700"
+							class="inline-flex items-center gap-1.5 rounded-lg bg-corporate-700 hover:bg-corporate-800 px-3.5 py-1.5 text-xs font-bold text-white shadow-xs transition"
 							onclick={openAddForm}
 						>
 							<Plus class="size-3.5" />
@@ -517,10 +517,10 @@
 			{/if}
 
 			<!-- Tableau des valeurs existantes -->
-			<div class="rounded-xl border border-slate-200 bg-white overflow-hidden shadow-xs">
+			<div class="rounded-xl border border-slate-300 bg-white overflow-hidden shadow-xs">
 				<table class="w-full text-left text-xs border-collapse">
 					<thead>
-						<tr class="border-b border-slate-200 bg-slate-50/90 text-[11px] font-semibold text-slate-600 uppercase tracking-wider">
+						<tr class="border-b-2 border-slate-200 bg-slate-100 text-[11px] font-bold text-slate-800 uppercase tracking-wider">
 							<th class="py-2.5 px-3 w-28">Code X3</th>
 							<th class="py-2.5 px-3 w-44">Libellé court</th>
 							<th class="py-2.5 px-3">Désignation complète officielle</th>
@@ -529,55 +529,67 @@
 							<th class="py-2.5 px-3 text-right w-44">Actions</th>
 						</tr>
 					</thead>
-					<tbody class="divide-y divide-slate-100">
+					<tbody class="divide-y divide-slate-200">
 						{#if filteredItems.length === 0}
 							<tr>
-								<td colspan="6" class="py-8 text-center text-slate-500">
+								<td colspan="6" class="py-8 text-center text-slate-500 font-medium">
 									Aucune entrée ne correspond à votre recherche "{itemSearch}".
 								</td>
 							</tr>
 						{:else}
 							{#each filteredItems as item}
-								<tr class="hover:bg-slate-50/70 transition group">
-									<td class="py-2 px-3 font-mono font-semibold text-slate-900">
-										<span class="rounded bg-slate-100 px-1.5 py-0.5 border border-slate-200">
+								<tr class="hover:bg-slate-50 transition group">
+									<td class="py-2 px-3 font-mono font-bold text-slate-950">
+										<span class="rounded bg-slate-100 px-2 py-0.5 border border-slate-300 shadow-2xs">
 											{item.code}
 										</span>
 									</td>
-									<td class="py-2 px-3 text-slate-700">
+									<td class="py-2 px-3 text-slate-800 font-medium">
 										{item.shortLabel || '-'}
 									</td>
-									<td class="py-2 px-3 text-slate-900 font-medium">
+									<td class="py-2 px-3 text-slate-950 font-bold">
 										{item.label}
 									</td>
-									<td class="py-2 px-3 font-mono text-[11px] text-slate-600">
+									<td class="py-2 px-3 font-mono text-[11px] text-slate-700 font-semibold">
 										{item.param_a1 ? item.param_a1 : '-'}
 									</td>
-									<td class="py-2 px-3 font-mono text-[11px] text-slate-600">
+									<td class="py-2 px-3 font-mono text-[11px] text-slate-700 font-semibold">
 										{item.param_n1 !== undefined && item.param_n1 !== '' ? item.param_n1 : '-'}
 									</td>
 									<td class="py-2 px-3 text-right">
 										<div class="inline-flex items-center gap-1.5">
 											<button
 												type="button"
-												class="inline-flex items-center gap-1 rounded border border-slate-200 bg-white px-2 py-1 text-[11px] font-medium text-slate-700 hover:border-amber-300 hover:text-amber-800 hover:bg-amber-50 shadow-2xs transition"
+												class="inline-flex items-center gap-1 rounded-md border border-amber-300 bg-amber-50/80 px-2.5 py-1 text-[11px] font-bold text-amber-950 hover:bg-amber-100 shadow-2xs transition"
 												onclick={() => openEditForm(item)}
 												title="Modifier les libellés ou paramètres de cette valeur"
 											>
-												<Pencil class="size-3 text-slate-500" />
+												<Pencil class="size-3 text-amber-700" />
 												<span>Modifier</span>
 											</button>
 
 											<button
 												type="button"
-												class="inline-flex items-center gap-1 rounded border border-slate-200 bg-white px-2 py-1 text-[11px] text-slate-600 hover:border-corporate-200 hover:text-corporate-700 shadow-2xs transition"
+												class="inline-flex items-center gap-1 rounded-md border border-slate-300 bg-white px-2.5 py-1 text-[11px] font-bold text-slate-800 hover:bg-slate-100 shadow-2xs transition"
 												onclick={() => copyCode(item.code)}
 												title="Copier le code technique"
 											>
 												{#if copiedCode === item.code}
 													<Check class="size-3 text-emerald-600" />
-													<span class="text-emerald-700 font-semibold">Copié</span>
+													<span class="text-emerald-800">Copié</span>
 												{:else}
+													<Clipboard class="size-3 text-slate-500" />
+													<span>Copier</span>
+												{/if}
+											</button>
+										</div>
+									</td>
+								</tr>
+							{/each}
+						{/if}
+					</tbody>
+				</table>
+			</div>
 													<Clipboard class="size-3 text-slate-400" />
 													<span>Copier</span>
 												{/if}

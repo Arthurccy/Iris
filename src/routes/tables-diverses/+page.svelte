@@ -76,6 +76,31 @@
 		tables.reduce((sum, t) => sum + (t.items ? t.items.length : 0), 0)
 	);
 
+	// Couleurs contrastées par domaine
+	function getCategoryBadge(category: string) {
+		switch (category) {
+			case 'Valdepharm - Spécifique Site':
+			case 'Valdepharm - Production & Tolling':
+				return 'bg-amber-100 text-amber-950 border-amber-300 font-semibold';
+			case 'Fiscalité & Taxes':
+				return 'bg-purple-100 text-purple-950 border-purple-300 font-semibold';
+			case 'Finances & Règlements':
+			case 'Comptabilité & Banque':
+				return 'bg-emerald-100 text-emerald-950 border-emerald-300 font-semibold';
+			case 'Stocks & Flux':
+				return 'bg-blue-100 text-blue-950 border-blue-300 font-semibold';
+			case 'Tiers & Ventes':
+			case 'CRM & Services':
+				return 'bg-indigo-100 text-indigo-950 border-indigo-300 font-semibold';
+			case 'Qualité & Contrôle':
+				return 'bg-cyan-100 text-cyan-950 border-cyan-300 font-semibold';
+			case 'Administration & Workflow':
+				return 'bg-rose-100 text-rose-950 border-rose-300 font-semibold';
+			default:
+				return 'bg-slate-100 text-slate-800 border-slate-300 font-medium';
+		}
+	}
+
 	// Filtrage
 	const filteredTables = $derived.by(() => {
 		let list = tables;
@@ -144,7 +169,6 @@
 
 	// Réinitialiser la page si les filtres changent
 	$effect(() => {
-		// Accéder aux filtres pour déclencher l'effet
 		const _ = `${searchTerm}_${selectedScope}_${selectedCategory}_${hideEmptyTables}_${pageSize}`;
 		currentPage = 1;
 	});
@@ -195,75 +219,78 @@
 	/>
 </svelte:head>
 
-<div class="relative isolate overflow-hidden min-h-screen bg-slate-50/70 pb-16">
+<div class="relative isolate overflow-hidden min-h-screen bg-slate-100/60 pb-16">
 	<div class="absolute inset-0 -z-10 bg-grid bg-[size:24px_24px] opacity-25"></div>
 
-	<main class="w-full px-4 py-5 sm:px-6 lg:px-8 2xl:px-10 max-w-[1920px] mx-auto space-y-4">
+	<main class="w-full px-4 py-6 sm:px-6 lg:px-8 2xl:px-10 max-w-[1920px] mx-auto space-y-4">
 		
 		<!-- Bandeau d'en-tête & Indicateurs clés -->
-		<div class="rounded-xl border border-slate-200 bg-white p-4 sm:p-5 shadow-xs">
-			<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-				<div class="space-y-1">
-					<div class="flex flex-wrap items-center gap-2">
-						<span class="rounded bg-corporate-100 font-mono text-[11px] font-semibold text-corporate-800 px-2 py-0.5">
-							Sage X3 v6 — GESTDU / ATABDIV
+		<div class="rounded-2xl border border-slate-300/80 bg-white p-5 sm:p-6 shadow-sm">
+			<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+				<div class="space-y-1.5">
+					<div class="flex items-center gap-2">
+						<span class="rounded bg-corporate-700 text-white font-mono text-[11px] font-bold px-2.5 py-0.5 tracking-wide shadow-2xs">
+							SAGE X3 VALDEPHARM
 						</span>
 						{#if isLive}
-							<span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-800">
-								<span class="size-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
-								Connexion directe LIVE SANDBOX (10.103.7.128)
-							</span>
-						{:else}
-							<span class="inline-flex items-center gap-1.5 rounded-full bg-slate-100 border border-slate-200 px-2.5 py-0.5 text-[11px] font-medium text-slate-700">
-								<Database class="size-3 text-slate-500" />
-								Base SANDBOX FRVDRVMAS46 (x3v6 / VDRSANDB)
+							<span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 border border-emerald-300 px-3 py-0.5 text-[11px] font-bold text-emerald-950">
+								<span class="size-2 rounded-full bg-emerald-600 animate-pulse"></span>
+								DIRECT LIVE SANDBOX
 							</span>
 						{/if}
 					</div>
-					<h1 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-950">
-						Référentiel des Tables Diverses Sage X3
+					<h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-950">
+						Tables Diverses & Référentiels
 					</h1>
-					<p class="text-xs text-slate-600 max-w-4xl">
-						Consultez, recherchez et enrichissez en autonomie les listes de valeurs paramétrées dans Sage X3. Vérifiez les doublons et générez les ordres d'insertion normalisés.
+					<p class="text-xs sm:text-sm font-medium text-slate-600 max-w-4xl leading-relaxed">
+						Consultez, recherchez et enrichissez les listes de valeurs et menus déroulants de Sage X3 en toute autonomie.
 					</p>
 				</div>
 
-				<!-- Compteurs clés en pilules sobres -->
-				<div class="flex flex-wrap items-center gap-2 lg:gap-3 shrink-0">
-					<div class="flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-50/80 px-3 py-2 text-xs">
+				<!-- Compteurs clés en cartes à fort contraste -->
+				<div class="flex flex-wrap items-center gap-3 shrink-0">
+					<!-- Carte Total -->
+					<div class="flex items-center gap-3 rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5 shadow-2xs">
 						<div>
-							<div class="text-[10px] uppercase font-semibold text-slate-500">Total Référentiel</div>
-							<div class="text-sm font-bold text-slate-900">{totalTablesCount} tables</div>
-						</div>
-						<div class="h-6 w-px bg-slate-200"></div>
-						<div>
-							<div class="text-[10px] uppercase font-semibold text-slate-500">Avec Données</div>
-							<div class="text-sm font-bold text-corporate-700">{nonEmptyTablesCount} tables ({totalItemsCount} val.)</div>
-						</div>
-						<div class="h-6 w-px bg-slate-200"></div>
-						<div>
-							<div class="text-[10px] uppercase font-semibold text-slate-500">Spécifique Valdepharm</div>
-							<div class="text-sm font-bold text-amber-700">{valdepharmCount} tables</div>
+							<div class="text-[10px] uppercase font-bold tracking-wider text-slate-500">Total Tables</div>
+							<div class="text-base font-extrabold text-slate-950">{totalTablesCount}</div>
 						</div>
 					</div>
 
+					<!-- Carte Avec Données -->
+					<div class="flex items-center gap-3 rounded-xl border border-emerald-300 bg-emerald-50/70 px-3.5 py-2.5 shadow-2xs">
+						<div>
+							<div class="text-[10px] uppercase font-bold tracking-wider text-emerald-800">Avec Données</div>
+							<div class="text-base font-extrabold text-emerald-950">{nonEmptyTablesCount} <span class="text-xs font-semibold text-emerald-800">({totalItemsCount} val.)</span></div>
+						</div>
+					</div>
+
+					<!-- Carte Spécifique Valdepharm -->
+					<div class="flex items-center gap-3 rounded-xl border border-amber-400 bg-amber-50/80 px-3.5 py-2.5 shadow-2xs">
+						<div>
+							<div class="text-[10px] uppercase font-bold tracking-wider text-amber-800">Valdepharm (Site)</div>
+							<div class="text-base font-extrabold text-amber-950">{valdepharmCount} <span class="text-xs font-semibold text-amber-800">tables</span></div>
+						</div>
+					</div>
+
+					<!-- Bouton Nouvelle table -->
 					<a
 						href={newTableMailHref}
-						class="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 hover:border-corporate-300 transition"
+						class="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-xs font-bold text-slate-800 shadow-xs hover:bg-slate-50 hover:border-corporate-600 hover:text-corporate-700 transition"
 					>
-						<Mail class="size-3.5 text-slate-500" />
+						<Mail class="size-4 text-corporate-600" />
 						<span>Demander une table</span>
 					</a>
 				</div>
 			</div>
 
 			<!-- Barre d'outils, Recherche et Filtres -->
-			<div class="mt-4 pt-3 border-t border-slate-100 flex flex-col gap-3">
-				<!-- Ligne 1 : Champ de recherche plein écran -->
+			<div class="mt-5 pt-4 border-t border-slate-200 flex flex-col gap-3.5">
+				<!-- Ligne 1 : Champ de recherche avec contraste fort -->
 				<div class="relative w-full">
-					<Search class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
+					<Search class="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-slate-500" />
 					<input
-						class="w-full rounded-lg border border-slate-200 bg-slate-50/50 pl-9 pr-9 py-2 text-xs sm:text-sm text-slate-900 outline-none transition focus:border-corporate-500 focus:bg-white focus:ring-2 focus:ring-corporate-100"
+						class="w-full rounded-xl border-2 border-slate-300 bg-slate-50/70 pl-10 pr-10 py-2.5 text-xs sm:text-sm font-medium text-slate-950 outline-none transition placeholder:text-slate-500 focus:border-corporate-600 focus:bg-white focus:ring-4 focus:ring-corporate-500/10"
 						type="search"
 						placeholder="Rechercher par numéro (ex: 1007, 1011, 20), intitulé (ex: balance, avenant, taxe), ou code technique (ex: BAL01, AIT)..."
 						bind:value={searchTerm}
@@ -271,25 +298,26 @@
 					{#if searchTerm.trim()}
 						<button
 							type="button"
-							class="absolute right-2.5 top-1/2 -translate-y-1/2 rounded p-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100"
+							class="absolute right-3 top-1/2 -translate-y-1/2 rounded-md p-1 text-slate-500 hover:text-slate-900 hover:bg-slate-200"
 							onclick={() => (searchTerm = '')}
 							title="Effacer la recherche"
 						>
-							<X class="size-3.5" />
+							<X class="size-4" />
 						</button>
 					{/if}
 				</div>
 
 				<!-- Ligne 2 : Contrôles de filtrage, bascule de vue et options -->
 				<div class="flex flex-wrap items-center justify-between gap-3 text-xs">
-					<!-- Segmented control de périmètre -->
-					<div class="flex items-center gap-1 rounded-lg border border-slate-200 bg-slate-100/80 p-0.5">
+					
+					<!-- Segmented control de périmètre avec couleurs affirmées -->
+					<div class="flex items-center gap-1 rounded-xl border border-slate-300 bg-slate-200/70 p-1">
 						<button
 							type="button"
-							class="rounded-md px-3 py-1 font-medium transition {
+							class="rounded-lg px-3.5 py-1.5 font-bold transition {
 								selectedScope === 'all'
-									? 'bg-white text-slate-900 shadow-2xs'
-									: 'text-slate-600 hover:text-slate-900'
+									? 'bg-slate-900 text-white shadow-xs'
+									: 'text-slate-700 hover:text-slate-950 hover:bg-slate-200'
 							}"
 							onclick={() => (selectedScope = 'all')}
 						>
@@ -297,10 +325,10 @@
 						</button>
 						<button
 							type="button"
-							class="rounded-md px-3 py-1 font-medium transition {
+							class="rounded-lg px-3.5 py-1.5 font-bold transition {
 								selectedScope === 'valdepharm'
-									? 'bg-white text-amber-900 font-semibold shadow-2xs'
-									: 'text-slate-600 hover:text-slate-900'
+									? 'bg-amber-600 text-white shadow-xs'
+									: 'text-amber-900 hover:bg-amber-100'
 							}"
 							onclick={() => (selectedScope = 'valdepharm')}
 						>
@@ -308,10 +336,10 @@
 						</button>
 						<button
 							type="button"
-							class="rounded-md px-3 py-1 font-medium transition {
+							class="rounded-lg px-3.5 py-1.5 font-bold transition {
 								selectedScope === 'standard'
-									? 'bg-white text-blue-900 font-semibold shadow-2xs'
-									: 'text-slate-600 hover:text-slate-900'
+									? 'bg-blue-600 text-white shadow-xs'
+									: 'text-blue-900 hover:bg-blue-100'
 							}"
 							onclick={() => (selectedScope = 'standard')}
 						>
@@ -319,12 +347,12 @@
 						</button>
 					</div>
 
-					<!-- Filtre par catégorie (Select sobre) -->
+					<!-- Filtre par catégorie -->
 					<div class="flex items-center gap-2">
-						<label for="catSelect" class="text-slate-500 font-medium">Catégorie :</label>
+						<label for="catSelect" class="text-slate-700 font-bold">Domaine :</label>
 						<select
 							id="catSelect"
-							class="rounded-lg border border-slate-200 bg-white px-2.5 py-1 text-xs text-slate-800 outline-none focus:border-corporate-500"
+							class="rounded-xl border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-900 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100 shadow-2xs"
 							bind:value={selectedCategory}
 						>
 							{#each allCategories as cat}
@@ -336,24 +364,24 @@
 					</div>
 
 					<!-- Option : Masquer les tables vides -->
-					<label class="inline-flex items-center gap-2 cursor-pointer select-none text-slate-700 font-medium">
+					<label class="inline-flex items-center gap-2 cursor-pointer select-none rounded-lg border border-slate-300 bg-slate-50 px-2.5 py-1.5 text-slate-800 font-bold hover:bg-slate-100 transition shadow-2xs">
 						<input
 							type="checkbox"
-							class="rounded border-slate-300 text-corporate-600 focus:ring-corporate-400"
+							class="size-4 rounded border-slate-400 text-corporate-700 focus:ring-corporate-500"
 							bind:checked={hideEmptyTables}
 						/>
 						<span>Masquer les tables vides ({totalTablesCount - nonEmptyTablesCount})</span>
 					</label>
 
-					<!-- Bascule Vue Tableau vs Vue Cartes & Tri -->
+					<!-- Bascule Vue Tableau vs Vue Cartes -->
 					<div class="flex items-center gap-1.5 ml-auto">
-						<div class="flex items-center rounded-lg border border-slate-200 bg-slate-100/70 p-0.5">
+						<div class="flex items-center rounded-xl border border-slate-300 bg-slate-200/70 p-1">
 							<button
 								type="button"
-								class="inline-flex items-center gap-1 rounded-md px-2.5 py-1 font-medium transition {
+								class="inline-flex items-center gap-1.5 rounded-lg px-3 py-1 font-bold transition {
 									viewMode === 'table'
-										? 'bg-white text-corporate-900 shadow-2xs'
-										: 'text-slate-600 hover:text-slate-900'
+										? 'bg-white text-corporate-800 shadow-xs'
+										: 'text-slate-700 hover:text-slate-950'
 								}"
 								onclick={() => (viewMode = 'table')}
 								title="Affichage tableau synthétique"
@@ -363,10 +391,10 @@
 							</button>
 							<button
 								type="button"
-								class="inline-flex items-center gap-1 rounded-md px-2.5 py-1 font-medium transition {
+								class="inline-flex items-center gap-1.5 rounded-lg px-3 py-1 font-bold transition {
 									viewMode === 'grid'
-										? 'bg-white text-corporate-900 shadow-2xs'
-										: 'text-slate-600 hover:text-slate-900'
+										? 'bg-white text-corporate-800 shadow-xs'
+										: 'text-slate-700 hover:text-slate-950'
 								}"
 								onclick={() => (viewMode = 'grid')}
 								title="Affichage grille de cartes"
@@ -381,46 +409,46 @@
 		</div>
 
 		<!-- Barre de statut des résultats & Pagination supérieure -->
-		<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 px-1 text-xs text-slate-600">
-			<div>
-				<span class="font-semibold text-slate-900">{filteredTables.length} table(s)</span>
+		<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 px-1 text-xs text-slate-700">
+			<div class="font-medium">
+				<span class="font-extrabold text-slate-950 text-sm">{filteredTables.length} table(s)</span>
 				{#if searchTerm}
-					<span>correspondant à "{searchTerm}"</span>
+					<span>correspondant à "<strong class="text-corporate-700">{searchTerm}</strong>"</span>
 				{/if}
 				{#if hideEmptyTables && !searchTerm}
-					<span class="text-slate-500">(tables renseignées uniquement)</span>
+					<span class="text-slate-500 font-normal">(tables avec valeurs uniquement)</span>
 				{/if}
 			</div>
 
 			<!-- Pagination rapide -->
 			{#if filteredTables.length > pageSize}
 				<div class="flex items-center gap-2">
-					<span class="text-slate-500">
-						Page {currentPage} sur {totalPages}
+					<span class="font-semibold text-slate-700">
+						Page <strong class="text-slate-950">{currentPage}</strong> sur {totalPages}
 					</span>
 					<div class="flex items-center gap-1">
 						<button
 							type="button"
-							class="rounded border border-slate-200 bg-white p-1 text-slate-700 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed"
+							class="rounded-lg border border-slate-300 bg-white p-1 text-slate-800 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition shadow-2xs"
 							disabled={currentPage <= 1}
 							onclick={() => (currentPage = Math.max(1, currentPage - 1))}
 							title="Page précédente"
 						>
-							<ChevronLeft class="size-3.5" />
+							<ChevronLeft class="size-4" />
 						</button>
 						<button
 							type="button"
-							class="rounded border border-slate-200 bg-white p-1 text-slate-700 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed"
+							class="rounded-lg border border-slate-300 bg-white p-1 text-slate-800 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition shadow-2xs"
 							disabled={currentPage >= totalPages}
 							onclick={() => (currentPage = Math.min(totalPages, currentPage + 1))}
 							title="Page suivante"
 						>
-							<ChevronRight class="size-3.5" />
+							<ChevronRight class="size-4" />
 						</button>
 					</div>
 
 					<select
-						class="rounded border border-slate-200 bg-white px-2 py-0.5 text-xs text-slate-700 outline-none"
+						class="rounded-lg border border-slate-300 bg-white px-2.5 py-1 text-xs font-semibold text-slate-800 outline-none shadow-2xs"
 						bind:value={pageSize}
 					>
 						<option value={15}>15 / page</option>
@@ -434,116 +462,116 @@
 
 		<!-- Contenu principal : VUE TABLEAU (Dense & Lisible) -->
 		{#if filteredTables.length === 0}
-			<div class="rounded-xl border border-dashed border-slate-200 bg-white p-12 text-center">
-				<p class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Aucune table trouvée</p>
-				<p class="mt-2 text-sm text-slate-700">
-					Aucun élément ne correspond à votre filtre "{searchTerm}".
+			<div class="rounded-2xl border-2 border-dashed border-slate-300 bg-white p-12 text-center">
+				<p class="text-xs font-bold uppercase tracking-wider text-slate-500">Aucune table trouvée</p>
+				<p class="mt-2 text-base font-semibold text-slate-800">
+					Aucun élément ne correspond à votre recherche "{searchTerm}".
 				</p>
 				<p class="mt-1 text-xs text-slate-500">
-					Essayez de désactiver "Masquer les tables vides" ou d'élargir votre mot-clé.
+					Essayez de décocher "Masquer les tables vides" ou d'élargir votre mot-clé.
 				</p>
 			</div>
 		{:else if viewMode === 'table'}
-			<div class="rounded-xl border border-slate-200 bg-white shadow-xs overflow-hidden">
+			<div class="rounded-2xl border border-slate-300 bg-white shadow-xs overflow-hidden">
 				<div class="overflow-x-auto">
 					<table class="w-full text-left text-xs border-collapse">
 						<thead>
-							<tr class="border-b border-slate-200 bg-slate-50/90 text-[11px] font-semibold text-slate-600 uppercase tracking-wider">
-								<th class="py-2.5 px-3.5 w-24">
+							<tr class="border-b-2 border-slate-200 bg-slate-100/90 text-slate-800 font-bold uppercase tracking-wider text-[11px]">
+								<th class="py-3 px-4 w-28">
 									<button
 										type="button"
-										class="inline-flex items-center gap-1 hover:text-slate-900 transition"
+										class="inline-flex items-center gap-1 hover:text-corporate-700 transition"
 										onclick={() => toggleSort('numtab')}
 									>
 										<span>N° Table</span>
-										<ArrowUpDown class="size-3 text-slate-400" />
+										<ArrowUpDown class="size-3.5 text-slate-500" />
 									</button>
 								</th>
-								<th class="py-2.5 px-3.5">
+								<th class="py-3 px-4">
 									<button
 										type="button"
-										class="inline-flex items-center gap-1 hover:text-slate-900 transition"
+										class="inline-flex items-center gap-1 hover:text-corporate-700 transition"
 										onclick={() => toggleSort('title')}
 									>
 										<span>Intitulé officiel X3</span>
-										<ArrowUpDown class="size-3 text-slate-400" />
+										<ArrowUpDown class="size-3.5 text-slate-500" />
 									</button>
 								</th>
-								<th class="py-2.5 px-3.5 w-44">Domaine</th>
-								<th class="py-2.5 px-3.5 w-28 text-center">
+								<th class="py-3 px-4 w-52">Domaine</th>
+								<th class="py-3 px-4 w-32 text-center">
 									<button
 										type="button"
-										class="inline-flex items-center gap-1 hover:text-slate-900 transition"
+										class="inline-flex items-center gap-1 hover:text-corporate-700 transition"
 										onclick={() => toggleSort('itemsCount')}
 									>
 										<span>Valeurs</span>
-										<ArrowUpDown class="size-3 text-slate-400" />
+										<ArrowUpDown class="size-3.5 text-slate-500" />
 									</button>
 								</th>
-								<th class="py-2.5 px-3.5">Exemples de codes enregistrés</th>
-								<th class="py-2.5 px-3.5 text-right w-36">Action</th>
+								<th class="py-3 px-4">Exemples de codes</th>
+								<th class="py-3 px-4 text-right w-36">Action</th>
 							</tr>
 						</thead>
-						<tbody class="divide-y divide-slate-100">
+						<tbody class="divide-y divide-slate-200">
 							{#each paginatedTables as table}
 								{@const count = table.items?.length || 0}
 								{@const isVald = table.numtab >= 1000}
-								<tr class="hover:bg-slate-50/80 transition group">
+								<tr class="hover:bg-slate-50 transition group">
 									<!-- Numéro -->
-									<td class="py-2 px-3.5 font-mono">
-										<span class="inline-flex items-center font-bold px-2 py-0.5 rounded text-[11px] {
+									<td class="py-2.5 px-4 font-mono">
+										<span class="inline-flex items-center font-extrabold px-2.5 py-1 rounded-md text-xs {
 											isVald
-												? 'bg-amber-50 text-amber-900 border border-amber-200'
-												: 'bg-slate-100 text-slate-800 border border-slate-200'
+												? 'bg-amber-100 text-amber-950 border border-amber-300 shadow-2xs'
+												: 'bg-slate-100 text-slate-900 border border-slate-300 shadow-2xs'
 										}">
 											#{table.numtab}
 										</span>
 									</td>
 
 									<!-- Titre -->
-									<td class="py-2 px-3.5">
-										<div class="font-semibold text-slate-950 group-hover:text-corporate-700 transition">
+									<td class="py-2.5 px-4">
+										<div class="font-bold text-slate-950 text-sm group-hover:text-corporate-700 transition">
 											{table.title}
 										</div>
 										{#if isVald}
-											<span class="text-[10px] text-amber-700 font-medium">Paramétrage spécifique Valdepharm</span>
+											<span class="text-[10px] text-amber-800 font-bold uppercase tracking-wider">Spécifique Valdepharm</span>
 										{/if}
 									</td>
 
 									<!-- Domaine -->
-									<td class="py-2 px-3.5">
-										<span class="inline-block rounded bg-slate-100 px-2 py-0.5 text-[10px] text-slate-700 font-medium">
+									<td class="py-2.5 px-4">
+										<span class="inline-block rounded-md border px-2.5 py-0.5 text-[11px] {getCategoryBadge(table.category)}">
 											{table.category}
 										</span>
 									</td>
 
 									<!-- Nombre d'entrées -->
-									<td class="py-2 px-3.5 text-center font-mono">
+									<td class="py-2.5 px-4 text-center font-mono">
 										{#if count === 0}
-											<span class="text-[10px] text-slate-400 italic">0 (vide)</span>
+											<span class="text-[11px] text-slate-400 font-semibold italic">Vide</span>
 										{:else}
-											<span class="inline-flex items-center justify-center font-semibold text-[11px] rounded-full bg-corporate-50 border border-corporate-200 text-corporate-800 px-2 py-0.5">
+											<span class="inline-flex items-center justify-center font-extrabold text-xs rounded-full bg-slate-900 text-white px-2.5 py-0.5 shadow-2xs">
 												{count}
 											</span>
 										{/if}
 									</td>
 
 									<!-- Aperçu codes -->
-									<td class="py-2 px-3.5">
+									<td class="py-2.5 px-4">
 										{#if count === 0}
-											<span class="text-[10px] text-slate-400">Aucune donnée</span>
+											<span class="text-[11px] text-slate-400 font-medium">Aucune donnée</span>
 										{:else}
-											<div class="flex flex-wrap gap-1 max-w-xl">
+											<div class="flex flex-wrap gap-1.5 max-w-xl">
 												{#each table.items.slice(0, 4) as item}
 													<span
-														class="rounded bg-slate-50 border border-slate-200 px-1.5 py-0.2 font-mono text-[10px] text-slate-700"
+														class="rounded-md bg-white border border-slate-300 px-2 py-0.5 font-mono text-[11px] font-semibold text-slate-800 shadow-2xs"
 														title={`${item.code} : ${item.label}`}
 													>
 														{item.code}
 													</span>
 												{/each}
 												{#if count > 4}
-													<span class="text-[10px] text-slate-400 self-center">
+													<span class="text-[11px] text-slate-500 font-bold self-center">
 														+{count - 4}
 													</span>
 												{/if}
@@ -552,13 +580,13 @@
 									</td>
 
 									<!-- Action -->
-									<td class="py-2 px-3.5 text-right">
+									<td class="py-2.5 px-4 text-right">
 										<button
 											type="button"
-											class="inline-flex items-center gap-1 rounded border border-corporate-200 bg-white px-2.5 py-1 text-xs font-semibold text-corporate-800 hover:bg-corporate-50 shadow-2xs transition"
+											class="inline-flex items-center gap-1.5 rounded-lg bg-corporate-700 hover:bg-corporate-800 px-3 py-1.5 text-xs font-bold text-white shadow-xs transition"
 											onclick={() => openTable(table)}
 										>
-											<TableIcon class="size-3 text-corporate-600" />
+											<TableIcon class="size-3.5 text-white" />
 											<span>Consulter</span>
 										</button>
 									</td>
@@ -569,58 +597,58 @@
 				</div>
 			</div>
 		{:else}
-			<!-- VUE GRILLE (Cartes élégantes et structurées) -->
-			<div class="grid gap-3.5 md:grid-cols-2 xl:grid-cols-3">
+			<!-- VUE GRILLE (Cartes structurées) -->
+			<div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
 				{#each paginatedTables as table}
 					{@const count = table.items?.length || 0}
 					{@const isVald = table.numtab >= 1000}
-					<article class="rounded-xl border border-slate-200 bg-white p-4 shadow-xs transition hover:border-corporate-300 hover:shadow-sm flex flex-col justify-between">
-						<div class="space-y-2.5">
+					<article class="rounded-2xl border border-slate-300 bg-white p-5 shadow-xs transition hover:border-corporate-600 hover:shadow-md flex flex-col justify-between">
+						<div class="space-y-3">
 							<div class="flex items-center justify-between gap-2">
-								<span class="inline-flex items-center font-mono text-xs font-bold px-2 py-0.5 rounded border {
+								<span class="inline-flex items-center font-mono text-xs font-extrabold px-2.5 py-1 rounded-md border {
 									isVald
-										? 'bg-amber-50 text-amber-900 border-amber-200'
-										: 'bg-corporate-50 text-corporate-800 border-corporate-200'
+										? 'bg-amber-100 text-amber-950 border-amber-300'
+										: 'bg-corporate-50 text-corporate-900 border-corporate-200'
 								}">
 									Table #{table.numtab}
 								</span>
 								<div class="flex items-center gap-1.5">
 									{#if isVald}
-										<span class="rounded bg-amber-100 text-amber-900 text-[10px] font-semibold px-1.5 py-0.2">
+										<span class="rounded bg-amber-500 text-white text-[10px] font-bold px-2 py-0.5">
 											Valdepharm
 										</span>
 									{/if}
-									<span class="rounded bg-slate-100 text-slate-700 text-[10px] font-medium px-1.5 py-0.2">
+									<span class="rounded-md border px-2 py-0.5 text-[10px] {getCategoryBadge(table.category)}">
 										{table.category}
 									</span>
 								</div>
 							</div>
 
 							<div>
-								<h2 class="text-sm font-bold text-slate-950">
+								<h2 class="text-base font-bold text-slate-950 leading-snug">
 									{table.title}
 								</h2>
-								<p class="text-[11px] text-slate-500 line-clamp-2 mt-0.5">
+								<p class="text-xs text-slate-600 line-clamp-2 mt-1">
 									{table.description || `Table diverse Sage X3 numéro ${table.numtab}.`}
 								</p>
 							</div>
 
-							<div class="rounded-lg bg-slate-50 p-2 text-xs">
-								<div class="flex items-center justify-between text-[11px] font-semibold text-slate-700 mb-1">
+							<div class="rounded-xl bg-slate-50 border border-slate-200 p-3 text-xs">
+								<div class="flex items-center justify-between text-xs font-bold text-slate-800 mb-1.5">
 									<span>{count} valeur(s)</span>
-									<span class="text-[10px] font-normal text-slate-400">ATABDIV</span>
+									<span class="text-[10px] uppercase font-bold text-slate-500">Paramétrage X3</span>
 								</div>
 								{#if count === 0}
-									<p class="text-[10px] text-slate-400 italic">Table vide</p>
+									<p class="text-[11px] text-slate-400 italic">Table vide</p>
 								{:else}
-									<div class="flex flex-wrap gap-1">
+									<div class="flex flex-wrap gap-1.5">
 										{#each table.items.slice(0, 5) as item}
-											<span class="rounded bg-white border border-slate-200 px-1 py-0.2 font-mono text-[10px] text-slate-700" title={item.label}>
+											<span class="rounded-md bg-white border border-slate-300 px-1.5 py-0.5 font-mono text-[10px] font-bold text-slate-800 shadow-2xs" title={item.label}>
 												{item.code}
 											</span>
 										{/each}
 										{#if count > 5}
-											<span class="text-[10px] text-slate-400 self-center">
+											<span class="text-[10px] text-slate-500 font-bold self-center">
 												+{count - 5}
 											</span>
 										{/if}
@@ -629,13 +657,13 @@
 							</div>
 						</div>
 
-						<div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-end">
+						<div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-end">
 							<button
 								type="button"
-								class="inline-flex items-center gap-1 rounded border border-corporate-200 bg-white px-2.5 py-1 text-xs font-semibold text-corporate-800 hover:bg-corporate-50 shadow-2xs transition"
+								class="inline-flex items-center gap-1.5 rounded-lg bg-corporate-700 hover:bg-corporate-800 px-3 py-1.5 text-xs font-bold text-white shadow-xs transition"
 								onclick={() => openTable(table)}
 							>
-								<TableIcon class="size-3 text-corporate-600" />
+								<TableIcon class="size-3.5 text-white" />
 								<span>Consulter & Compléter</span>
 							</button>
 						</div>
@@ -646,28 +674,28 @@
 
 		<!-- Pagination inférieure -->
 		{#if filteredTables.length > pageSize}
-			<div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-200 text-xs text-slate-600">
-				<div>
-					Affichage de <span class="font-semibold text-slate-900">{(currentPage - 1) * pageSize + 1}</span> à <span class="font-semibold text-slate-900">{Math.min(currentPage * pageSize, filteredTables.length)}</span> sur <span class="font-semibold text-slate-900">{filteredTables.length}</span> tables
+			<div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-300 text-xs text-slate-700">
+				<div class="font-medium">
+					Affichage de <span class="font-bold text-slate-950">{(currentPage - 1) * pageSize + 1}</span> à <span class="font-bold text-slate-950">{Math.min(currentPage * pageSize, filteredTables.length)}</span> sur <span class="font-bold text-slate-950">{filteredTables.length}</span> tables
 				</div>
 
-				<div class="flex items-center gap-1.5">
+				<div class="flex items-center gap-2">
 					<button
 						type="button"
-						class="rounded border border-slate-200 bg-white px-3 py-1 font-medium text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition"
+						class="rounded-lg border border-slate-300 bg-white px-3.5 py-1.5 font-bold text-slate-800 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition shadow-2xs"
 						disabled={currentPage <= 1}
 						onclick={() => (currentPage = Math.max(1, currentPage - 1))}
 					>
 						Précédent
 					</button>
 
-					<span class="px-2 font-mono text-slate-700">
+					<span class="px-2 font-mono font-bold text-slate-900">
 						{currentPage} / {totalPages}
 					</span>
 
 					<button
 						type="button"
-						class="rounded border border-slate-200 bg-white px-3 py-1 font-medium text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition"
+						class="rounded-lg border border-slate-300 bg-white px-3.5 py-1.5 font-bold text-slate-800 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition shadow-2xs"
 						disabled={currentPage >= totalPages}
 						onclick={() => (currentPage = Math.min(totalPages, currentPage + 1))}
 					>
