@@ -261,8 +261,8 @@
 
 <svelte:window onkeydown={handleKeydown} />
 
-<!-- Conteneur modal avec positionnement garanti depuis le haut (jamais tronqué) -->
-<div class="fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-xs">
+<!-- Conteneur modal dynamique centré au milieu de l'écran -->
+<div class="fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-xs p-3 sm:p-6 flex items-center justify-center">
 	<!-- Arrière-plan cliquable pour fermer -->
 	<button
 		class="fixed inset-0 w-full h-full cursor-default"
@@ -271,16 +271,14 @@
 		onclick={onClose}
 	></button>
 
-	<!-- Wrapper de positionnement ancré en haut (items-start) pour garantir que le haut est TOUJOURS visible avec marge généreuse -->
-	<div class="min-h-full flex items-start justify-center px-3 sm:px-6 pt-10 sm:pt-14 pb-16 pointer-events-none">
-		<!-- Boîte de dialogue centrée avec marge haute/basse garantie -->
-		<div
-			class="relative pointer-events-auto flex w-full max-w-5xl flex-col max-h-[82vh] overflow-hidden rounded-2xl border-2 border-slate-300 bg-white shadow-2xl"
-			role="dialog"
-			aria-modal="true"
-			aria-label={`Table diverse #${table.numtab}`}
-			tabindex="-1"
-		>
+	<!-- Boîte de dialogue dynamique centrée (responsive, largeur confortable et hauteur équilibrée) -->
+	<div
+		class="relative z-10 my-auto flex w-full max-w-5xl lg:max-w-6xl flex-col max-h-[90vh] overflow-hidden rounded-2xl border-2 border-slate-300 bg-white shadow-2xl transition-all"
+		role="dialog"
+		aria-modal="true"
+		aria-label={`Table diverse #${table.numtab}`}
+		tabindex="-1"
+	>
 			<!-- En-tête FIXE (toujours 100% visible) -->
 			<div class="shrink-0 flex items-center justify-between gap-3 px-5 py-3.5 bg-slate-100 border-b border-slate-300">
 				<div class="space-y-1">
@@ -416,7 +414,7 @@
 											id="requesterName"
 											type="text"
 											class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
-											placeholder="Ex: Nicolas P. / CQ Physico ou Équipe Pesée"
+											placeholder="Ex : Alain Prost / Service IT"
 											bind:value={requesterName}
 											required
 										/>
@@ -751,5 +749,4 @@
 			</div>
 		</div>
 	</div>
-</div>
 </div>
