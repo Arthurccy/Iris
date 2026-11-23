@@ -1,6 +1,7 @@
 <script lang="ts">
 	import {
 		AlertCircle,
+		CheckCircle2,
 		Database,
 		FileText,
 		Folder,
@@ -8,23 +9,39 @@
 		Mail,
 		Plus,
 		Search,
+		Server,
 		ShieldCheck,
 		SlidersHorizontal,
 		Table,
 		X
 	} from 'lucide-svelte';
-	import miscTablesData from '$lib/data/miscTablesCatalog.json';
+	import type { PageData } from './$types';
 	import type { MiscTableDefinition } from '$lib/types';
 	import MiscTableDetailModal from '$lib/components/MiscTableDetailModal.svelte';
 
-	const tables = miscTablesData as MiscTableDefinition[];
+	let { data }: { data: PageData } = $props();
+
+	const tables = $derived(data.tables as MiscTableDefinition[]);
+	const isLive = $derived(data.isLive ?? false);
 	const fallbackMailbox = '3636.valdepharm@fareva.com';
 
 	let searchTerm = $state('');
 	let selectedCategory = $state<string | null>(null);
 	let activeTable = $state<MiscTableDefinition | null>(null);
 
-	const categories = ['Production', 'Qualité', 'Stocks', 'Achats', 'Ventes', 'Administration'];
+	const categories = [
+		'Valdepharm - Spécifique Site',
+		'Valdepharm - Production & Tolling',
+		'Fiscalité & Taxes',
+		'Finances & Règlements',
+		'Stocks & Flux',
+		'Tiers & Ventes',
+		'Qualité & Contrôle',
+		'Comptabilité & Banque',
+		'CRM & Services',
+		'Immobilisations',
+		'Standard X3 - Général'
+	];
 
 	const filteredTables = $derived.by(() => {
 		let list = tables;
@@ -40,13 +57,10 @@
 			const haystack = [
 				`table ${t.numtab}`,
 				`${t.numtab}`,
-				t.name,
 				t.title,
-				t.description,
+				t.description || '',
 				t.category,
-				...t.usedInFields,
-				...t.usedInScreens,
-				...t.items.map((i) => `${i.code} ${i.label} ${i.shortLabel}`)
+				...t.items.slice(0, 15).map((i) => `${i.code} ${i.label} ${i.shortLabel || ''}`)
 			].join(' ').toLowerCase();
 
 			return haystack.includes(term);
@@ -54,7 +68,7 @@
 	});
 
 	const totalItemsCount = $derived(
-		tables.reduce((sum, t) => sum + t.items.filter((i) => i.isActive).length, 0)
+		tables.reduce((sum, t) => sum + (t.items ? t.items.length : 0), 0)
 	);
 
 	function openTable(table: MiscTableDefinition) {
@@ -70,15 +84,15 @@
 		const body = [
 			'Bonjour,',
 			'',
-			'Dans le cadre de nos activités sur Sage X3, aucune table diverse existante ne correspond à notre besoin.',
+			'Dans le cadre de nos activités sur Sage X3 Valdepharm, aucune table diverse existante ne correspond à notre besoin.',
 			'',
 			'Description du besoin :',
-			'- Domaine métier : (ex: Production, Qualité, Maintenance...)',
-			"- Objectif / Rôle de la table : (ex: nouvelle liste déroulante pour...)",
-			'- Écran ou champ X3 concerné :',
-			'- Exemples de codes et libellés attendus :',
+			'- Domaine métier : (ex: Production, Qualité, Logistique, Maintenance...)',
+			"- Rôle et utilisation : (ex: liste déroulante pour...)",
+			'- Écran ou champ X3 cible :',
+			'- Exemples de codes et intitulés attendus :',
 			'',
-			'Merci de revenir vers nous pour cadrer la création dans Sage X3.',
+			'Merci de revenir vers nous pour cadrer la création dans la fonction GESTDU de Sage X3.',
 			'Application IRIS — Portail métier Sage X3.'
 		].join('\n');
 
@@ -87,10 +101,10 @@
 </script>
 
 <svelte:head>
-	<title>IRIS — Tables Diverses Sage X3</title>
+	<title>IRIS — Tables Diverses Sage X3 Valdepharm</title>
 	<meta
 		name="description"
-		content="Consultez et complétez en autonomie les tables diverses et listes de valeurs de Sage X3 Valdepharm."
+		content="Consultez et complétez en autonomie les tables diverses Sage X3 SANDBOX (FRVDRVMAS46)."
 	/>
 </svelte:head>
 
@@ -102,19 +116,30 @@
 		<div class="rounded-xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm">
 			<div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
 				<div>
-					<div class="flex items-center gap-2">
+					<div class="flex flex-wrap items-center gap-2">
 						<span class="rounded bg-corporate-100 font-mono text-[11px] font-semibold text-corporate-800 px-2 py-0.5">
-							Sage X3 — Fonction GESTDU
+							Sage X3 — Fonction GESTDU / ATABDIV
 						</span>
-						<span class="rounded bg-slate-100 text-slate-600 text-[11px] font-medium px-2 py-0.5">
-							{tables.length} tables recensées · {totalItemsCount} valeurs actives
+						<span class="rounded bg-slate-100 text-slate-700 text-[11px] font-medium px-2 py-0.5">
+							{tables.length} tables recensées · {totalItemsCount} valeurs réelles
 						</span>
+						{#if isLive}
+							<span class="inline-flex items-center gap-1 rounded bg-emerald-100 text-emerald-800 text-[11px] font-semibold px-2 py-0.5">
+								<span class="size-1.5 rounded-full bg-emerald-600"></span>
+								Connexion directe LIVE SANDBOX (10.103.7.128)
+							</span>
+						{:else}
+							<span class="inline-flex items-center gap-1 rounded bg-slate-100 text-slate-600 text-[11px] font-medium px-2 py-0.5">
+								<Database class="size-3 text-slate-500" />
+								Base SANDBOX FRVDRVMAS46 (x3v6 / VDRSANDB)
+							</span>
+						{/if}
 					</div>
 					<h1 class="mt-2 text-2xl font-semibold text-slate-950">
-						Tables Diverses & Listes de Valeurs
+						Tables Diverses & Référentiels X3
 					</h1>
 					<p class="mt-1.5 max-w-3xl text-xs sm:text-sm leading-relaxed text-slate-600">
-						Consultez les tables diverses de Sage X3 en toute autonomie, retrouvez les codes existants pour vos menus déroulants et préparez vos demandes d'ajout cadrées pour l'administration.
+						Trouvez et complétez en toute autonomie les tables diverses de Sage X3 Valdepharm. Consultez les codes enregistrés, vérifiez l'unicité et générez instantanément les scripts d'insertion ou tickets de création.
 					</p>
 				</div>
 
@@ -137,7 +162,7 @@
 						<input
 							class="w-full rounded-lg border border-slate-200 bg-white pl-9 pr-8 py-2.5 text-xs sm:text-sm outline-none transition focus:border-corporate-500 focus:ring-2 focus:ring-corporate-100"
 							type="search"
-							placeholder="Rechercher par numéro (ex: 20), nom (REBUT), intitulé, code de valeur ou champ X3 (REOCOD)..."
+							placeholder="Rechercher par numéro (ex: 1007, 1011, 20), intitulé (avenant, balance), code de valeur..."
 							bind:value={searchTerm}
 						/>
 						{#if searchTerm.trim()}
@@ -206,68 +231,67 @@
 		{:else}
 			<div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
 				{#each filteredTables as table}
-					{@const activeCount = table.items.filter((i) => i.isActive).length}
+					{@const itemsCount = table.items ? table.items.length : 0}
 					<article class="group rounded-xl border border-slate-200 bg-white p-5 shadow-xs transition hover:border-corporate-300 hover:shadow-sm flex flex-col justify-between">
 						<div class="space-y-3">
 							<!-- En-tête de carte -->
 							<div class="flex items-center justify-between gap-2">
 								<span class="rounded bg-corporate-50 font-mono text-xs font-bold text-corporate-800 px-2.5 py-1 border border-corporate-200">
-									Table #{table.numtab} · {table.name}
+									Table #{table.numtab}
 								</span>
-								<span class="rounded bg-slate-100 text-slate-700 text-[11px] font-medium px-2 py-0.5">
-									{table.category}
-								</span>
+								<div class="flex items-center gap-1">
+									{#if table.numtab >= 1000}
+										<span class="rounded bg-amber-50 border border-amber-200 text-amber-800 text-[10px] font-semibold px-2 py-0.5">
+											Valdepharm
+										</span>
+									{/if}
+									<span class="rounded bg-slate-100 text-slate-700 text-[10px] font-medium px-2 py-0.5">
+										{table.category}
+									</span>
+								</div>
 							</div>
 
-							<!-- Titre & Description -->
+							<!-- Titre -->
 							<div>
 								<h2 class="text-base font-semibold text-slate-950 group-hover:text-corporate-900 transition">
 									{table.title}
 								</h2>
-								<p class="mt-1 text-xs leading-relaxed text-slate-600 line-clamp-2">
-									{table.description}
+								<p class="mt-1 text-xs leading-relaxed text-slate-500 line-clamp-2">
+									{table.description || `Table diverse Sage X3 numéro ${table.numtab}.`}
 								</p>
 							</div>
 
-							<!-- Champs associés -->
-							<div class="pt-2 border-t border-slate-100 text-[11px]">
-								<p class="text-slate-500 font-medium mb-1">Champs X3 alimentés :</p>
-								<div class="flex flex-wrap gap-1">
-									{#each table.usedInFields as fieldCode}
-										<span class="rounded bg-slate-50 border border-slate-200 font-mono px-1.5 py-0.5 text-slate-700">
-											{fieldCode}
-										</span>
-									{/each}
-								</div>
-							</div>
-
-							<!-- Aperçu des premières valeurs -->
+							<!-- Aperçu des valeurs -->
 							<div class="rounded-lg bg-slate-50 p-2.5 text-xs">
 								<div class="flex items-center justify-between mb-1.5">
 									<span class="font-semibold text-slate-800 text-[11px]">
-										Valeurs enregistrées ({activeCount})
+										Valeurs enregistrées ({itemsCount})
 									</span>
-									<span class="text-[10px] text-slate-500">Exemples :</span>
+									<span class="text-[10px] text-slate-500 font-mono">CODE_0</span>
 								</div>
-								<div class="flex flex-wrap gap-1">
-									{#each table.items.slice(0, 4) as item}
-										<span class="rounded bg-white border border-slate-200 px-1.5 py-0.5 font-mono text-[10px] text-slate-700">
-											{item.code}
-										</span>
-									{/each}
-									{#if table.items.length > 4}
-										<span class="text-[10px] text-slate-500 self-center">
-											+{table.items.length - 4} autre(s)
-										</span>
-									{/if}
-								</div>
+								{#if itemsCount === 0}
+									<p class="text-[11px] text-slate-400 italic">Table vide (aucune entrée pour le moment).</p>
+								{:else}
+									<div class="flex flex-wrap gap-1">
+										{#each table.items.slice(0, 5) as item}
+											<span class="rounded bg-white border border-slate-200 px-1.5 py-0.5 font-mono text-[10px] text-slate-700" title={item.label}>
+												{item.code}
+											</span>
+										{/each}
+										{#if table.items.length > 5}
+											<span class="text-[10px] text-slate-500 self-center">
+												+{table.items.length - 5} autre(s)
+											</span>
+										{/if}
+									</div>
+								{/if}
 							</div>
 						</div>
 
 						<!-- Pied de carte avec bouton d'action -->
 						<div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
 							<span class="text-[11px] text-slate-500 font-mono">
-								{table.usedInScreens[0]?.split('—')[0]?.trim()}
+								ATABDIV #{table.numtab}
 							</span>
 
 							<button
@@ -290,6 +314,7 @@
 		<MiscTableDetailModal
 			table={activeTable}
 			fallbackMailTo={fallbackMailbox}
+			{isLive}
 			onClose={closeTable}
 		/>
 	{/if}

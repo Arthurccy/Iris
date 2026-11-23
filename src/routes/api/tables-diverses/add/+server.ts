@@ -1,0 +1,133 @@
+import { json } from '@sveltejs/kit';
+import type { RequestHandler } from './$types';
+import { getPool } from '$lib/server/db';
+import { env } from '$env/dynamic/private';
+
+export const POST: RequestHandler = async ({ request }) => {
+	try {
+		const body = await request.json();
+		const { numtab, code, libelle_long, libelle_court, param_a1, param_n1 } = body;
+
+		if (!numtab || !code || !libelle_long) {
+			return json(
+				{ error: 'Les champs numtab, code et libelle_long sont obligatoires.' },
+				{ status: 400 }
+			);
+		}
+
+		const cleanNumtab = parseInt(String(numtab), 10);
+		const cleanCode = String(code).trim().toUpperCase();
+		const cleanLong = String(libelle_long).trim();
+		const cleanShort = String(libelle_court || cleanLong.slice(0, 15)).trim();
+		const cleanA1 = String(param_a1 || '').trim();
+		const cleanN1 = param_n1 !== undefined && param_n1 !== '' ? parseFloat(param_n1) : 0;
+
+		const schema = env.SAGE_DB_SCHEMA || 'VDRSANDB';
+
+		// Script SQL équivalent pour traçabilité ou exécution manuelle
+		const sqlScript = `
+-- 1. Insertion de la valeur dans la table diverse #${cleanNumtab}
+INSERT INTO ${schema}.ATABDIV (NUMTAB_0, CODE_0, A1_0, N1_0, UPDDAT_0, UPDUSR_0)
+VALUES (${cleanNumtab}, '${cleanCode.replace(/'/g, "''")}', '${cleanA1.replace(/'/g, "''")}', ${cleanN1}, GETDATE(), 'IRIS');
+
+-- 2. Désignation longue dans le dictionnaire des textes traduits
+INSERT INTO ${schema}.ATEXTRA (CODFIC_0, ZONE_0, LANGUE_0, IDENT1_0, IDENT2_0, TEXTE_0)
+VALUES ('ATABDIV', 'LNGDES', 'FRA', '${cleanNumtab}', '${cleanCode.replace(/'/g, "''")}', '${cleanLong.replace(/'/g, "''")}');
+
+-- 3. Désignation courte dans le dictionnaire des textes traduits
+INSERT INTO ${schema}.ATEXTRA (CODFIC_0, ZONE_0, LANGUE_0, IDENT1_0, IDENT2_0, TEXTE_0)
+VALUES ('ATABDIV', 'SHODES', 'FRA', '${cleanNumtab}', '${cleanCode.replace(/'/g, "''")}', '${cleanShort.replace(/'/g, "''")}');
+`.trim();
+
+		const activePool = await getPool();
+		if (!activePool) {
+			// Mode simulation / script généré si la base directe n'est pas connectée
+			return json({
+				success: true,
+				mode: 'script_only',
+				message: 'Script SQL généré avec succès (identifiants SQL non configurés pour écriture directe).',
+				sqlScript,
+				item: {
+					code: cleanCode,
+					shortLabel: cleanShort,
+					label: cleanLong,
+					param_a1: cleanA1,
+					param_n1: String(cleanN1)
+				}
+			});
+		}
+
+		// Mode LIVE : Exécution directe dans la base SANDBOX
+		// Vérification unicité du code
+		const checkResult = await activePool.request()
+			.input('numtab', cleanNumtab)
+			.input('code', cleanCode)
+			.query(`SELECT COUNT(*) AS cnt FROM ${schema}.ATABDIV WHERE NUMTAB_0 = @numtab AND CODE_0 = @code`);
+
+		if (checkResult.recordset[0].cnt > 0) {
+			return json(
+				{ error: `Le code ${cleanCode} existe déjà dans la table diverse #${cleanNumtab}.` },
+				{ status: 409 }
+			);
+		}
+
+		const transaction = activePool.transaction();
+		await transaction.begin();
+
+		try {
+			const req1 = transaction.request();
+			req1.input('numtab', cleanNumtab);
+			req1.input('code', cleanCode);
+			req1.input('a1', cleanA1);
+			req1.input('n1', cleanN1);
+			await req1.query(`
+				INSERT INTO ${schema}.ATABDIV (NUMTAB_0, CODE_0, A1_0, N1_0, UPDDAT_0, UPDUSR_0)
+				VALUES (@numtab, @code, @a1, @n1, GETDATE(), 'IRIS');
+			`);
+
+			const req2 = transaction.request();
+			req2.input('numtabStr', String(cleanNumtab));
+			req2.input('code', cleanCode);
+			req2.input('longLabel', cleanLong);
+			await req2.query(`
+				INSERT INTO ${schema}.ATEXTRA (CODFIC_0, ZONE_0, LANGUE_0, IDENT1_0, IDENT2_0, TEXTE_0)
+				VALUES ('ATABDIV', 'LNGDES', 'FRA', @numtabStr, @code, @longLabel);
+			`);
+
+			const req3 = transaction.request();
+			req3.input('numtabStr', String(cleanNumtab));
+			req3.input('code', cleanCode);
+			req3.input('shortLabel', cleanShort);
+			await req3.query(`
+				INSERT INTO ${schema}.ATEXTRA (CODFIC_0, ZONE_0, LANGUE_0, IDENT1_0, IDENT2_0, TEXTE_0)
+				VALUES ('ATABDIV', 'SHODES', 'FRA', @numtabStr, @code, @shortLabel);
+			`);
+
+			await transaction.commit();
+
+			return json({
+				success: true,
+				mode: 'live_db',
+				message: `La valeur ${cleanCode} a été insérée avec succès en base SANDBOX !`,
+				sqlScript,
+				item: {
+					code: cleanCode,
+					shortLabel: cleanShort,
+					label: cleanLong,
+					param_a1: cleanA1,
+					param_n1: String(cleanN1)
+				}
+			});
+		} catch (txErr) {
+			await transaction.rollback();
+			console.error("Erreur transaction insertion table diverse:", txErr);
+			return json(
+				{ error: `Erreur lors de l'insertion en base: ${(txErr as Error).message}` },
+				{ status: 500 }
+			);
+		}
+	} catch (err) {
+		console.error("Erreur API ajout table diverse:", err);
+		return json({ error: (err as Error).message }, { status: 500 });
+	}
+};

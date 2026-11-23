@@ -41,19 +41,22 @@ export type MiscTableItem = {
 	code: string;
 	shortLabel: string;
 	label: string;
-	isActive: boolean;
+	param_a1?: string;
+	param_n1?: string;
+	isActive?: boolean;
 	parameters?: Record<string, string | number>;
 	notes?: string;
 };
 
 export type MiscTableDefinition = {
 	numtab: number;
-	name: string;
+	name?: string;
 	title: string;
 	category: string;
-	description: string;
-	usedInFields: string[];
-	usedInScreens: string[];
+	description?: string;
+	itemCount?: number;
+	usedInFields?: string[];
+	usedInScreens?: string[];
 	items: MiscTableItem[];
 };
 
@@ -63,6 +66,8 @@ export type MiscTableRequest = {
 	code: string;
 	shortLabel: string;
 	label: string;
+	param_a1?: string;
+	param_n1?: string;
 	reason: string;
 	requesterName: string;
 	requesterEmail: string;

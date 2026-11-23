@@ -26,6 +26,8 @@
   },
   "dependencies": {
     "@google/genai": "^2.21.0",
-    "lucide-svelte": "^0.454.0"
+    "@types/mssql": "^12.3.0",
+    "lucide-svelte": "^0.454.0",
+    "mssql": "^12.8.1"
   }
 }
