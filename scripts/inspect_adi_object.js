@@ -20,44 +20,73 @@ async function inspectAdiObject() {
 		}).connect();
 
 		// 1. Structure de l'objet ADI dans AOBJET
-		console.log('[1] Objet ADI dans AOBJET (Filtres, Sélections, Tables liées) :');
-		const aobjet = await pool.request().query(`
-			SELECT *
-			FROM ${schema}.AOBJET
-			WHERE IDENT_0 = 'ADI'
+		console.log('[1] Colonnes de AOBJET et recherche objet ADI :');
+		const aobjCols = await pool.request().query(`
+			SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS
+			WHERE TABLE_SCHEMA = '${schema}' AND TABLE_NAME = 'AOBJET'
 		`);
-		console.log(JSON.stringify(aobjet.recordset[0], null, 2));
+		const objColNames = aobjCols.recordset.map(c => c.COLUMN_NAME);
+		console.log('    Colonnes AOBJET:', objColNames.slice(0, 15).join(', '));
+
+		// Trouver la colonne identifiant principal de AOBJET (souvent ABREV_0 ou OBJ_0 ou CODOBJ_0)
+		const idCol = ['ABREV_0', 'OBJ_0', 'CODOBJ_0', 'IDENT_0'].find(c => objColNames.includes(c)) || objColNames[0];
+		console.log(`    Colonne identifiant objet : ${idCol}`);
+
+		const aobjet = await pool.request().query(`
+			SELECT TOP 1 *
+			FROM ${schema}.AOBJET
+			WHERE ${idCol} = 'ADI'
+		`);
+		if (aobjet.recordset.length > 0) {
+			console.log('    Configuration Objet ADI trouvée :');
+			console.log(JSON.stringify(aobjet.recordset[0], null, 2));
+		} else {
+			console.log('    Objet ADI non trouvé avec cette colonne. Échantillon d\'objets :');
+			const sampleObj = await pool.request().query(`SELECT TOP 5 ${idCol} FROM ${schema}.AOBJET`);
+			console.table(sampleObj.recordset);
+		}
 
 		// 2. Colonnes de AFCTFCT
 		console.log('\n[2] Fonctions liées à ADI dans AFCTFCT :');
-		const fctCols = await pool.request().query(`
-			SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS
-			WHERE TABLE_SCHEMA = '${schema}' AND TABLE_NAME = 'AFCTFCT'
-		`);
-		const colNames = fctCols.recordset.map(c => c.COLUMN_NAME);
-		console.log('    Colonnes AFCTFCT:', colNames.join(', '));
+		try {
+			const fctCols = await pool.request().query(`
+				SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS
+				WHERE TABLE_SCHEMA = '${schema}' AND TABLE_NAME = 'AFCTFCT'
+			`);
+			const colNames = fctCols.recordset.map(c => c.COLUMN_NAME);
+			console.log('    Colonnes AFCTFCT:', colNames.join(', '));
 
-		const fcts = await pool.request().query(`
-			SELECT TOP 10 *
-			FROM ${schema}.AFCTFCT
-			WHERE FNC_0 LIKE '%ADI%' OR FNC_0 LIKE '%TAB%'
-		`);
-		console.table(fcts.recordset);
+			const fctCol = colNames.find(c => c.startsWith('FNC') || c.startsWith('COD')) || colNames[0];
+			const fcts = await pool.request().query(`
+				SELECT TOP 10 *
+				FROM ${schema}.AFCTFCT
+				WHERE ${fctCol} LIKE '%ADI%' OR ${fctCol} LIKE '%TAB%'
+			`);
+			console.table(fcts.recordset);
+		} catch (e) {
+			console.log('    Erreur AFCTFCT:', e.message);
+		}
 
 		// 3. Menus contenant ADI dans AMENU
-		console.log('\n[3] Recherche dans AMENU / AMENLOC :');
-		const menuCols = await pool.request().query(`
-			SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS
-			WHERE TABLE_SCHEMA = '${schema}' AND TABLE_NAME = 'AMENU'
-		`);
-		console.log('    Colonnes AMENU:', menuCols.recordset.map(c => c.COLUMN_NAME).join(', '));
+		console.log('\n[3] Recherche dans AMENU :');
+		try {
+			const menuCols = await pool.request().query(`
+				SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS
+				WHERE TABLE_SCHEMA = '${schema}' AND TABLE_NAME = 'AMENU'
+			`);
+			const mCols = menuCols.recordset.map(c => c.COLUMN_NAME);
+			console.log('    Colonnes AMENU:', mCols.join(', '));
 
-		const menus = await pool.request().query(`
-			SELECT TOP 10 *
-			FROM ${schema}.AMENU
-			WHERE CODINT_0 LIKE '%ADI%' OR FNC_0 LIKE '%ADI%'
-		`);
-		console.table(menus.recordset);
+			const mCol = mCols.find(c => c.startsWith('COD') || c.startsWith('FNC') || c.startsWith('MEN')) || mCols[0];
+			const menus = await pool.request().query(`
+				SELECT TOP 10 *
+				FROM ${schema}.AMENU
+				WHERE ${mCol} LIKE '%ADI%'
+			`);
+			console.table(menus.recordset);
+		} catch (e) {
+			console.log('    Erreur AMENU:', e.message);
+		}
 
 		await pool.close();
 	} catch (err) {
