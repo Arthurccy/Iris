@@ -1358,8 +1358,8 @@
 
 	<!-- Modal de Connexion Windows (Active Directory Fareva) -->
 	{#if isLoginModalOpen}
-		<div class="fixed inset-0 z-50 overflow-y-auto bg-slate-950/75 backdrop-blur-xs p-4 flex items-center justify-center">
-			<div class="relative w-full max-w-md rounded-2xl border-2 border-slate-300 bg-white p-6 shadow-2xl space-y-4">
+		<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xs">
+			<div class="relative w-full max-w-md max-h-[90vh] overflow-y-auto rounded-2xl border-2 border-slate-300 bg-white p-6 shadow-2xl space-y-4">
 				<div class="flex items-center justify-between border-b border-slate-200 pb-3">
 					<div class="flex items-center gap-2.5">
 						<div class="size-8 rounded-lg bg-corporate-700 text-white flex items-center justify-center font-bold">

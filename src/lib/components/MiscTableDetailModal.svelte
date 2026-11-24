@@ -305,8 +305,8 @@
 
 <svelte:window onkeydown={handleKeydown} />
 
-<!-- Conteneur modal dynamique : aligné en items-start avec my-auto pour un centrage parfait SANS jamais tronquer le haut -->
-<div class="fixed inset-0 z-50 overflow-y-auto bg-slate-950/75 backdrop-blur-xs p-3 sm:p-6 md:p-8 flex justify-center items-start">
+<!-- Conteneur fixe plein écran centré, avec marges de sécurité garanties sur tous les écrans -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 md:p-6 bg-slate-950/80 backdrop-blur-xs">
 	<!-- Arrière-plan cliquable pour fermer -->
 	<button
 		class="fixed inset-0 w-full h-full cursor-default -z-10"
@@ -315,9 +315,9 @@
 		onclick={onClose}
 	></button>
 
-	<!-- Boîte de dialogue dynamique centrée (responsive, hauteur contenue à 82vh pour garantir la visibilité complète) -->
+	<!-- Boîte de dialogue : contrainte en hauteur avec scroll interne strict (ne dépasse JAMAIS de la fenêtre) -->
 	<div
-		class="relative z-10 my-auto flex w-full {formMode !== 'none' ? 'max-w-3xl' : 'max-w-5xl lg:max-w-6xl'} flex-col max-h-[82vh] overflow-hidden rounded-2xl border-2 border-slate-300 bg-white shadow-2xl transition-all"
+		class="relative z-10 flex flex-col w-full {formMode !== 'none' ? 'max-w-3xl' : 'max-w-5xl lg:max-w-6xl'} h-[86vh] max-h-[820px] rounded-2xl border-2 border-slate-300 bg-white shadow-2xl overflow-hidden"
 		role="dialog"
 		aria-modal="true"
 		aria-label={`Table diverse #${table.numtab}`}
@@ -367,8 +367,8 @@
 			</button>
 		</div>
 
-		<!-- Corps défilable -->
-		<div class="modal-scroll overscroll-contain overflow-y-auto p-5 space-y-4">
+		<!-- Corps défilable : prend tout l'espace disponible interne (flex-1 min-h-0) et fait défiler son contenu sans jamais forcer le conteneur externe -->
+		<div class="flex-1 min-h-0 overflow-y-auto overscroll-contain p-5 space-y-4">
 			{#if formMode === 'none'}
 				<!-- VUE 1 : CONSULTATION & TABLEAU COMPLET DES VALEURS -->
 				<!-- Information métier claire -->
