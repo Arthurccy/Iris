@@ -663,7 +663,7 @@
 								type="text"
 								use:focusOnMount
 								class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
-								placeholder="Ex : acourcha ou arthur.courchay@fareva.com"
+								placeholder="Ex : pnom.valdepharm@fareva.com"
 								bind:value={loginUsername}
 								autocomplete="username"
 								required
@@ -1537,7 +1537,7 @@
 			</div>
 
 			<p class="text-xs text-slate-600 leading-relaxed">
-				Saisissez vos identifiants de session Windows Fareva (ex : <code>acourcha</code>) pour déverrouiller vos droits sur les tables diverses.
+				Saisissez vos identifiants de session Windows Fareva (ex : <code>pnom.valdepharm@fareva.com</code>) pour déverrouiller vos droits sur les tables diverses.
 			</p>
 
 			{#if loginError}
@@ -1557,7 +1557,7 @@
 						type="text"
 						use:focusOnMount
 						class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
-						placeholder="Ex : acourcha ou arthur.courchay@fareva.com"
+						placeholder="Ex : pnom.valdepharm@fareva.com"
 						bind:value={loginUsername}
 						autocomplete="username"
 						required
