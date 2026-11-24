@@ -1,11 +1,22 @@
 import { getLiveOrCachedTables } from '$lib/server/db';
+import { getAuditLogs } from '$lib/server/audit';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	const { isLive, tables } = await getLiveOrCachedTables();
+
+	const isAdmin = Boolean(locals.permissions?.allTablesAllowed);
+	const auditLogs = locals.user
+		? await getAuditLogs({
+				username: locals.user.sAMAccountName,
+				isAdmin
+			})
+		: [];
+
 	return {
 		isLive,
 		tables,
+		auditLogs,
 		user: locals.user
 			? {
 					sAMAccountName: locals.user.sAMAccountName,

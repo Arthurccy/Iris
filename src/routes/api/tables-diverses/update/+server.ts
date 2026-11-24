@@ -2,6 +2,7 @@ import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { getPool, getLastDbError, getTableColumns, buildSafeInsert } from '$lib/server/db';
 import { canUserEditTable } from '$lib/server/permissions';
+import { logAuditEvent } from '$lib/server/audit';
 import { env } from '$env/dynamic/private';
 
 export const POST: RequestHandler = async ({ request, locals }) => {
@@ -160,7 +161,26 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 			}
 
 			await transaction.commit();
-			console.log(`[AUDIT GESTDU] Modification #${cleanNumtab} [${cleanCode}] par "${cleanRequester}" - Motif: "${cleanReason}"`);
+
+			// Traçabilité & Journal d'Audit IRIS
+			await logAuditEvent({
+				action: 'UPDATE',
+				numtab: cleanNumtab,
+				tableName: `Table diverse #${cleanNumtab}`,
+				code: cleanCode,
+				label: cleanLong,
+				shortLabel: cleanShort,
+				param_a1: cleanA1,
+				param_n1: cleanN1,
+				user: {
+					username: locals.user?.sAMAccountName || 'ANONYMOUS',
+					displayName: locals.user?.displayName || cleanRequester,
+					mail: locals.user?.mail || '',
+					department: locals.user?.department || 'Non spécifié'
+				},
+				reason: cleanReason,
+				status: 'SUCCESS'
+			});
 
 			return json({
 				success: true,

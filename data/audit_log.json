@@ -1,0 +1,22 @@
+[
+  {
+    "id": "init-tst-001",
+    "timestamp": "2026-11-24T07:44:00.000Z",
+    "action": "ADD",
+    "numtab": 1,
+    "tableName": "Régimes de taxes tiers",
+    "code": "TST",
+    "label": "Voici un test de création du 2",
+    "shortLabel": "Test de créa",
+    "param_a1": "",
+    "param_n1": 0,
+    "user": {
+      "username": "ACOURCHA",
+      "displayName": "Courchay, Arthur",
+      "mail": "ACOURCHAY.valdepharm@fareva.com",
+      "department": "Informatique"
+    },
+    "reason": "Test initial de création directe en base Sage X3 VDRSANDB",
+    "status": "SUCCESS"
+  }
+]

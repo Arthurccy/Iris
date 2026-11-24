@@ -4,7 +4,9 @@
 		Check,
 		CheckCircle2,
 		Clipboard,
+		Clock,
 		Database,
+		History,
 		Lock,
 		Mail,
 		Pencil,
@@ -15,6 +17,7 @@
 		X
 	} from 'lucide-svelte';
 	import type { MiscTableDefinition, MiscTableItem } from '$lib/types';
+	import type { AuditLogEntry } from '$lib/server/audit';
 
 	type Props = {
 		table: MiscTableDefinition;
@@ -34,6 +37,7 @@
 			allTablesAllowed: boolean;
 			roleLabel: string;
 		};
+		tableAuditLogs?: AuditLogEntry[];
 		onClose: () => void;
 	};
 
@@ -43,8 +47,11 @@
 		isLive = false,
 		user = null,
 		permissions = { canEdit: false, allowedTables: [], allTablesAllowed: false, roleLabel: 'Non connecté' },
+		tableAuditLogs = [],
 		onClose
 	}: Props = $props();
+
+	let viewTab = $state<'values' | 'audit'>('values');
 
 	const canEditCurrentTable = $derived(
 		permissions.allTablesAllowed || (permissions.allowedTables || []).includes(table.numtab)
@@ -375,22 +382,43 @@
 					</p>
 				</div>
 
-				<!-- Barre d'outils : Recherche + Bouton Ajouter -->
+				<!-- Barre d'outils : Recherche + Bouton Ajouter + Onglet Historique -->
 				<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-					<div class="relative flex-1 max-w-sm">
-						<Search class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
-						<input
-							class="w-full rounded-xl border border-slate-300 bg-white pl-9 pr-3 py-2 text-xs font-medium text-slate-950 outline-none transition focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
-							type="search"
-							placeholder="Rechercher parmi les valeurs de cette table..."
-							bind:value={itemSearch}
-						/>
+					<div class="flex items-center gap-2">
+						{#if tableAuditLogs.length > 0}
+							<div class="flex items-center gap-1 rounded-xl border border-slate-300 bg-slate-200/80 p-1 text-xs font-bold">
+								<button
+									type="button"
+									class="rounded-lg px-3 py-1.5 transition {viewTab === 'values' ? 'bg-white text-slate-950 shadow-2xs' : 'text-slate-700 hover:text-slate-950'}"
+									onclick={() => (viewTab = 'values')}
+								>
+									Valeurs ({filteredItems.length})
+								</button>
+								<button
+									type="button"
+									class="rounded-lg px-3 py-1.5 transition flex items-center gap-1.5 {viewTab === 'audit' ? 'bg-corporate-700 text-white shadow-2xs' : 'text-slate-700 hover:text-slate-950'}"
+									onclick={() => (viewTab = 'audit')}
+								>
+									<History class="size-3.5" />
+									<span>Historique IRIS ({tableAuditLogs.length})</span>
+								</button>
+							</div>
+						{/if}
+
+						{#if viewTab === 'values'}
+							<div class="relative flex-1 sm:w-64">
+								<Search class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
+								<input
+									class="w-full rounded-xl border border-slate-300 bg-white pl-9 pr-3 py-2 text-xs font-medium text-slate-950 outline-none transition focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
+									type="search"
+									placeholder="Filtrer les valeurs..."
+									bind:value={itemSearch}
+								/>
+							</div>
+						{/if}
 					</div>
 
 					<div class="flex items-center gap-2.5">
-						<span class="text-xs font-semibold text-slate-600">
-							{filteredItems.length} entrée(s)
-						</span>
 						{#if canEditCurrentTable}
 							<button
 								type="button"
@@ -409,74 +437,133 @@
 					</div>
 				</div>
 
-				<!-- TABLEAU DES VALEURS EXISTANTES -->
-				<div class="rounded-xl border border-slate-300 bg-white overflow-hidden shadow-xs">
-					<table class="w-full text-left text-xs border-collapse">
-						<thead>
-							<tr class="border-b-2 border-slate-200 bg-slate-100 text-[11px] font-bold text-slate-800 uppercase tracking-wider">
-								<th class="py-2.5 px-3 w-32">Code X3</th>
-								<th class="py-2.5 px-3 w-48">Libellé court</th>
-								<th class="py-2.5 px-3">Désignation complète officielle</th>
-								<th class="py-2.5 px-3 text-right w-44">Actions</th>
-							</tr>
-						</thead>
-						<tbody class="divide-y divide-slate-200">
-							{#if filteredItems.length === 0}
-								<tr>
-									<td colspan="4" class="py-8 text-center text-slate-500 font-medium">
-										Aucune entrée ne correspond à votre recherche "{itemSearch}".
-									</td>
+				{#if viewTab === 'values'}
+					<!-- TABLEAU DES VALEURS EXISTANTES -->
+					<div class="rounded-xl border border-slate-300 bg-white overflow-hidden shadow-xs">
+						<table class="w-full text-left text-xs border-collapse">
+							<thead>
+								<tr class="border-b-2 border-slate-200 bg-slate-100 text-[11px] font-bold text-slate-800 uppercase tracking-wider">
+									<th class="py-2.5 px-3 w-32">Code X3</th>
+									<th class="py-2.5 px-3 w-48">Libellé court</th>
+									<th class="py-2.5 px-3">Désignation complète officielle</th>
+									<th class="py-2.5 px-3 text-right w-44">Actions</th>
 								</tr>
-							{:else}
-								{#each filteredItems as item}
-									<tr class="hover:bg-slate-50 transition group">
-										<td class="py-2 px-3 font-mono font-bold text-slate-950">
-											<span class="rounded bg-slate-100 px-2 py-0.5 border border-slate-300 shadow-2xs">
-												{item.code}
-											</span>
+							</thead>
+							<tbody class="divide-y divide-slate-200">
+								{#if filteredItems.length === 0}
+									<tr>
+										<td colspan="4" class="py-8 text-center text-slate-500 font-medium">
+											Aucune entrée ne correspond à votre recherche "{itemSearch}".
 										</td>
-										<td class="py-2 px-3 text-slate-800 font-medium">
-											{item.shortLabel || '-'}
-										</td>
-										<td class="py-2 px-3 text-slate-950 font-bold">
-											{item.label}
-										</td>
-										<td class="py-2 px-3 text-right">
-											<div class="inline-flex items-center gap-1.5">
-												{#if canEditCurrentTable}
+									</tr>
+								{:else}
+									{#each filteredItems as item}
+										<tr class="hover:bg-slate-50 transition group">
+											<td class="py-2 px-3 font-mono font-bold text-slate-950">
+												<span class="rounded bg-slate-100 px-2 py-0.5 border border-slate-300 shadow-2xs">
+													{item.code}
+												</span>
+											</td>
+											<td class="py-2 px-3 text-slate-800 font-medium">
+												{item.shortLabel || '-'}
+											</td>
+											<td class="py-2 px-3 text-slate-950 font-bold">
+												{item.label}
+											</td>
+											<td class="py-2 px-3 text-right">
+												<div class="inline-flex items-center gap-1.5">
+													{#if canEditCurrentTable}
+														<button
+															type="button"
+															class="inline-flex items-center gap-1 rounded-md border border-amber-300 bg-amber-50/80 px-2.5 py-1 text-[11px] font-bold text-amber-950 hover:bg-amber-100 shadow-2xs transition"
+															onclick={() => openEditForm(item)}
+															title="Modifier les libellés de cette valeur"
+														>
+															<Pencil class="size-3 text-amber-700" />
+															<span>Modifier</span>
+														</button>
+													{/if}
+
 													<button
 														type="button"
-														class="inline-flex items-center gap-1 rounded-md border border-amber-300 bg-amber-50/80 px-2.5 py-1 text-[11px] font-bold text-amber-950 hover:bg-amber-100 shadow-2xs transition"
-														onclick={() => openEditForm(item)}
-														title="Modifier les libellés de cette valeur"
+														class="inline-flex items-center gap-1 rounded-md border border-slate-300 bg-white px-2.5 py-1 text-[11px] font-bold text-slate-800 hover:bg-slate-100 shadow-2xs transition"
+														onclick={() => copyCode(item.code)}
+														title="Copier le code technique"
 													>
-														<Pencil class="size-3 text-amber-700" />
-														<span>Modifier</span>
+														{#if copiedCode === item.code}
+															<Check class="size-3 text-emerald-600" />
+															<span class="text-emerald-800">Copié</span>
+														{:else}
+															<Clipboard class="size-3 text-slate-500" />
+															<span>Copier</span>
+														{/if}
 													</button>
-												{/if}
-
-												<button
-													type="button"
-													class="inline-flex items-center gap-1 rounded-md border border-slate-300 bg-white px-2.5 py-1 text-[11px] font-bold text-slate-800 hover:bg-slate-100 shadow-2xs transition"
-													onclick={() => copyCode(item.code)}
-													title="Copier le code technique"
-												>
-													{#if copiedCode === item.code}
-														<Check class="size-3 text-emerald-600" />
-														<span class="text-emerald-800">Copié</span>
-													{:else}
-														<Clipboard class="size-3 text-slate-500" />
-														<span>Copier</span>
-													{/if}
-												</button>
-											</div>
+												</div>
+											</td>
+										</tr>
+									{/each}
+								{/if}
+							</tbody>
+						</table>
+					</div>
+				{:else if viewTab === 'audit'}
+					<!-- HISTORIQUE DES ACTIONS SUR CETTE TABLE -->
+					<div class="rounded-xl border border-slate-300 bg-white overflow-hidden shadow-xs">
+						<table class="w-full text-left text-xs border-collapse">
+							<thead>
+								<tr class="border-b-2 border-slate-200 bg-slate-100 text-[11px] font-bold text-slate-800 uppercase tracking-wider">
+									<th class="py-2.5 px-3 w-36">Date</th>
+									<th class="py-2.5 px-3 w-28 text-center">Action</th>
+									<th class="py-2.5 px-3 w-28 font-mono">Code X3</th>
+									<th class="py-2.5 px-3">Désignation</th>
+									<th class="py-2.5 px-3">Demandeur certifié</th>
+									<th class="py-2.5 px-3">Motif métier</th>
+									<th class="py-2.5 px-3 text-center w-24">Statut</th>
+								</tr>
+							</thead>
+							<tbody class="divide-y divide-slate-200">
+								{#each tableAuditLogs as log}
+									<tr class="hover:bg-slate-50 transition">
+										<td class="py-2.5 px-3 font-mono text-[11px] text-slate-700">
+											{new Date(log.timestamp).toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
+										</td>
+										<td class="py-2.5 px-3 text-center">
+											{#if log.action === 'ADD'}
+												<span class="rounded bg-emerald-100 text-emerald-950 px-2 py-0.5 text-[10px] font-bold shadow-2xs">Création</span>
+											{:else}
+												<span class="rounded bg-amber-100 text-amber-950 px-2 py-0.5 text-[10px] font-bold shadow-2xs">Modification</span>
+											{/if}
+										</td>
+										<td class="py-2.5 px-3 font-mono font-bold text-slate-950">
+											<span class="rounded bg-slate-100 border border-slate-300 px-1.5 py-0.5">
+												{log.code}
+											</span>
+										</td>
+										<td class="py-2.5 px-3 font-bold text-slate-950">
+											{log.label}
+											{#if log.shortLabel}
+												<span class="text-slate-500 font-normal text-[11px] ml-1">({log.shortLabel})</span>
+											{/if}
+										</td>
+										<td class="py-2.5 px-3">
+											<div class="font-bold text-slate-950">{log.user.displayName}</div>
+											<div class="text-[10px] text-slate-500">{log.user.department || log.user.username}</div>
+										</td>
+										<td class="py-2.5 px-3 italic text-slate-700 text-xs">
+											"{log.reason}"
+										</td>
+										<td class="py-2.5 px-3 text-center">
+											<span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[10px] font-bold text-emerald-800">
+												<Check class="size-3 text-emerald-600" />
+												<span>Sage X3</span>
+											</span>
 										</td>
 									</tr>
 								{/each}
-							{/if}
-						</tbody>
-					</table>
-				</div>
+							</tbody>
+						</table>
+					</div>
+				{/if}
 
 			{:else}
 				<!-- VUE 2 : FORMULAIRE DÉDIÉ ET CENTRÉ (Ajout ou Modification) -->

@@ -6,14 +6,18 @@
 		CheckCircle2,
 		ChevronLeft,
 		ChevronRight,
+		Clock,
 		Database,
+		ExternalLink,
 		Eye,
 		EyeOff,
 		FileCode,
+		FileSpreadsheet,
 		FileText,
 		Filter,
 		Folder,
 		Grid,
+		History,
 		Layers,
 		List,
 		Loader2,
@@ -21,6 +25,7 @@
 		LogIn,
 		LogOut,
 		Mail,
+		Pencil,
 		Plus,
 		Search,
 		Server,
@@ -29,10 +34,12 @@
 		SlidersHorizontal,
 		Table as TableIcon,
 		User,
+		UserCheck,
 		X
 	} from 'lucide-svelte';
 	import type { PageData } from './$types';
 	import type { MiscTableDefinition } from '$lib/types';
+	import type { AuditLogEntry } from '$lib/server/audit';
 	import MiscTableDetailModal from '$lib/components/MiscTableDetailModal.svelte';
 	import { invalidateAll } from '$app/navigation';
 
@@ -41,6 +48,86 @@
 	const tables = $derived(data.tables as MiscTableDefinition[]);
 	const isLive = $derived(data.isLive ?? false);
 	const fallbackMailbox = '3636.valdepharm@fareva.com';
+
+	// Vue principale : Référentiel vs Traçabilité & Audit
+	let mainView = $state<'catalog' | 'audit'>('catalog');
+	const auditLogs = $derived((data.auditLogs || []) as AuditLogEntry[]);
+
+	// Filtres de l'Audit Trail
+	let auditSearchTerm = $state('');
+	let auditActionFilter = $state<'all' | 'ADD' | 'UPDATE'>('all');
+	let auditUserFilter = $state<string>('all');
+
+	const filteredAuditLogs = $derived.by(() => {
+		let list = auditLogs;
+
+		// 1. Filtre par type d'action
+		if (auditActionFilter !== 'all') {
+			list = list.filter((l) => l.action === auditActionFilter);
+		}
+
+		// 2. Filtre par utilisateur (vue IT)
+		if (auditUserFilter !== 'all') {
+			list = list.filter(
+				(l) => (l.user?.username || '').toLowerCase() === auditUserFilter.toLowerCase()
+			);
+		}
+
+		// 3. Recherche textuelle
+		const term = auditSearchTerm.trim().toLowerCase();
+		if (term) {
+			list = list.filter((l) => {
+				const matchCode = (l.code || '').toLowerCase().includes(term);
+				const matchLabel = (l.label || '').toLowerCase().includes(term);
+				const matchTable =
+					String(l.numtab).includes(term) || (l.tableName || '').toLowerCase().includes(term);
+				const matchUser =
+					(l.user?.displayName || '').toLowerCase().includes(term) ||
+					(l.user?.username || '').toLowerCase().includes(term) ||
+					(l.user?.department || '').toLowerCase().includes(term);
+				const matchReason = (l.reason || '').toLowerCase().includes(term);
+				return matchCode || matchLabel || matchTable || matchUser || matchReason;
+			});
+		}
+
+		return list;
+	});
+
+	// Liste distincte des utilisateurs pour le filtre IT
+	const auditDistinctUsers = $derived.by(() => {
+		const map = new Map<string, string>();
+		for (const log of auditLogs) {
+			if (log.user?.username && !map.has(log.user.username)) {
+				map.set(log.user.username, log.user.displayName || log.user.username);
+			}
+		}
+		return Array.from(map.entries()).map(([username, displayName]) => ({
+			username,
+			displayName
+		}));
+	});
+
+	function formatAuditDate(isoStr: string) {
+		try {
+			const d = new Date(isoStr);
+			return d.toLocaleString('fr-FR', {
+				day: '2-digit',
+				month: '2-digit',
+				year: 'numeric',
+				hour: '2-digit',
+				minute: '2-digit'
+			});
+		} catch {
+			return isoStr;
+		}
+	}
+
+	function openTableByNumtab(numtab: number) {
+		const found = tables.find((t) => t.numtab === numtab);
+		if (found) {
+			activeTable = found;
+		}
+	}
 
 	// Authentification Active Directory
 	let isLoginModalOpen = $state(false);
@@ -400,81 +487,143 @@
 				{/if}
 			</div>
 
-			<!-- Barre d'outils, Recherche et Filtres -->
-			<div class="mt-4 pt-3 flex flex-col gap-3.5">
-				<!-- Ligne 1 : Champ de recherche avec contraste fort -->
-				<div class="relative w-full">
-					<Search class="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-slate-500" />
-					<input
-						class="w-full rounded-xl border-2 border-slate-300 bg-slate-50/70 pl-10 pr-10 py-2.5 text-xs sm:text-sm font-medium text-slate-950 outline-none transition placeholder:text-slate-500 focus:border-corporate-600 focus:bg-white focus:ring-4 focus:ring-corporate-500/10"
-						type="search"
-						placeholder="Rechercher par numéro (ex: 1007, 1011, 20), intitulé (ex: balance, avenant, taxe), ou code technique (ex: BAL01, AIT)..."
-						bind:value={searchTerm}
-					/>
-					{#if searchTerm.trim()}
-						<button
-							type="button"
-							class="absolute right-3 top-1/2 -translate-y-1/2 rounded-md p-1 text-slate-500 hover:text-slate-900 hover:bg-slate-200"
-							onclick={() => (searchTerm = '')}
-							title="Effacer la recherche"
-						>
-							<X class="size-4" />
-						</button>
-					{/if}
+			<!-- Navigation principale : Référentiel vs Traçabilité & Audit -->
+			<div class="mt-4 pt-3 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+				<div class="flex items-center gap-2">
+					<button
+						type="button"
+						class="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition {
+							mainView === 'catalog'
+								? 'bg-corporate-700 text-white shadow-xs'
+								: 'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50'
+						}"
+						onclick={() => (mainView = 'catalog')}
+					>
+						<TableIcon class="size-4" />
+						<span>Référentiel des tables ({totalTablesCount})</span>
+					</button>
+
+					<button
+						type="button"
+						class="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition {
+							mainView === 'audit'
+								? 'bg-corporate-700 text-white shadow-xs'
+								: 'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50'
+						}"
+						onclick={() => (mainView = 'audit')}
+					>
+						<History class="size-4" />
+						{#if data.permissions?.allTablesAllowed}
+							<span>Journal d'Audit IT (Global)</span>
+							<span class="rounded bg-amber-400 text-slate-950 px-2 py-0.5 text-[10px] font-extrabold shadow-2xs">
+								{auditLogs.length} action(s)
+							</span>
+						{:else}
+							<span>Mes modifications</span>
+							{#if data.user}
+								<span class="rounded bg-corporate-100 text-corporate-900 px-2 py-0.5 text-[10px] font-bold">
+									{auditLogs.length}
+								</span>
+							{/if}
+						{/if}
+					</button>
 				</div>
 
-				<!-- Ligne 2 : Contrôles de filtrage, bascule de vue et options -->
-				<div class="flex flex-wrap items-center justify-between gap-3 text-xs">
-					
-					<!-- Segmented control de périmètre avec couleurs affirmées -->
-					<div class="flex items-center gap-1 rounded-xl border border-slate-300 bg-slate-200/70 p-1">
-						{#if data.user}
+				{#if mainView === 'audit'}
+					<div class="flex items-center gap-2 text-xs font-medium">
+						{#if data.permissions?.allTablesAllowed}
+							<span class="inline-flex items-center gap-1.5 rounded-full bg-amber-100 border border-amber-300 px-3 py-1 font-bold text-amber-950 text-[11px]">
+								<ShieldCheck class="size-3.5 text-amber-800" />
+								Supervision IT : Visibilité intégrale sur tous les utilisateurs
+							</span>
+						{:else}
+							<span class="inline-flex items-center gap-1.5 rounded-full bg-slate-100 border border-slate-300 px-3 py-1 font-bold text-slate-800 text-[11px]">
+								<UserCheck class="size-3.5 text-slate-600" />
+								Visibilité restreinte : vos modifications personnelles uniquement
+							</span>
+						{/if}
+					</div>
+				{/if}
+			</div>
+		</div>
+
+		<!-- VUE 1 : CATALOGUE DES TABLES DIVERSES -->
+		{#if mainView === 'catalog'}
+			<div class="space-y-4">
+				<!-- Barre d'outils, Recherche et Filtres -->
+				<div class="rounded-2xl border border-slate-300/80 bg-white p-4 shadow-sm flex flex-col gap-3.5">
+					<!-- Ligne 1 : Champ de recherche avec contraste fort -->
+					<div class="relative w-full">
+						<Search class="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-slate-500" />
+						<input
+							class="w-full rounded-xl border-2 border-slate-300 bg-slate-50/70 pl-10 pr-10 py-2.5 text-xs sm:text-sm font-medium text-slate-950 outline-none transition placeholder:text-slate-500 focus:border-corporate-600 focus:bg-white focus:ring-4 focus:ring-corporate-500/10"
+							type="search"
+							placeholder="Rechercher par numéro (ex: 1007, 1011, 20), intitulé (ex: balance, avenant, taxe), ou code technique (ex: BAL01, AIT)..."
+							bind:value={searchTerm}
+						/>
+						{#if searchTerm.trim()}
+							<button
+								type="button"
+								class="absolute right-3 top-1/2 -translate-y-1/2 rounded-md p-1 text-slate-500 hover:text-slate-900 hover:bg-slate-200"
+								onclick={() => (searchTerm = '')}
+								title="Effacer la recherche"
+							>
+								<X class="size-4" />
+							</button>
+						{/if}
+					</div>
+
+					<!-- Ligne 2 : Contrôles de filtrage, bascule de vue et options -->
+					<div class="flex flex-wrap items-center justify-between gap-3 text-xs">
+						<!-- Segmented control de périmètre : Pas de doublon "Mes tables (332)" pour l'admin -->
+						<div class="flex items-center gap-1 rounded-xl border border-slate-300 bg-slate-200/70 p-1">
+							{#if data.user && !data.permissions?.allTablesAllowed && (data.permissions?.allowedTables || []).length > 0}
+								<button
+									type="button"
+									class="rounded-lg px-3.5 py-1.5 font-bold transition {
+										selectedScope === 'mine'
+											? 'bg-corporate-700 text-white shadow-xs'
+											: 'text-corporate-900 hover:bg-corporate-100'
+									}"
+									onclick={() => (selectedScope = 'mine')}
+								>
+									Mes tables autorisées ({(data.permissions?.allowedTables || []).length})
+								</button>
+							{/if}
 							<button
 								type="button"
 								class="rounded-lg px-3.5 py-1.5 font-bold transition {
-									selectedScope === 'mine'
-										? 'bg-corporate-700 text-white shadow-xs'
-										: 'text-corporate-900 hover:bg-corporate-100'
+									selectedScope === 'all'
+										? 'bg-slate-900 text-white shadow-xs'
+										: 'text-slate-700 hover:text-slate-950 hover:bg-slate-200'
 								}"
-								onclick={() => (selectedScope = 'mine')}
+								onclick={() => (selectedScope = 'all')}
 							>
-								Mes tables ({data.permissions?.allTablesAllowed ? totalTablesCount : (data.permissions?.allowedTables || []).length})
+								Toutes ({totalTablesCount})
 							</button>
-						{/if}
-						<button
-							type="button"
-							class="rounded-lg px-3.5 py-1.5 font-bold transition {
-								selectedScope === 'all'
-									? 'bg-slate-900 text-white shadow-xs'
-									: 'text-slate-700 hover:text-slate-950 hover:bg-slate-200'
-							}"
-							onclick={() => (selectedScope = 'all')}
-						>
-							Toutes ({totalTablesCount})
-						</button>
-						<button
-							type="button"
-							class="rounded-lg px-3.5 py-1.5 font-bold transition {
-								selectedScope === 'valdepharm'
-									? 'bg-amber-600 text-white shadow-xs'
-									: 'text-amber-900 hover:bg-amber-100'
-							}"
-							onclick={() => (selectedScope = 'valdepharm')}
-						>
-							Valdepharm (84)
-						</button>
-						<button
-							type="button"
-							class="rounded-lg px-3.5 py-1.5 font-bold transition {
-								selectedScope === 'standard'
-									? 'bg-blue-600 text-white shadow-xs'
-									: 'text-blue-900 hover:bg-blue-100'
-							}"
-							onclick={() => (selectedScope = 'standard')}
-						>
-							Standard X3 (248)
-						</button>
-					</div>
+							<button
+								type="button"
+								class="rounded-lg px-3.5 py-1.5 font-bold transition {
+									selectedScope === 'valdepharm'
+										? 'bg-amber-600 text-white shadow-xs'
+										: 'text-amber-900 hover:bg-amber-100'
+								}"
+								onclick={() => (selectedScope = 'valdepharm')}
+							>
+								Valdepharm (84)
+							</button>
+							<button
+								type="button"
+								class="rounded-lg px-3.5 py-1.5 font-bold transition {
+									selectedScope === 'standard'
+										? 'bg-blue-600 text-white shadow-xs'
+										: 'text-blue-900 hover:bg-blue-100'
+								}"
+								onclick={() => (selectedScope = 'standard')}
+							>
+								Standard X3 (248)
+							</button>
+						</div>
 
 					<!-- Filtre par catégorie -->
 					<div class="flex items-center gap-2">
@@ -535,7 +684,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
 
 		<!-- Barre de statut des résultats & Pagination supérieure -->
 		<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 px-1 text-xs text-slate-700">
@@ -710,14 +858,25 @@
 
 									<!-- Action -->
 									<td class="py-2.5 px-4 text-right">
-										<button
-											type="button"
-											class="inline-flex items-center gap-1.5 rounded-lg bg-corporate-700 hover:bg-corporate-800 px-3 py-1.5 text-xs font-bold text-white shadow-xs transition"
-											onclick={() => openTable(table)}
-										>
-											<TableIcon class="size-3.5 text-white" />
-											<span>Consulter</span>
-										</button>
+										{#if data.permissions?.allTablesAllowed || (data.permissions?.allowedTables || []).includes(table.numtab)}
+											<button
+												type="button"
+												class="inline-flex items-center gap-1.5 rounded-lg bg-corporate-700 hover:bg-corporate-800 px-3 py-1.5 text-xs font-bold text-white shadow-xs transition"
+												onclick={() => openTable(table)}
+											>
+												<Pencil class="size-3 text-white" />
+												<span>Consulter & Modifier</span>
+											</button>
+										{:else}
+											<button
+												type="button"
+												class="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 px-3 py-1.5 text-xs font-bold text-slate-800 shadow-2xs transition"
+												onclick={() => openTable(table)}
+											>
+												<TableIcon class="size-3.5 text-slate-600" />
+												<span>Consulter</span>
+											</button>
+										{/if}
 									</td>
 								</tr>
 							{/each}
@@ -787,14 +946,25 @@
 						</div>
 
 						<div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-end">
-							<button
-								type="button"
-								class="inline-flex items-center gap-1.5 rounded-lg bg-corporate-700 hover:bg-corporate-800 px-3 py-1.5 text-xs font-bold text-white shadow-xs transition"
-								onclick={() => openTable(table)}
-							>
-								<TableIcon class="size-3.5 text-white" />
-								<span>Consulter & Compléter</span>
-							</button>
+							{#if data.permissions?.allTablesAllowed || (data.permissions?.allowedTables || []).includes(table.numtab)}
+								<button
+									type="button"
+									class="inline-flex items-center gap-1.5 rounded-lg bg-corporate-700 hover:bg-corporate-800 px-3 py-1.5 text-xs font-bold text-white shadow-xs transition"
+									onclick={() => openTable(table)}
+								>
+									<Pencil class="size-3 text-white" />
+									<span>Consulter & Modifier</span>
+								</button>
+							{:else}
+								<button
+									type="button"
+									class="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 px-3 py-1.5 text-xs font-bold text-slate-800 shadow-2xs transition"
+									onclick={() => openTable(table)}
+								>
+									<TableIcon class="size-3.5 text-slate-600" />
+									<span>Consulter</span>
+								</button>
+							{/if}
 						</div>
 					</article>
 				{/each}
@@ -833,6 +1003,234 @@
 				</div>
 			</div>
 		{/if}
+	</div>
+
+	<!-- VUE 2 : TRAÇABILITÉ & JOURNAL D'AUDIT GXP -->
+	{:else if mainView === 'audit'}
+		<div class="space-y-4">
+			<!-- Bandeau de filtrage et supervision de l'audit -->
+			<div class="rounded-2xl border border-slate-300/80 bg-white p-5 shadow-sm space-y-4">
+				<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+					<div>
+						<h2 class="text-lg font-extrabold text-slate-950 flex items-center gap-2">
+							<History class="size-5 text-corporate-700" />
+							{#if data.permissions?.allTablesAllowed}
+								<span>Journal d'Audit Global (Supervision IT)</span>
+							{:else}
+								<span>Historique de mes modifications & ajouts</span>
+							{/if}
+						</h2>
+						<p class="text-xs text-slate-600 mt-0.5">
+							{#if data.permissions?.allTablesAllowed}
+								Traçabilité intégrale de l'ensemble des créations et mises à jour exécutées par tous les utilisateurs dans Sage X3 via IRIS.
+							{:else}
+								Historique de toutes les valeurs et libellés que vous avez créés ou modifiés avec votre compte Windows.
+							{/if}
+						</p>
+					</div>
+
+					<!-- Compteurs d'audit -->
+					<div class="flex flex-wrap items-center gap-2.5">
+						<div class="rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2 shadow-2xs">
+							<div class="text-[10px] uppercase font-bold text-slate-500">Total traçabilité</div>
+							<div class="text-sm font-extrabold text-slate-950">{auditLogs.length} action(s)</div>
+						</div>
+						<div class="rounded-xl border border-emerald-300 bg-emerald-50 px-3.5 py-2 shadow-2xs">
+							<div class="text-[10px] uppercase font-bold text-emerald-800">Créations (ADD)</div>
+							<div class="text-sm font-extrabold text-emerald-950">
+								{auditLogs.filter((l) => l.action === 'ADD').length}
+							</div>
+						</div>
+						<div class="rounded-xl border border-amber-300 bg-amber-50 px-3.5 py-2 shadow-2xs">
+							<div class="text-[10px] uppercase font-bold text-amber-800">Modifications (UPDATE)</div>
+							<div class="text-sm font-extrabold text-amber-950">
+								{auditLogs.filter((l) => l.action === 'UPDATE').length}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Barre de recherche et filtres de l'audit -->
+				<div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 pt-3 border-t border-slate-200">
+					<!-- Recherche textuelle -->
+					<div class="sm:col-span-2 relative">
+						<Search class="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-slate-500" />
+						<input
+							type="search"
+							placeholder="Rechercher par code (ex: TST), libellé, n° table (#1), demandeur ou motif..."
+							class="w-full rounded-xl border border-slate-300 bg-slate-50 pl-10 pr-3 py-2 text-xs font-semibold text-slate-950 outline-none focus:border-corporate-600 focus:bg-white"
+							bind:value={auditSearchTerm}
+						/>
+					</div>
+
+					<!-- Filtre Action -->
+					<div>
+						<select
+							class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-900 outline-none focus:border-corporate-600"
+							bind:value={auditActionFilter}
+						>
+							<option value="all">Toutes les actions (Ajout & Modif)</option>
+							<option value="ADD">Créations uniquement (ADD)</option>
+							<option value="UPDATE">Modifications uniquement (UPDATE)</option>
+						</select>
+					</div>
+
+					<!-- Filtre Utilisateur (IT uniquement) -->
+					<div>
+						{#if data.permissions?.allTablesAllowed}
+							<select
+								class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-900 outline-none focus:border-corporate-600"
+								bind:value={auditUserFilter}
+							>
+								<option value="all">Tous les utilisateurs</option>
+								{#each auditDistinctUsers as u}
+									<option value={u.username}>{u.displayName} ({u.username})</option>
+								{/each}
+							</select>
+						{:else}
+							<div class="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-700 flex items-center gap-1.5">
+								<UserCheck class="size-3.5 text-corporate-700" />
+								<span>Auteur : {data.user?.displayName || 'Moi-même'}</span>
+							</div>
+						{/if}
+					</div>
+				</div>
+			</div>
+
+			<!-- Tableau du Journal d'Audit -->
+			{#if filteredAuditLogs.length === 0}
+				<div class="rounded-2xl border-2 border-dashed border-slate-300 bg-white p-12 text-center">
+					<History class="size-10 text-slate-400 mx-auto mb-2" />
+					<p class="text-xs font-bold uppercase tracking-wider text-slate-500">Aucune action trouvée</p>
+					<p class="mt-2 text-sm font-semibold text-slate-800">
+						Aucun enregistrement d'audit ne correspond à vos filtres actuels.
+					</p>
+					<p class="mt-1 text-xs text-slate-500">
+						Toute création ou modification de valeur effectuée dans IRIS sera consignée ici en temps réel.
+					</p>
+				</div>
+			{:else}
+				<div class="rounded-2xl border border-slate-300 bg-white shadow-xs overflow-hidden">
+					<div class="overflow-x-auto">
+						<table class="w-full text-left text-xs border-collapse">
+							<thead>
+								<tr class="border-b-2 border-slate-200 bg-slate-100/90 text-slate-800 font-bold uppercase tracking-wider text-[11px]">
+									<th class="py-3 px-4 w-40">Date & Heure</th>
+									<th class="py-3 px-4 w-48">Table diverse</th>
+									<th class="py-3 px-3 w-28 text-center">Type</th>
+									<th class="py-3 px-3 w-28 font-mono">Code X3</th>
+									<th class="py-3 px-4">Désignation</th>
+									<th class="py-3 px-4">Demandeur certifié</th>
+									<th class="py-3 px-4">Motif / Justification</th>
+									<th class="py-3 px-3 w-28 text-center">Statut</th>
+									<th class="py-3 px-4 text-right w-24">Action</th>
+								</tr>
+							</thead>
+							<tbody class="divide-y divide-slate-200">
+								{#each filteredAuditLogs as log}
+									<tr class="hover:bg-slate-50 transition">
+										<!-- Date & Heure -->
+										<td class="py-3 px-4 font-mono text-[11px] text-slate-700 whitespace-nowrap">
+											<div class="flex items-center gap-1.5 font-bold text-slate-900">
+												<Clock class="size-3.5 text-slate-500" />
+												<span>{formatAuditDate(log.timestamp)}</span>
+											</div>
+										</td>
+
+										<!-- Table -->
+										<td class="py-3 px-4">
+											<div class="font-bold text-slate-900">
+												<span class="rounded bg-corporate-100 font-mono text-corporate-900 px-1.5 py-0.5 text-[10px] font-extrabold mr-1 shadow-2xs">
+													#{log.numtab}
+												</span>
+												{log.tableName}
+											</div>
+										</td>
+
+										<!-- Action -->
+										<td class="py-3 px-3 text-center">
+											{#if log.action === 'ADD'}
+												<span class="inline-flex items-center gap-1 rounded bg-emerald-100 text-emerald-950 border border-emerald-300 px-2 py-0.5 text-[10px] font-bold shadow-2xs">
+													<Plus class="size-3 text-emerald-700" />
+													<span>Création</span>
+												</span>
+											{:else}
+												<span class="inline-flex items-center gap-1 rounded bg-amber-100 text-amber-950 border border-amber-300 px-2 py-0.5 text-[10px] font-bold shadow-2xs">
+													<Pencil class="size-3 text-amber-700" />
+													<span>Modification</span>
+												</span>
+											{/if}
+										</td>
+
+										<!-- Code -->
+										<td class="py-3 px-3 font-mono font-bold text-slate-950">
+											<span class="rounded bg-slate-100 border border-slate-300 px-2 py-0.5 shadow-2xs">
+												{log.code}
+											</span>
+										</td>
+
+										<!-- Désignation -->
+										<td class="py-3 px-4">
+											<div class="font-bold text-slate-950">{log.label}</div>
+											{#if log.shortLabel}
+												<div class="text-[11px] text-slate-500 font-medium">Court : {log.shortLabel}</div>
+											{/if}
+										</td>
+
+										<!-- Demandeur certifié -->
+										<td class="py-3 px-4">
+											<div class="flex items-center gap-1 font-bold text-slate-950">
+												<ShieldCheck class="size-3.5 text-emerald-600 shrink-0" />
+												<span>{log.user.displayName}</span>
+											</div>
+											<div class="text-[11px] text-slate-500 font-medium">
+												{log.user.department || log.user.mail || log.user.username}
+											</div>
+										</td>
+
+										<!-- Motif -->
+										<td class="py-3 px-4 text-slate-800 text-xs">
+											<div class="line-clamp-2 italic" title={log.reason}>
+												"{log.reason}"
+											</div>
+										</td>
+
+										<!-- Statut -->
+										<td class="py-3 px-3 text-center">
+											{#if log.status === 'SUCCESS'}
+												<span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[10px] font-bold text-emerald-800">
+													<Check class="size-3 text-emerald-600" />
+													<span>Sage X3</span>
+												</span>
+											{:else}
+												<span class="inline-flex items-center gap-1 rounded-full bg-rose-50 border border-rose-200 px-2 py-0.5 text-[10px] font-bold text-rose-800">
+													<AlertCircle class="size-3 text-rose-600" />
+													<span>Échec</span>
+												</span>
+											{/if}
+										</td>
+
+										<!-- Ouvrir la table -->
+										<td class="py-3 px-4 text-right">
+											<button
+												type="button"
+												class="inline-flex items-center gap-1 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 px-2.5 py-1 text-xs font-bold text-slate-800 shadow-2xs transition"
+												onclick={() => openTableByNumtab(log.numtab)}
+												title="Consulter cette table"
+											>
+												<ExternalLink class="size-3 text-slate-500" />
+												<span>Ouvrir</span>
+											</button>
+										</td>
+									</tr>
+								{/each}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			{/if}
+		</div>
+	{/if}
 
 	</main>
 
@@ -844,6 +1242,7 @@
 			{isLive}
 			user={data.user}
 			permissions={data.permissions}
+			tableAuditLogs={auditLogs.filter((l) => l.numtab === activeTable.numtab)}
 			onClose={closeTable}
 		/>
 	{/if}
