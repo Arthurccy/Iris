@@ -155,7 +155,7 @@ export async function getLiveOrCachedTables(): Promise<{
 				numtab: num,
 				title,
 				category,
-				description: `Table diverse Sage X3 numéro ${num} (${title}) gérée dans GESTDU / ATABDIV.`,
+				description: `Table diverse Sage X3 numéro ${num} (${title}) — Fonction GESADI (table SQL ATABDIV).`,
 				itemCount: items.length,
 				items
 			};

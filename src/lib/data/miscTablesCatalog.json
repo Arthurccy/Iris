@@ -3,7 +3,7 @@
     "numtab": 1,
     "title": "Régimes de taxes tiers",
     "category": "Fiscalité & Taxes",
-    "description": "Table diverse Sage X3 numéro 1 (Régimes de taxes tiers) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1 (Régimes de taxes tiers) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 8,
     "items": [
       {
@@ -76,7 +76,7 @@
     "numtab": 2,
     "title": "Niveaux de taxes articles",
     "category": "Fiscalité & Taxes",
-    "description": "Table diverse Sage X3 numéro 2 (Niveaux de taxes articles) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 2 (Niveaux de taxes articles) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 11,
     "items": [
       {
@@ -173,7 +173,7 @@
     "numtab": 3,
     "title": "Modes de règlement",
     "category": "Finances & Règlements",
-    "description": "Table diverse Sage X3 numéro 3 (Modes de règlement) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 3 (Modes de règlement) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 13,
     "items": [
       {
@@ -286,7 +286,7 @@
     "numtab": 5,
     "title": "Incoterms",
     "category": "Finances & Règlements",
-    "description": "Table diverse Sage X3 numéro 5 (Incoterms) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 5 (Incoterms) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 11,
     "items": [
       {
@@ -383,7 +383,7 @@
     "numtab": 6,
     "title": "Nature transaction DEB",
     "category": "Fiscalité & Taxes",
-    "description": "Table diverse Sage X3 numéro 6 (Nature transaction DEB) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 6 (Nature transaction DEB) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 67,
     "items": [
       {
@@ -928,7 +928,7 @@
     "numtab": 7,
     "title": "Motifs retour",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 7 (Motifs retour) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 7 (Motifs retour) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 6,
     "items": [
       {
@@ -985,7 +985,7 @@
     "numtab": 8,
     "title": "Motifs avoirs",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 8 (Motifs avoirs) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 8 (Motifs avoirs) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 9,
     "items": [
       {
@@ -1066,7 +1066,7 @@
     "numtab": 9,
     "title": "Familles de mouvements stock",
     "category": "Stocks & Flux",
-    "description": "Table diverse Sage X3 numéro 9 (Familles de mouvements stock) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 9 (Familles de mouvements stock) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 45,
     "items": [
       {
@@ -1435,7 +1435,7 @@
     "numtab": 10,
     "title": "Unités de frais",
     "category": "Stocks & Flux",
-    "description": "Table diverse Sage X3 numéro 10 (Unités de frais) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 10 (Unités de frais) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 7,
     "items": [
       {
@@ -1500,7 +1500,7 @@
     "numtab": 14,
     "title": "Code mouvement stock",
     "category": "Stocks & Flux",
-    "description": "Table diverse Sage X3 numéro 14 (Code mouvement stock) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 14 (Code mouvement stock) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 43,
     "items": [
       {
@@ -1853,7 +1853,7 @@
     "numtab": 15,
     "title": "Régimes statistiques DEB",
     "category": "Fiscalité & Taxes",
-    "description": "Table diverse Sage X3 numéro 15 (Régimes statistiques DEB) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 15 (Régimes statistiques DEB) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 17,
     "items": [
       {
@@ -1998,7 +1998,7 @@
     "numtab": 20,
     "title": "Classe article",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 20 (Classe article) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 20 (Classe article) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 171,
     "items": [
       {
@@ -3375,7 +3375,7 @@
     "numtab": 21,
     "title": "CPT1",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 21 (CPT1) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 21 (CPT1) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 214,
     "items": [
       {
@@ -5096,7 +5096,7 @@
     "numtab": 22,
     "title": "CPT4",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 22 (CPT4) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 22 (CPT4) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 24,
     "items": [
       {
@@ -5297,7 +5297,7 @@
     "numtab": 23,
     "title": "Code client",
     "category": "Tiers & Ventes",
-    "description": "Table diverse Sage X3 numéro 23 (Code client) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 23 (Code client) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 57,
     "items": [
       {
@@ -5762,7 +5762,7 @@
     "numtab": 24,
     "title": "Sous famille",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 24 (Sous famille) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 24 (Sous famille) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 17,
     "items": [
       {
@@ -5907,7 +5907,7 @@
     "numtab": 25,
     "title": "Table diverse 25",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 25 (Table diverse 25) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 25 (Table diverse 25) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -5924,7 +5924,7 @@
     "numtab": 30,
     "title": "Stat. 1 client",
     "category": "Tiers & Ventes",
-    "description": "Table diverse Sage X3 numéro 30 (Stat. 1 client) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 30 (Stat. 1 client) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -5941,7 +5941,7 @@
     "numtab": 31,
     "title": "Région",
     "category": "Tiers & Ventes",
-    "description": "Table diverse Sage X3 numéro 31 (Région) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 31 (Région) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 15,
     "items": [
       {
@@ -6070,7 +6070,7 @@
     "numtab": 32,
     "title": "Secteur géographique",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 32 (Secteur géographique) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 32 (Secteur géographique) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -6087,7 +6087,7 @@
     "numtab": 33,
     "title": "Stat. 4 client",
     "category": "Tiers & Ventes",
-    "description": "Table diverse Sage X3 numéro 33 (Stat. 4 client) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 33 (Stat. 4 client) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -6095,7 +6095,7 @@
     "numtab": 34,
     "title": "Stat. 5 client",
     "category": "Tiers & Ventes",
-    "description": "Table diverse Sage X3 numéro 34 (Stat. 5 client) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 34 (Stat. 5 client) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -6103,7 +6103,7 @@
     "numtab": 40,
     "title": "Stat. 1 fournisseur",
     "category": "Tiers & Ventes",
-    "description": "Table diverse Sage X3 numéro 40 (Stat. 1 fournisseur) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 40 (Stat. 1 fournisseur) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 4,
     "items": [
       {
@@ -6144,7 +6144,7 @@
     "numtab": 41,
     "title": "Stat. 2 fournisseur",
     "category": "Tiers & Ventes",
-    "description": "Table diverse Sage X3 numéro 41 (Stat. 2 fournisseur) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 41 (Stat. 2 fournisseur) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 9,
     "items": [
       {
@@ -6225,7 +6225,7 @@
     "numtab": 42,
     "title": "Stat. 3 fournisseur",
     "category": "Tiers & Ventes",
-    "description": "Table diverse Sage X3 numéro 42 (Stat. 3 fournisseur) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 42 (Stat. 3 fournisseur) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 5,
     "items": [
       {
@@ -6274,7 +6274,7 @@
     "numtab": 43,
     "title": "Stat. 4 fournisseur",
     "category": "Tiers & Ventes",
-    "description": "Table diverse Sage X3 numéro 43 (Stat. 4 fournisseur) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 43 (Stat. 4 fournisseur) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -6282,7 +6282,7 @@
     "numtab": 44,
     "title": "Stat. 5 fournisseur",
     "category": "Tiers & Ventes",
-    "description": "Table diverse Sage X3 numéro 44 (Stat. 5 fournisseur) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 44 (Stat. 5 fournisseur) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -6290,7 +6290,7 @@
     "numtab": 45,
     "title": "Rôle contact",
     "category": "Tiers & Ventes",
-    "description": "Table diverse Sage X3 numéro 45 (Rôle contact) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 45 (Rôle contact) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -6323,7 +6323,7 @@
     "numtab": 50,
     "title": "Natures Workflow",
     "category": "Administration & Workflow",
-    "description": "Table diverse Sage X3 numéro 50 (Natures Workflow) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 50 (Natures Workflow) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 5,
     "items": [
       {
@@ -6372,7 +6372,7 @@
     "numtab": 51,
     "title": "Catégories Workflow",
     "category": "Administration & Workflow",
-    "description": "Table diverse Sage X3 numéro 51 (Catégories Workflow) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 51 (Catégories Workflow) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 11,
     "items": [
       {
@@ -6469,7 +6469,7 @@
     "numtab": 52,
     "title": "Graphiques",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 52 (Graphiques) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 52 (Graphiques) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 10,
     "items": [
       {
@@ -6558,7 +6558,7 @@
     "numtab": 54,
     "title": "Codes actions signatures",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 54 (Codes actions signatures) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 54 (Codes actions signatures) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 6,
     "items": [
       {
@@ -6615,7 +6615,7 @@
     "numtab": 55,
     "title": "Code opération signature",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 55 (Code opération signature) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 55 (Code opération signature) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 6,
     "items": [
       {
@@ -6672,7 +6672,7 @@
     "numtab": 56,
     "title": "Réservé Workflow",
     "category": "Administration & Workflow",
-    "description": "Table diverse Sage X3 numéro 56 (Réservé Workflow) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 56 (Réservé Workflow) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -6705,7 +6705,7 @@
     "numtab": 57,
     "title": "Réservé Workflow",
     "category": "Administration & Workflow",
-    "description": "Table diverse Sage X3 numéro 57 (Réservé Workflow) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 57 (Réservé Workflow) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -6713,7 +6713,7 @@
     "numtab": 58,
     "title": "Réservé Workflow",
     "category": "Administration & Workflow",
-    "description": "Table diverse Sage X3 numéro 58 (Réservé Workflow) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 58 (Réservé Workflow) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -6721,7 +6721,7 @@
     "numtab": 59,
     "title": "Réservé Workflow",
     "category": "Administration & Workflow",
-    "description": "Table diverse Sage X3 numéro 59 (Réservé Workflow) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 59 (Réservé Workflow) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -6729,7 +6729,7 @@
     "numtab": 60,
     "title": "Rôles",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 60 (Rôles) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 60 (Rôles) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 16,
     "items": [
       {
@@ -6866,7 +6866,7 @@
     "numtab": 61,
     "title": "Sémantique liaisons",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 61 (Sémantique liaisons) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 61 (Sémantique liaisons) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -6883,7 +6883,7 @@
     "numtab": 70,
     "title": "EDI- Conversion Unités",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 70 (EDI- Conversion Unités) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 70 (EDI- Conversion Unités) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 6,
     "items": [
       {
@@ -6940,7 +6940,7 @@
     "numtab": 71,
     "title": "EDI- Conversion Devises",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 71 (EDI- Conversion Devises) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 71 (EDI- Conversion Devises) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -6973,7 +6973,7 @@
     "numtab": 72,
     "title": "EDI- Conversion Cond. Paiement",
     "category": "Finances & Règlements",
-    "description": "Table diverse Sage X3 numéro 72 (EDI- Conversion Cond. Paiement) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 72 (EDI- Conversion Cond. Paiement) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 2,
     "items": [
       {
@@ -6998,7 +6998,7 @@
     "numtab": 80,
     "title": "Etat fédéral",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 80 (Etat fédéral) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 80 (Etat fédéral) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 17,
     "items": [
       {
@@ -7143,7 +7143,7 @@
     "numtab": 81,
     "title": "Identifiant volume (GED)",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 81 (Identifiant volume (GED)) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 81 (Identifiant volume (GED)) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -7151,7 +7151,7 @@
     "numtab": 82,
     "title": "Motif maintenance",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 82 (Motif maintenance) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 82 (Motif maintenance) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 6,
     "items": [
       {
@@ -7208,7 +7208,7 @@
     "numtab": 101,
     "title": "Motifs e-Signature",
     "category": "Qualité & Contrôle",
-    "description": "Table diverse Sage X3 numéro 101 (Motifs e-Signature) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 101 (Motifs e-Signature) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -7225,7 +7225,7 @@
     "numtab": 102,
     "title": "Regroupement question",
     "category": "Qualité & Contrôle",
-    "description": "Table diverse Sage X3 numéro 102 (Regroupement question) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 102 (Regroupement question) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -7258,7 +7258,7 @@
     "numtab": 103,
     "title": "Taille échantillon plan simple",
     "category": "Qualité & Contrôle",
-    "description": "Table diverse Sage X3 numéro 103 (Taille échantillon plan simple) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 103 (Taille échantillon plan simple) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 15,
     "items": [
       {
@@ -7387,7 +7387,7 @@
     "numtab": 104,
     "title": "Motifs échantillonnage",
     "category": "Qualité & Contrôle",
-    "description": "Table diverse Sage X3 numéro 104 (Motifs échantillonnage) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 104 (Motifs échantillonnage) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 4,
     "items": [
       {
@@ -7428,7 +7428,7 @@
     "numtab": 201,
     "title": "Motifs solde",
     "category": "Qualité & Contrôle",
-    "description": "Table diverse Sage X3 numéro 201 (Motifs solde) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 201 (Motifs solde) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 9,
     "items": [
       {
@@ -7509,7 +7509,7 @@
     "numtab": 204,
     "title": "Motifs blocage commande",
     "category": "Qualité & Contrôle",
-    "description": "Table diverse Sage X3 numéro 204 (Motifs blocage commande) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 204 (Motifs blocage commande) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -7526,7 +7526,7 @@
     "numtab": 302,
     "title": "Unités d'oeuvres",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 302 (Unités d'oeuvres) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 302 (Unités d'oeuvres) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -7559,7 +7559,7 @@
     "numtab": 303,
     "title": "Edition des relances",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 303 (Edition des relances) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 303 (Edition des relances) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 11,
     "items": [
       {
@@ -7656,7 +7656,7 @@
     "numtab": 304,
     "title": "Code édition",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 304 (Code édition) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 304 (Code édition) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 13,
     "items": [
       {
@@ -7769,7 +7769,7 @@
     "numtab": 305,
     "title": "Motif de rejet",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 305 (Motif de rejet) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 305 (Motif de rejet) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 29,
     "items": [
       {
@@ -8010,7 +8010,7 @@
     "numtab": 306,
     "title": "Codes interbancaires",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 306 (Codes interbancaires) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 306 (Codes interbancaires) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 96,
     "items": [
       {
@@ -8787,7 +8787,7 @@
     "numtab": 307,
     "title": "Codes mouvements BDF",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 307 (Codes mouvements BDF) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 307 (Codes mouvements BDF) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -8795,7 +8795,7 @@
     "numtab": 308,
     "title": "Codes paiements BDF",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 308 (Codes paiements BDF) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 308 (Codes paiements BDF) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -8803,7 +8803,7 @@
     "numtab": 309,
     "title": "Motifs économiques",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 309 (Motifs économiques) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 309 (Motifs économiques) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 156,
     "items": [
       {
@@ -10060,7 +10060,7 @@
     "numtab": 310,
     "title": "Motif impayé",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 310 (Motif impayé) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 310 (Motif impayé) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 7,
     "items": [
       {
@@ -10125,7 +10125,7 @@
     "numtab": 311,
     "title": "Règlements CFONB",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 311 (Règlements CFONB) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 311 (Règlements CFONB) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 4,
     "items": [
       {
@@ -10166,7 +10166,7 @@
     "numtab": 312,
     "title": "Imputation des frais",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 312 (Imputation des frais) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 312 (Imputation des frais) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -10199,7 +10199,7 @@
     "numtab": 313,
     "title": "SEPA - Nature de paiement",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 313 (SEPA - Nature de paiement) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 313 (SEPA - Nature de paiement) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 17,
     "items": [
       {
@@ -10344,7 +10344,7 @@
     "numtab": 314,
     "title": "Type de carte bancaire",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 314 (Type de carte bancaire) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 314 (Type de carte bancaire) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -10377,7 +10377,7 @@
     "numtab": 315,
     "title": "Codes litige",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 315 (Codes litige) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 315 (Codes litige) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 4,
     "items": [
       {
@@ -10418,7 +10418,7 @@
     "numtab": 321,
     "title": "Codes interdictions compte",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 321 (Codes interdictions compte) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 321 (Codes interdictions compte) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -10426,7 +10426,7 @@
     "numtab": 322,
     "title": "Codes interdictions sections",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 322 (Codes interdictions sections) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 322 (Codes interdictions sections) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 9,
     "items": [
       {
@@ -10507,7 +10507,7 @@
     "numtab": 324,
     "title": "Flux consolidation",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 324 (Flux consolidation) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 324 (Flux consolidation) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 8,
     "items": [
       {
@@ -10580,7 +10580,7 @@
     "numtab": 325,
     "title": "Code groupement fichier",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 325 (Code groupement fichier) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 325 (Code groupement fichier) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 5,
     "items": [
       {
@@ -10629,7 +10629,7 @@
     "numtab": 326,
     "title": "Entités",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 326 (Entités) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 326 (Entités) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -10646,7 +10646,7 @@
     "numtab": 341,
     "title": "Famille statistique 1",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 341 (Famille statistique 1) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 341 (Famille statistique 1) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -10654,7 +10654,7 @@
     "numtab": 342,
     "title": "Famille statistique 2",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 342 (Famille statistique 2) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 342 (Famille statistique 2) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -10662,7 +10662,7 @@
     "numtab": 343,
     "title": "Famille statistique 3",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 343 (Famille statistique 3) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 343 (Famille statistique 3) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -10670,7 +10670,7 @@
     "numtab": 344,
     "title": "Famille statistique 4",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 344 (Famille statistique 4) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 344 (Famille statistique 4) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -10678,7 +10678,7 @@
     "numtab": 345,
     "title": "Famille statistique 5",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 345 (Famille statistique 5) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 345 (Famille statistique 5) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -10686,7 +10686,7 @@
     "numtab": 346,
     "title": "Type de projet",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 346 (Type de projet) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 346 (Type de projet) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -10719,7 +10719,7 @@
     "numtab": 347,
     "title": "Objectif",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 347 (Objectif) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 347 (Objectif) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -10727,7 +10727,7 @@
     "numtab": 348,
     "title": "Mode de financement",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 348 (Mode de financement) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 348 (Mode de financement) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -10735,7 +10735,7 @@
     "numtab": 349,
     "title": "Motif de révision budgétaire",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 349 (Motif de révision budgétaire) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 349 (Motif de révision budgétaire) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -10743,7 +10743,7 @@
     "numtab": 351,
     "title": "Code statistique compta 1",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 351 (Code statistique compta 1) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 351 (Code statistique compta 1) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -10751,7 +10751,7 @@
     "numtab": 352,
     "title": "Code statistique compta 2",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 352 (Code statistique compta 2) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 352 (Code statistique compta 2) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -10759,7 +10759,7 @@
     "numtab": 353,
     "title": "Code statistique compta 3",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 353 (Code statistique compta 3) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 353 (Code statistique compta 3) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -10767,7 +10767,7 @@
     "numtab": 366,
     "title": "Type de déclaration DADS-U",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 366 (Type de déclaration DADS-U) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 366 (Type de déclaration DADS-U) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -10784,7 +10784,7 @@
     "numtab": 367,
     "title": "Domaine d'intervention DADS-U",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 367 (Domaine d'intervention DADS-U) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 367 (Domaine d'intervention DADS-U) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -10817,7 +10817,7 @@
     "numtab": 368,
     "title": "Nature de déclaration",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 368 (Nature de déclaration) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 368 (Nature de déclaration) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -10834,7 +10834,7 @@
     "numtab": 380,
     "title": "Driver gestionnaire de balance",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 380 (Driver gestionnaire de balance) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 380 (Driver gestionnaire de balance) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 6,
     "items": [
       {
@@ -10891,7 +10891,7 @@
     "numtab": 381,
     "title": "Précautions d'emplois",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 381 (Précautions d'emplois) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 381 (Précautions d'emplois) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 14,
     "items": [
       {
@@ -11012,7 +11012,7 @@
     "numtab": 382,
     "title": "Codes toxicités",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 382 (Codes toxicités) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 382 (Codes toxicités) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 16,
     "items": [
       {
@@ -11149,7 +11149,7 @@
     "numtab": 383,
     "title": "Motifs de régularisation",
     "category": "Comptabilité & Banque",
-    "description": "Table diverse Sage X3 numéro 383 (Motifs de régularisation) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 383 (Motifs de régularisation) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -11182,7 +11182,7 @@
     "numtab": 400,
     "title": "Etape affaire",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 400 (Etape affaire) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 400 (Etape affaire) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 6,
     "items": [
       {
@@ -11239,7 +11239,7 @@
     "numtab": 401,
     "title": "Fonction interlocuteur",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 401 (Fonction interlocuteur) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 401 (Fonction interlocuteur) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 7,
     "items": [
       {
@@ -11304,7 +11304,7 @@
     "numtab": 402,
     "title": "Rôle interlocuteur",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 402 (Rôle interlocuteur) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 402 (Rôle interlocuteur) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 7,
     "items": [
       {
@@ -11369,7 +11369,7 @@
     "numtab": 405,
     "title": "Niveau de priorité",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 405 (Niveau de priorité) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 405 (Niveau de priorité) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -11402,7 +11402,7 @@
     "numtab": 406,
     "title": "Nature du contrat",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 406 (Nature du contrat) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 406 (Nature du contrat) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -11419,7 +11419,7 @@
     "numtab": 407,
     "title": "Nature de la prestation",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 407 (Nature de la prestation) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 407 (Nature de la prestation) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 4,
     "items": [
       {
@@ -11460,7 +11460,7 @@
     "numtab": 408,
     "title": "Marque",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 408 (Marque) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 408 (Marque) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -11477,7 +11477,7 @@
     "numtab": 409,
     "title": "Catégorie de solution",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 409 (Catégorie de solution) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 409 (Catégorie de solution) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -11494,7 +11494,7 @@
     "numtab": 410,
     "title": "Base d'indexation",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 410 (Base d'indexation) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 410 (Base d'indexation) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -11511,7 +11511,7 @@
     "numtab": 411,
     "title": "Catégorie de ressource",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 411 (Catégorie de ressource) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 411 (Catégorie de ressource) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -11544,7 +11544,7 @@
     "numtab": 412,
     "title": "CSP",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 412 (CSP) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 412 (CSP) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 8,
     "items": [
       {
@@ -11617,7 +11617,7 @@
     "numtab": 413,
     "title": "Origine du prospect",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 413 (Origine du prospect) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 413 (Origine du prospect) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 5,
     "items": [
       {
@@ -11666,7 +11666,7 @@
     "numtab": 414,
     "title": "Rôle commercial",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 414 (Rôle commercial) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 414 (Rôle commercial) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -11683,7 +11683,7 @@
     "numtab": 415,
     "title": "Marques produits concurrents",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 415 (Marques produits concurrents) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 415 (Marques produits concurrents) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -11700,7 +11700,7 @@
     "numtab": 418,
     "title": "Concurrents",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 418 (Concurrents) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 418 (Concurrents) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -11717,7 +11717,7 @@
     "numtab": 419,
     "title": "Motif étape avant vente",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 419 (Motif étape avant vente) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 419 (Motif étape avant vente) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 5,
     "items": [
       {
@@ -11766,7 +11766,7 @@
     "numtab": 420,
     "title": "Motif étape après vente",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 420 (Motif étape après vente) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 420 (Motif étape après vente) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 6,
     "items": [
       {
@@ -11823,7 +11823,7 @@
     "numtab": 421,
     "title": "Etapes après vente",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 421 (Etapes après vente) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 421 (Etapes après vente) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 5,
     "items": [
       {
@@ -11872,7 +11872,7 @@
     "numtab": 422,
     "title": "Etats demandes de service",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 422 (Etats demandes de service) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 422 (Etats demandes de service) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 9,
     "items": [
       {
@@ -11953,7 +11953,7 @@
     "numtab": 423,
     "title": "Facturation des frais",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 423 (Facturation des frais) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 423 (Facturation des frais) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 4,
     "items": [
       {
@@ -11994,7 +11994,7 @@
     "numtab": 424,
     "title": "Libellés Tiers divers",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 424 (Libellés Tiers divers) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 424 (Libellés Tiers divers) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -12002,7 +12002,7 @@
     "numtab": 425,
     "title": "Secteur d'activité",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 425 (Secteur d'activité) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 425 (Secteur d'activité) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 4,
     "items": [
       {
@@ -12043,7 +12043,7 @@
     "numtab": 426,
     "title": "Médias",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 426 (Médias) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 426 (Médias) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 5,
     "items": [
       {
@@ -12092,7 +12092,7 @@
     "numtab": 427,
     "title": "Formules de réévaluation",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 427 (Formules de réévaluation) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 427 (Formules de réévaluation) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -12109,7 +12109,7 @@
     "numtab": 428,
     "title": "Niveaux de gravité",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 428 (Niveaux de gravité) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 428 (Niveaux de gravité) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 2,
     "items": [
       {
@@ -12134,7 +12134,7 @@
     "numtab": 429,
     "title": "Motifs de résiliation",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 429 (Motifs de résiliation) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 429 (Motifs de résiliation) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -12151,7 +12151,7 @@
     "numtab": 430,
     "title": "Plan d'entretien",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 430 (Plan d'entretien) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 430 (Plan d'entretien) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 2,
     "items": [
       {
@@ -12176,7 +12176,7 @@
     "numtab": 431,
     "title": "Catégories Tâches",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 431 (Catégories Tâches) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 431 (Catégories Tâches) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -12193,7 +12193,7 @@
     "numtab": 432,
     "title": "Catégories appels",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 432 (Catégories appels) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 432 (Catégories appels) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 5,
     "items": [
       {
@@ -12242,7 +12242,7 @@
     "numtab": 433,
     "title": "Catégories rendez-vous",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 433 (Catégories rendez-vous) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 433 (Catégories rendez-vous) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 7,
     "items": [
       {
@@ -12307,7 +12307,7 @@
     "numtab": 434,
     "title": "Catégorie affaires",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 434 (Catégorie affaires) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 434 (Catégorie affaires) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -12324,7 +12324,7 @@
     "numtab": 435,
     "title": "Satisfaction tâches",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 435 (Satisfaction tâches) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 435 (Satisfaction tâches) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -12357,7 +12357,7 @@
     "numtab": 436,
     "title": "Satisfaction appels",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 436 (Satisfaction appels) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 436 (Satisfaction appels) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -12390,7 +12390,7 @@
     "numtab": 437,
     "title": "Satisfaction rendez-vous",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 437 (Satisfaction rendez-vous) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 437 (Satisfaction rendez-vous) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -12423,7 +12423,7 @@
     "numtab": 438,
     "title": "Catégories de ciblages",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 438 (Catégories de ciblages) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 438 (Catégories de ciblages) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 4,
     "items": [
       {
@@ -12464,7 +12464,7 @@
     "numtab": 439,
     "title": "Tunnel Action commerciale",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 439 (Tunnel Action commerciale) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 439 (Tunnel Action commerciale) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 34,
     "items": [
       {
@@ -12745,7 +12745,7 @@
     "numtab": 440,
     "title": "Famille stat contrat no 1",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 440 (Famille stat contrat no 1) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 440 (Famille stat contrat no 1) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -12753,7 +12753,7 @@
     "numtab": 441,
     "title": "Famille stat contrat no 2",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 441 (Famille stat contrat no 2) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 441 (Famille stat contrat no 2) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -12761,7 +12761,7 @@
     "numtab": 442,
     "title": "Famille stat contrat no 3",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 442 (Famille stat contrat no 3) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 442 (Famille stat contrat no 3) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -12769,7 +12769,7 @@
     "numtab": 443,
     "title": "Famille stat contrat no 4",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 443 (Famille stat contrat no 4) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 443 (Famille stat contrat no 4) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -12777,7 +12777,7 @@
     "numtab": 444,
     "title": "Famille stat contrat no 5",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 444 (Famille stat contrat no 5) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 444 (Famille stat contrat no 5) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -12785,7 +12785,7 @@
     "numtab": 445,
     "title": "Famille stat demande de service no 1",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 445 (Famille stat demande de service no 1) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 445 (Famille stat demande de service no 1) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -12793,7 +12793,7 @@
     "numtab": 446,
     "title": "Famille stat demande de service no 2",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 446 (Famille stat demande de service no 2) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 446 (Famille stat demande de service no 2) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -12801,7 +12801,7 @@
     "numtab": 447,
     "title": "Famille stat demande de service no 3",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 447 (Famille stat demande de service no 3) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 447 (Famille stat demande de service no 3) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -12809,7 +12809,7 @@
     "numtab": 448,
     "title": "Famille stat demande de service no 4",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 448 (Famille stat demande de service no 4) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 448 (Famille stat demande de service no 4) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -12817,7 +12817,7 @@
     "numtab": 449,
     "title": "Famille stat demande de service no 5",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 449 (Famille stat demande de service no 5) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 449 (Famille stat demande de service no 5) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -12825,7 +12825,7 @@
     "numtab": 450,
     "title": "Catégorie coupons",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 450 (Catégorie coupons) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 450 (Catégorie coupons) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -12842,7 +12842,7 @@
     "numtab": 451,
     "title": "Mots-clés pertinents",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 451 (Mots-clés pertinents) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 451 (Mots-clés pertinents) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -12850,7 +12850,7 @@
     "numtab": 452,
     "title": "Catégories critères de ciblage",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 452 (Catégories critères de ciblage) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 452 (Catégories critères de ciblage) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -12867,7 +12867,7 @@
     "numtab": 453,
     "title": "Catégories escalades",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 453 (Catégories escalades) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 453 (Catégories escalades) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -12900,7 +12900,7 @@
     "numtab": 454,
     "title": "Conditions escalades",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 454 (Conditions escalades) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 454 (Conditions escalades) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -12917,7 +12917,7 @@
     "numtab": 455,
     "title": "Actions escalades",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 455 (Actions escalades) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 455 (Actions escalades) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -12934,7 +12934,7 @@
     "numtab": 456,
     "title": "Objet des appels générés",
     "category": "CRM & Services",
-    "description": "Table diverse Sage X3 numéro 456 (Objet des appels générés) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 456 (Objet des appels générés) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -12951,7 +12951,7 @@
     "numtab": 501,
     "title": "Zone libre 1 bien comptable",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 501 (Zone libre 1 bien comptable) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 501 (Zone libre 1 bien comptable) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -12968,7 +12968,7 @@
     "numtab": 502,
     "title": "Zone libre 2 bien comptable",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 502 (Zone libre 2 bien comptable) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 502 (Zone libre 2 bien comptable) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -12985,7 +12985,7 @@
     "numtab": 503,
     "title": "Zone libre 3 bien comptable",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 503 (Zone libre 3 bien comptable) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 503 (Zone libre 3 bien comptable) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13002,7 +13002,7 @@
     "numtab": 504,
     "title": "Zone libre 4 bien comptable",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 504 (Zone libre 4 bien comptable) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 504 (Zone libre 4 bien comptable) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13019,7 +13019,7 @@
     "numtab": 505,
     "title": "Zone libre 5 bien comptable",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 505 (Zone libre 5 bien comptable) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 505 (Zone libre 5 bien comptable) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13036,7 +13036,7 @@
     "numtab": 506,
     "title": "Zone libre 6 bien comptable",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 506 (Zone libre 6 bien comptable) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 506 (Zone libre 6 bien comptable) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13053,7 +13053,7 @@
     "numtab": 507,
     "title": "Zone libre 7 bien comptable",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 507 (Zone libre 7 bien comptable) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 507 (Zone libre 7 bien comptable) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13070,7 +13070,7 @@
     "numtab": 508,
     "title": "Zone libre 8 bien comptable",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 508 (Zone libre 8 bien comptable) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 508 (Zone libre 8 bien comptable) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13087,7 +13087,7 @@
     "numtab": 509,
     "title": "Zone libre 9 bien comptable",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 509 (Zone libre 9 bien comptable) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 509 (Zone libre 9 bien comptable) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13104,7 +13104,7 @@
     "numtab": 510,
     "title": "Zone libre 10 bien comptable",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 510 (Zone libre 10 bien comptable) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 510 (Zone libre 10 bien comptable) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13121,7 +13121,7 @@
     "numtab": 511,
     "title": "Etat du bien",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 511 (Etat du bien) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 511 (Etat du bien) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -13154,7 +13154,7 @@
     "numtab": 515,
     "title": "Type d'investissement",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 515 (Type d'investissement) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 515 (Type d'investissement) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13171,7 +13171,7 @@
     "numtab": 516,
     "title": "Motif externe de dépréciation",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 516 (Motif externe de dépréciation) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 516 (Motif externe de dépréciation) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 4,
     "items": [
       {
@@ -13212,7 +13212,7 @@
     "numtab": 519,
     "title": "Motif interne de dépréciation",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 519 (Motif interne de dépréciation) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 519 (Motif interne de dépréciation) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -13245,7 +13245,7 @@
     "numtab": 520,
     "title": "Zone libre 1 Dépenses",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 520 (Zone libre 1 Dépenses) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 520 (Zone libre 1 Dépenses) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13262,7 +13262,7 @@
     "numtab": 521,
     "title": "Zone libre 2 Dépenses",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 521 (Zone libre 2 Dépenses) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 521 (Zone libre 2 Dépenses) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13279,7 +13279,7 @@
     "numtab": 522,
     "title": "Zone libre 3 Dépenses",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 522 (Zone libre 3 Dépenses) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 522 (Zone libre 3 Dépenses) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13296,7 +13296,7 @@
     "numtab": 523,
     "title": "Zone libre 4 Dépenses",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 523 (Zone libre 4 Dépenses) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 523 (Zone libre 4 Dépenses) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13313,7 +13313,7 @@
     "numtab": 524,
     "title": "Zone libre 5 Dépenses",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 524 (Zone libre 5 Dépenses) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 524 (Zone libre 5 Dépenses) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13330,7 +13330,7 @@
     "numtab": 525,
     "title": "Zone libre 6 Dépenses",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 525 (Zone libre 6 Dépenses) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 525 (Zone libre 6 Dépenses) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13347,7 +13347,7 @@
     "numtab": 526,
     "title": "Zone libre 7 Dépenses",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 526 (Zone libre 7 Dépenses) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 526 (Zone libre 7 Dépenses) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13364,7 +13364,7 @@
     "numtab": 527,
     "title": "Zone libre 8 Dépenses",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 527 (Zone libre 8 Dépenses) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 527 (Zone libre 8 Dépenses) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13381,7 +13381,7 @@
     "numtab": 528,
     "title": "Zone libre 9 Dépenses",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 528 (Zone libre 9 Dépenses) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 528 (Zone libre 9 Dépenses) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13398,7 +13398,7 @@
     "numtab": 529,
     "title": "Zone libre 10 Dépenses",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 529 (Zone libre 10 Dépenses) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 529 (Zone libre 10 Dépenses) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13415,7 +13415,7 @@
     "numtab": 531,
     "title": "Plafond réintégration véhicule",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 531 (Plafond réintégration véhicule) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 531 (Plafond réintégration véhicule) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -13448,7 +13448,7 @@
     "numtab": 534,
     "title": "Marque du véhicule",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 534 (Marque du véhicule) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 534 (Marque du véhicule) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13465,7 +13465,7 @@
     "numtab": 535,
     "title": "Type de carrosserie",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 535 (Type de carrosserie) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 535 (Type de carrosserie) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 53,
     "items": [
       {
@@ -13898,7 +13898,7 @@
     "numtab": 537,
     "title": "Catégorie physique",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 537 (Catégorie physique) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 537 (Catégorie physique) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13915,7 +13915,7 @@
     "numtab": 538,
     "title": "Etat lors de l'inventaire",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 538 (Etat lors de l'inventaire) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 538 (Etat lors de l'inventaire) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 4,
     "items": [
       {
@@ -13956,7 +13956,7 @@
     "numtab": 539,
     "title": "Contexte à migrer ->Cpt & Fisc",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 539 (Contexte à migrer ->Cpt & Fisc) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 539 (Contexte à migrer ->Cpt & Fisc) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13973,7 +13973,7 @@
     "numtab": 540,
     "title": "Sociétés à migrer",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 540 (Sociétés à migrer) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 540 (Sociétés à migrer) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -13990,7 +13990,7 @@
     "numtab": 541,
     "title": "Zona livre 1 Ctr loc fim",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 541 (Zona livre 1 Ctr loc fim) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 541 (Zona livre 1 Ctr loc fim) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14007,7 +14007,7 @@
     "numtab": 542,
     "title": "Zone libre 2 Ctr loc fin",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 542 (Zone libre 2 Ctr loc fin) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 542 (Zone libre 2 Ctr loc fin) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14024,7 +14024,7 @@
     "numtab": 543,
     "title": "Zone libre 3 Ctr loc fin",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 543 (Zone libre 3 Ctr loc fin) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 543 (Zone libre 3 Ctr loc fin) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14041,7 +14041,7 @@
     "numtab": 544,
     "title": "Zone libre 4 Ctr loc fin",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 544 (Zone libre 4 Ctr loc fin) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 544 (Zone libre 4 Ctr loc fin) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14058,7 +14058,7 @@
     "numtab": 545,
     "title": "Zone libre 5 Ctr loc fin",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 545 (Zone libre 5 Ctr loc fin) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 545 (Zone libre 5 Ctr loc fin) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14075,7 +14075,7 @@
     "numtab": 546,
     "title": "Zone libre 6 Ctr loc fin",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 546 (Zone libre 6 Ctr loc fin) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 546 (Zone libre 6 Ctr loc fin) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14092,7 +14092,7 @@
     "numtab": 547,
     "title": "Zone libre 7 Ctr loc fin",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 547 (Zone libre 7 Ctr loc fin) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 547 (Zone libre 7 Ctr loc fin) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14109,7 +14109,7 @@
     "numtab": 548,
     "title": "Zone libre 8 Ctr loc fin",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 548 (Zone libre 8 Ctr loc fin) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 548 (Zone libre 8 Ctr loc fin) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14126,7 +14126,7 @@
     "numtab": 549,
     "title": "Zone libre 9 Ctr loc fin",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 549 (Zone libre 9 Ctr loc fin) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 549 (Zone libre 9 Ctr loc fin) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14143,7 +14143,7 @@
     "numtab": 550,
     "title": "Zone libre 10 Ctr loc fin",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 550 (Zone libre 10 Ctr loc fin) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 550 (Zone libre 10 Ctr loc fin) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14160,7 +14160,7 @@
     "numtab": 560,
     "title": "Zone libre 1 Subventions",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 560 (Zone libre 1 Subventions) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 560 (Zone libre 1 Subventions) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14177,7 +14177,7 @@
     "numtab": 561,
     "title": "Zone libre 2 Subventions",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 561 (Zone libre 2 Subventions) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 561 (Zone libre 2 Subventions) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14194,7 +14194,7 @@
     "numtab": 562,
     "title": "Zone libre 3 Subventions",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 562 (Zone libre 3 Subventions) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 562 (Zone libre 3 Subventions) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14211,7 +14211,7 @@
     "numtab": 563,
     "title": "Zone libre 4 Subventions",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 563 (Zone libre 4 Subventions) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 563 (Zone libre 4 Subventions) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14228,7 +14228,7 @@
     "numtab": 564,
     "title": "Zone libre 5 Subventions",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 564 (Zone libre 5 Subventions) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 564 (Zone libre 5 Subventions) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14245,7 +14245,7 @@
     "numtab": 565,
     "title": "Zone libre 6 Subventions",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 565 (Zone libre 6 Subventions) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 565 (Zone libre 6 Subventions) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14262,7 +14262,7 @@
     "numtab": 566,
     "title": "Zone libre 7 Subventions",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 566 (Zone libre 7 Subventions) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 566 (Zone libre 7 Subventions) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14279,7 +14279,7 @@
     "numtab": 567,
     "title": "Zone libre 8 Subventions",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 567 (Zone libre 8 Subventions) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 567 (Zone libre 8 Subventions) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14296,7 +14296,7 @@
     "numtab": 568,
     "title": "Zone libre 9 Subventions",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 568 (Zone libre 9 Subventions) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 568 (Zone libre 9 Subventions) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14313,7 +14313,7 @@
     "numtab": 569,
     "title": "Zone libre 10 Subventions",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 569 (Zone libre 10 Subventions) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 569 (Zone libre 10 Subventions) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14330,7 +14330,7 @@
     "numtab": 571,
     "title": "Zone libre 1 élément physique",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 571 (Zone libre 1 élément physique) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 571 (Zone libre 1 élément physique) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14347,7 +14347,7 @@
     "numtab": 572,
     "title": "Zone libre 2 élément physique",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 572 (Zone libre 2 élément physique) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 572 (Zone libre 2 élément physique) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14364,7 +14364,7 @@
     "numtab": 573,
     "title": "Zone libre 3 élément physique",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 573 (Zone libre 3 élément physique) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 573 (Zone libre 3 élément physique) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14381,7 +14381,7 @@
     "numtab": 574,
     "title": "Zone libre 4 élément physique",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 574 (Zone libre 4 élément physique) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 574 (Zone libre 4 élément physique) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14398,7 +14398,7 @@
     "numtab": 575,
     "title": "Zone libre 5 élément physique",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 575 (Zone libre 5 élément physique) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 575 (Zone libre 5 élément physique) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14415,7 +14415,7 @@
     "numtab": 576,
     "title": "Zone libre 6 élément physique",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 576 (Zone libre 6 élément physique) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 576 (Zone libre 6 élément physique) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14432,7 +14432,7 @@
     "numtab": 577,
     "title": "Zone libre 7 élément physique",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 577 (Zone libre 7 élément physique) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 577 (Zone libre 7 élément physique) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14449,7 +14449,7 @@
     "numtab": 578,
     "title": "Zone libre 8 élément physique",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 578 (Zone libre 8 élément physique) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 578 (Zone libre 8 élément physique) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14466,7 +14466,7 @@
     "numtab": 579,
     "title": "Zone libre 9 élément physique",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 579 (Zone libre 9 élément physique) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 579 (Zone libre 9 élément physique) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14483,7 +14483,7 @@
     "numtab": 580,
     "title": "Zone libre 10 élément physique",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 580 (Zone libre 10 élément physique) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 580 (Zone libre 10 élément physique) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14500,7 +14500,7 @@
     "numtab": 591,
     "title": "Type d'amortissement X3V5",
     "category": "Immobilisations",
-    "description": "Table diverse Sage X3 numéro 591 (Type d'amortissement X3V5) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 591 (Type d'amortissement X3V5) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14517,7 +14517,7 @@
     "numtab": 600,
     "title": "Migration-modes amortissement",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 600 (Migration-modes amortissement) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 600 (Migration-modes amortissement) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 6,
     "items": [
       {
@@ -14574,7 +14574,7 @@
     "numtab": 603,
     "title": "Motif changemnt code comptable",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 603 (Motif changemnt code comptable) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 603 (Motif changemnt code comptable) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -14607,7 +14607,7 @@
     "numtab": 604,
     "title": "Bâtiment",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 604 (Bâtiment) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 604 (Bâtiment) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14624,7 +14624,7 @@
     "numtab": 605,
     "title": "Etage",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 605 (Etage) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 605 (Etage) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -14641,7 +14641,7 @@
     "numtab": 611,
     "title": "Famille comptable",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 611 (Famille comptable) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 611 (Famille comptable) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 52,
     "items": [
       {
@@ -15066,7 +15066,7 @@
     "numtab": 612,
     "title": "Motif de transfert",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 612 (Motif de transfert) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 612 (Motif de transfert) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -15099,7 +15099,7 @@
     "numtab": 613,
     "title": "Unité génératrice trésorerie",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 613 (Unité génératrice trésorerie) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 613 (Unité génératrice trésorerie) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -15116,7 +15116,7 @@
     "numtab": 614,
     "title": "Projets d'investissement",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 614 (Projets d'investissement) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 614 (Projets d'investissement) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -15133,7 +15133,7 @@
     "numtab": 615,
     "title": "Budget investissement",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 615 (Budget investissement) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 615 (Budget investissement) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -15150,7 +15150,7 @@
     "numtab": 616,
     "title": "Demande investissement",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 616 (Demande investissement) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 616 (Demande investissement) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -15167,7 +15167,7 @@
     "numtab": 617,
     "title": "Organismes subventions",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 617 (Organismes subventions) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 617 (Organismes subventions) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -15184,7 +15184,7 @@
     "numtab": 620,
     "title": "Marché",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 620 (Marché) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 620 (Marché) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -15201,7 +15201,7 @@
     "numtab": 625,
     "title": "Imputation cptable contrats",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 625 (Imputation cptable contrats) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 625 (Imputation cptable contrats) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -15218,7 +15218,7 @@
     "numtab": 626,
     "title": "Motif éclatement",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 626 (Motif éclatement) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 626 (Motif éclatement) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -15251,7 +15251,7 @@
     "numtab": 627,
     "title": "Evaluateur",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 627 (Evaluateur) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 627 (Evaluateur) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -15268,7 +15268,7 @@
     "numtab": 628,
     "title": "Puissance fiscale (Barême 3)",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 628 (Puissance fiscale (Barême 3)) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 628 (Puissance fiscale (Barême 3)) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 5,
     "items": [
       {
@@ -15317,7 +15317,7 @@
     "numtab": 629,
     "title": "Taxes / véhicules  (Barème 1)",
     "category": "Fiscalité & Taxes",
-    "description": "Table diverse Sage X3 numéro 629 (Taxes / véhicules  (Barème 1)) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 629 (Taxes / véhicules  (Barème 1)) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 7,
     "items": [
       {
@@ -15382,7 +15382,7 @@
     "numtab": 630,
     "title": "Utilisateurs véhicule",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 630 (Utilisateurs véhicule) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 630 (Utilisateurs véhicule) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -15399,7 +15399,7 @@
     "numtab": 636,
     "title": "Import Mvts - Champs Dépenses",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 636 (Import Mvts - Champs Dépenses) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 636 (Import Mvts - Champs Dépenses) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 24,
     "items": [
       {
@@ -15600,7 +15600,7 @@
     "numtab": 637,
     "title": "Import Mvts - Champs Bien CO",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 637 (Import Mvts - Champs Bien CO) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 637 (Import Mvts - Champs Bien CO) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 24,
     "items": [
       {
@@ -15801,7 +15801,7 @@
     "numtab": 638,
     "title": "Import Mvts - Champs Elt PHY",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 638 (Import Mvts - Champs Elt PHY) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 638 (Import Mvts - Champs Elt PHY) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 24,
     "items": [
       {
@@ -16002,7 +16002,7 @@
     "numtab": 801,
     "title": "Motifs variations de capacité",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 801 (Motifs variations de capacité) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 801 (Motifs variations de capacité) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 8,
     "items": [
       {
@@ -16075,7 +16075,7 @@
     "numtab": 901,
     "title": "Chapitres pour paramétres",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 901 (Chapitres pour paramétres) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 901 (Chapitres pour paramétres) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 25,
     "items": [
       {
@@ -16284,7 +16284,7 @@
     "numtab": 902,
     "title": "Type de fichier lié",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 902 (Type de fichier lié) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 902 (Type de fichier lié) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 21,
     "items": [
       {
@@ -16461,7 +16461,7 @@
     "numtab": 903,
     "title": "Groupe de paramètres",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 903 (Groupe de paramètres) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 903 (Groupe de paramètres) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 118,
     "items": [
       {
@@ -17414,7 +17414,7 @@
     "numtab": 906,
     "title": "Rôle contact",
     "category": "Tiers & Ventes",
-    "description": "Table diverse Sage X3 numéro 906 (Rôle contact) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 906 (Rôle contact) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -17431,7 +17431,7 @@
     "numtab": 907,
     "title": "Catégorie CSP",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 907 (Catégorie CSP) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 907 (Catégorie CSP) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 2,
     "items": [
       {
@@ -17456,7 +17456,7 @@
     "numtab": 908,
     "title": "Type d'évènement workflow",
     "category": "Administration & Workflow",
-    "description": "Table diverse Sage X3 numéro 908 (Type d'évènement workflow) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 908 (Type d'évènement workflow) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 31,
     "items": [
       {
@@ -17713,7 +17713,7 @@
     "numtab": 909,
     "title": "Législations",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 909 (Législations) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 909 (Législations) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 17,
     "items": [
       {
@@ -17858,7 +17858,7 @@
     "numtab": 910,
     "title": "Type de doc",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 910 (Type de doc) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 910 (Type de doc) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 39,
     "items": [
       {
@@ -18179,7 +18179,7 @@
     "numtab": 911,
     "title": "Paragraphes",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 911 (Paragraphes) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 911 (Paragraphes) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 71,
     "items": [
       {
@@ -18756,7 +18756,7 @@
     "numtab": 912,
     "title": "Jeux de paramètres par défaut",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 912 (Jeux de paramètres par défaut) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 912 (Jeux de paramètres par défaut) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 10,
     "items": [
       {
@@ -18845,7 +18845,7 @@
     "numtab": 913,
     "title": "Liens doc",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 913 (Liens doc) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 913 (Liens doc) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 21,
     "items": [
       {
@@ -19022,7 +19022,7 @@
     "numtab": 914,
     "title": "Catégorie composant graphique",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 914 (Catégorie composant graphique) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 914 (Catégorie composant graphique) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -19055,7 +19055,7 @@
     "numtab": 915,
     "title": "Paramètres graphiques",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 915 (Paramètres graphiques) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 915 (Paramètres graphiques) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 42,
     "items": [
       {
@@ -19400,7 +19400,7 @@
     "numtab": 918,
     "title": "Continents",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 918 (Continents) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 918 (Continents) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 7,
     "items": [
       {
@@ -19465,7 +19465,7 @@
     "numtab": 919,
     "title": "Type de vignette",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 919 (Type de vignette) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 919 (Type de vignette) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 4,
     "items": [
       {
@@ -19506,7 +19506,7 @@
     "numtab": 961,
     "title": "Associations-rubr. déterminées",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 961 (Associations-rubr. déterminées) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 961 (Associations-rubr. déterminées) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 30,
     "items": [
       {
@@ -19755,7 +19755,7 @@
     "numtab": 962,
     "title": "Evénements",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 962 (Evénements) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 962 (Evénements) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 41,
     "items": [
       {
@@ -20092,7 +20092,7 @@
     "numtab": 963,
     "title": "Rubriques inventaire",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 963 (Rubriques inventaire) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 963 (Rubriques inventaire) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 20,
     "items": [
       {
@@ -20261,7 +20261,7 @@
     "numtab": 964,
     "title": "Lien Rub PDT3100-Rub relevé",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 964 (Lien Rub PDT3100-Rub relevé) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 964 (Lien Rub PDT3100-Rub relevé) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 42,
     "items": [
       {
@@ -20606,7 +20606,7 @@
     "numtab": 965,
     "title": "Genre du véhicule",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 965 (Genre du véhicule) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 965 (Genre du véhicule) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 18,
     "items": [
       {
@@ -20759,7 +20759,7 @@
     "numtab": 966,
     "title": "Rub non alimentables invent.",
     "category": "Standard X3 - Général",
-    "description": "Table diverse Sage X3 numéro 966 (Rub non alimentables invent.) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 966 (Rub non alimentables invent.) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 15,
     "items": [
       {
@@ -20888,7 +20888,7 @@
     "numtab": 967,
     "title": "Taxes / véhicules des sociétés",
     "category": "Fiscalité & Taxes",
-    "description": "Table diverse Sage X3 numéro 967 (Taxes / véhicules des sociétés) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 967 (Taxes / véhicules des sociétés) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 5,
     "items": [
       {
@@ -20937,7 +20937,7 @@
     "numtab": 1000,
     "title": "Objet",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1000 (Objet) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1000 (Objet) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 5,
     "items": [
       {
@@ -20986,7 +20986,7 @@
     "numtab": 1001,
     "title": "Type de textes",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1001 (Type de textes) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1001 (Type de textes) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 10,
     "items": [
       {
@@ -21075,7 +21075,7 @@
     "numtab": 1002,
     "title": "Spécif. réglementaires",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1002 (Spécif. réglementaires) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1002 (Spécif. réglementaires) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 33,
     "items": [
       {
@@ -21348,7 +21348,7 @@
     "numtab": 1003,
     "title": "Code regroupement plan contrl.",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1003 (Code regroupement plan contrl.) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1003 (Code regroupement plan contrl.) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -21365,7 +21365,7 @@
     "numtab": 1004,
     "title": "Type d'échantillonnage",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1004 (Type d'échantillonnage) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1004 (Type d'échantillonnage) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 7,
     "items": [
       {
@@ -21430,7 +21430,7 @@
     "numtab": 1005,
     "title": "Type d'OF",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1005 (Type d'OF) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1005 (Type d'OF) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 4,
     "items": [
       {
@@ -21471,7 +21471,7 @@
     "numtab": 1006,
     "title": "Fabricant",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1006 (Fabricant) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1006 (Fabricant) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 2,
     "items": [
       {
@@ -21496,7 +21496,7 @@
     "numtab": 1007,
     "title": "Motif avenant",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1007 (Motif avenant) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1007 (Motif avenant) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 16,
     "items": [
       {
@@ -21633,7 +21633,7 @@
     "numtab": 1008,
     "title": "Famille tarif article",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1008 (Famille tarif article) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1008 (Famille tarif article) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 6,
     "items": [
       {
@@ -21690,7 +21690,7 @@
     "numtab": 1009,
     "title": "Classe Risque",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1009 (Classe Risque) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1009 (Classe Risque) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 13,
     "items": [
       {
@@ -21803,7 +21803,7 @@
     "numtab": 1010,
     "title": "Code Risque",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1010 (Code Risque) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1010 (Code Risque) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 21,
     "items": [
       {
@@ -21980,7 +21980,7 @@
     "numtab": 1011,
     "title": "Balances",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1011 (Balances) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1011 (Balances) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 10,
     "items": [
       {
@@ -22069,7 +22069,7 @@
     "numtab": 1101,
     "title": "Nature NC",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1101 (Nature NC) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1101 (Nature NC) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 5,
     "items": [
       {
@@ -22118,7 +22118,7 @@
     "numtab": 1102,
     "title": "Nature complémentaire NC",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1102 (Nature complémentaire NC) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1102 (Nature complémentaire NC) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -22126,7 +22126,7 @@
     "numtab": 1110,
     "title": "Code UN",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1110 (Code UN) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1110 (Code UN) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 600,
     "items": [
       {
@@ -26935,7 +26935,7 @@
     "numtab": 1111,
     "title": "Classe logistiques",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1111 (Classe logistiques) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1111 (Classe logistiques) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 13,
     "items": [
       {
@@ -27048,7 +27048,7 @@
     "numtab": 1112,
     "title": "Groupe logistique",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1112 (Groupe logistique) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1112 (Groupe logistique) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 101,
     "items": [
       {
@@ -27865,7 +27865,7 @@
     "numtab": 1113,
     "title": "Process",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1113 (Process) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1113 (Process) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -27898,7 +27898,7 @@
     "numtab": 1114,
     "title": "Format",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1114 (Format) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1114 (Format) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 2,
     "items": [
       {
@@ -27923,7 +27923,7 @@
     "numtab": 1115,
     "title": "Motif changement de stock",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1115 (Motif changement de stock) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1115 (Motif changement de stock) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 8,
     "items": [
       {
@@ -27996,7 +27996,7 @@
     "numtab": 1116,
     "title": "Site packaging",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1116 (Site packaging) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1116 (Site packaging) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -28013,7 +28013,7 @@
     "numtab": 1117,
     "title": "Site fabrication",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1117 (Site fabrication) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1117 (Site fabrication) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -28030,7 +28030,7 @@
     "numtab": 1118,
     "title": "Site stockage",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1118 (Site stockage) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1118 (Site stockage) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -28047,7 +28047,7 @@
     "numtab": 1119,
     "title": "Site sponsor",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1119 (Site sponsor) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1119 (Site sponsor) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -28064,7 +28064,7 @@
     "numtab": 1120,
     "title": "Fabricant API",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1120 (Fabricant API) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1120 (Fabricant API) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -28081,7 +28081,7 @@
     "numtab": 1121,
     "title": "Time point",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1121 (Time point) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1121 (Time point) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 24,
     "items": [
       {
@@ -28282,7 +28282,7 @@
     "numtab": 1122,
     "title": "Condition stockage",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1122 (Condition stockage) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1122 (Condition stockage) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 19,
     "items": [
       {
@@ -28443,7 +28443,7 @@
     "numtab": 1200,
     "title": "Stat 00",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1200 (Stat 00) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1200 (Stat 00) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -28460,7 +28460,7 @@
     "numtab": 1201,
     "title": "Stat 01",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1201 (Stat 01) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1201 (Stat 01) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -28468,7 +28468,7 @@
     "numtab": 1202,
     "title": "Stat 02",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1202 (Stat 02) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1202 (Stat 02) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -28476,7 +28476,7 @@
     "numtab": 1203,
     "title": "Stat 03",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1203 (Stat 03) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1203 (Stat 03) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -28484,7 +28484,7 @@
     "numtab": 1204,
     "title": "Stat 04",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1204 (Stat 04) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1204 (Stat 04) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -28492,7 +28492,7 @@
     "numtab": 1205,
     "title": "Message stock achat",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1205 (Message stock achat) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1205 (Message stock achat) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -28509,7 +28509,7 @@
     "numtab": 1206,
     "title": "Stat 06",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1206 (Stat 06) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1206 (Stat 06) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 5,
     "items": [
       {
@@ -28558,7 +28558,7 @@
     "numtab": 1207,
     "title": "Stat 07",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1207 (Stat 07) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1207 (Stat 07) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -28566,7 +28566,7 @@
     "numtab": 1208,
     "title": "Stat 08",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1208 (Stat 08) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1208 (Stat 08) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -28574,7 +28574,7 @@
     "numtab": 1209,
     "title": "Stat 09",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1209 (Stat 09) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1209 (Stat 09) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -28582,7 +28582,7 @@
     "numtab": 1210,
     "title": "Stat 10",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1210 (Stat 10) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1210 (Stat 10) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 2,
     "items": [
       {
@@ -28607,7 +28607,7 @@
     "numtab": 1211,
     "title": "Stat 11",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1211 (Stat 11) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1211 (Stat 11) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -28624,7 +28624,7 @@
     "numtab": 1212,
     "title": "Stat 12",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1212 (Stat 12) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1212 (Stat 12) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -28632,7 +28632,7 @@
     "numtab": 1213,
     "title": "Stat 13",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1213 (Stat 13) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1213 (Stat 13) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -28640,7 +28640,7 @@
     "numtab": 1214,
     "title": "Stat 14",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1214 (Stat 14) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1214 (Stat 14) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -28648,7 +28648,7 @@
     "numtab": 1215,
     "title": "Stat 15",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1215 (Stat 15) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1215 (Stat 15) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -28656,7 +28656,7 @@
     "numtab": 1216,
     "title": "Stat 16",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1216 (Stat 16) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1216 (Stat 16) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -28664,7 +28664,7 @@
     "numtab": 1217,
     "title": "Stat 17",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1217 (Stat 17) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1217 (Stat 17) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -28672,7 +28672,7 @@
     "numtab": 1218,
     "title": "Stat 18",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1218 (Stat 18) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1218 (Stat 18) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -28680,7 +28680,7 @@
     "numtab": 1219,
     "title": "Stat 19",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1219 (Stat 19) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1219 (Stat 19) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -28688,7 +28688,7 @@
     "numtab": 1220,
     "title": "Correspondance Acheteur",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1220 (Correspondance Acheteur) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1220 (Correspondance Acheteur) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 130,
     "items": [
       {
@@ -29737,7 +29737,7 @@
     "numtab": 1300,
     "title": "Décision TRT PROGILIFE",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1300 (Décision TRT PROGILIFE) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1300 (Décision TRT PROGILIFE) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 5,
     "items": [
       {
@@ -29786,7 +29786,7 @@
     "numtab": 1400,
     "title": "SerialInfo",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1400 (SerialInfo) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1400 (SerialInfo) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 4,
     "items": [
       {
@@ -29827,7 +29827,7 @@
     "numtab": 1401,
     "title": "AgregInfo",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1401 (AgregInfo) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1401 (AgregInfo) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 4,
     "items": [
       {
@@ -29868,7 +29868,7 @@
     "numtab": 1402,
     "title": "SerialConfigID",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1402 (SerialConfigID) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1402 (SerialConfigID) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 5,
     "items": [
       {
@@ -29917,7 +29917,7 @@
     "numtab": 1403,
     "title": "PacketSerialConfigID",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1403 (PacketSerialConfigID) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1403 (PacketSerialConfigID) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -29950,7 +29950,7 @@
     "numtab": 1404,
     "title": "PalletSerialConfigID",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1404 (PalletSerialConfigID) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1404 (PalletSerialConfigID) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -29967,7 +29967,7 @@
     "numtab": 1405,
     "title": "Modes de pesées",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1405 (Modes de pesées) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1405 (Modes de pesées) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 25,
     "items": [
       {
@@ -30176,7 +30176,7 @@
     "numtab": 1406,
     "title": "Poste de charge standard",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1406 (Poste de charge standard) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1406 (Poste de charge standard) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -30193,7 +30193,7 @@
     "numtab": 1407,
     "title": "Unités de pesée",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1407 (Unités de pesée) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1407 (Unités de pesée) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 7,
     "items": [
       {
@@ -30258,7 +30258,7 @@
     "numtab": 1408,
     "title": "AI_NN",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1408 (AI_NN) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1408 (AI_NN) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 3,
     "items": [
       {
@@ -30291,7 +30291,7 @@
     "numtab": 1798,
     "title": "Cadre de facturation",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1798 (Cadre de facturation) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1798 (Cadre de facturation) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 15,
     "items": [
       {
@@ -30420,7 +30420,7 @@
     "numtab": 1799,
     "title": "Instruction pour le traitement",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1799 (Instruction pour le traitement) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1799 (Instruction pour le traitement) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 14,
     "items": [
       {
@@ -30541,7 +30541,7 @@
     "numtab": 1800,
     "title": "Corresp. sociétés X3 / KYRIBA",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1800 (Corresp. sociétés X3 / KYRIBA) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1800 (Corresp. sociétés X3 / KYRIBA) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 1,
     "items": [
       {
@@ -30558,7 +30558,7 @@
     "numtab": 1801,
     "title": "OTIF ROOT CAUSE",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1801 (OTIF ROOT CAUSE) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1801 (OTIF ROOT CAUSE) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 23,
     "items": [
       {
@@ -30751,7 +30751,7 @@
     "numtab": 1802,
     "title": "OTIF TYPE",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1802 (OTIF TYPE) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1802 (OTIF TYPE) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 2,
     "items": [
       {
@@ -30776,7 +30776,7 @@
     "numtab": 1990,
     "title": "Article-Sous Famille Achat",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1990 (Article-Sous Famille Achat) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1990 (Article-Sous Famille Achat) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 117,
     "items": [
       {
@@ -31721,7 +31721,7 @@
     "numtab": 1991,
     "title": "No Version Spéc Article",
     "category": "Valdepharm - Spécifique Site",
-    "description": "Table diverse Sage X3 numéro 1991 (No Version Spéc Article) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 1991 (No Version Spéc Article) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 31,
     "items": [
       {
@@ -31978,7 +31978,7 @@
     "numtab": 6000,
     "title": "Activité",
     "category": "Valdepharm - Production & Tolling",
-    "description": "Table diverse Sage X3 numéro 6000 (Activité) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 6000 (Activité) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 2,
     "items": [
       {
@@ -32003,7 +32003,7 @@
     "numtab": 6001,
     "title": "Projection four.- Fichiers",
     "category": "Valdepharm - Production & Tolling",
-    "description": "Table diverse Sage X3 numéro 6001 (Projection four.- Fichiers) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 6001 (Projection four.- Fichiers) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 14,
     "items": [
       {
@@ -32124,7 +32124,7 @@
     "numtab": 6002,
     "title": "Projection four.- Fournisseurs",
     "category": "Valdepharm - Production & Tolling",
-    "description": "Table diverse Sage X3 numéro 6002 (Projection four.- Fournisseurs) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 6002 (Projection four.- Fournisseurs) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 20,
     "items": [
       {
@@ -32293,7 +32293,7 @@
     "numtab": 6003,
     "title": "Projection four.- Email",
     "category": "Valdepharm - Production & Tolling",
-    "description": "Table diverse Sage X3 numéro 6003 (Projection four.- Email) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 6003 (Projection four.- Email) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 76,
     "items": [
       {
@@ -32910,7 +32910,7 @@
     "numtab": 6004,
     "title": "Familles de lot",
     "category": "Valdepharm - Production & Tolling",
-    "description": "Table diverse Sage X3 numéro 6004 (Familles de lot) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 6004 (Familles de lot) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 160,
     "items": [
       {
@@ -34199,7 +34199,7 @@
     "numtab": 6005,
     "title": "Stades",
     "category": "Valdepharm - Production & Tolling",
-    "description": "Table diverse Sage X3 numéro 6005 (Stades) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 6005 (Stades) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 347,
     "items": [
       {
@@ -36984,7 +36984,7 @@
     "numtab": 6006,
     "title": "Volition",
     "category": "Valdepharm - Production & Tolling",
-    "description": "Table diverse Sage X3 numéro 6006 (Volition) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 6006 (Volition) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 229,
     "items": [
       {
@@ -38825,7 +38825,7 @@
     "numtab": 6007,
     "title": "Equipement",
     "category": "Valdepharm - Production & Tolling",
-    "description": "Table diverse Sage X3 numéro 6007 (Equipement) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 6007 (Equipement) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -38833,7 +38833,7 @@
     "numtab": 6008,
     "title": "Code transport ADR",
     "category": "Valdepharm - Production & Tolling",
-    "description": "Table diverse Sage X3 numéro 6008 (Code transport ADR) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 6008 (Code transport ADR) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -38841,7 +38841,7 @@
     "numtab": 6009,
     "title": "Type d'empalcement YPALTOEX",
     "category": "Valdepharm - Production & Tolling",
-    "description": "Table diverse Sage X3 numéro 6009 (Type d'empalcement YPALTOEX) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 6009 (Type d'empalcement YPALTOEX) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -38849,7 +38849,7 @@
     "numtab": 6010,
     "title": "Tolling Report : API",
     "category": "Valdepharm - Production & Tolling",
-    "description": "Table diverse Sage X3 numéro 6010 (Tolling Report : API) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 6010 (Tolling Report : API) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -38857,7 +38857,7 @@
     "numtab": 6011,
     "title": "Transco mouvement stock",
     "category": "Valdepharm - Production & Tolling",
-    "description": "Table diverse Sage X3 numéro 6011 (Transco mouvement stock) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 6011 (Transco mouvement stock) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -38865,7 +38865,7 @@
     "numtab": 6012,
     "title": "Type d'unité",
     "category": "Valdepharm - Production & Tolling",
-    "description": "Table diverse Sage X3 numéro 6012 (Type d'unité) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 6012 (Type d'unité) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -38873,7 +38873,7 @@
     "numtab": 6013,
     "title": "Tolling Report : PF PSF et CP",
     "category": "Valdepharm - Production & Tolling",
-    "description": "Table diverse Sage X3 numéro 6013 (Tolling Report : PF PSF et CP) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 6013 (Tolling Report : PF PSF et CP) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -38881,7 +38881,7 @@
     "numtab": 6014,
     "title": "Extraction finance - Email",
     "category": "Valdepharm - Production & Tolling",
-    "description": "Table diverse Sage X3 numéro 6014 (Extraction finance - Email) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 6014 (Extraction finance - Email) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -38889,7 +38889,7 @@
     "numtab": 6020,
     "title": "Printer destination",
     "category": "Valdepharm - Production & Tolling",
-    "description": "Table diverse Sage X3 numéro 6020 (Printer destination) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 6020 (Printer destination) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -38897,7 +38897,7 @@
     "numtab": 6030,
     "title": "Suivi impression Etq QcOrder",
     "category": "Valdepharm - Production & Tolling",
-    "description": "Table diverse Sage X3 numéro 6030 (Suivi impression Etq QcOrder) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 6030 (Suivi impression Etq QcOrder) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -38905,7 +38905,7 @@
     "numtab": 6040,
     "title": "Type de texte prélèvement",
     "category": "Valdepharm - Production & Tolling",
-    "description": "Table diverse Sage X3 numéro 6040 (Type de texte prélèvement) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 6040 (Type de texte prélèvement) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   },
@@ -38913,7 +38913,7 @@
     "numtab": 6050,
     "title": "Cuves",
     "category": "Valdepharm - Production & Tolling",
-    "description": "Table diverse Sage X3 numéro 6050 (Cuves) gérée dans GESTDU / ATABDIV.",
+    "description": "Table diverse Sage X3 numéro 6050 (Cuves) Fonction GESADI (table SQL ATABDIV).",
     "itemCount": 0,
     "items": []
   }

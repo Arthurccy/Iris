@@ -419,7 +419,7 @@
 			'- Écran ou champ X3 concerné :',
 			'- Exemples de codes et intitulés attendus :',
 			'',
-			'Merci de revenir vers nous pour cadrer la création dans la fonction GESTDU de Sage X3.',
+			'Merci de revenir vers nous pour cadrer la création dans la fonction GESADI de Sage X3.',
 			'Application IRIS — Portail métier Sage X3.'
 		].join('\n');
 
@@ -451,7 +451,7 @@
 							Tables Diverses & Référentiels
 						</h1>
 						<p class="text-xs text-slate-500">
-							Référentiels Sage X3 (fonction GESTDU) — consultez, recherchez et enrichissez vos listes de valeurs.
+							Référentiels Sage X3 (fonction GESADI) — consultez, recherchez et enrichissez vos listes de valeurs.
 						</p>
 					</div>
 
@@ -520,7 +520,6 @@
 										<option value="MAGASIN">Magasin & Stocks (6 tables)</option>
 										<option value="ACHATS">Achats & Approvisionnements (6 tables)</option>
 										<option value="FINANCE">Comptabilité & Finance (9 tables)</option>
-										<option value="READONLY">Visiteur sans droit (Aucun accès)</option>
 									</select>
 								</div>
 							{/if}

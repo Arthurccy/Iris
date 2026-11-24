@@ -321,7 +321,7 @@
 			`- Désignation complète (LNGDES) : ${formLabel.trim().slice(0, 30) || 'Non renseignée'}`,
 			`- Libellé court (SHODES) : ${(formShortLabel.trim() || formLabel.trim()).slice(0, 12) || 'Non renseigné'}`,
 			'',
-			"Merci de bien vouloir procéder à l'enregistrement dans la fonction GESTDU de Sage X3.",
+			"Merci de bien vouloir procéder à l'enregistrement dans la fonction GESADI de Sage X3.",
 			'',
 			'Application IRIS — Portail métier Sage X3 Valdepharm.'
 		].join('\n');
@@ -387,11 +387,6 @@
 								<Pencil class="size-3 text-emerald-700" />
 								Édition autorisée
 							</span>
-						{:else}
-							<span class="inline-flex items-center gap-1 rounded-md bg-slate-200 text-slate-700 text-[11px] font-semibold px-2 py-0.5">
-								<Lock class="size-3 text-slate-500" />
-								Consultation seule
-							</span>
 						{/if}
 					</div>
 
@@ -400,7 +395,7 @@
 					</h2>
 					{#if formMode === 'none'}
 						<p class="text-xs text-slate-500 truncate">
-							{table.description || `Référentiel des valeurs Sage X3 (Fonction GESTDU • Table #${table.numtab}).`}
+							{table.description || `Référentiel des valeurs Sage X3 (Fonction GESADI • Table #${table.numtab}).`}
 						</p>
 					{/if}
 				</div>
