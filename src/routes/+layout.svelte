@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import { page } from '$app/stores';
-	import { Database, FileCode2, Mail, Search, ShieldCheck } from 'lucide-svelte';
+	import { Database, Mail, Search } from 'lucide-svelte';
 
 	let { children } = $props();
 

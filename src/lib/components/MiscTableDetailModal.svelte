@@ -13,8 +13,6 @@
 		Pencil,
 		Plus,
 		Search,
-		ShieldAlert,
-		ShieldCheck,
 		X
 	} from 'lucide-svelte';
 	import type { MiscTableDefinition, MiscTableItem } from '$lib/types';
@@ -386,7 +384,7 @@
 						{/if}
 						{#if canEditCurrentTable}
 							<span class="inline-flex items-center gap-1 rounded-md bg-emerald-100 text-emerald-900 border border-emerald-300 text-[11px] font-bold px-2 py-0.5">
-								<ShieldCheck class="size-3 text-emerald-700" />
+								<Pencil class="size-3 text-emerald-700" />
 								Édition autorisée
 							</span>
 						{:else}
@@ -716,7 +714,7 @@
 									</span>
 									{#if user}
 										<span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-800">
-											<ShieldCheck class="size-3.5 text-emerald-600" />
+											<Check class="size-3.5 text-emerald-600" />
 											<span>Demandeur certifié : {user.displayName} ({user.sAMAccountName})</span>
 										</span>
 									{/if}
@@ -794,7 +792,7 @@
 										</p>
 									{:else if isCodeDuplicate}
 										<p class="mt-1 text-[11px] font-bold text-rose-600 flex items-center gap-1">
-											<ShieldAlert class="size-3.5 shrink-0" />
+											<AlertCircle class="size-3.5 shrink-0" />
 											<span>Ce code existe déjà dans la table #{table.numtab}.</span>
 										</p>
 									{:else}
@@ -886,7 +884,7 @@
 						<div class="space-y-4">
 							<div class="rounded-xl border border-corporate-200 bg-corporate-50/40 p-4 space-y-3">
 								<div class="flex items-center gap-2 text-corporate-900 font-bold text-xs">
-									<ShieldCheck class="size-4 text-corporate-700 shrink-0" />
+									<Database class="size-4 text-corporate-700 shrink-0" />
 									<span>Confirmation avant écriture directe en base SANDBOX (FRVDRVMAS46)</span>
 								</div>
 

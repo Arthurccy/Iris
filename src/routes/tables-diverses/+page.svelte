@@ -23,8 +23,6 @@
 		Plus,
 		RotateCcw,
 		Search,
-		ShieldAlert,
-		ShieldCheck,
 		Table as TableIcon,
 		UserCheck,
 		X
@@ -495,7 +493,7 @@
 									{#if isSimulating}
 										<Loader2 class="size-3.5 text-corporate-700 animate-spin" />
 									{:else}
-										<ShieldCheck class="size-3.5 text-corporate-700" />
+										<UserCheck class="size-3.5 text-slate-500" />
 									{/if}
 									<label for="simulate-select" class="font-semibold text-slate-600 text-[11px] hidden sm:inline">
 										Profil :
@@ -533,7 +531,7 @@
 					{#if data.simulatedRole}
 						<div class="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-amber-50 border border-amber-300 px-3.5 py-2 text-xs text-amber-950">
 							<div class="flex items-center gap-2">
-								<ShieldAlert class="size-4 text-amber-700 shrink-0" />
+								<AlertCircle class="size-4 text-amber-700 shrink-0" />
 								<span>
 									<strong>Simulation active ({data.permissions.roleLabel})</strong> — Seules
 									{#if (data.permissions.allowedTables || []).length > 0}
@@ -623,7 +621,7 @@
 				{#if mainView === 'audit'}
 					<div class="hidden sm:flex items-center gap-1.5 text-[11px] font-semibold">
 						{#if data.permissions?.allTablesAllowed}
-							<ShieldCheck class="size-3.5 text-amber-700" />
+							<UserCheck class="size-3.5 text-amber-700" />
 							<span class="text-amber-900">Supervision IT globale</span>
 						{:else}
 							<UserCheck class="size-3.5 text-slate-500" />
@@ -697,8 +695,7 @@
 								</button>
 							</div>
 						{:else}
-							<div class="inline-flex items-center gap-1.5 rounded-lg border border-corporate-200 bg-corporate-50 px-3 py-1 text-corporate-800 font-semibold text-xs">
-								<ShieldCheck class="size-3.5 text-corporate-700 shrink-0" />
+							<div class="inline-flex items-center rounded-lg border border-corporate-200 bg-corporate-50 px-3 py-1 text-corporate-800 font-semibold text-xs">
 								<span>Périmètre {data.permissions.roleLabel} ({totalTablesCount} tables)</span>
 							</div>
 						{/if}
@@ -1335,9 +1332,8 @@
 											</td>
 
 											<td class="py-2.5 px-4">
-												<div class="flex items-center gap-1 font-semibold text-slate-900">
-													<ShieldCheck class="size-3.5 text-emerald-600 shrink-0" />
-													<span>{log.user.displayName}</span>
+												<div class="font-semibold text-slate-900">
+													{log.user.displayName}
 												</div>
 												<div class="text-[11px] text-slate-500">
 													{log.user.department || log.user.mail || log.user.username}

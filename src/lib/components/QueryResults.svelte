@@ -6,10 +6,10 @@
 		ChevronDown,
 		ChevronUp,
 		Clipboard,
+		Eye,
 		FileCode2,
 		Layers,
-		Mail,
-		ShieldCheck
+		Mail
 	} from 'lucide-svelte';
 	import type { FieldDefinition, MatchResults, QueryMatch } from '$lib/types';
 
@@ -75,7 +75,7 @@
 
 			<div class="rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-xs text-slate-700 shadow-xs">
 				<div class="flex items-center gap-1.5 font-semibold text-corporate-800">
-					<ShieldCheck class="size-4" />
+					<Eye class="size-4" />
 					Mode consultation read-only
 				</div>
 				<p class="mt-0.5 text-[11px] text-slate-500">Aucune modification n'est apportée dans Sage X3.</p>
