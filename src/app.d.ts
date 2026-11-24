@@ -5,6 +5,8 @@ declare global {
 	namespace App {
 		interface Locals {
 			user: LdapUser | null;
+			realUser?: LdapUser | null;
+			simulatedRole?: string | null;
 			permissions: UserPermissions;
 		}
 	}

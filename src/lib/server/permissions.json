@@ -9,28 +9,48 @@
   "defaultAccess": "read-only",
   "groupRules": [
     {
+      "groupName": "FRVDR_MNC_APPROBATEUR_AQ",
+      "aliases": [
+        "FRV_VDR_ASSURANCE_QUALITE",
+        "FRVDR_AQ",
+        "FRVDR_QUALITE",
+        "QUALITE"
+      ],
+      "department": "QUALITE",
+      "label": "Assurance & Contrôle Qualité",
+      "allowedTables": [101, 102, 103, 104, 1002, 1003, 1004, 1007, 1009, 1010, 1101, 1102, 1300],
+      "canEdit": true
+    },
+    {
       "groupName": "FRV_VDR_PESEE",
+      "aliases": [
+        "FRVDR_PESEE",
+        "FRVDR_PRODUCTION",
+        "PESEE"
+      ],
       "department": "PESEE",
       "label": "Atelier de Pesée & Production",
-      "allowedTables": [1011, 1405, 1407],
+      "allowedTables": [1011, 1405, 1407, 6050],
       "canEdit": true
     },
     {
       "groupName": "FRV_VDR_MAGASIN",
+      "aliases": [
+        "FRVDR_MAGASIN",
+        "FRVDR_STOCKS",
+        "MAGASIN"
+      ],
       "department": "MAGASIN",
       "label": "Magasin & Gestion des stocks",
       "allowedTables": [9, 10, 14, 1111, 1112, 1115],
       "canEdit": true
     },
     {
-      "groupName": "FRV_VDR_ASSURANCE_QUALITE",
-      "department": "QUALITE",
-      "label": "Assurance & Contrôle Qualité",
-      "allowedTables": [1002, 1004, 1007, 1009, 1010, 1101, 1102, 1300],
-      "canEdit": true
-    },
-    {
       "groupName": "FRV_VDR_ACHATS",
+      "aliases": [
+        "FRVDR_ACHATS",
+        "ACHATS"
+      ],
       "department": "ACHATS",
       "label": "Achats & Approvisionnements",
       "allowedTables": [1006, 1220, 1990, 6001, 6002, 6003],
@@ -38,6 +58,11 @@
     },
     {
       "groupName": "FRV_VDR_FINANCE",
+      "aliases": [
+        "FRVDR_FINANCE",
+        "FRVDR_COMPTABILITE",
+        "FINANCE"
+      ],
       "department": "COMPTABILITE",
       "label": "Comptabilité & Finance",
       "allowedTables": [1, 2, 3, 5, 6, 8, 15, 1798, 1800],

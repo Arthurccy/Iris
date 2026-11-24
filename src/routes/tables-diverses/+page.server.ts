@@ -13,6 +13,15 @@ export const load: PageServerLoad = async ({ locals }) => {
 			})
 		: [];
 
+	const realUser = locals.realUser || locals.user;
+	const isRealAdmin = Boolean(
+		realUser &&
+			(realUser.isAdmin ||
+				['frvdr_it', 'frvdr_support-informatique', 'frvdr_app_mnc_serviceadmins'].some((g) =>
+					(realUser.groups || []).map((x) => x.toLowerCase()).includes(g)
+				))
+	);
+
 	return {
 		isLive,
 		tables,
@@ -27,6 +36,8 @@ export const load: PageServerLoad = async ({ locals }) => {
 					isAdmin: locals.user.isAdmin
 				}
 			: null,
-		permissions: locals.permissions
+		permissions: locals.permissions,
+		isRealAdmin,
+		simulatedRole: locals.simulatedRole || null
 	};
 };

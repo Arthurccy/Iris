@@ -52,7 +52,10 @@ export function getPermissionsForUser(user: LdapUser | null | undefined): UserPe
 	const userDeptUpper = (user.department || '').toUpperCase();
 
 	for (const rule of permissionsConfig.groupRules) {
-		const groupMatches = userGroupsLower.includes(rule.groupName.toLowerCase());
+		const ruleGroupNames = [rule.groupName, ...((rule as any).aliases || [])].map((g: string) =>
+			g.toLowerCase()
+		);
+		const groupMatches = userGroupsLower.some((ug) => ruleGroupNames.includes(ug));
 		const deptMatches = rule.department && userDeptUpper.includes(rule.department.toUpperCase());
 
 		if (groupMatches || deptMatches) {

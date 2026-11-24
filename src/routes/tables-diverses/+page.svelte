@@ -174,6 +174,32 @@
 		}
 	}
 
+	async function handleSimulateRole(role: string) {
+		try {
+			await fetch('/api/auth/simulate', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ role })
+			});
+			await invalidateAll();
+		} catch (e) {
+			console.error(e);
+		}
+	}
+
+	let prevSimulatedRole: string | null = null;
+	$effect(() => {
+		const currentRole = data.simulatedRole;
+		if (currentRole !== prevSimulatedRole) {
+			prevSimulatedRole = currentRole;
+			if (currentRole && !data.permissions?.allTablesAllowed) {
+				selectedScope = 'mine';
+			} else {
+				selectedScope = 'all';
+			}
+		}
+	});
+
 	// Filtres et affichage
 	let searchTerm = $state('');
 	let selectedScope = $state<'all' | 'mine' | 'valdepharm' | 'standard'>('all');
@@ -455,7 +481,28 @@
 								</div>
 							</div>
 						</div>
-						<div class="flex items-center gap-2">
+						<div class="flex flex-wrap items-center gap-2">
+							{#if data.isRealAdmin}
+								<div class="flex items-center gap-1.5 bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs shadow-2xs">
+									<ShieldCheck class="size-3.5 text-corporate-700" />
+									<label for="simulate-select" class="font-bold text-slate-700 text-[11px] whitespace-nowrap">Tester profil :</label>
+									<select
+										id="simulate-select"
+										class="bg-transparent font-semibold text-corporate-900 border-none outline-none text-xs cursor-pointer py-0.5 focus:ring-0"
+										value={data.simulatedRole || 'RESET'}
+										onchange={(e) => handleSimulateRole((e.target as HTMLSelectElement).value)}
+									>
+										<option value="RESET">Mon compte IT réel (Accès total - 332 tables)</option>
+										<option value="AQ">Assurance Qualité - AQ (13 tables)</option>
+										<option value="PESEE">Atelier Pesée & Fabrication (4 tables)</option>
+										<option value="MAGASIN">Magasin & Stocks (3 tables)</option>
+										<option value="ACHATS">Achats & Approvisionnements (2 tables)</option>
+										<option value="FINANCE">Comptabilité & Finance (3 tables)</option>
+										<option value="READONLY">Visiteur sans droit (Consultation seule)</option>
+									</select>
+								</div>
+							{/if}
+
 							<button
 								type="button"
 								onclick={handleLogout}
@@ -466,6 +513,33 @@
 							</button>
 						</div>
 					</div>
+
+					{#if data.simulatedRole}
+						<div class="mt-2.5 flex flex-wrap items-center justify-between gap-3 rounded-xl bg-amber-50 border-2 border-amber-300 px-4 py-2.5 text-xs text-amber-950 shadow-2xs">
+							<div class="flex items-center gap-2.5">
+								<ShieldAlert class="size-5 text-amber-700 shrink-0" />
+								<div>
+									<div class="font-bold text-amber-950">Mode Simulation de Profil Actif (Contrôle Audit & Sécurité RBAC)</div>
+									<div class="text-[11px] text-amber-900">
+										Vous naviguez actuellement avec les droits stricts du profil <strong>{data.permissions.roleLabel}</strong>.
+										{#if (data.permissions.allowedTables || []).length > 0}
+											Seules les <strong>{(data.permissions.allowedTables || []).length} tables métier</strong> assignées sont modifiables. Toutes les autres tables sont verrouillées en consultation seule.
+										{:else}
+											Toutes les tables sont verrouillées en consultation seule.
+										{/if}
+									</div>
+								</div>
+							</div>
+							<button
+								type="button"
+								class="inline-flex items-center gap-1.5 rounded-lg bg-amber-700 hover:bg-amber-800 text-white font-bold text-xs px-3 py-1.5 shadow-2xs transition shrink-0"
+								onclick={() => handleSimulateRole('RESET')}
+							>
+								<X class="size-3.5" />
+								<span>Rétablir mon profil IT réel</span>
+							</button>
+						</div>
+					{/if}
 				{:else}
 					<div class="flex flex-wrap items-center justify-between gap-3 rounded-xl bg-slate-50 border border-slate-300 px-4 py-2.5">
 						<div class="flex items-center gap-2.5">
