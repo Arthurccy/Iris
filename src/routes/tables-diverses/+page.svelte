@@ -174,7 +174,20 @@
 		}
 	}
 
-	function handleSimulateRole(role: string) {
+	async function handleSimulateRole(role: string) {
+		try {
+			const res = await fetch('/api/auth/simulate', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ role })
+			});
+			if (res.ok) {
+				window.location.href = '/tables-diverses';
+				return;
+			}
+		} catch (err) {
+			console.error('Erreur changement profil:', err);
+		}
 		window.location.href = `/api/auth/simulate?role=${encodeURIComponent(role)}`;
 	}
 
@@ -554,13 +567,14 @@
 									</div>
 								</div>
 							</div>
-							<a
-								href="/api/auth/simulate?role=RESET"
-								class="inline-flex items-center gap-1.5 rounded-lg bg-amber-700 hover:bg-amber-800 text-white font-bold text-xs px-3.5 py-1.5 shadow-2xs transition shrink-0 cursor-pointer no-underline"
+							<button
+								type="button"
+								onclick={() => handleSimulateRole('RESET')}
+								class="inline-flex items-center gap-1.5 rounded-lg bg-amber-700 hover:bg-amber-800 text-white font-bold text-xs px-3.5 py-1.5 shadow-2xs transition shrink-0 cursor-pointer"
 							>
 								<X class="size-3.5 text-white" />
 								<span>Rétablir mon profil IT réel</span>
-							</a>
+							</button>
 						</div>
 					{/if}
 				{:else}

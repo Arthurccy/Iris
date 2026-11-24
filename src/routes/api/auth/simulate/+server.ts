@@ -32,14 +32,6 @@ export const GET: RequestHandler = async ({ url, locals, cookies }) => {
 
 	// La réinitialisation vers le profil réel est TOUJOURS autorisée sans condition
 	if (role === 'RESET') {
-		cookies.set('iris_simulate_role', '', {
-			path: '/',
-			httpOnly: true,
-			sameSite: 'lax',
-			secure: false,
-			maxAge: 0,
-			expires: new Date(0)
-		});
 		cookies.delete('iris_simulate_role', { path: '/' });
 		throw redirect(303, '/tables-diverses');
 	}
@@ -67,14 +59,6 @@ export const POST: RequestHandler = async ({ request, locals, cookies }) => {
 
 	// La réinitialisation est TOUJOURS autorisée
 	if (role === 'RESET') {
-		cookies.set('iris_simulate_role', '', {
-			path: '/',
-			httpOnly: true,
-			sameSite: 'lax',
-			secure: false,
-			maxAge: 0,
-			expires: new Date(0)
-		});
 		cookies.delete('iris_simulate_role', { path: '/' });
 		return json({
 			success: true,
