@@ -71,7 +71,7 @@ async function inspectSecurity() {
 		}
 
 		// 2. Analyse de la table AUTILIS (Utilisateurs Sage X3)
-		console.log('\n[3] Analyse de la table AUTILIS (Liaison comptes Windows & emails)...');
+		console.log('\n[3] Analyse de la table AUTILIS (Liaison comptes Windows & profils)...');
 		const autilisCols = await pool.request().query(`
 			SELECT COLUMN_NAME, DATA_TYPE
 			FROM INFORMATION_SCHEMA.COLUMNS
@@ -79,20 +79,24 @@ async function inspectSecurity() {
 		`);
 		const colNames = autilisCols.recordset.map((c) => c.COLUMN_NAME);
 		console.log('    Colonnes identifiées dans AUTILIS :');
-		const relevantCols = ['USR_0', 'NOMUSR_0', 'ADDRES_0', 'LOGIN_0', 'CODSYR_0', 'PRFFCT_0', 'PRFMEN_0', 'ACS_0']
+		const relevantCols = ['USR_0', 'NOMUSR_0', 'LOGIN_0', 'CODSYR_0', 'PRFFCT_0', 'PRFMEN_0', 'ACS_0']
 			.filter((c) => colNames.includes(c));
 		console.log(`    -> ${relevantCols.join(', ')}`);
 
 		// Échantillon utilisateurs
-		const selectCols = relevantCols.map((c) => `RTRIM(${c}) AS ${c}`).join(', ');
+		const selectCols = relevantCols.map((c) => `RTRIM(ISNULL(${c}, '')) AS ${c}`).join(', ');
 		const usersSample = await pool.request().query(`
 			SELECT TOP 10 ${selectCols}
 			FROM ${schema}.AUTILIS
-			WHERE ISNULL(RTRIM(ADDRES_0), '') <> '' OR ISNULL(RTRIM(USR_0), '') <> ''
+			WHERE ISNULL(RTRIM(USR_0), '') <> ''
 			ORDER BY USR_0
 		`);
 		console.log('\n    Échantillon de 10 utilisateurs dans AUTILIS :');
 		console.table(usersSample.recordset);
+
+		// Recherche de colonnes d'email dans AUTILIS ou tables annexes
+		const emailCols = colNames.filter((c) => c.toLowerCase().includes('mail') || c.toLowerCase().includes('adr'));
+		console.log(`    Colonnes potentielles d'email dans AUTILIS : ${emailCols.length > 0 ? emailCols.join(', ') : 'Aucune (l\'email provient de l\'Active Directory LDAP)'}`);
 
 		// 3. Synthèse et recommandations
 		console.log('\n=====================================================');
