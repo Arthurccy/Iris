@@ -144,9 +144,11 @@ async function testLdap() {
 			}
 
 			// Vérification du statut Admin
-			const isAdmin = adminGroup && groups.some((g) => g.toLowerCase() === adminGroup.toLowerCase());
+			const isAdminFromEnv = adminGroup && groups.some((g) => g.toLowerCase() === adminGroup.toLowerCase());
+			const isITAdmin = groups.some((g) => ['frvdr_it', 'frvdr_support-informatique'].includes(g.toLowerCase()));
+			const isAdmin = isAdminFromEnv || isITAdmin;
 			console.log('    -------------------------------------------------');
-			console.log(`    - Statut Administrateur IRIS : ${isAdmin ? 'OUI (Membre du groupe ' + adminGroup + ')' : 'NON'}`);
+			console.log(`    - Statut Administrateur IRIS : ${isAdmin ? 'OUI (' + (isAdminFromEnv ? 'Groupe ' + adminGroup : 'Groupe IT') + ')' : 'NON'}`);
 		}
 	} catch (err) {
 		console.error('[ECHEC RECHERCHE UTILISATEUR]', err.message);

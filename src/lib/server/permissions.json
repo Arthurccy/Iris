@@ -1,5 +1,8 @@
 {
   "adminGroups": [
+    "FRVDR_IT",
+    "FRVDR_SUPPORT-INFORMATIQUE",
+    "FRVDR_APP_MNC_ServiceAdmins",
     "FRV_VDR_IT_ADMIN",
     "FRV_VDR_ADMIN_SAGE"
   ],
