@@ -122,7 +122,7 @@
 
 <section class="grid gap-6 lg:grid-cols-[minmax(20rem,24rem),1fr] pb-16 lg:pb-0">
 	<!-- Aside: Guide & Sélection -->
-	<aside class="space-y-4 lg:sticky lg:top-6 lg:self-start">
+	<aside class="space-y-4 lg:sticky lg:top-20 lg:self-start">
 		<div class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
 			<div class="flex items-center justify-between">
 				<p class="text-xs font-semibold uppercase tracking-[0.2em] text-corporate-600">IRIS</p>
@@ -212,7 +212,7 @@
 					{#each selectedFields as field}
 						<div class="group flex items-start gap-2 rounded-lg border border-corporate-100 bg-corporate-50/80 px-2.5 py-1.5 text-xs transition hover:border-corporate-200">
 							<div class="min-w-0 flex-1">
-								<p class="truncate font-semibold text-corporate-950">{field.label}</p>
+								<p class="truncate font-semibold text-corporate-900">{field.label}</p>
 								<p class="truncate text-[10px] text-corporate-700">{field.code} · {field.table}</p>
 							</div>
 							<button
@@ -406,7 +406,7 @@
 									<div class="space-y-2 border-t border-slate-200 bg-slate-50/70 p-3">
 										{#each Object.entries(groupedFields[category] ?? {}) as [groupName, fields]}
 											{@const selectedInGroup = fields.filter(f => isSelected(f.code)).length}
-											<div class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-xs">
+											<div class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
 												<button
 													type="button"
 													class="flex w-full items-center gap-2.5 px-3 py-2 text-left transition hover:bg-slate-50"
@@ -438,7 +438,7 @@
 															<label
 																class="flex min-h-[7.5rem] cursor-pointer items-start gap-2.5 rounded-lg border p-3 transition select-none {
 																	isSelected(field.code)
-																		? 'border-corporate-400 bg-corporate-50/70 shadow-xs ring-1 ring-corporate-200'
+																		? 'border-corporate-400 bg-corporate-50/70 shadow-sm ring-1 ring-corporate-200'
 																		: 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50/80'
 																}"
 															>

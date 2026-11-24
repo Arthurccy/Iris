@@ -73,7 +73,7 @@
 				</p>
 			</div>
 
-			<div class="rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-xs text-slate-700 shadow-xs">
+			<div class="rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-xs text-slate-700 shadow-sm">
 				<div class="flex items-center gap-1.5 font-semibold text-corporate-800">
 					<Eye class="size-4" />
 					Mode consultation read-only
@@ -104,18 +104,18 @@
 		<!-- Onglets de navigation entre Correspondances Exactes et Approchantes -->
 		{#if selectedFields.length > 0}
 			<div class="mt-4 flex items-center gap-2 border-t border-slate-200 pt-3">
-				<button
+					<button
 					type="button"
 					class="inline-flex items-center gap-2 rounded-lg px-3.5 py-2 text-xs font-semibold transition {
 						activeTab === 'exact'
-							? 'bg-corporate-600 text-white shadow-xs'
+							? 'bg-corporate-600 text-white shadow-sm'
 							: 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
 					}"
 					onclick={() => (activeTab = 'exact')}
 				>
 					<CheckCircle2 class="size-3.5" />
 					<span>Correspondances exactes</span>
-					<span class="rounded-full px-1.5 py-0.2 text-[10px] {
+					<span class="rounded-full px-1.5 py-0.5 text-[10px] {
 						activeTab === 'exact' ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-700'
 					}">
 						{matchResults.totalExact}
@@ -126,14 +126,14 @@
 					type="button"
 					class="inline-flex items-center gap-2 rounded-lg px-3.5 py-2 text-xs font-semibold transition {
 						activeTab === 'partial'
-							? 'bg-corporate-600 text-white shadow-xs'
+							? 'bg-corporate-600 text-white shadow-sm'
 							: 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
 					}"
 					onclick={() => (activeTab = 'partial')}
 				>
 					<Layers class="size-3.5" />
 					<span>Requêtes approchantes</span>
-					<span class="rounded-full px-1.5 py-0.2 text-[10px] {
+					<span class="rounded-full px-1.5 py-0.5 text-[10px] {
 						activeTab === 'partial' ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-700'
 					}">
 						{matchResults.totalPartial}
@@ -168,7 +168,7 @@
 					{#each matchResults.exact as query, index}
 						{@const lineCount = countSqlLines(query.sql)}
 						{@const isExpanded = isSqlExpanded(query.id)}
-						<article class="group rounded-xl border border-slate-200 bg-white p-5 shadow-xs transition hover:border-corporate-200 hover:shadow-sm">
+						<article class="min-w-0 group rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-corporate-200 hover:shadow-md">
 							<div class="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
 								<div class="space-y-2">
 									<div class="flex flex-wrap items-center gap-2">
@@ -199,8 +199,8 @@
 							</div>
 
 							<!-- Champs inclus & Bloc SQL -->
-							<div class="mt-4 grid gap-4 lg:grid-cols-[1fr,1.3fr]">
-								<div class="rounded-lg bg-slate-50 p-3">
+							<div class="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1fr),minmax(0,1.3fr)]">
+								<div class="min-w-0 rounded-lg bg-slate-50 p-3">
 									<p class="mb-2 text-xs font-semibold text-slate-900">Champs inclus dans cette requête</p>
 									<div class="flex flex-wrap gap-1.5 max-h-48 overflow-y-auto pr-1">
 										{#each query.fields as fieldCode}
@@ -219,7 +219,7 @@
 									</div>
 								</div>
 
-								<div class="overflow-hidden rounded-lg border border-slate-800 bg-slate-900 text-slate-200 shadow-inner">
+								<div class="min-w-0 overflow-hidden rounded-lg border border-slate-800 bg-slate-900 text-slate-200 shadow-inner">
 									<div class="flex items-center justify-between gap-2 border-b border-white/10 px-3 py-2 bg-slate-950/40">
 										<div class="flex items-center gap-1.5 text-xs font-semibold text-slate-300">
 											<FileCode2 class="size-3.5" />
@@ -303,7 +303,7 @@
 
 					<!-- S'il y a des requêtes approchantes, suggérer de les voir -->
 					{#if matchResults.totalPartial > 0}
-						<div class="rounded-xl border border-slate-200 bg-white p-5 shadow-xs">
+						<div class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
 							<div class="flex items-center justify-between pb-3 border-b border-slate-100">
 								<div>
 									<h4 class="text-sm font-semibold text-slate-900">
@@ -343,7 +343,7 @@
 						{@const lineCount = countSqlLines(query.sql)}
 						{@const isExpanded = isSqlExpanded(query.id)}
 						{@const coveragePercent = Math.round(query.coverageRate * 100)}
-						<article class="group rounded-xl border border-slate-200 bg-white p-5 shadow-xs transition hover:border-slate-300 hover:shadow-sm">
+						<article class="min-w-0 group rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-slate-300 hover:shadow-md">
 							<div class="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
 								<div class="space-y-2">
 									<div class="flex flex-wrap items-center gap-2">
@@ -405,7 +405,7 @@
 							</div>
 
 							<!-- Bloc SQL -->
-							<div class="mt-3 overflow-hidden rounded-lg border border-slate-800 bg-slate-900 text-slate-200 shadow-inner">
+							<div class="mt-3 min-w-0 overflow-hidden rounded-lg border border-slate-800 bg-slate-900 text-slate-200 shadow-inner">
 								<div class="flex items-center justify-between gap-2 border-b border-white/10 px-3 py-2 bg-slate-950/40">
 									<div class="flex items-center gap-1.5 text-xs font-semibold text-slate-300">
 										<FileCode2 class="size-3.5" />
