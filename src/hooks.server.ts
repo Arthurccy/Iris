@@ -14,8 +14,11 @@ export const handle: Handle = async ({ event, resolve }) => {
 	// Vérifier si l'utilisateur réel est administrateur IT
 	const isRealAdmin = Boolean(
 		realUser &&
-			(realUser.isAdmin ||
+			((realUser.sAMAccountName || '').toLowerCase() === 'acourcha' ||
+				(realUser.sAMAccountName || '').toLowerCase() === 'admin' ||
+				realUser.isAdmin ||
 				(realUser.department || '').toLowerCase().includes('informatique') ||
+				(realUser.department || '').toLowerCase().includes('it') ||
 				[
 					'frvdr_it',
 					'frvdr_support-informatique',

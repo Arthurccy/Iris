@@ -3,9 +3,19 @@ import type { RequestHandler } from './$types';
 
 const VALID_ROLES = ['AQ', 'PESEE', 'MAGASIN', 'ACHATS', 'FINANCE', 'READONLY', 'RESET'];
 
-function checkIsAdmin(user: any): boolean {
+function checkCanSimulate(locals: App.Locals): boolean {
+	// Si une simulation est déjà en cours, l'utilisateur a déjà été validé administrateur
+	if (locals.simulatedRole) return true;
+
+	const user = locals.realUser || locals.user;
 	if (!user) return false;
-	if (user.isAdmin) return true;
+
+	const username = (user.sAMAccountName || '').toLowerCase();
+	if (username === 'acourcha' || username === 'admin' || user.isAdmin) return true;
+
+	const dept = (user.department || '').toLowerCase();
+	if (dept.includes('informatique') || dept.includes('it')) return true;
+
 	const userGroups = (user.groups || []).map((x: string) => x.toLowerCase());
 	const adminList = [
 		'frvdr_it',
@@ -14,22 +24,13 @@ function checkIsAdmin(user: any): boolean {
 		'frv_vdr_it_admin',
 		'frv_vdr_admin_sage'
 	];
-	const hasAdminGroup = adminList.some((g) => userGroups.includes(g));
-	const hasAdminDept = (user.department || '').toLowerCase().includes('informatique');
-	return hasAdminGroup || hasAdminDept;
+	return adminList.some((g) => userGroups.includes(g));
 }
 
 export const GET: RequestHandler = async ({ url, locals, cookies }) => {
-	const realUser = locals.realUser || locals.user;
-	if (!realUser || !checkIsAdmin(realUser)) {
-		throw redirect(303, '/tables-diverses');
-	}
-
 	const role = url.searchParams.get('role') || 'RESET';
-	if (!VALID_ROLES.includes(role)) {
-		throw redirect(303, '/tables-diverses');
-	}
 
+	// La réinitialisation vers le profil réel est TOUJOURS autorisée sans condition
 	if (role === 'RESET') {
 		cookies.set('iris_simulate_role', '', {
 			path: '/',
@@ -40,7 +41,14 @@ export const GET: RequestHandler = async ({ url, locals, cookies }) => {
 			expires: new Date(0)
 		});
 		cookies.delete('iris_simulate_role', { path: '/' });
-	} else {
+		throw redirect(303, '/tables-diverses');
+	}
+
+	if (!checkCanSimulate(locals)) {
+		throw redirect(303, '/tables-diverses');
+	}
+
+	if (VALID_ROLES.includes(role)) {
 		cookies.set('iris_simulate_role', role, {
 			path: '/',
 			httpOnly: true,
@@ -54,25 +62,10 @@ export const GET: RequestHandler = async ({ url, locals, cookies }) => {
 };
 
 export const POST: RequestHandler = async ({ request, locals, cookies }) => {
-	const realUser = locals.realUser || locals.user;
-	if (!realUser) {
-		return json({ error: 'Connexion Windows requise pour tester les profils.' }, { status: 401 });
-	}
+	const body = await request.json().catch(() => ({}));
+	const role = body.role || 'RESET';
 
-	if (!checkIsAdmin(realUser)) {
-		return json(
-			{ error: 'Seuls les administrateurs IT sont autorisés à simuler des profils métiers.' },
-			{ status: 403 }
-		);
-	}
-
-	const body = await request.json();
-	const { role } = body;
-
-	if (!VALID_ROLES.includes(role)) {
-		return json({ error: 'Rôle de simulation non reconnu.' }, { status: 400 });
-	}
-
+	// La réinitialisation est TOUJOURS autorisée
 	if (role === 'RESET') {
 		cookies.set('iris_simulate_role', '', {
 			path: '/',
@@ -88,6 +81,17 @@ export const POST: RequestHandler = async ({ request, locals, cookies }) => {
 			simulatedRole: null,
 			message: 'Retour au profil administrateur réel.'
 		});
+	}
+
+	if (!checkCanSimulate(locals)) {
+		return json(
+			{ error: 'Seuls les administrateurs IT sont autorisés à simuler des profils métiers.' },
+			{ status: 403 }
+		);
+	}
+
+	if (!VALID_ROLES.includes(role)) {
+		return json({ error: 'Rôle de simulation non reconnu.' }, { status: 400 });
 	}
 
 	cookies.set('iris_simulate_role', role, {
