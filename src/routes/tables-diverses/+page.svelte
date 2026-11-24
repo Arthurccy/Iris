@@ -232,6 +232,13 @@
 		)
 	);
 
+	const hasTableAccess = $derived(
+		Boolean(
+			data.user &&
+				(data.permissions?.allTablesAllowed || (data.permissions?.allowedTables || []).length > 0)
+		)
+	);
+
 	// Catégories dynamiquement présentes dans les tables visibles (ne dévoile pas les autres domaines aux profils restreints)
 	const availableCategories = $derived.by(() => {
 		const present = Array.from(new Set(tables.map((t) => t.category))).sort((a, b) =>
@@ -448,15 +455,17 @@
 						</p>
 					</div>
 
-					<div class="flex items-center gap-2 shrink-0">
-						<a
-							href={newTableMailHref}
-							class="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 hover:border-corporate-400 hover:text-corporate-700 transition shadow-sm"
-						>
-							<Mail class="size-3.5 text-corporate-600" />
-							<span>Demander une table</span>
-						</a>
-					</div>
+					{#if hasTableAccess}
+						<div class="flex items-center gap-2 shrink-0">
+							<a
+								href={newTableMailHref}
+								class="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 hover:border-corporate-400 hover:text-corporate-700 transition shadow-sm"
+							>
+								<Mail class="size-3.5 text-corporate-600" />
+								<span>Demander une table</span>
+							</a>
+						</div>
+					{/if}
 				</div>
 
 				<!-- Ligne 2 : Identité Windows & Simulateur RBAC (1 ligne dense) -->
@@ -481,7 +490,7 @@
 									{:else if (data.permissions.allowedTables || []).length > 0}
 										{(data.permissions.allowedTables || []).length} tables modifiables
 									{:else}
-										Consultation seule
+										Aucun accès aux tables
 									{/if}
 								</span>
 							</div>
@@ -511,7 +520,7 @@
 										<option value="MAGASIN">Magasin & Stocks (6 tables)</option>
 										<option value="ACHATS">Achats & Approvisionnements (6 tables)</option>
 										<option value="FINANCE">Comptabilité & Finance (9 tables)</option>
-										<option value="READONLY">Visiteur sans droit (Consultation seule)</option>
+										<option value="READONLY">Visiteur sans droit (Aucun accès)</option>
 									</select>
 								</div>
 							{/if}
@@ -533,11 +542,11 @@
 							<div class="flex items-center gap-2">
 								<AlertCircle class="size-4 text-amber-700 shrink-0" />
 								<span>
-									<strong>Simulation active ({data.permissions.roleLabel})</strong> — Seules
+									<strong>Simulation active ({data.permissions.roleLabel})</strong> —
 									{#if (data.permissions.allowedTables || []).length > 0}
-										les <strong>{(data.permissions.allowedTables || []).length} tables métier</strong> assignées sont modifiables.
+										Seules les <strong>{(data.permissions.allowedTables || []).length} tables métier</strong> assignées sont visibles et modifiables.
 									{:else}
-										aucune table n'est modifiable (lecture seule).
+										Aucune table n'est accessible pour ce profil sans droit.
 									{/if}
 								</span>
 							</div>
@@ -556,84 +565,181 @@
 							</button>
 						</div>
 					{/if}
-				{:else}
-					<div class="flex flex-wrap items-center justify-between gap-2.5 rounded-xl bg-slate-50 border border-slate-200 px-3.5 py-2">
-						<div class="flex items-center gap-2 text-xs">
-							<Lock class="size-4 text-amber-600 shrink-0" />
-							<span class="text-slate-700">
-								<strong class="text-slate-900">Mode consultation seule</strong> — Connectez-vous avec votre compte Windows Fareva pour modifier vos tables.
-							</span>
-						</div>
+				{/if}
+			</div>
+
+			<!-- Ligne 3 : Onglets intégrés uniquement si l'utilisateur a accès à au moins une table -->
+			{#if hasTableAccess}
+				<div class="px-5 border-t border-slate-200 bg-slate-50/50 flex items-center justify-between gap-4">
+					<nav class="flex items-center gap-6 -mb-px" aria-label="Sous-navigation">
 						<button
 							type="button"
-							onclick={() => (isLoginModalOpen = true)}
-							class="inline-flex items-center gap-1.5 rounded-lg bg-corporate-700 hover:bg-corporate-800 text-white font-bold text-xs px-3 py-1.5 transition shadow-sm"
+							class="inline-flex items-center gap-2 py-2.5 border-b-2 text-xs font-bold transition {mainView ===
+							'catalog'
+								? 'border-corporate-700 text-corporate-800'
+								: 'border-transparent text-slate-600 hover:text-slate-900 hover:border-slate-300'}"
+							onclick={() => (mainView = 'catalog')}
 						>
-							<LogIn class="size-3.5" />
-							<span>Connexion Windows</span>
+							<TableIcon class="size-3.5" />
+							<span>Référentiel des tables</span>
+							<span class="rounded-full bg-slate-200/80 px-2 py-0.5 text-[10px] font-bold text-slate-700">
+								{totalTablesCount}
+							</span>
 						</button>
-					</div>
-				{/if}
-			</div>
 
-			<!-- Ligne 3 : Onglets intégrés en bordure basse -->
-			<div class="px-5 border-t border-slate-200 bg-slate-50/50 flex items-center justify-between gap-4">
-				<nav class="flex items-center gap-6 -mb-px" aria-label="Sous-navigation">
-					<button
-						type="button"
-						class="inline-flex items-center gap-2 py-2.5 border-b-2 text-xs font-bold transition {mainView ===
-						'catalog'
-							? 'border-corporate-700 text-corporate-800'
-							: 'border-transparent text-slate-600 hover:text-slate-900 hover:border-slate-300'}"
-						onclick={() => (mainView = 'catalog')}
-					>
-						<TableIcon class="size-3.5" />
-						<span>Référentiel des tables</span>
-						<span class="rounded-full bg-slate-200/80 px-2 py-0.5 text-[10px] font-bold text-slate-700">
-							{totalTablesCount}
-						</span>
-					</button>
-
-					<button
-						type="button"
-						class="inline-flex items-center gap-2 py-2.5 border-b-2 text-xs font-bold transition {mainView ===
-						'audit'
-							? 'border-corporate-700 text-corporate-800'
-							: 'border-transparent text-slate-600 hover:text-slate-900 hover:border-slate-300'}"
-						onclick={() => (mainView = 'audit')}
-					>
-						<History class="size-3.5" />
-						<span>
-							{data.permissions?.allTablesAllowed ? "Journal d'Audit IT (Global)" : 'Mes modifications'}
-						</span>
-						{#if data.permissions?.allTablesAllowed}
-							<span class="rounded-full bg-amber-100 border border-amber-300 text-amber-900 px-2 py-0.5 text-[10px] font-bold">
-								{auditLogs.length}
+						<button
+							type="button"
+							class="inline-flex items-center gap-2 py-2.5 border-b-2 text-xs font-bold transition {mainView ===
+							'audit'
+								? 'border-corporate-700 text-corporate-800'
+								: 'border-transparent text-slate-600 hover:text-slate-900 hover:border-slate-300'}"
+							onclick={() => (mainView = 'audit')}
+						>
+							<History class="size-3.5" />
+							<span>
+								{data.permissions?.allTablesAllowed ? "Journal d'Audit IT (Global)" : 'Mes modifications'}
 							</span>
-						{:else if data.user}
-							<span class="rounded-full bg-corporate-100 text-corporate-800 px-2 py-0.5 text-[10px] font-bold">
-								{auditLogs.length}
-							</span>
-						{/if}
-					</button>
-				</nav>
+							{#if data.permissions?.allTablesAllowed}
+								<span class="rounded-full bg-amber-100 border border-amber-300 text-amber-900 px-2 py-0.5 text-[10px] font-bold">
+									{auditLogs.length}
+								</span>
+							{:else if data.user}
+								<span class="rounded-full bg-corporate-100 text-corporate-800 px-2 py-0.5 text-[10px] font-bold">
+									{auditLogs.length}
+								</span>
+							{/if}
+						</button>
+					</nav>
 
-				{#if mainView === 'audit'}
-					<div class="hidden sm:flex items-center gap-1.5 text-[11px] font-semibold">
-						{#if data.permissions?.allTablesAllowed}
-							<UserCheck class="size-3.5 text-amber-700" />
-							<span class="text-amber-900">Supervision IT globale</span>
-						{:else}
-							<UserCheck class="size-3.5 text-slate-500" />
-							<span class="text-slate-600">Vos actions personnelles uniquement</span>
-						{/if}
-					</div>
-				{/if}
-			</div>
+					{#if mainView === 'audit'}
+						<div class="hidden sm:flex items-center gap-1.5 text-[11px] font-semibold">
+							{#if data.permissions?.allTablesAllowed}
+								<UserCheck class="size-3.5 text-amber-700" />
+								<span class="text-amber-900">Supervision IT globale</span>
+							{:else}
+								<UserCheck class="size-3.5 text-slate-500" />
+								<span class="text-slate-600">Vos actions personnelles uniquement</span>
+							{/if}
+						</div>
+					{/if}
+				</div>
+			{/if}
 		</section>
 
-		<!-- VUE 1 : CATALOGUE DES TABLES DIVERSES -->
-		{#if mainView === 'catalog'}
+		{#if !data.user}
+			<!-- ÉCRAN DE CONNEXION OBLIGATOIRE (Zéro donnée visible sans authentification) -->
+			<section class="mx-auto max-w-md pt-4">
+				<div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
+					<div class="flex items-center gap-3 border-b border-slate-200 pb-3.5">
+						<div class="size-9 rounded-xl bg-corporate-700 text-white flex items-center justify-center shrink-0">
+							<Lock class="size-4" />
+						</div>
+						<div>
+							<h2 class="text-sm font-extrabold text-slate-950">Connexion Windows requise</h2>
+							<p class="text-[11px] text-slate-500 font-medium">
+								Active Directory Fareva — Accès cloisonné par service
+							</p>
+						</div>
+					</div>
+
+					<p class="text-xs text-slate-600 leading-relaxed">
+						Pour consulter et modifier les tables diverses qui vous sont attribuées, veuillez vous authentifier avec votre compte Windows habituel.
+					</p>
+
+					{#if loginError}
+						<div class="rounded-xl border border-rose-300 bg-rose-50 p-3 text-xs text-rose-800 flex items-start gap-2">
+							<AlertCircle class="size-4 text-rose-600 shrink-0 mt-0.5" />
+							<span>{loginError}</span>
+						</div>
+					{/if}
+
+					<form onsubmit={handleLoginSubmit} class="space-y-3.5">
+						<div>
+							<label for="pageLoginUser" class="block text-xs font-bold text-slate-900 mb-1">
+								Identifiant Windows <span class="text-rose-600">*</span>
+							</label>
+							<input
+								id="pageLoginUser"
+								type="text"
+								use:focusOnMount
+								class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
+								placeholder="Ex : acourcha ou arthur.courchay@fareva.com"
+								bind:value={loginUsername}
+								autocomplete="username"
+								required
+							/>
+						</div>
+
+						<div>
+							<label for="pageLoginPass" class="block text-xs font-bold text-slate-900 mb-1">
+								Mot de passe de session <span class="text-rose-600">*</span>
+							</label>
+							<div class="relative">
+								<input
+									id="pageLoginPass"
+									type={showLoginPassword ? 'text' : 'password'}
+									class="w-full rounded-xl border border-slate-300 bg-white pl-3 pr-9 py-2 text-xs font-semibold text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
+									placeholder="••••••••••••"
+									bind:value={loginPassword}
+									autocomplete="current-password"
+									required
+								/>
+								<button
+									type="button"
+									onclick={() => (showLoginPassword = !showLoginPassword)}
+									class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-0.5"
+									title={showLoginPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}
+								>
+									{#if showLoginPassword}
+										<EyeOff class="size-4" />
+									{:else}
+										<Eye class="size-4" />
+									{/if}
+								</button>
+							</div>
+						</div>
+
+						<button
+							type="submit"
+							class="w-full inline-flex items-center justify-center gap-1.5 rounded-xl bg-corporate-700 hover:bg-corporate-800 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition disabled:opacity-50"
+							disabled={isLoggingIn}
+						>
+							{#if isLoggingIn}
+								<Loader2 class="size-4 animate-spin" />
+								<span>Vérification Active Directory...</span>
+							{:else}
+								<LogIn class="size-4" />
+								<span>Se connecter</span>
+							{/if}
+						</button>
+					</form>
+				</div>
+			</section>
+		{:else if !hasTableAccess}
+			<!-- ÉTAT CONNECTÉ SANS DROITS (Visiteur sans droit : aucune table visible) -->
+			<section class="mx-auto max-w-lg pt-4">
+				<div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm text-center space-y-3">
+					<div class="mx-auto size-11 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500">
+						<Lock class="size-5" />
+					</div>
+					<h2 class="text-base font-extrabold text-slate-950">
+						Aucune table diverse attribuée à votre profil
+					</h2>
+					<p class="text-xs text-slate-600 leading-relaxed">
+						Votre session Windows est bien authentifiée, mais aucun droit d'accès aux référentiels des tables diverses Sage X3 n'est configuré pour votre compte.
+					</p>
+					<div class="pt-2">
+						<a
+							href={`mailto:${fallbackMailbox}?subject=${encodeURIComponent('[IRIS - Habilitation] Demande d\'accès aux Tables Diverses')}`}
+							class="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 px-4 py-2 text-xs font-bold text-slate-700 transition shadow-sm"
+						>
+							<Mail class="size-3.5 text-corporate-600" />
+							<span>Demander une habilitation (Support 3636)</span>
+						</a>
+					</div>
+				</div>
+			</section>
+		{:else if mainView === 'catalog'}
 			<div class="space-y-3">
 				<!-- Barre de recherche & Filtres -->
 				<div class="rounded-2xl border border-slate-200 bg-white p-3.5 shadow-sm space-y-3">

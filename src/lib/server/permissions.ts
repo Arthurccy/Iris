@@ -17,7 +17,7 @@ export function getPermissionsForUser(user: LdapUser | null | undefined): UserPe
 			canEdit: false,
 			allowedTables: [],
 			allTablesAllowed: false,
-			roleLabel: 'Consultation (Non connecté)'
+			roleLabel: 'Non connecté'
 		};
 	}
 
@@ -71,7 +71,7 @@ export function getPermissionsForUser(user: LdapUser | null | undefined): UserPe
 		canEdit,
 		allowedTables,
 		allTablesAllowed: false,
-		roleLabel: matchedLabels.length > 0 ? matchedLabels.join(' / ') : 'Utilisateur standard'
+		roleLabel: matchedLabels.length > 0 ? matchedLabels.join(' / ') : 'Visiteur sans droit'
 	};
 }
 
