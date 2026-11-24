@@ -11,12 +11,12 @@
 
 <div class="min-h-screen flex flex-col bg-white">
 	<!-- Barre de navigation supérieure institutionnelle -->
-	<header class="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur-xs">
+	<header class="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur-sm">
 		<div class="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-10 flex h-14 items-center justify-between gap-4">
 			<!-- Logo / Titre -->
 			<div class="flex items-center gap-6">
 				<a href="/" class="flex items-center gap-2.5 group">
-					<div class="size-7 rounded-lg bg-corporate-600 flex items-center justify-center text-white font-bold text-xs tracking-wider shadow-xs">
+					<div class="size-7 rounded-lg bg-corporate-600 flex items-center justify-center text-white font-bold text-xs tracking-wider shadow-sm">
 						I
 					</div>
 					<div class="leading-none">

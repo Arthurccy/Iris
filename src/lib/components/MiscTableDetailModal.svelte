@@ -1,12 +1,13 @@
 <script lang="ts">
 	import {
 		AlertCircle,
+		ArrowRight,
 		Check,
 		CheckCircle2,
 		Clipboard,
-		Clock,
 		Database,
 		History,
+		Loader2,
 		Lock,
 		Mail,
 		Pencil,
@@ -39,6 +40,7 @@
 		};
 		tableAuditLogs?: AuditLogEntry[];
 		onClose: () => void;
+		onSuccess?: () => Promise<void> | void;
 	};
 
 	let {
@@ -46,9 +48,15 @@
 		fallbackMailTo = '3636.valdepharm@fareva.com',
 		isLive = false,
 		user = null,
-		permissions = { canEdit: false, allowedTables: [], allTablesAllowed: false, roleLabel: 'Non connecté' },
+		permissions = {
+			canEdit: false,
+			allowedTables: [],
+			allTablesAllowed: false,
+			roleLabel: 'Non connecté'
+		},
 		tableAuditLogs = [],
-		onClose
+		onClose,
+		onSuccess
 	}: Props = $props();
 
 	let viewTab = $state<'values' | 'audit'>('values');
@@ -58,9 +66,7 @@
 	);
 
 	const defaultRequester = $derived(
-		user
-			? `${user.displayName} (${user.department || user.mail || user.sAMAccountName})`
-			: ''
+		user ? `${user.displayName} (${user.department || user.mail || user.sAMAccountName})` : ''
 	);
 
 	let itemSearch = $state('');
@@ -72,12 +78,15 @@
 	let formCode = $state('');
 	let formShortLabel = $state('');
 	let formLabel = $state('');
+	let originalEditItem = $state<MiscTableItem | null>(null);
+	let shortLabelCustomized = $state(false);
 
 	// Garde-fou : étape de confirmation
 	let isConfirming = $state(false);
 
 	// Indicateurs d'état
 	let copiedCode = $state<string | null>(null);
+	let highlightedCode = $state<string | null>(null);
 	let isSubmitting = $state(false);
 	let submitResult = $state<{
 		success: boolean;
@@ -85,21 +94,24 @@
 		error?: string;
 	} | null>(null);
 
-	// Liste locale réactive
+	// Liste locale réactive synchronisée avec la table
 	let localItems = $state<MiscTableItem[]>([]);
 
 	$effect(() => {
-		localItems = [...table.items];
+		localItems = [...(table.items || [])];
 	});
 
 	// Verrouillage propre du scroll de la page quand la modale est ouverte
 	$effect(() => {
-		const originalOverflow = document.body.style.overflow;
-		document.body.style.overflow = 'hidden';
+		document.body.classList.add('modal-open');
 		return () => {
-			document.body.style.overflow = originalOverflow;
+			document.body.classList.remove('modal-open');
 		};
 	});
+
+	function focusOnMount(node: HTMLElement) {
+		requestAnimationFrame(() => node.focus());
+	}
 
 	const existingCodes = $derived(localItems.map((i) => i.code.toUpperCase()));
 
@@ -118,10 +130,10 @@
 	function normalizeX3Code(value: string): string {
 		return value
 			.normalize('NFD')
-			.replace(/[\u0300-\u036f]/g, '') // Supprime accents
+			.replace(/[\u0300-\u036f]/g, '')
 			.toUpperCase()
-			.replace(/[^A-Z0-9_-]/g, '_') // Caractères non conformes remplacés par _
-			.replace(/_+/g, '_') // Évite doubles underscores
+			.replace(/[^A-Z0-9_-]/g, '_')
+			.replace(/_+/g, '_')
 			.slice(0, 15);
 	}
 
@@ -134,12 +146,16 @@
 		const target = e.target as HTMLInputElement;
 		formLabel = target.value;
 
-		// Si ajout et libellé court non personnalisé, auto-compléter avec les 12 premiers caractères (standard Sage X3 SHODES)
-		if (formMode === 'add') {
-			if (!formShortLabel || formShortLabel === formLabel.slice(0, 11)) {
-				formShortLabel = formLabel.slice(0, 12);
-			}
+		// Auto-complétion du libellé court (12 car.) en ajout tant que l'utilisateur ne l'a pas personnalisé
+		if (formMode === 'add' && !shortLabelCustomized) {
+			formShortLabel = formLabel.slice(0, 12);
 		}
+	}
+
+	function handleShortLabelInput(e: Event) {
+		const target = e.target as HTMLInputElement;
+		formShortLabel = target.value;
+		shortLabelCustomized = target.value.trim().length > 0;
 	}
 
 	const isCodeDuplicate = $derived.by(() => {
@@ -149,42 +165,48 @@
 		return existingCodes.includes(clean);
 	});
 
-	// Validation stricte : Code, Désignation, Demandeur et Motif requis pour se couvrir
 	const canProceedToConfirm = $derived(
 		formCode.trim().length >= 1 &&
-		formLabel.trim().length >= 2 &&
-		requesterName.trim().length >= 2 &&
-		formReason.trim().length >= 3 &&
-		!isCodeDuplicate &&
-		!isSubmitting
+			formLabel.trim().length >= 2 &&
+			requesterName.trim().length >= 2 &&
+			formReason.trim().length >= 3 &&
+			!isCodeDuplicate &&
+			!isSubmitting
 	);
 
 	function openAddForm() {
 		if (!canEditCurrentTable) return;
 		formMode = 'add';
+		originalEditItem = null;
 		formCode = '';
 		formShortLabel = '';
 		formLabel = '';
+		shortLabelCustomized = false;
 		requesterName = defaultRequester;
 		formReason = '';
 		isConfirming = false;
 		submitResult = null;
+		viewTab = 'values';
 	}
 
 	function openEditForm(item: MiscTableItem) {
 		if (!canEditCurrentTable) return;
 		formMode = 'edit';
+		originalEditItem = item;
 		formCode = item.code;
 		formShortLabel = item.shortLabel || '';
 		formLabel = item.label || '';
+		shortLabelCustomized = Boolean(item.shortLabel);
 		requesterName = defaultRequester;
 		formReason = '';
 		isConfirming = false;
 		submitResult = null;
+		viewTab = 'values';
 	}
 
 	function closeForm() {
 		formMode = 'none';
+		originalEditItem = null;
 		isConfirming = false;
 		submitResult = null;
 	}
@@ -208,9 +230,9 @@
 		isSubmitting = true;
 		submitResult = null;
 
-		const endpoint = formMode === 'add'
-			? '/api/tables-diverses/add'
-			: '/api/tables-diverses/update';
+		const endpoint =
+			formMode === 'add' ? '/api/tables-diverses/add' : '/api/tables-diverses/update';
+		const savedCode = formCode.trim().toUpperCase();
 
 		try {
 			const res = await fetch(endpoint, {
@@ -218,7 +240,7 @@
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
 					numtab: table.numtab,
-					code: formCode.trim().toUpperCase(),
+					code: savedCode,
 					libelle_long: formLabel.trim().slice(0, 30),
 					libelle_court: (formShortLabel.trim() || formLabel.trim()).slice(0, 12),
 					demandeur: requesterName.trim(),
@@ -226,32 +248,46 @@
 				})
 			});
 
-			const data = await res.json();
+			const result = await res.json();
 			if (!res.ok) {
 				submitResult = {
 					success: false,
-					error: data.error || "Erreur lors de l'enregistrement en base."
+					error: result.error || "Erreur lors de l'enregistrement en base."
 				};
 				isConfirming = false;
 			} else {
 				submitResult = {
 					success: true,
-					message: data.message || (formMode === 'add' ? 'Valeur ajoutée avec succès !' : 'Valeur mise à jour avec succès !')
+					message:
+						result.message ||
+						(formMode === 'add'
+							? 'Valeur ajoutée avec succès dans Sage X3.'
+							: 'Valeur mise à jour avec succès dans Sage X3.')
 				};
 
-				if (formMode === 'add' && data.item) {
-					localItems = [data.item, ...localItems];
-				} else if (formMode === 'edit' && data.item) {
+				if (formMode === 'add' && result.item) {
+					localItems = [result.item, ...localItems];
+				} else if (formMode === 'edit' && result.item) {
 					localItems = localItems.map((i) =>
-						i.code === data.item.code ? { ...i, ...data.item } : i
+						i.code === result.item.code ? { ...i, ...result.item } : i
 					);
+				}
+
+				highlightedCode = savedCode;
+				setTimeout(() => {
+					if (highlightedCode === savedCode) highlightedCode = null;
+				}, 5000);
+
+				// Rafraîchit les compteurs et l'Audit Trail sur la vue principale sans fermer le contexte
+				if (onSuccess) {
+					await onSuccess();
 				}
 
 				setTimeout(() => {
 					if (submitResult?.success) {
 						closeForm();
 					}
-				}, 1500);
+				}, 1300);
 			}
 		} catch (err) {
 			submitResult = {
@@ -264,14 +300,13 @@
 		}
 	}
 
-	// Lien email officiel de demande cadrée et traçable pour se couvrir
 	const mailHref = $derived.by(() => {
 		const actionType = formMode === 'edit' ? 'Modification' : 'Création';
 		const subject = `[IRIS - Sage X3] Demande de ${actionType} table diverse #${table.numtab} (${table.title}) - Code : ${formCode.trim().toUpperCase() || '(à définir)'}`;
 		const body = [
-			'Bonjour l\'équipe Support Sage X3,',
+			"Bonjour l'équipe Support Sage X3,",
 			'',
-			`Dans le cadre des activités sur le site Valdepharm, je vous transmets la demande formelle suivante :`,
+			'Dans le cadre des activités sur le site Valdepharm, je vous transmets la demande formelle suivante :',
 			'',
 			'1. RÉFÉRENTIEL CONCERNÉ :',
 			`- Table diverse numéro : #${table.numtab}`,
@@ -288,7 +323,7 @@
 			`- Désignation complète (LNGDES) : ${formLabel.trim().slice(0, 30) || 'Non renseignée'}`,
 			`- Libellé court (SHODES) : ${(formShortLabel.trim() || formLabel.trim()).slice(0, 12) || 'Non renseigné'}`,
 			'',
-			'Merci de bien vouloir procéder à l\'enregistrement dans la fonction GESTDU de Sage X3.',
+			"Merci de bien vouloir procéder à l'enregistrement dans la fonction GESTDU de Sage X3.",
 			'',
 			'Application IRIS — Portail métier Sage X3 Valdepharm.'
 		].join('\n');
@@ -297,7 +332,12 @@
 	});
 
 	function handleKeydown(e: KeyboardEvent) {
-		if (e.key === 'Escape' && !isSubmitting) {
+		if (e.key !== 'Escape' || isSubmitting) return;
+		if (isConfirming) {
+			isConfirming = false;
+		} else if (formMode !== 'none') {
+			closeForm();
+		} else {
 			onClose();
 		}
 	}
@@ -305,9 +345,8 @@
 
 <svelte:window onkeydown={handleKeydown} />
 
-<!-- Conteneur fixe plein écran centré, avec marges de sécurité garanties sur tous les écrans -->
-<div class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 md:p-6 bg-slate-950/80 backdrop-blur-xs">
-	<!-- Arrière-plan cliquable pour fermer -->
+<!-- Conteneur fixe plein écran : centrage optique strict sans jamais couper les bords -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-slate-950/75 backdrop-blur-sm">
 	<button
 		class="fixed inset-0 w-full h-full cursor-default -z-10"
 		type="button"
@@ -315,376 +354,429 @@
 		onclick={onClose}
 	></button>
 
-	<!-- Boîte de dialogue : contrainte en hauteur avec scroll interne strict (ne dépasse JAMAIS de la fenêtre) -->
+	<!-- Boîte de dialogue : hauteur adaptative (max 88dvh) pour épouser les petites tables et scroller uniquement en interne sur les grandes -->
 	<div
-		class="relative z-10 flex flex-col w-full {formMode !== 'none' ? 'max-w-3xl' : 'max-w-5xl lg:max-w-6xl'} h-[86vh] max-h-[820px] rounded-2xl border-2 border-slate-300 bg-white shadow-2xl overflow-hidden"
+		class="relative z-10 flex flex-col w-full {formMode !== 'none'
+			? 'max-w-2xl'
+			: 'max-w-5xl'} max-h-[88dvh] rounded-2xl border border-slate-300 bg-white shadow-2xl overflow-hidden"
 		role="dialog"
 		aria-modal="true"
 		aria-label={`Table diverse #${table.numtab}`}
 		tabindex="-1"
 	>
-		<!-- En-tête FIXE (toujours 100% visible, marges généreuses et aérées) -->
-		<div class="shrink-0 flex items-center justify-between gap-4 px-6 py-4 bg-slate-100 border-b border-slate-300">
-			<div class="space-y-1.5">
-				<div class="flex flex-wrap items-center gap-2">
-					<span class="rounded bg-corporate-700 font-mono text-[11px] font-bold text-white px-2.5 py-0.5 shadow-2xs">
-						Table #{table.numtab}
-					</span>
-					<span class="rounded bg-slate-200 text-slate-900 text-[11px] font-bold px-2 py-0.5">
-						{table.category}
-					</span>
-					{#if table.numtab >= 1000}
-						<span class="rounded bg-amber-100 text-amber-950 border border-amber-300 text-[11px] font-bold px-2 py-0.5">
-							Spécifique Valdepharm
+		<!-- EN-TÊTE FIXE -->
+		<div class="shrink-0 bg-slate-50 border-b border-slate-200 px-5 py-3.5">
+			<div class="flex items-start justify-between gap-4">
+				<div class="space-y-1 min-w-0">
+					<div class="flex flex-wrap items-center gap-1.5">
+						<span class="rounded-md bg-corporate-700 font-mono text-[11px] font-bold text-white px-2 py-0.5 shadow-sm">
+							Table #{table.numtab}
 						</span>
-					{:else}
-						<span class="rounded bg-blue-100 text-blue-950 border border-blue-300 text-[11px] font-bold px-2 py-0.5">
-							Standard Sage X3
+						<span class="rounded-md bg-slate-200/80 text-slate-800 text-[11px] font-semibold px-2 py-0.5">
+							{table.category}
 						</span>
-					{/if}
-					{#if canEditCurrentTable}
-						<span class="inline-flex items-center gap-1 rounded bg-emerald-100 text-emerald-950 border border-emerald-300 text-[11px] font-bold px-2 py-0.5 shadow-2xs">
-							<ShieldCheck class="size-3 text-emerald-700" />
-							Édition autorisée
-						</span>
-					{:else}
-						<span class="inline-flex items-center gap-1 rounded bg-slate-200 text-slate-800 text-[11px] font-bold px-2 py-0.5 shadow-2xs">
-							<Lock class="size-3 text-slate-600" />
-							Consultation seule
-						</span>
+						{#if table.numtab >= 1000}
+							<span class="rounded-md bg-amber-100 text-amber-900 border border-amber-300 text-[11px] font-semibold px-2 py-0.5">
+								Spécifique Valdepharm
+							</span>
+						{:else}
+							<span class="rounded-md bg-blue-50 text-blue-900 border border-blue-200 text-[11px] font-semibold px-2 py-0.5">
+								Standard Sage X3
+							</span>
+						{/if}
+						{#if canEditCurrentTable}
+							<span class="inline-flex items-center gap-1 rounded-md bg-emerald-100 text-emerald-900 border border-emerald-300 text-[11px] font-bold px-2 py-0.5">
+								<ShieldCheck class="size-3 text-emerald-700" />
+								Édition autorisée
+							</span>
+						{:else}
+							<span class="inline-flex items-center gap-1 rounded-md bg-slate-200 text-slate-700 text-[11px] font-semibold px-2 py-0.5">
+								<Lock class="size-3 text-slate-500" />
+								Consultation seule
+							</span>
+						{/if}
+					</div>
+
+					<h2 class="text-base sm:text-lg font-extrabold text-slate-950 leading-snug truncate" title={table.title}>
+						{table.title}
+					</h2>
+					{#if formMode === 'none'}
+						<p class="text-xs text-slate-500 truncate">
+							{table.description || `Référentiel des valeurs Sage X3 (Fonction GESTDU • Table #${table.numtab}).`}
+						</p>
 					{/if}
 				</div>
-				<h2 class="text-lg sm:text-xl font-extrabold text-slate-950 leading-tight">{table.title}</h2>
+
+				<button
+					class="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 shadow-sm hover:bg-slate-100 hover:text-slate-950 transition shrink-0"
+					type="button"
+					onclick={onClose}
+					title="Fermer (Échap)"
+				>
+					<X class="size-4 text-slate-500" />
+					<span class="hidden sm:inline">Fermer</span>
+				</button>
 			</div>
 
-			<button
-				class="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-bold text-slate-800 shadow-2xs hover:bg-slate-100 transition shrink-0"
-				type="button"
-				onclick={onClose}
-			>
-				<X class="size-4 text-slate-600" />
-				<span>Fermer</span>
-			</button>
-		</div>
-
-		<!-- Corps défilable : prend tout l'espace disponible interne (flex-1 min-h-0) et fait défiler son contenu sans jamais forcer le conteneur externe -->
-		<div class="flex-1 min-h-0 overflow-y-auto overscroll-contain p-5 space-y-4">
+			<!-- Barre d'outils / Onglets intégrée dans l'en-tête (en vue liste uniquement) -->
 			{#if formMode === 'none'}
-				<!-- VUE 1 : CONSULTATION & TABLEAU COMPLET DES VALEURS -->
-				<!-- Information métier claire -->
-				<div class="rounded-xl border border-slate-200 bg-slate-50 p-3.5 text-xs text-slate-700 space-y-1">
-					<div class="flex items-center justify-between font-semibold text-slate-900">
-						<span>{table.description || `Table diverse numéro ${table.numtab} de Sage X3.`}</span>
-						<span class="text-[11px] text-slate-500 font-mono">X3 : GESTDU</span>
-					</div>
-					<p class="text-[11px] text-slate-500 leading-relaxed">
-						Cette table alimente les menus déroulants de vos écrans Sage X3. Vous pouvez y ajouter de nouveaux choix ou corriger les libellés existants.
-					</p>
-				</div>
-
-				<!-- Barre d'outils : Recherche + Bouton Ajouter + Onglet Historique -->
-				<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-					<div class="flex items-center gap-2">
-						{#if tableAuditLogs.length > 0}
-							<div class="flex items-center gap-1 rounded-xl border border-slate-300 bg-slate-200/80 p-1 text-xs font-bold">
-								<button
-									type="button"
-									class="rounded-lg px-3 py-1.5 transition {viewTab === 'values' ? 'bg-white text-slate-950 shadow-2xs' : 'text-slate-700 hover:text-slate-950'}"
-									onclick={() => (viewTab = 'values')}
-								>
-									Valeurs ({filteredItems.length})
-								</button>
-								<button
-									type="button"
-									class="rounded-lg px-3 py-1.5 transition flex items-center gap-1.5 {viewTab === 'audit' ? 'bg-corporate-700 text-white shadow-2xs' : 'text-slate-700 hover:text-slate-950'}"
-									onclick={() => (viewTab = 'audit')}
-								>
-									<History class="size-3.5" />
-									<span>Historique IRIS ({tableAuditLogs.length})</span>
-								</button>
-							</div>
-						{/if}
-
-						{#if viewTab === 'values'}
-							<div class="relative flex-1 sm:w-64">
-								<Search class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
-								<input
-									class="w-full rounded-xl border border-slate-300 bg-white pl-9 pr-3 py-2 text-xs font-medium text-slate-950 outline-none transition focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
-									type="search"
-									placeholder="Filtrer les valeurs..."
-									bind:value={itemSearch}
-								/>
-							</div>
-						{/if}
-					</div>
-
-					<div class="flex items-center gap-2.5">
-						{#if canEditCurrentTable}
+				<div class="mt-3 pt-3 border-t border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+					<div class="flex flex-wrap items-center gap-2">
+						<!-- Onglets Valeurs / Historique -->
+						<div class="inline-flex items-center rounded-lg border border-slate-300 bg-slate-200/70 p-0.5 text-xs font-bold">
 							<button
 								type="button"
-								class="inline-flex items-center gap-1.5 rounded-xl bg-corporate-700 hover:bg-corporate-800 px-3.5 py-2 text-xs font-bold text-white shadow-xs transition"
-								onclick={openAddForm}
+								class="rounded-md px-3 py-1 transition {viewTab === 'values'
+									? 'bg-white text-slate-950 shadow-sm'
+									: 'text-slate-600 hover:text-slate-900'}"
+								onclick={() => (viewTab = 'values')}
 							>
-								<Plus class="size-4" />
-								<span>Ajouter une valeur</span>
+								Valeurs ({localItems.length})
 							</button>
-						{:else}
-							<div class="inline-flex items-center gap-1.5 rounded-xl bg-slate-100 px-3 py-2 text-xs font-semibold text-slate-500 border border-slate-200">
-								<Lock class="size-3.5 text-slate-400" />
-								<span>Consultation seule</span>
+							<button
+								type="button"
+								class="rounded-md px-3 py-1 transition inline-flex items-center gap-1.5 {viewTab === 'audit'
+									? 'bg-corporate-700 text-white shadow-sm'
+									: 'text-slate-600 hover:text-slate-900'}"
+								onclick={() => (viewTab = 'audit')}
+							>
+								<History class="size-3.5" />
+								<span>Historique IRIS ({tableAuditLogs.length})</span>
+							</button>
+						</div>
+
+						{#if viewTab === 'values' && localItems.length > 0}
+							<div class="relative flex-1 sm:w-64">
+								<Search class="pointer-events-none absolute left-2.5 top-1/2 size-3.5 -translate-y-1/2 text-slate-400" />
+								<input
+									class="w-full rounded-lg border border-slate-300 bg-white pl-8 pr-7 py-1.5 text-xs font-medium text-slate-950 outline-none transition focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
+									type="search"
+									placeholder="Filtrer par code ou libellé..."
+									bind:value={itemSearch}
+								/>
+								{#if itemSearch}
+									<button
+										type="button"
+										onclick={() => (itemSearch = '')}
+										class="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700"
+										title="Effacer le filtre"
+									>
+										<X class="size-3.5" />
+									</button>
+								{/if}
 							</div>
 						{/if}
 					</div>
-				</div>
 
+					{#if canEditCurrentTable}
+						<button
+							type="button"
+							class="inline-flex items-center justify-center gap-1.5 rounded-lg bg-corporate-700 hover:bg-corporate-800 px-3.5 py-1.5 text-xs font-bold text-white shadow-sm transition shrink-0"
+							onclick={openAddForm}
+						>
+							<Plus class="size-3.5" />
+							<span>Ajouter une valeur</span>
+						</button>
+					{/if}
+				</div>
+			{/if}
+		</div>
+
+		<!-- CORPS DÉFILABLE STRICT (flex-auto + min-h-0 : s'adapte aux petites tables, scrolle proprement pour les grandes) -->
+		<div class="flex-auto min-h-0 overflow-y-auto overscroll-contain modal-scroll bg-white">
+			{#if formMode === 'none'}
 				{#if viewTab === 'values'}
-					<!-- TABLEAU DES VALEURS EXISTANTES -->
-					<div class="rounded-xl border border-slate-300 bg-white overflow-hidden shadow-xs">
+					{#if localItems.length === 0}
+						<div class="p-10 text-center space-y-2.5">
+							<div class="mx-auto size-10 rounded-full bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-700">
+								<Database class="size-5" />
+							</div>
+							<p class="text-sm font-bold text-slate-900">Cette table est actuellement vide</p>
+							<p class="text-xs text-slate-500 max-w-md mx-auto">
+								Aucune valeur n'est encore paramétrée dans la table #{table.numtab} sur Sage X3.
+							</p>
+							{#if canEditCurrentTable}
+								<div class="pt-2">
+									<button
+										type="button"
+										class="inline-flex items-center gap-1.5 rounded-lg bg-corporate-700 hover:bg-corporate-800 px-4 py-2 text-xs font-bold text-white shadow-sm transition"
+										onclick={openAddForm}
+									>
+										<Plus class="size-4" />
+										<span>Créer la première valeur</span>
+									</button>
+								</div>
+							{/if}
+						</div>
+					{:else if filteredItems.length === 0}
+						<div class="p-10 text-center space-y-2">
+							<p class="text-sm font-semibold text-slate-800">
+								Aucune entrée ne correspond à « {itemSearch} ».
+							</p>
+							<button
+								type="button"
+								class="text-xs font-bold text-corporate-700 hover:underline"
+								onclick={() => (itemSearch = '')}
+							>
+								Afficher les {localItems.length} valeurs
+							</button>
+						</div>
+					{:else}
 						<table class="w-full text-left text-xs border-collapse">
-							<thead>
-								<tr class="border-b-2 border-slate-200 bg-slate-100 text-[11px] font-bold text-slate-800 uppercase tracking-wider">
-									<th class="py-2.5 px-3 w-32">Code X3</th>
-									<th class="py-2.5 px-3 w-48">Libellé court</th>
+							<thead class="sticky top-0 z-10 bg-slate-100 border-b border-slate-300 shadow-sm">
+								<tr class="text-[11px] font-bold text-slate-700 uppercase tracking-wider">
+									<th class="py-2.5 px-4 w-36">Code X3</th>
+									<th class="py-2.5 px-3 w-44">Libellé court</th>
 									<th class="py-2.5 px-3">Désignation complète officielle</th>
-									<th class="py-2.5 px-3 text-right w-44">Actions</th>
+									<th class="py-2.5 px-4 text-right w-44">Actions</th>
 								</tr>
 							</thead>
 							<tbody class="divide-y divide-slate-200">
-								{#if filteredItems.length === 0}
-									<tr>
-										<td colspan="4" class="py-8 text-center text-slate-500 font-medium">
-											Aucune entrée ne correspond à votre recherche "{itemSearch}".
+								{#each filteredItems as item}
+									{@const isHighlighted = highlightedCode === item.code.toUpperCase()}
+									<tr class="transition {isHighlighted ? 'bg-emerald-50' : 'hover:bg-slate-50/90'}">
+										<td class="py-2 px-4 font-mono">
+											<button
+												type="button"
+												onclick={() => copyCode(item.code)}
+												class="inline-flex items-center gap-1.5 rounded bg-slate-100 hover:bg-slate-200 px-2 py-0.5 border border-slate-300 font-bold text-slate-900 transition"
+												title="Cliquer pour copier le code"
+											>
+												<span>{item.code}</span>
+												{#if copiedCode === item.code}
+													<Check class="size-3 text-emerald-600" />
+												{/if}
+											</button>
 										</td>
-									</tr>
-								{:else}
-									{#each filteredItems as item}
-										<tr class="hover:bg-slate-50 transition group">
-											<td class="py-2 px-3 font-mono font-bold text-slate-950">
-												<span class="rounded bg-slate-100 px-2 py-0.5 border border-slate-300 shadow-2xs">
-													{item.code}
-												</span>
-											</td>
-											<td class="py-2 px-3 text-slate-800 font-medium">
-												{item.shortLabel || '-'}
-											</td>
-											<td class="py-2 px-3 text-slate-950 font-bold">
-												{item.label}
-											</td>
-											<td class="py-2 px-3 text-right">
-												<div class="inline-flex items-center gap-1.5">
-													{#if canEditCurrentTable}
-														<button
-															type="button"
-															class="inline-flex items-center gap-1 rounded-md border border-amber-300 bg-amber-50/80 px-2.5 py-1 text-[11px] font-bold text-amber-950 hover:bg-amber-100 shadow-2xs transition"
-															onclick={() => openEditForm(item)}
-															title="Modifier les libellés de cette valeur"
-														>
-															<Pencil class="size-3 text-amber-700" />
-															<span>Modifier</span>
-														</button>
-													{/if}
-
+										<td class="py-2 px-3 text-slate-600 font-medium">
+											{item.shortLabel || '-'}
+										</td>
+										<td class="py-2 px-3 text-slate-950 font-semibold">
+											<div class="flex items-center gap-2">
+												<span>{item.label}</span>
+												{#if isHighlighted}
+													<span class="rounded bg-emerald-100 text-emerald-800 border border-emerald-300 px-1.5 py-0.5 text-[10px] font-bold">
+														Enregistré
+													</span>
+												{/if}
+											</div>
+										</td>
+										<td class="py-2 px-4 text-right">
+											<div class="inline-flex items-center gap-1.5">
+												{#if canEditCurrentTable}
 													<button
 														type="button"
-														class="inline-flex items-center gap-1 rounded-md border border-slate-300 bg-white px-2.5 py-1 text-[11px] font-bold text-slate-800 hover:bg-slate-100 shadow-2xs transition"
-														onclick={() => copyCode(item.code)}
-														title="Copier le code technique"
+														class="inline-flex items-center gap-1 rounded-md border border-amber-300 bg-amber-50 px-2.5 py-1 text-[11px] font-bold text-amber-900 hover:bg-amber-100 transition"
+														onclick={() => openEditForm(item)}
+														title="Modifier les libellés de cette valeur"
 													>
-														{#if copiedCode === item.code}
-															<Check class="size-3 text-emerald-600" />
-															<span class="text-emerald-800">Copié</span>
-														{:else}
-															<Clipboard class="size-3 text-slate-500" />
-															<span>Copier</span>
-														{/if}
+														<Pencil class="size-3 text-amber-700" />
+														<span>Modifier</span>
 													</button>
-												</div>
-											</td>
-										</tr>
-									{/each}
-								{/if}
+												{/if}
+
+												<button
+													type="button"
+													class="inline-flex items-center gap-1 rounded-md border border-slate-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-slate-700 hover:bg-slate-100 transition"
+													onclick={() => copyCode(item.code)}
+													title="Copier le code technique"
+												>
+													{#if copiedCode === item.code}
+														<Check class="size-3 text-emerald-600" />
+														<span class="text-emerald-700 font-bold">Copié</span>
+													{:else}
+														<Clipboard class="size-3 text-slate-400" />
+														<span>Copier</span>
+													{/if}
+												</button>
+											</div>
+										</td>
+									</tr>
+								{/each}
 							</tbody>
 						</table>
-					</div>
-				{:else if viewTab === 'audit'}
-					<!-- HISTORIQUE DES ACTIONS SUR CETTE TABLE -->
-					<div class="rounded-xl border border-slate-300 bg-white overflow-hidden shadow-xs">
+					{/if}
+				{:else}
+					<!-- ONGLET HISTORIQUE -->
+					{#if tableAuditLogs.length === 0}
+						<div class="p-10 text-center space-y-2">
+							<History class="size-8 text-slate-300 mx-auto" />
+							<p class="text-sm font-bold text-slate-800">Aucune trace enregistrée sur cette table</p>
+							<p class="text-xs text-slate-500">
+								Les créations et modifications réalisées via IRIS apparaîtront ici avec leur motif et auteur certifié.
+							</p>
+						</div>
+					{:else}
 						<table class="w-full text-left text-xs border-collapse">
-							<thead>
-								<tr class="border-b-2 border-slate-200 bg-slate-100 text-[11px] font-bold text-slate-800 uppercase tracking-wider">
-									<th class="py-2.5 px-3 w-36">Date</th>
+							<thead class="sticky top-0 z-10 bg-slate-100 border-b border-slate-300 shadow-sm">
+								<tr class="text-[11px] font-bold text-slate-700 uppercase tracking-wider">
+									<th class="py-2.5 px-4 w-36">Date</th>
 									<th class="py-2.5 px-3 w-28 text-center">Action</th>
 									<th class="py-2.5 px-3 w-28 font-mono">Code X3</th>
 									<th class="py-2.5 px-3">Désignation</th>
-									<th class="py-2.5 px-3">Demandeur certifié</th>
-									<th class="py-2.5 px-3">Motif métier</th>
-									<th class="py-2.5 px-3 text-center w-24">Statut</th>
+									<th class="py-2.5 px-3">Demandeur</th>
+									<th class="py-2.5 px-4">Motif</th>
 								</tr>
 							</thead>
 							<tbody class="divide-y divide-slate-200">
 								{#each tableAuditLogs as log}
 									<tr class="hover:bg-slate-50 transition">
-										<td class="py-2.5 px-3 font-mono text-[11px] text-slate-700">
-											{new Date(log.timestamp).toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
+										<td class="py-2.5 px-4 font-mono text-[11px] text-slate-600 whitespace-nowrap">
+											{new Date(log.timestamp).toLocaleString('fr-FR', {
+												day: '2-digit',
+												month: '2-digit',
+												year: 'numeric',
+												hour: '2-digit',
+												minute: '2-digit'
+											})}
 										</td>
 										<td class="py-2.5 px-3 text-center">
 											{#if log.action === 'ADD'}
-												<span class="rounded bg-emerald-100 text-emerald-950 px-2 py-0.5 text-[10px] font-bold shadow-2xs">Création</span>
+												<span class="rounded bg-emerald-100 text-emerald-900 px-2 py-0.5 text-[10px] font-bold">
+													Création
+												</span>
 											{:else}
-												<span class="rounded bg-amber-100 text-amber-950 px-2 py-0.5 text-[10px] font-bold shadow-2xs">Modification</span>
+												<span class="rounded bg-amber-100 text-amber-900 px-2 py-0.5 text-[10px] font-bold">
+													Modification
+												</span>
 											{/if}
 										</td>
-										<td class="py-2.5 px-3 font-mono font-bold text-slate-950">
+										<td class="py-2.5 px-3 font-mono font-bold text-slate-900">
 											<span class="rounded bg-slate-100 border border-slate-300 px-1.5 py-0.5">
 												{log.code}
 											</span>
 										</td>
-										<td class="py-2.5 px-3 font-bold text-slate-950">
+										<td class="py-2.5 px-3 font-semibold text-slate-900">
 											{log.label}
 											{#if log.shortLabel}
 												<span class="text-slate-500 font-normal text-[11px] ml-1">({log.shortLabel})</span>
 											{/if}
 										</td>
 										<td class="py-2.5 px-3">
-											<div class="font-bold text-slate-950">{log.user.displayName}</div>
+											<div class="font-bold text-slate-900">{log.user.displayName}</div>
 											<div class="text-[10px] text-slate-500">{log.user.department || log.user.username}</div>
 										</td>
-										<td class="py-2.5 px-3 italic text-slate-700 text-xs">
-											"{log.reason}"
-										</td>
-										<td class="py-2.5 px-3 text-center">
-											<span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[10px] font-bold text-emerald-800">
-												<Check class="size-3 text-emerald-600" />
-												<span>Sage X3</span>
-											</span>
+										<td class="py-2.5 px-4 italic text-slate-600">
+											« {log.reason} »
 										</td>
 									</tr>
 								{/each}
 							</tbody>
 						</table>
-					</div>
+					{/if}
 				{/if}
-
 			{:else}
-				<!-- VUE 2 : FORMULAIRE DÉDIÉ ET CENTRÉ (Ajout ou Modification) -->
-				<div class="rounded-2xl border-2 {
-					formMode === 'edit'
-						? 'border-amber-300 bg-amber-50/50'
-						: 'border-corporate-200 bg-corporate-50/50'
-				} p-4 sm:p-6 transition-all space-y-4 shadow-sm">
-					
-					<!-- En-tête formulaire -->
-					<div class="flex items-center justify-between pb-3 border-b {
-						formMode === 'edit' ? 'border-amber-200' : 'border-corporate-200'
-					}">
-						<div class="flex items-center gap-2">
-							{#if formMode === 'edit'}
-								<Pencil class="size-4 text-amber-700" />
-								<h3 class="text-xs sm:text-sm font-extrabold uppercase tracking-wide text-amber-950">
-									Modifier la valeur {formCode} (Table #{table.numtab})
+				<!-- VUE FORMULAIRE (Ajout ou Modification) -->
+				<div class="p-5 sm:p-6 space-y-5">
+					<!-- Indicateur d'étape + Retour -->
+					<div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-200">
+						<div class="flex items-center gap-2.5">
+							<span class="inline-flex size-7 items-center justify-center rounded-lg {formMode === 'edit' ? 'bg-amber-100 text-amber-800' : 'bg-corporate-100 text-corporate-700'}">
+								{#if formMode === 'edit'}
+									<Pencil class="size-4" />
+								{:else}
+									<Plus class="size-4" />
+								{/if}
+							</span>
+							<div>
+								<h3 class="text-sm font-extrabold text-slate-950">
+									{formMode === 'edit'
+										? `Modifier la valeur ${formCode}`
+										: `Nouvelle valeur dans la table #${table.numtab}`}
 								</h3>
-							{:else}
-								<Plus class="size-4 text-corporate-700" />
-								<h3 class="text-xs sm:text-sm font-extrabold uppercase tracking-wide text-corporate-950">
-									Ajouter une nouvelle valeur dans la table #{table.numtab}
-								</h3>
-							{/if}
+								<div class="flex items-center gap-2 text-[11px] font-semibold mt-0.5">
+									<span class={!isConfirming ? 'text-corporate-700 font-bold' : 'text-slate-400'}>
+										1. Saisie & justification
+									</span>
+									<span class="text-slate-300">/</span>
+									<span class={isConfirming ? 'text-corporate-700 font-bold' : 'text-slate-400'}>
+										2. Validation GxP
+									</span>
+								</div>
+							</div>
 						</div>
 
 						<button
 							type="button"
-							class="rounded-lg p-1 text-slate-400 hover:text-slate-700 hover:bg-white transition"
+							class="text-xs font-bold text-slate-600 hover:text-slate-950 px-2.5 py-1 rounded-lg border border-slate-200 hover:bg-slate-50 transition"
 							onclick={closeForm}
-							title="Annuler et fermer"
+							disabled={isSubmitting}
 						>
-							<X class="size-4" />
+							Retour à la liste
 						</button>
 					</div>
 
-					<!-- ÉTAPE 1 : Saisie guidée & Cadrée -->
 					{#if !isConfirming}
 						<form onsubmit={requestConfirmation} class="space-y-4 text-xs">
-							
-							<!-- 1. Cadrage & Traçabilité (Obligatoire pour se couvrir) -->
-							<div class="rounded-xl border border-corporate-200 bg-corporate-50/70 p-3.5 space-y-2.5">
-								<div class="flex items-center gap-2 font-bold text-corporate-950">
-									<ShieldCheck class="size-4 text-corporate-700" />
-									<span>Cadrage & Traçabilité de la demande (Gestion des changements)</span>
+							<!-- Identité Active Directory (compacte) + Motif -->
+							<div class="rounded-xl border border-slate-200 bg-slate-50/80 p-3.5 space-y-3">
+								<div class="flex flex-wrap items-center justify-between gap-2">
+									<span class="text-[11px] font-bold uppercase tracking-wider text-slate-600">
+										Traçabilité GxP
+									</span>
+									{#if user}
+										<span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-800">
+											<ShieldCheck class="size-3.5 text-emerald-600" />
+											<span>Demandeur certifié : {user.displayName} ({user.sAMAccountName})</span>
+										</span>
+									{/if}
 								</div>
-								<p class="text-[11px] text-corporate-800 leading-relaxed">
-									Pour garantir la conformité et l'auditabilité sur le site Valdepharm, veuillez obligatoirement identifier le demandeur et justifier le besoin métier.
-								</p>
 
-								<div class="grid gap-3 sm:grid-cols-2 pt-1">
+								{#if !user}
 									<div>
 										<label for="requesterName" class="block font-bold text-slate-900 mb-1">
 											Demandeur (Nom & Service) <span class="text-rose-600">*</span>
 										</label>
-										{#if user}
-											<div class="space-y-1">
-												<input
-													id="requesterName"
-													type="text"
-													class="w-full rounded-xl border border-slate-300 bg-slate-100 px-3 py-2 text-xs font-bold text-slate-900 outline-none cursor-not-allowed shadow-inner"
-													value={requesterName}
-													readonly
-													disabled
-												/>
-												<div class="flex items-center gap-1 text-[10px] text-emerald-700 font-semibold">
-													<ShieldCheck class="size-3 text-emerald-600" />
-													<span>Identité certifiée Active Directory ({user.sAMAccountName})</span>
-												</div>
-											</div>
-										{:else}
-											<input
-												id="requesterName"
-												type="text"
-												class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
-												placeholder="Ex : Alain Prost / Informatique"
-												bind:value={requesterName}
-												required
-											/>
-										{/if}
-									</div>
-
-									<div>
-										<label for="formReason" class="block font-bold text-slate-900 mb-1">
-											Motif / Justification métier <span class="text-rose-600">*</span>
-										</label>
 										<input
-											id="formReason"
+											id="requesterName"
 											type="text"
-											class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
-											placeholder="Ex : Qualification nouvel équipement ou nouveau format flacon"
-											bind:value={formReason}
+											class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
+											placeholder="Ex : Alain Prost / Informatique"
+											bind:value={requesterName}
 											required
 										/>
 									</div>
+								{/if}
+
+								<div>
+									<label for="formReason" class="block font-bold text-slate-900 mb-1">
+										Motif / Justification métier <span class="text-rose-600">*</span>
+									</label>
+									<input
+										id="formReason"
+										type="text"
+										use:focusOnMount
+										class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
+										placeholder="Ex : Qualification nouvel équipement ou nouveau format flacon"
+										bind:value={formReason}
+										required
+									/>
 								</div>
 							</div>
 
-							<!-- 2. Code X3 et Libellé court -->
+							<!-- Code X3 + Libellé court -->
 							<div class="grid gap-4 sm:grid-cols-2">
 								<div>
-									<label for="formCode" class="block font-bold text-slate-900 mb-1">
-										Code technique Sage X3
-										{#if formMode === 'add'}
-											<span class="text-rose-600">*</span>
-										{/if}
-									</label>
+									<div class="flex items-center justify-between mb-1">
+										<label for="formCode" class="font-bold text-slate-900">
+											Code technique X3 {#if formMode === 'add'}<span class="text-rose-600">*</span>{/if}
+										</label>
+										<span class="font-mono text-[10px] font-semibold {formCode.length >= 14 ? 'text-amber-600' : 'text-slate-400'}">
+											{formCode.length}/15
+										</span>
+									</div>
 
 									<div class="relative">
 										<input
 											id="formCode"
 											type="text"
-											class="w-full rounded-xl border px-3 py-2 font-mono text-xs font-bold uppercase transition {
-												formMode === 'edit'
-													? 'border-slate-300 bg-slate-100 text-slate-500 cursor-not-allowed'
-													: isCodeDuplicate
-														? 'border-rose-400 bg-rose-50 text-rose-950'
-														: 'border-slate-300 bg-white text-slate-950 focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100'
-											}"
-											placeholder="Ex: BAL01 ou FLAC_500"
+											class="w-full rounded-lg border px-3 py-2 font-mono text-xs font-bold uppercase outline-none transition {formMode ===
+											'edit'
+												? 'border-slate-200 bg-slate-100 text-slate-500 cursor-not-allowed'
+												: isCodeDuplicate
+													? 'border-rose-400 bg-rose-50 text-rose-900 focus:ring-2 focus:ring-rose-100'
+													: 'border-slate-300 bg-white text-slate-950 focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100'}"
+											placeholder="Ex : BAL01 ou FLAC_500"
 											maxlength="15"
 											readonly={formMode === 'edit'}
 											value={formCode}
@@ -692,61 +784,65 @@
 											required
 										/>
 										{#if formMode === 'edit'}
-											<Lock class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 size-3.5 text-slate-400" />
+											<Lock class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 size-3.5 text-slate-400" />
 										{/if}
 									</div>
 
-									<!-- Garde-fous sur le code -->
 									{#if formMode === 'edit'}
-										<p class="mt-1 text-[10px] text-slate-500 font-medium">
-											Garde-fou : Le code est verrouillé car il sert de clé primaire dans les historiques et mouvements ERP.
+										<p class="mt-1 text-[10px] text-slate-500">
+											Clé primaire Sage X3 verrouillée pour préserver l'intégrité historique.
 										</p>
 									{:else if isCodeDuplicate}
 										<p class="mt-1 text-[11px] font-bold text-rose-600 flex items-center gap-1">
 											<ShieldAlert class="size-3.5 shrink-0" />
-											<span>Garde-fou : Ce code existe déjà dans la table #{table.numtab}. Choisissez-en un autre.</span>
+											<span>Ce code existe déjà dans la table #{table.numtab}.</span>
 										</p>
 									{:else}
 										<p class="mt-1 text-[10px] text-slate-500">
-											Max 15 caractères, sans espace ni accent (majuscules automatiques).
+											Majuscules, chiffres et « _ » uniquement (normalisation auto).
 										</p>
 									{/if}
 								</div>
 
 								<div>
-									<label for="formShortLabel" class="block font-bold text-slate-900 mb-1">
-										Libellé court
-										<span class="text-[11px] font-normal text-slate-500 ml-1">
-											(Abréviation max 12 car.)
+									<div class="flex items-center justify-between mb-1">
+										<label for="formShortLabel" class="font-bold text-slate-900">
+											Libellé court
+										</label>
+										<span class="font-mono text-[10px] font-semibold {formShortLabel.length >= 11 ? 'text-amber-600' : 'text-slate-400'}">
+											{formShortLabel.length}/12
 										</span>
-									</label>
+									</div>
 									<input
 										id="formShortLabel"
 										type="text"
-										class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
-										placeholder="Auto-complété ou personnalisé"
+										class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
+										placeholder="Auto-généré si laissé vide"
 										maxlength="12"
-										bind:value={formShortLabel}
+										value={formShortLabel}
+										oninput={handleShortLabelInput}
 									/>
 									<p class="mt-1 text-[10px] text-slate-500">
-										Utilisé dans les colonnes étroites ou menus compacts de Sage X3.
+										Affichage compact dans les colonnes étroites Sage X3.
 									</p>
 								</div>
 							</div>
 
-							<!-- 3. Désignation complète -->
+							<!-- Désignation complète -->
 							<div>
-								<label for="formLabel" class="block font-bold text-slate-900 mb-1">
-									Désignation complète officielle <span class="text-rose-600">*</span>
-									<span class="text-[11px] font-normal text-slate-500 ml-1">
-										(Nom complet affiché dans Sage X3, max 30 car.)
+								<div class="flex items-center justify-between mb-1">
+									<label for="formLabel" class="font-bold text-slate-900">
+										Désignation complète officielle <span class="text-rose-600">*</span>
+									</label>
+									<span class="font-mono text-[10px] font-semibold {formLabel.length >= 27 ? 'text-amber-600' : 'text-slate-400'}">
+										{formLabel.length}/30
 									</span>
-								</label>
+								</div>
 								<input
 									id="formLabel"
 									type="text"
-									class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-xs sm:text-sm font-medium text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
-									placeholder="Ex : Balance Mettler Toledo PM400 salle de pesée n°2"
+									class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs sm:text-sm font-medium text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
+									placeholder="Ex : Balance Mettler Toledo PM400"
 									maxlength="30"
 									value={formLabel}
 									oninput={handleLabelInput}
@@ -754,153 +850,140 @@
 								/>
 							</div>
 
-							<!-- Actions principales du formulaire -->
-							<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-3 border-t border-slate-200">
-								<p class="text-[11px] text-slate-500 font-medium">
-									* Champs obligatoires pour valider la traçabilité.
-								</p>
+							<!-- Boutons d'action avec hiérarchie claire -->
+							<div class="flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-3 pt-4 border-t border-slate-200">
+								<a
+									href={mailHref}
+									class="inline-flex items-center justify-center gap-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 px-3 py-2 text-xs font-semibold transition"
+									title="Préparer un e-mail de demande pour le Support 3636"
+								>
+									<Mail class="size-3.5 text-slate-500" />
+									<span>Passer par e-mail (3636)</span>
+								</a>
 
-								<div class="flex flex-wrap items-center gap-2">
+								<div class="flex items-center justify-end gap-2">
 									<button
 										type="button"
-										class="rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs font-bold text-slate-700 hover:bg-slate-100 transition shadow-2xs"
+										class="rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 transition"
 										onclick={closeForm}
 									>
 										Annuler
 									</button>
 
-									<!-- Action officielle GxP pour se couvrir -->
-									<a
-										href={mailHref}
-										class="inline-flex items-center gap-1.5 rounded-xl bg-corporate-700 hover:bg-corporate-800 text-white px-4 py-2 text-xs font-bold shadow-xs transition"
-										title="Transmettre la demande officielle par messagerie au support 3636"
-									>
-										<Mail class="size-3.5" />
-										<span>Transmettre au Support 3636</span>
-									</a>
-
-									<!-- Action directe SANDBOX -->
 									<button
 										type="submit"
-										class="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-900 px-3.5 py-2 text-xs font-bold shadow-2xs disabled:opacity-40 disabled:cursor-not-allowed transition"
+										class="inline-flex items-center gap-1.5 rounded-lg bg-corporate-700 hover:bg-corporate-800 px-4 py-2 text-xs font-bold text-white shadow-sm disabled:opacity-40 disabled:cursor-not-allowed transition"
 										disabled={!canProceedToConfirm}
-										title="Enregistrer directement dans la base SANDBOX"
 									>
-										{#if formMode === 'edit'}
-											<Check class="size-3.5 text-amber-600" />
-											<span>Écrire en direct (SANDBOX)</span>
-										{:else}
-											<Database class="size-3.5 text-corporate-700" />
-											<span>Écrire en direct (SANDBOX)</span>
-										{/if}
+										<span>Vérifier et enregistrer</span>
+										<ArrowRight class="size-3.5" />
 									</button>
 								</div>
 							</div>
 						</form>
-
-					<!-- ÉTAPE 2 : GARDE-FOU & CONFIRMATION AVANT ÉCRITURE DIRECTE -->
 					{:else}
-						<div class="rounded-xl border-2 border-corporate-300 bg-white p-4 space-y-3">
-							<div class="flex items-center gap-2 text-corporate-900 font-extrabold text-sm pb-2 border-b border-corporate-100">
-								<ShieldCheck class="size-5 text-corporate-700 shrink-0" />
-								<span>Validation de responsabilité avant écriture dans Sage X3</span>
-							</div>
+						<!-- ÉTAPE 2 : RÉCAPITULATIF & CONFIRMATION -->
+						<div class="space-y-4">
+							<div class="rounded-xl border border-corporate-200 bg-corporate-50/40 p-4 space-y-3">
+								<div class="flex items-center gap-2 text-corporate-900 font-bold text-xs">
+									<ShieldCheck class="size-4 text-corporate-700 shrink-0" />
+									<span>Confirmation avant écriture directe en base SANDBOX (FRVDRVMAS46)</span>
+								</div>
 
-							<div class="text-xs text-slate-700 space-y-2">
-								<p>
-									Veuillez vérifier les informations ci-dessous. En confirmant, cette écriture sera enregistrée avec votre identifiant :
-								</p>
-								<div class="rounded-lg bg-slate-50 border border-slate-200 p-3 space-y-1.5 font-medium">
+								<div class="grid sm:grid-cols-2 gap-3 rounded-lg bg-white border border-slate-200 p-3.5 text-xs">
 									<div>
-										<span class="text-slate-500">Demandeur & Service :</span>
-										<strong class="text-corporate-900">{requesterName}</strong>
+										<span class="text-[11px] text-slate-500 block">Table cible</span>
+										<strong class="text-slate-950">#{table.numtab} — {table.title}</strong>
 									</div>
 									<div>
-										<span class="text-slate-500">Motif de la demande :</span>
-										<strong class="text-slate-900">{formReason}</strong>
+										<span class="text-[11px] text-slate-500 block">Code technique X3</span>
+										<strong class="font-mono text-corporate-800">{formCode}</strong>
 									</div>
 									<div>
-										<span class="text-slate-500">Table diverse cible :</span>
-										<strong class="text-slate-900">Table #{table.numtab} ({table.title})</strong>
+										<span class="text-[11px] text-slate-500 block">Désignation complète</span>
+										{#if formMode === 'edit' && originalEditItem && originalEditItem.label !== formLabel.trim()}
+											<div class="text-slate-400 line-through text-[11px]">{originalEditItem.label}</div>
+										{/if}
+										<strong class="text-slate-950">{formLabel.trim()}</strong>
 									</div>
 									<div>
-										<span class="text-slate-500">Code technique X3 :</span>
-										<strong class="font-mono text-corporate-800 font-bold bg-white px-2 py-0.5 rounded border border-slate-200">{formCode}</strong>
+										<span class="text-[11px] text-slate-500 block">Libellé court</span>
+										{#if formMode === 'edit' && originalEditItem && (originalEditItem.shortLabel || '') !== (formShortLabel.trim() || formLabel.trim()).slice(0, 12)}
+											<div class="text-slate-400 line-through text-[11px]">{originalEditItem.shortLabel || '-'}</div>
+										{/if}
+										<strong class="text-slate-950">{(formShortLabel.trim() || formLabel.trim()).slice(0, 12)}</strong>
 									</div>
-									<div>
-										<span class="text-slate-500">Désignation complète :</span>
-										<strong class="text-slate-900">{formLabel}</strong>
-									</div>
-									<div>
-										<span class="text-slate-500">Libellé court :</span>
-										<strong class="text-slate-900">{(formShortLabel || formLabel).slice(0, 12)}</strong>
-									</div>
-									<div>
-										<span class="text-slate-500">Environnement :</span>
-										<strong class="text-amber-900">Base SANDBOX (FRVDRVMAS46)</strong>
+									<div class="sm:col-span-2 pt-2 border-t border-slate-100 flex flex-wrap gap-x-6 gap-y-1">
+										<div>
+											<span class="text-slate-500">Demandeur : </span>
+											<strong class="text-slate-900">{requesterName}</strong>
+										</div>
+										<div>
+											<span class="text-slate-500">Motif : </span>
+											<strong class="text-slate-900">« {formReason} »</strong>
+										</div>
 									</div>
 								</div>
 							</div>
 
-							<div class="flex items-center justify-end gap-2.5 pt-2">
+							<div class="flex items-center justify-end gap-2.5">
 								<button
 									type="button"
-									class="rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs font-bold text-slate-700 hover:bg-slate-100 transition shadow-2xs"
+									class="rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 transition"
 									onclick={() => (isConfirming = false)}
 									disabled={isSubmitting}
 								>
-									Corriger la saisie
+									Modifier la saisie
 								</button>
 
 								<button
 									type="button"
-									class="inline-flex items-center gap-1.5 rounded-xl bg-corporate-700 hover:bg-corporate-800 px-4 py-2 text-xs font-extrabold text-white shadow-xs disabled:opacity-40 transition"
+									class="inline-flex items-center gap-1.5 rounded-lg bg-corporate-700 hover:bg-corporate-800 px-4 py-2 text-xs font-bold text-white shadow-sm disabled:opacity-50 transition"
 									onclick={executeFinalSubmit}
 									disabled={isSubmitting}
 								>
 									{#if isSubmitting}
-										<span>Connexion et écriture en base...</span>
+										<Loader2 class="size-3.5 animate-spin" />
+										<span>Enregistrement en cours...</span>
 									{:else}
-										<Database class="size-4" />
-										<span>Confirmer l'écriture directe</span>
+										<Database class="size-3.5" />
+										<span>Confirmer l'écriture</span>
 									{/if}
 								</button>
 							</div>
 						</div>
 					{/if}
 
-					<!-- Résultat / Notification -->
+					<!-- Notification résultat -->
 					{#if submitResult}
-						<div class="rounded-xl border-2 p-3.5 text-xs {
-							submitResult.success
-								? 'border-emerald-300 bg-emerald-50 text-emerald-950 font-semibold'
-								: 'border-rose-300 bg-rose-50 text-rose-950'
-						}">
+						<div
+							class="rounded-xl border p-3.5 text-xs {submitResult.success
+								? 'border-emerald-300 bg-emerald-50 text-emerald-950'
+								: 'border-rose-300 bg-rose-50 text-rose-950'}"
+						>
 							<div class="flex items-start gap-2.5">
 								{#if submitResult.success}
 									<CheckCircle2 class="size-5 text-emerald-600 shrink-0 mt-0.5" />
-									<div class="space-y-1">
+									<div>
 										<p class="font-bold">{submitResult.message}</p>
-										<p class="text-[11px] text-emerald-800 font-normal">
-											L'entrée a été enregistrée avec traçabilité dans Sage X3 SANDBOX.
+										<p class="text-[11px] text-emerald-800 mt-0.5">
+											Entrée tracée dans le journal d'audit et synchronisée avec Sage X3 SANDBOX.
 										</p>
 									</div>
 								{:else}
 									<AlertCircle class="size-5 text-rose-600 shrink-0 mt-0.5" />
 									<div class="space-y-2 flex-1">
-										<p class="font-bold">L'enregistrement direct a échoué :</p>
-										<p class="text-rose-900 font-medium bg-white/80 p-2.5 rounded-lg border border-rose-200 leading-relaxed">
+										<p class="font-bold">L'enregistrement a échoué :</p>
+										<p class="text-rose-900 bg-white/80 p-2 rounded-lg border border-rose-200">
 											{submitResult.error}
 										</p>
-										<div class="pt-1 flex items-center gap-2">
-											<a
-												href={mailHref}
-												class="inline-flex items-center gap-1.5 rounded-lg bg-corporate-700 hover:bg-corporate-800 text-white px-3 py-1.5 text-xs font-bold shadow-xs transition"
-											>
-												<Mail class="size-3.5" />
-												<span>Transmettre cette demande au Support 3636</span>
-											</a>
-										</div>
+										<a
+											href={mailHref}
+											class="inline-flex items-center gap-1.5 rounded-lg bg-corporate-700 hover:bg-corporate-800 text-white px-3 py-1.5 text-xs font-bold shadow-sm transition"
+										>
+											<Mail class="size-3.5" />
+											<span>Transmettre au Support 3636</span>
+										</a>
 									</div>
 								{/if}
 							</div>
@@ -909,5 +992,34 @@
 				</div>
 			{/if}
 		</div>
+
+		<!-- PIED DE MODALE FIXE (en vue liste uniquement) -->
+		{#if formMode === 'none'}
+			<div class="shrink-0 flex items-center justify-between gap-3 border-t border-slate-200 bg-slate-50 px-5 py-2.5 text-[11px] text-slate-600">
+				<div>
+					{#if viewTab === 'values'}
+						<span>
+							<strong class="text-slate-900">{filteredItems.length}</strong>
+							{filteredItems.length > 1 ? 'valeurs affichées' : 'valeur affichée'}
+							{#if itemSearch.trim() && filteredItems.length !== localItems.length}
+								sur {localItems.length}
+							{/if}
+							<span class="hidden sm:inline text-slate-400"> • Cliquer sur un code pour le copier</span>
+						</span>
+					{:else}
+						<span>
+							<strong class="text-slate-900">{tableAuditLogs.length}</strong> événement(s) tracé(s) sur la table #{table.numtab}
+						</span>
+					{/if}
+				</div>
+				<button
+					type="button"
+					class="rounded-lg border border-slate-300 bg-white px-3 py-1 text-xs font-bold text-slate-700 hover:bg-slate-100 transition"
+					onclick={onClose}
+				>
+					Fermer
+				</button>
+			</div>
+		{/if}
 	</div>
 </div>
