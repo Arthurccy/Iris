@@ -2,6 +2,12 @@ import { json, redirect } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
 const VALID_ROLES = ['AQ', 'PESEE', 'MAGASIN', 'ACHATS', 'FINANCE', 'READONLY', 'RESET'];
+const SIMULATE_COOKIE_OPTIONS = {
+	path: '/',
+	httpOnly: true,
+	sameSite: 'lax' as const,
+	secure: false
+};
 
 function checkCanSimulate(locals: App.Locals): boolean {
 	// Si une simulation est déjà en cours, l'utilisateur a déjà été validé administrateur
@@ -32,7 +38,7 @@ export const GET: RequestHandler = async ({ url, locals, cookies }) => {
 
 	// La réinitialisation vers le profil réel est TOUJOURS autorisée sans condition
 	if (role === 'RESET') {
-		cookies.delete('iris_simulate_role', { path: '/' });
+		cookies.delete('iris_simulate_role', SIMULATE_COOKIE_OPTIONS);
 		throw redirect(303, '/tables-diverses');
 	}
 
@@ -42,10 +48,7 @@ export const GET: RequestHandler = async ({ url, locals, cookies }) => {
 
 	if (VALID_ROLES.includes(role)) {
 		cookies.set('iris_simulate_role', role, {
-			path: '/',
-			httpOnly: true,
-			sameSite: 'lax',
-			secure: false,
+			...SIMULATE_COOKIE_OPTIONS,
 			maxAge: 60 * 60 * 4 // 4 heures
 		});
 	}
@@ -59,7 +62,7 @@ export const POST: RequestHandler = async ({ request, locals, cookies }) => {
 
 	// La réinitialisation est TOUJOURS autorisée
 	if (role === 'RESET') {
-		cookies.delete('iris_simulate_role', { path: '/' });
+		cookies.delete('iris_simulate_role', SIMULATE_COOKIE_OPTIONS);
 		return json({
 			success: true,
 			simulatedRole: null,
@@ -79,10 +82,7 @@ export const POST: RequestHandler = async ({ request, locals, cookies }) => {
 	}
 
 	cookies.set('iris_simulate_role', role, {
-		path: '/',
-		httpOnly: true,
-		sameSite: 'lax',
-		secure: false,
+		...SIMULATE_COOKIE_OPTIONS,
 		maxAge: 60 * 60 * 4 // 4 heures
 	});
 

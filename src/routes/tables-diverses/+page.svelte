@@ -207,18 +207,15 @@
 		const currentRole = data.simulatedRole;
 		if (currentRole !== prevSimulatedRole) {
 			prevSimulatedRole = currentRole;
-			if (currentRole && !data.permissions?.allTablesAllowed) {
-				selectedScope = 'mine';
-			} else {
-				selectedScope = 'all';
-			}
+			selectedScope = 'all';
+			selectedCategory = 'all';
 		}
 	});
 
 	// Filtres et affichage
 	let searchInputRef = $state<HTMLInputElement | null>(null);
 	let searchTerm = $state('');
-	let selectedScope = $state<'all' | 'mine' | 'valdepharm' | 'standard'>('all');
+	let selectedScope = $state<'all' | 'valdepharm' | 'standard'>('all');
 	let selectedCategory = $state<string>('all');
 	let hideEmptyTables = $state<boolean>(true);
 	let viewMode = $state<'table' | 'grid'>('table');
@@ -229,32 +226,28 @@
 	let pageSize = $state<number>(25);
 	let currentPage = $state<number>(1);
 
-	const allCategories = [
-		'Toutes les catégories',
-		'Valdepharm - Spécifique Site',
-		'Valdepharm - Production & Tolling',
-		'Fiscalité & Taxes',
-		'Finances & Règlements',
-		'Stocks & Flux',
-		'Tiers & Ventes',
-		'Qualité & Contrôle',
-		'Comptabilité & Banque',
-		'CRM & Services',
-		'Immobilisations',
-		'Administration & Workflow',
-		'Standard X3 - Général'
-	];
+	const isRestrictedBusinessProfile = $derived(
+		Boolean(
+			data.user &&
+				!data.permissions?.allTablesAllowed &&
+				(data.permissions?.allowedTables || []).length > 0
+		)
+	);
 
-	// Métriques globales
+	// Catégories dynamiquement présentes dans les tables visibles (ne dévoile pas les autres domaines aux profils restreints)
+	const availableCategories = $derived.by(() => {
+		const present = Array.from(new Set(tables.map((t) => t.category))).sort((a, b) =>
+			a.localeCompare(b, 'fr')
+		);
+		return ['Toutes les catégories', ...present];
+	});
+
+	// Métriques sur le périmètre visible
 	const totalTablesCount = $derived(tables.length);
 	const valdepharmCount = $derived(tables.filter((t) => t.numtab >= 1000).length);
 	const standardCount = $derived(tables.filter((t) => t.numtab < 1000).length);
 	const nonEmptyTablesCount = $derived(tables.filter((t) => (t.items?.length || 0) > 0).length);
-	const totalItemsCount = $derived(
-		tables.reduce((sum, t) => sum + (t.items ? t.items.length : 0), 0)
-	);
 
-	// Métriques adaptées au profil connecté
 	const myAllowedTablesList = $derived(
 		tables.filter((t) => (data.permissions?.allowedTables || []).includes(t.numtab))
 	);
@@ -301,20 +294,16 @@
 	const filteredTables = $derived.by(() => {
 		let list = tables;
 
-		if (selectedScope === 'mine') {
-			list = list.filter(
-				(t) =>
-					data.permissions?.allTablesAllowed ||
-					(data.permissions?.allowedTables || []).includes(t.numtab)
-			);
-		} else if (selectedScope === 'valdepharm') {
-			list = list.filter((t) => t.numtab >= 1000);
-		} else if (selectedScope === 'standard') {
-			list = list.filter((t) => t.numtab < 1000);
-		}
+		if (!isRestrictedBusinessProfile) {
+			if (selectedScope === 'valdepharm') {
+				list = list.filter((t) => t.numtab >= 1000);
+			} else if (selectedScope === 'standard') {
+				list = list.filter((t) => t.numtab < 1000);
+			}
 
-		if (hideEmptyTables && selectedScope !== 'mine') {
-			list = list.filter((t) => (t.items?.length || 0) > 0);
+			if (hideEmptyTables) {
+				list = list.filter((t) => (t.items?.length || 0) > 0);
+			}
 		}
 
 		if (selectedCategory !== 'all' && selectedCategory !== 'Toutes les catégories') {
@@ -450,60 +439,18 @@
 		<!-- EN-TÊTE COMPACT & UNIFIÉ -->
 		<section class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
 			<div class="px-5 pt-4 pb-3 space-y-3">
-				<!-- Ligne 1 : Titre + Indicateurs synthétiques -->
-				<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
-					<div class="space-y-1">
-						<div class="flex flex-wrap items-center gap-2">
-							<h1 class="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-950">
-								Tables Diverses & Référentiels
-							</h1>
-							{#if isLive}
-								<span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-[11px] font-bold text-emerald-800">
-									<span class="size-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-									LIVE SANDBOX
-								</span>
-							{:else}
-								<span class="inline-flex items-center gap-1.5 rounded-full bg-slate-100 border border-slate-200 px-2.5 py-0.5 text-[11px] font-semibold text-slate-600">
-									Cache hors ligne
-								</span>
-							{/if}
-						</div>
+				<!-- Ligne 1 : Titre + Demander une table -->
+				<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+					<div class="space-y-0.5">
+						<h1 class="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-950">
+							Tables Diverses & Référentiels
+						</h1>
 						<p class="text-xs text-slate-500">
 							Référentiels Sage X3 (fonction GESTDU) — consultez, recherchez et enrichissez vos listes de valeurs.
 						</p>
 					</div>
 
-					<!-- KPI compacts en ligne + Demander une table -->
-					<div class="flex flex-wrap items-center gap-2 shrink-0">
-						{#if data.user && !data.permissions?.allTablesAllowed && (data.permissions?.allowedTables || []).length > 0}
-							<div class="flex items-center gap-3 rounded-xl border border-corporate-200 bg-corporate-50 px-3 py-1.5">
-								<span class="text-[11px] font-semibold text-corporate-800">Autorisées</span>
-								<span class="text-sm font-extrabold text-corporate-900">
-									{(data.permissions.allowedTables || []).length}
-								</span>
-							</div>
-							<div class="flex items-center gap-3 rounded-xl border border-emerald-200 bg-emerald-50/70 px-3 py-1.5">
-								<span class="text-[11px] font-semibold text-emerald-800">Renseignées</span>
-								<span class="text-sm font-extrabold text-emerald-950">
-									{myNonEmptyTablesCount} / {(data.permissions.allowedTables || []).length}
-								</span>
-							</div>
-						{:else}
-							<div class="flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs">
-								<span class="text-slate-500 font-medium">Tables</span>
-								<span class="font-extrabold text-slate-900">{totalTablesCount}</span>
-							</div>
-							<div class="flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50/60 px-3 py-1.5 text-xs">
-								<span class="text-emerald-800 font-medium">Actives</span>
-								<span class="font-extrabold text-emerald-950">{nonEmptyTablesCount}</span>
-								<span class="text-[11px] text-emerald-700 font-medium">({totalItemsCount} val.)</span>
-							</div>
-							<div class="flex items-center gap-2 rounded-xl border border-amber-200 bg-amber-50/70 px-3 py-1.5 text-xs">
-								<span class="text-amber-800 font-medium">Valdepharm</span>
-								<span class="font-extrabold text-amber-950">{valdepharmCount}</span>
-							</div>
-						{/if}
-
+					<div class="flex items-center gap-2 shrink-0">
 						<a
 							href={newTableMailHref}
 							class="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 hover:border-corporate-400 hover:text-corporate-700 transition shadow-sm"
@@ -563,9 +510,9 @@
 										<option value="RESET">Mon compte IT réel (Accès total)</option>
 										<option value="AQ">Assurance Qualité - AQ (13 tables)</option>
 										<option value="PESEE">Atelier Pesée & Fabrication (4 tables)</option>
-										<option value="MAGASIN">Magasin & Stocks (3 tables)</option>
-										<option value="ACHATS">Achats & Approvisionnements (2 tables)</option>
-										<option value="FINANCE">Comptabilité & Finance (3 tables)</option>
+										<option value="MAGASIN">Magasin & Stocks (6 tables)</option>
+										<option value="ACHATS">Achats & Approvisionnements (6 tables)</option>
+										<option value="FINANCE">Comptabilité & Finance (9 tables)</option>
 										<option value="READONLY">Visiteur sans droit (Consultation seule)</option>
 									</select>
 								</div>
@@ -718,69 +665,62 @@
 					</div>
 
 					<div class="flex flex-wrap items-center justify-between gap-2.5 text-xs">
-						<!-- Périmètre -->
-						<div class="flex flex-wrap items-center gap-1 rounded-xl border border-slate-200 bg-slate-100 p-0.5">
-							{#if data.user && !data.permissions?.allTablesAllowed && (data.permissions?.allowedTables || []).length > 0}
+						{#if !isRestrictedBusinessProfile}
+							<!-- Périmètre (Administrateur / Consultation globale uniquement) -->
+							<div class="flex flex-wrap items-center gap-1 rounded-xl border border-slate-200 bg-slate-100 p-0.5">
 								<button
 									type="button"
-									class="rounded-lg px-3 py-1 font-bold transition {selectedScope === 'mine'
-										? 'bg-corporate-700 text-white shadow-sm'
-										: 'text-corporate-800 hover:bg-corporate-100/70'}"
-									onclick={() => (selectedScope = 'mine')}
+									class="rounded-lg px-3 py-1 font-bold transition {selectedScope === 'all'
+										? 'bg-slate-900 text-white shadow-sm'
+										: 'text-slate-700 hover:bg-slate-200/70'}"
+									onclick={() => (selectedScope = 'all')}
 								>
-									Mes tables ({(data.permissions?.allowedTables || []).length})
+									Toutes ({totalTablesCount})
 								</button>
-							{/if}
-							<button
-								type="button"
-								class="rounded-lg px-3 py-1 font-bold transition {selectedScope === 'all'
-									? 'bg-slate-900 text-white shadow-sm'
-									: 'text-slate-700 hover:bg-slate-200/70'}"
-								onclick={() => (selectedScope = 'all')}
-							>
-								Toutes ({totalTablesCount})
-							</button>
-							<button
-								type="button"
-								class="rounded-lg px-3 py-1 font-bold transition {selectedScope === 'valdepharm'
-									? 'bg-amber-600 text-white shadow-sm'
-									: 'text-amber-900 hover:bg-amber-100'}"
-								onclick={() => (selectedScope = 'valdepharm')}
-							>
-								Valdepharm ({valdepharmCount})
-							</button>
-							<button
-								type="button"
-								class="rounded-lg px-3 py-1 font-bold transition {selectedScope === 'standard'
-									? 'bg-blue-600 text-white shadow-sm'
-									: 'text-blue-900 hover:bg-blue-100'}"
-								onclick={() => (selectedScope = 'standard')}
-							>
-								Standard X3 ({standardCount})
-							</button>
-						</div>
+								<button
+									type="button"
+									class="rounded-lg px-3 py-1 font-bold transition {selectedScope === 'valdepharm'
+										? 'bg-amber-600 text-white shadow-sm'
+										: 'text-amber-900 hover:bg-amber-100'}"
+									onclick={() => (selectedScope = 'valdepharm')}
+								>
+									Valdepharm ({valdepharmCount})
+								</button>
+								<button
+									type="button"
+									class="rounded-lg px-3 py-1 font-bold transition {selectedScope === 'standard'
+										? 'bg-blue-600 text-white shadow-sm'
+										: 'text-blue-900 hover:bg-blue-100'}"
+									onclick={() => (selectedScope = 'standard')}
+								>
+									Standard X3 ({standardCount})
+								</button>
+							</div>
+						{:else}
+							<div class="inline-flex items-center gap-1.5 rounded-lg border border-corporate-200 bg-corporate-50 px-3 py-1 text-corporate-800 font-semibold text-xs">
+								<ShieldCheck class="size-3.5 text-corporate-700 shrink-0" />
+								<span>Périmètre {data.permissions.roleLabel} ({totalTablesCount} tables)</span>
+							</div>
+						{/if}
 
 						<!-- Domaine + Masquer vides + Réinitialiser + Vue -->
 						<div class="flex flex-wrap items-center gap-2 ml-auto">
-							<select
-								id="catSelect"
-								aria-label="Filtrer par domaine"
-								class="rounded-lg border border-slate-300 bg-white px-2.5 py-1.5 text-xs font-semibold text-slate-800 outline-none focus:border-corporate-600"
-								bind:value={selectedCategory}
-							>
-								{#each allCategories as cat}
-									<option value={cat === 'Toutes les catégories' ? 'all' : cat}>
-										{cat}
-									</option>
-								{/each}
-							</select>
+							{#if availableCategories.length > 2}
+								<select
+									id="catSelect"
+									aria-label="Filtrer par domaine"
+									class="rounded-lg border border-slate-300 bg-white px-2.5 py-1.5 text-xs font-semibold text-slate-800 outline-none focus:border-corporate-600"
+									bind:value={selectedCategory}
+								>
+									{#each availableCategories as cat}
+										<option value={cat === 'Toutes les catégories' ? 'all' : cat}>
+											{cat}
+										</option>
+									{/each}
+								</select>
+							{/if}
 
-							{#if selectedScope === 'mine'}
-								<span class="inline-flex items-center gap-1 rounded-lg border border-corporate-200 bg-corporate-50 px-2.5 py-1.5 text-corporate-800 font-semibold text-[11px]">
-									<ShieldCheck class="size-3.5 text-corporate-700 shrink-0" />
-									<span>Périmètre complet ({myAllowedTablesList.length})</span>
-								</span>
-							{:else}
+							{#if !isRestrictedBusinessProfile}
 								<label class="inline-flex items-center gap-1.5 cursor-pointer select-none rounded-lg border border-slate-300 bg-white px-2.5 py-1.5 text-slate-700 font-semibold hover:bg-slate-50 transition">
 									<input
 										type="checkbox"
@@ -836,11 +776,15 @@
 				<!-- Résumé résultats & pagination compacte -->
 				<div class="flex flex-wrap items-center justify-between gap-2 px-1 text-xs text-slate-600">
 					<div>
-						{#if selectedScope === 'mine'}
-							<span class="font-bold text-slate-900">{filteredTables.length} table(s) autorisée(s)</span>
-							<span class="text-slate-500">
-								({myNonEmptyTablesCount} avec valeurs, {myEmptyTablesCount} vide à renseigner)
-							</span>
+						{#if isRestrictedBusinessProfile}
+							<span class="font-bold text-slate-900">{filteredTables.length} table(s) attribuée(s)</span>
+							{#if searchTerm.trim()}
+								<span>pour « <strong class="text-corporate-700">{searchTerm.trim()}</strong> »</span>
+							{:else if myEmptyTablesCount > 0}
+								<span class="text-slate-500">
+									({myNonEmptyTablesCount} avec valeurs, {myEmptyTablesCount} vide à renseigner)
+								</span>
+							{/if}
 						{:else}
 							<span class="font-bold text-slate-900">{filteredTables.length} table(s)</span>
 							{#if searchTerm.trim()}

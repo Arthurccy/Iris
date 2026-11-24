@@ -6,6 +6,12 @@ export const load: PageServerLoad = async ({ locals }) => {
 	const { isLive, tables } = await getLiveOrCachedTables();
 
 	const isAdmin = Boolean(locals.permissions?.allTablesAllowed);
+	const allowedTables = locals.permissions?.allowedTables || [];
+	const visibleTables =
+		locals.user && !isAdmin && allowedTables.length > 0
+			? tables.filter((t) => allowedTables.includes(t.numtab))
+			: tables;
+
 	const auditLogs = locals.user
 		? await getAuditLogs({
 				username: locals.user.sAMAccountName,
@@ -33,7 +39,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 
 	return {
 		isLive,
-		tables,
+		tables: visibleTables,
 		auditLogs,
 		user: locals.user
 			? {
