@@ -174,17 +174,8 @@
 		}
 	}
 
-	async function handleSimulateRole(role: string) {
-		try {
-			await fetch('/api/auth/simulate', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ role })
-			});
-			await invalidateAll();
-		} catch (e) {
-			console.error(e);
-		}
+	function handleSimulateRole(role: string) {
+		window.location.href = `/api/auth/simulate?role=${encodeURIComponent(role)}`;
 	}
 
 	let prevSimulatedRole: string | null = null;
@@ -242,6 +233,17 @@
 		tables.reduce((sum, t) => sum + (t.items ? t.items.length : 0), 0)
 	);
 
+	// Métriques adaptées au profil connecté
+	const myAllowedTablesList = $derived(
+		tables.filter((t) => (data.permissions?.allowedTables || []).includes(t.numtab))
+	);
+	const myNonEmptyTablesCount = $derived(
+		myAllowedTablesList.filter((t) => (t.items?.length || 0) > 0).length
+	);
+	const myEmptyTablesCount = $derived(
+		myAllowedTablesList.length - myNonEmptyTablesCount
+	);
+
 	// Couleurs contrastées par domaine
 	function getCategoryBadge(category: string) {
 		switch (category) {
@@ -280,8 +282,8 @@
 			list = list.filter((t) => t.numtab < 1000);
 		}
 
-		// 2. Masquer les tables vides
-		if (hideEmptyTables) {
+		// 2. Masquer les tables vides (ne s'applique que hors "Mes tables autorisées" afin de garantir la visibilité de toutes les tables attribuées au profil)
+		if (hideEmptyTables && selectedScope !== 'mine') {
 			list = list.filter((t) => (t.items?.length || 0) > 0);
 		}
 
@@ -417,29 +419,51 @@
 
 				<!-- Compteurs clés en cartes à fort contraste -->
 				<div class="flex flex-wrap items-center gap-3 shrink-0">
-					<!-- Carte Total -->
-					<div class="flex items-center gap-3 rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5 shadow-2xs">
-						<div>
-							<div class="text-[10px] uppercase font-bold tracking-wider text-slate-500">Total Tables</div>
-							<div class="text-base font-extrabold text-slate-950">{totalTablesCount}</div>
+					{#if data.user && !data.permissions?.allTablesAllowed && (data.permissions?.allowedTables || []).length > 0}
+						<!-- Mode Métier / Restreint : Compteurs adaptés au profil utilisateur -->
+						<div class="flex items-center gap-3 rounded-xl border-2 border-corporate-400 bg-corporate-50 px-3.5 py-2.5 shadow-2xs">
+							<div>
+								<div class="text-[10px] uppercase font-bold tracking-wider text-corporate-900">Tables autorisées ({data.permissions.roleLabel.split(' ')[0]})</div>
+								<div class="text-base font-extrabold text-corporate-950">{(data.permissions.allowedTables || []).length} <span class="text-xs font-semibold text-corporate-800">en édition</span></div>
+							</div>
 						</div>
-					</div>
 
-					<!-- Carte Avec Données -->
-					<div class="flex items-center gap-3 rounded-xl border border-emerald-300 bg-emerald-50/70 px-3.5 py-2.5 shadow-2xs">
-						<div>
-							<div class="text-[10px] uppercase font-bold tracking-wider text-emerald-800">Avec Données</div>
-							<div class="text-base font-extrabold text-emerald-950">{nonEmptyTablesCount} <span class="text-xs font-semibold text-emerald-800">({totalItemsCount} val.)</span></div>
+						<div class="flex items-center gap-3 rounded-xl border border-emerald-300 bg-emerald-50/70 px-3.5 py-2.5 shadow-2xs">
+							<div>
+								<div class="text-[10px] uppercase font-bold tracking-wider text-emerald-800">Avec Données</div>
+								<div class="text-base font-extrabold text-emerald-950">{myNonEmptyTablesCount} <span class="text-xs font-semibold text-emerald-800">/ {(data.permissions.allowedTables || []).length} tables</span></div>
+							</div>
 						</div>
-					</div>
 
-					<!-- Carte Spécifique Valdepharm -->
-					<div class="flex items-center gap-3 rounded-xl border border-amber-400 bg-amber-50/80 px-3.5 py-2.5 shadow-2xs">
-						<div>
-							<div class="text-[10px] uppercase font-bold tracking-wider text-amber-800">Valdepharm (Site)</div>
-							<div class="text-base font-extrabold text-amber-950">{valdepharmCount} <span class="text-xs font-semibold text-amber-800">tables</span></div>
+						<div class="flex items-center gap-3 rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5 shadow-2xs">
+							<div>
+								<div class="text-[10px] uppercase font-bold tracking-wider text-slate-500">Autres Tables X3</div>
+								<div class="text-base font-extrabold text-slate-950">{totalTablesCount - (data.permissions.allowedTables || []).length} <span class="text-xs font-semibold text-slate-600">consultation</span></div>
+							</div>
 						</div>
-					</div>
+					{:else}
+						<!-- Mode Administrateur / Visiteur global -->
+						<div class="flex items-center gap-3 rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5 shadow-2xs">
+							<div>
+								<div class="text-[10px] uppercase font-bold tracking-wider text-slate-500">Total Tables</div>
+								<div class="text-base font-extrabold text-slate-950">{totalTablesCount}</div>
+							</div>
+						</div>
+
+						<div class="flex items-center gap-3 rounded-xl border border-emerald-300 bg-emerald-50/70 px-3.5 py-2.5 shadow-2xs">
+							<div>
+								<div class="text-[10px] uppercase font-bold tracking-wider text-emerald-800">Avec Données</div>
+								<div class="text-base font-extrabold text-emerald-950">{nonEmptyTablesCount} <span class="text-xs font-semibold text-emerald-800">({totalItemsCount} val.)</span></div>
+							</div>
+						</div>
+
+						<div class="flex items-center gap-3 rounded-xl border border-amber-400 bg-amber-50/80 px-3.5 py-2.5 shadow-2xs">
+							<div>
+								<div class="text-[10px] uppercase font-bold tracking-wider text-amber-800">Valdepharm (Site)</div>
+								<div class="text-base font-extrabold text-amber-950">{valdepharmCount} <span class="text-xs font-semibold text-amber-800">tables</span></div>
+							</div>
+						</div>
+					{/if}
 
 					<!-- Bouton Nouvelle table -->
 					<a
@@ -530,14 +554,13 @@
 									</div>
 								</div>
 							</div>
-							<button
-								type="button"
-								class="inline-flex items-center gap-1.5 rounded-lg bg-amber-700 hover:bg-amber-800 text-white font-bold text-xs px-3 py-1.5 shadow-2xs transition shrink-0"
-								onclick={() => handleSimulateRole('RESET')}
+							<a
+								href="/api/auth/simulate?role=RESET"
+								class="inline-flex items-center gap-1.5 rounded-lg bg-amber-700 hover:bg-amber-800 text-white font-bold text-xs px-3.5 py-1.5 shadow-2xs transition shrink-0 cursor-pointer no-underline"
 							>
-								<X class="size-3.5" />
+								<X class="size-3.5 text-white" />
 								<span>Rétablir mon profil IT réel</span>
-							</button>
+							</a>
 						</div>
 					{/if}
 				{:else}
@@ -716,14 +739,21 @@
 					</div>
 
 					<!-- Option : Masquer les tables vides -->
-					<label class="inline-flex items-center gap-2 cursor-pointer select-none rounded-lg border border-slate-300 bg-slate-50 px-2.5 py-1.5 text-slate-800 font-bold hover:bg-slate-100 transition shadow-2xs">
-						<input
-							type="checkbox"
-							class="size-4 rounded border-slate-400 text-corporate-700 focus:ring-corporate-500"
-							bind:checked={hideEmptyTables}
-						/>
-						<span>Masquer les tables vides ({totalTablesCount - nonEmptyTablesCount})</span>
-					</label>
+					{#if selectedScope === 'mine'}
+						<div class="inline-flex items-center gap-1.5 rounded-lg border border-corporate-200 bg-corporate-50/70 px-2.5 py-1.5 text-corporate-950 font-bold text-xs shadow-2xs">
+							<ShieldCheck class="size-3.5 text-corporate-700 shrink-0" />
+							<span>Périmètre complet ({myAllowedTablesList.length} tables métier)</span>
+						</div>
+					{:else}
+						<label class="inline-flex items-center gap-2 cursor-pointer select-none rounded-lg border border-slate-300 bg-slate-50 px-2.5 py-1.5 text-slate-800 font-bold hover:bg-slate-100 transition shadow-2xs">
+							<input
+								type="checkbox"
+								class="size-4 rounded border-slate-400 text-corporate-700 focus:ring-corporate-500"
+								bind:checked={hideEmptyTables}
+							/>
+							<span>Masquer les tables vides ({totalTablesCount - nonEmptyTablesCount})</span>
+						</label>
+					{/if}
 
 					<!-- Bascule Vue Tableau vs Vue Cartes -->
 					<div class="flex items-center gap-1.5 ml-auto">
@@ -762,12 +792,17 @@
 		<!-- Barre de statut des résultats & Pagination supérieure -->
 		<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 px-1 text-xs text-slate-700">
 			<div class="font-medium">
-				<span class="font-extrabold text-slate-950 text-sm">{filteredTables.length} table(s)</span>
-				{#if searchTerm}
-					<span>correspondant à "<strong class="text-corporate-700">{searchTerm}</strong>"</span>
-				{/if}
-				{#if hideEmptyTables && !searchTerm}
-					<span class="text-slate-500 font-normal">(tables avec valeurs uniquement)</span>
+				{#if selectedScope === 'mine'}
+					<span class="font-extrabold text-slate-950 text-sm">{filteredTables.length} table(s) autorisée(s)</span>
+					<span class="text-slate-600 font-medium">({myNonEmptyTablesCount} avec valeurs, {myEmptyTablesCount} vide à renseigner)</span>
+				{:else}
+					<span class="font-extrabold text-slate-950 text-sm">{filteredTables.length} table(s)</span>
+					{#if searchTerm}
+						<span>correspondant à "<strong class="text-corporate-700">{searchTerm}</strong>"</span>
+					{/if}
+					{#if hideEmptyTables && !searchTerm}
+						<span class="text-slate-500 font-normal">(tables avec valeurs uniquement)</span>
+					{/if}
 				{/if}
 			</div>
 
@@ -899,7 +934,7 @@
 									<!-- Nombre d'entrées -->
 									<td class="py-2.5 px-4 text-center font-mono">
 										{#if count === 0}
-											<span class="text-[11px] text-slate-400 font-semibold italic">Vide</span>
+											<span class="inline-flex items-center text-[11px] font-bold text-amber-900 bg-amber-100 border border-amber-300 rounded px-2 py-0.5">0 (Vide)</span>
 										{:else}
 											<span class="inline-flex items-center justify-center font-extrabold text-xs rounded-full bg-slate-900 text-white px-2.5 py-0.5 shadow-2xs">
 												{count}

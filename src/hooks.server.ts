@@ -15,9 +15,14 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const isRealAdmin = Boolean(
 		realUser &&
 			(realUser.isAdmin ||
-				['frvdr_it', 'frvdr_support-informatique', 'frvdr_app_mnc_serviceadmins'].some((g) =>
-					(realUser.groups || []).map((x) => x.toLowerCase()).includes(g)
-				))
+				(realUser.department || '').toLowerCase().includes('informatique') ||
+				[
+					'frvdr_it',
+					'frvdr_support-informatique',
+					'frvdr_app_mnc_serviceadmins',
+					'frv_vdr_it_admin',
+					'frv_vdr_admin_sage'
+				].some((g) => (realUser.groups || []).map((x) => x.toLowerCase()).includes(g)))
 	);
 
 	if (isRealAdmin && simulatedRole && simulatedRole !== 'RESET') {
