@@ -16,17 +16,25 @@
 		Grid,
 		Layers,
 		List,
+		Loader2,
+		Lock,
+		LogIn,
+		LogOut,
 		Mail,
 		Plus,
 		Search,
 		Server,
+		ShieldAlert,
+		ShieldCheck,
 		SlidersHorizontal,
 		Table as TableIcon,
+		User,
 		X
 	} from 'lucide-svelte';
 	import type { PageData } from './$types';
 	import type { MiscTableDefinition } from '$lib/types';
 	import MiscTableDetailModal from '$lib/components/MiscTableDetailModal.svelte';
+	import { invalidateAll } from '$app/navigation';
 
 	let { data }: { data: PageData } = $props();
 
@@ -34,9 +42,54 @@
 	const isLive = $derived(data.isLive ?? false);
 	const fallbackMailbox = '3636.valdepharm@fareva.com';
 
+	// Authentification Active Directory
+	let isLoginModalOpen = $state(false);
+	let loginUsername = $state('');
+	let loginPassword = $state('');
+	let loginError = $state<string | null>(null);
+	let isLoggingIn = $state(false);
+
+	async function handleLoginSubmit(e: SubmitEvent) {
+		e.preventDefault();
+		loginError = null;
+		isLoggingIn = true;
+
+		try {
+			const res = await fetch('/api/auth/login', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					username: loginUsername.trim(),
+					password: loginPassword
+				})
+			});
+			const result = await res.json();
+			if (!res.ok || !result.success) {
+				loginError = result.error || 'Identifiant Windows ou mot de passe incorrect.';
+				return;
+			}
+			isLoginModalOpen = false;
+			loginPassword = '';
+			await invalidateAll();
+		} catch (err: any) {
+			loginError = err.message || 'Erreur réseau lors de la communication Active Directory.';
+		} finally {
+			isLoggingIn = false;
+		}
+	}
+
+	async function handleLogout() {
+		try {
+			await fetch('/api/auth/logout', { method: 'POST' });
+			await invalidateAll();
+		} catch (e) {
+			console.error(e);
+		}
+	}
+
 	// Filtres et affichage
 	let searchTerm = $state('');
-	let selectedScope = $state<'all' | 'valdepharm' | 'standard'>('all');
+	let selectedScope = $state<'all' | 'mine' | 'valdepharm' | 'standard'>('all');
 	let selectedCategory = $state<string>('all');
 	let hideEmptyTables = $state<boolean>(true);
 	let viewMode = $state<'table' | 'grid'>('table');
@@ -106,7 +159,9 @@
 		let list = tables;
 
 		// 1. Périmètre (Scope)
-		if (selectedScope === 'valdepharm') {
+		if (selectedScope === 'mine') {
+			list = list.filter((t) => data.permissions?.allTablesAllowed || (data.permissions?.allowedTables || []).includes(t.numtab));
+		} else if (selectedScope === 'valdepharm') {
 			list = list.filter((t) => t.numtab >= 1000);
 		} else if (selectedScope === 'standard') {
 			list = list.filter((t) => t.numtab < 1000);
@@ -284,8 +339,69 @@
 				</div>
 			</div>
 
+			<!-- Barre d'authentification Windows / Active Directory (Fareva) -->
+			<div class="mt-4 pt-4 border-t border-slate-200">
+				{#if data.user}
+					<div class="flex flex-wrap items-center justify-between gap-3 rounded-xl bg-corporate-50/80 border border-corporate-200 px-4 py-2.5">
+						<div class="flex items-center gap-3">
+							<div class="size-8 rounded-full bg-corporate-700 text-white flex items-center justify-center font-bold text-xs shadow-2xs">
+								{data.user.displayName ? data.user.displayName.charAt(0).toUpperCase() : 'U'}
+							</div>
+							<div>
+								<div class="flex items-center gap-2">
+									<span class="text-xs font-bold text-slate-950">{data.user.displayName}</span>
+									{#if data.user.department}
+										<span class="text-[11px] text-slate-500 font-semibold">({data.user.department})</span>
+									{/if}
+									<span class="rounded bg-corporate-200 text-corporate-950 px-2 py-0.5 text-[10px] font-extrabold tracking-wide">
+										{data.permissions.roleLabel}
+									</span>
+								</div>
+								<div class="text-[11px] text-slate-600 font-medium">
+									{#if data.permissions.allTablesAllowed}
+										Habilitation totale : modification autorisée sur l'ensemble des {totalTablesCount} tables diverses.
+									{:else if (data.permissions.allowedTables || []).length > 0}
+										Habilitation métier active : modification autorisée sur {(data.permissions.allowedTables || []).length} tables spécifiques.
+									{:else}
+										Session active en consultation seule (droits de modification non configurés pour ce profil).
+									{/if}
+								</div>
+							</div>
+						</div>
+						<div class="flex items-center gap-2">
+							<button
+								type="button"
+								onclick={handleLogout}
+								class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-rose-700 bg-white border border-slate-300 hover:border-rose-300 px-3 py-1.5 rounded-lg shadow-2xs transition"
+							>
+								<LogOut class="size-3.5" />
+								<span>Déconnexion</span>
+							</button>
+						</div>
+					</div>
+				{:else}
+					<div class="flex flex-wrap items-center justify-between gap-3 rounded-xl bg-slate-50 border border-slate-300 px-4 py-2.5">
+						<div class="flex items-center gap-2.5">
+							<ShieldAlert class="size-5 text-amber-600 shrink-0" />
+							<div>
+								<div class="text-xs font-bold text-slate-900">Session non authentifiée (Mode consultation seule)</div>
+								<div class="text-[11px] text-slate-600">Connectez-vous avec votre compte Windows (Active Directory Fareva) pour déverrouiller l'ajout et la modification de vos tables.</div>
+							</div>
+						</div>
+						<button
+							type="button"
+							onclick={() => (isLoginModalOpen = true)}
+							class="inline-flex items-center gap-1.5 rounded-lg bg-corporate-700 hover:bg-corporate-800 text-white font-bold text-xs px-3.5 py-2 shadow-2xs transition shrink-0"
+						>
+							<LogIn class="size-3.5" />
+							<span>Connexion Windows</span>
+						</button>
+					</div>
+				{/if}
+			</div>
+
 			<!-- Barre d'outils, Recherche et Filtres -->
-			<div class="mt-5 pt-4 border-t border-slate-200 flex flex-col gap-3.5">
+			<div class="mt-4 pt-3 flex flex-col gap-3.5">
 				<!-- Ligne 1 : Champ de recherche avec contraste fort -->
 				<div class="relative w-full">
 					<Search class="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-slate-500" />
@@ -312,6 +428,19 @@
 					
 					<!-- Segmented control de périmètre avec couleurs affirmées -->
 					<div class="flex items-center gap-1 rounded-xl border border-slate-300 bg-slate-200/70 p-1">
+						{#if data.user}
+							<button
+								type="button"
+								class="rounded-lg px-3.5 py-1.5 font-bold transition {
+									selectedScope === 'mine'
+										? 'bg-corporate-700 text-white shadow-xs'
+										: 'text-corporate-900 hover:bg-corporate-100'
+								}"
+								onclick={() => (selectedScope = 'mine')}
+							>
+								Mes tables ({data.permissions?.allTablesAllowed ? totalTablesCount : (data.permissions?.allowedTables || []).length})
+							</button>
+						{/if}
 						<button
 							type="button"
 							class="rounded-lg px-3.5 py-1.5 font-bold transition {
@@ -713,7 +842,101 @@
 			table={activeTable}
 			fallbackMailTo={fallbackMailbox}
 			{isLive}
+			user={data.user}
+			permissions={data.permissions}
 			onClose={closeTable}
 		/>
+	{/if}
+
+	<!-- Modal de Connexion Windows (Active Directory Fareva) -->
+	{#if isLoginModalOpen}
+		<div class="fixed inset-0 z-50 overflow-y-auto bg-slate-950/75 backdrop-blur-xs p-4 flex items-center justify-center">
+			<div class="relative w-full max-w-md rounded-2xl border-2 border-slate-300 bg-white p-6 shadow-2xl space-y-4">
+				<div class="flex items-center justify-between border-b border-slate-200 pb-3">
+					<div class="flex items-center gap-2.5">
+						<div class="size-8 rounded-lg bg-corporate-700 text-white flex items-center justify-center font-bold">
+							<Lock class="size-4" />
+						</div>
+						<div>
+							<h3 class="text-sm font-bold text-slate-950">Connexion Windows</h3>
+							<p class="text-[11px] text-slate-500 font-medium">Active Directory Fareva</p>
+						</div>
+					</div>
+					<button
+						type="button"
+						class="text-slate-400 hover:text-slate-700 p-1 rounded-lg"
+						onclick={() => (isLoginModalOpen = false)}
+					>
+						<X class="size-5" />
+					</button>
+				</div>
+
+				<p class="text-xs text-slate-600 leading-relaxed">
+					Saisissez vos identifiants de session Windows Fareva habituels (ex: <code>acourcha</code>) pour vous authentifier et déverrouiller vos habilitations sur les tables diverses.
+				</p>
+
+				{#if loginError}
+					<div class="rounded-xl border border-rose-300 bg-rose-50 p-3 text-xs text-rose-800 flex items-start gap-2">
+						<AlertCircle class="size-4 text-rose-600 shrink-0 mt-0.5" />
+						<span>{loginError}</span>
+					</div>
+				{/if}
+
+				<form onsubmit={handleLoginSubmit} class="space-y-3.5">
+					<div>
+						<label for="loginUser" class="block text-xs font-bold text-slate-900 mb-1">
+							Identifiant Windows <span class="text-rose-600">*</span>
+						</label>
+						<input
+							id="loginUser"
+							type="text"
+							class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
+							placeholder="Ex : acourcha ou arthur.courchay@fareva.com"
+							bind:value={loginUsername}
+							autocomplete="username"
+							required
+						/>
+					</div>
+
+					<div>
+						<label for="loginPass" class="block text-xs font-bold text-slate-900 mb-1">
+							Mot de passe de session <span class="text-rose-600">*</span>
+						</label>
+						<input
+							id="loginPass"
+							type="password"
+							class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
+							placeholder="••••••••••••"
+							bind:value={loginPassword}
+							autocomplete="current-password"
+							required
+						/>
+					</div>
+
+					<div class="pt-2 flex items-center justify-end gap-2.5">
+						<button
+							type="button"
+							class="rounded-xl border border-slate-300 px-3.5 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 transition"
+							onclick={() => (isLoginModalOpen = false)}
+						>
+							Annuler
+						</button>
+						<button
+							type="submit"
+							class="inline-flex items-center gap-1.5 rounded-xl bg-corporate-700 hover:bg-corporate-800 px-4 py-2 text-xs font-bold text-white shadow-xs transition disabled:opacity-50"
+							disabled={isLoggingIn}
+						>
+							{#if isLoggingIn}
+								<Loader2 class="size-3.5 animate-spin" />
+								<span>Vérification...</span>
+							{:else}
+								<LogIn class="size-3.5" />
+								<span>Se connecter</span>
+							{/if}
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
 	{/if}
 </div>

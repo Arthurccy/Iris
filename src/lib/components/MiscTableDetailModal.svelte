@@ -20,6 +20,20 @@
 		table: MiscTableDefinition;
 		fallbackMailTo?: string;
 		isLive?: boolean;
+		user?: {
+			sAMAccountName: string;
+			displayName: string;
+			mail: string;
+			department: string;
+			title: string;
+			isAdmin: boolean;
+		} | null;
+		permissions?: {
+			canEdit: boolean;
+			allowedTables: number[];
+			allTablesAllowed: boolean;
+			roleLabel: string;
+		};
 		onClose: () => void;
 	};
 
@@ -27,8 +41,20 @@
 		table,
 		fallbackMailTo = '3636.valdepharm@fareva.com',
 		isLive = false,
+		user = null,
+		permissions = { canEdit: false, allowedTables: [], allTablesAllowed: false, roleLabel: 'Non connecté' },
 		onClose
 	}: Props = $props();
+
+	const canEditCurrentTable = $derived(
+		permissions.allTablesAllowed || (permissions.allowedTables || []).includes(table.numtab)
+	);
+
+	const defaultRequester = $derived(
+		user
+			? `${user.displayName} (${user.department || user.mail || user.sAMAccountName})`
+			: ''
+	);
 
 	let itemSearch = $state('');
 	let formMode = $state<'none' | 'add' | 'edit'>('none');
@@ -127,22 +153,24 @@
 	);
 
 	function openAddForm() {
+		if (!canEditCurrentTable) return;
 		formMode = 'add';
 		formCode = '';
 		formShortLabel = '';
 		formLabel = '';
-		requesterName = '';
+		requesterName = defaultRequester;
 		formReason = '';
 		isConfirming = false;
 		submitResult = null;
 	}
 
 	function openEditForm(item: MiscTableItem) {
+		if (!canEditCurrentTable) return;
 		formMode = 'edit';
 		formCode = item.code;
 		formShortLabel = item.shortLabel || '';
 		formLabel = item.label || '';
-		requesterName = '';
+		requesterName = defaultRequester;
 		formReason = '';
 		isConfirming = false;
 		submitResult = null;
@@ -307,6 +335,17 @@
 							Standard Sage X3
 						</span>
 					{/if}
+					{#if canEditCurrentTable}
+						<span class="inline-flex items-center gap-1 rounded bg-emerald-100 text-emerald-950 border border-emerald-300 text-[11px] font-bold px-2 py-0.5 shadow-2xs">
+							<ShieldCheck class="size-3 text-emerald-700" />
+							Édition autorisée
+						</span>
+					{:else}
+						<span class="inline-flex items-center gap-1 rounded bg-slate-200 text-slate-800 text-[11px] font-bold px-2 py-0.5 shadow-2xs">
+							<Lock class="size-3 text-slate-600" />
+							Consultation seule
+						</span>
+					{/if}
 				</div>
 				<h2 class="text-lg sm:text-xl font-extrabold text-slate-950 leading-tight">{table.title}</h2>
 			</div>
@@ -352,14 +391,21 @@
 						<span class="text-xs font-semibold text-slate-600">
 							{filteredItems.length} entrée(s)
 						</span>
-						<button
-							type="button"
-							class="inline-flex items-center gap-1.5 rounded-xl bg-corporate-700 hover:bg-corporate-800 px-3.5 py-2 text-xs font-bold text-white shadow-xs transition"
-							onclick={openAddForm}
-						>
-							<Plus class="size-4" />
-							<span>Ajouter une valeur</span>
-						</button>
+						{#if canEditCurrentTable}
+							<button
+								type="button"
+								class="inline-flex items-center gap-1.5 rounded-xl bg-corporate-700 hover:bg-corporate-800 px-3.5 py-2 text-xs font-bold text-white shadow-xs transition"
+								onclick={openAddForm}
+							>
+								<Plus class="size-4" />
+								<span>Ajouter une valeur</span>
+							</button>
+						{:else}
+							<div class="inline-flex items-center gap-1.5 rounded-xl bg-slate-100 px-3 py-2 text-xs font-semibold text-slate-500 border border-slate-200">
+								<Lock class="size-3.5 text-slate-400" />
+								<span>Consultation seule</span>
+							</div>
+						{/if}
 					</div>
 				</div>
 
@@ -397,15 +443,17 @@
 										</td>
 										<td class="py-2 px-3 text-right">
 											<div class="inline-flex items-center gap-1.5">
-												<button
-													type="button"
-													class="inline-flex items-center gap-1 rounded-md border border-amber-300 bg-amber-50/80 px-2.5 py-1 text-[11px] font-bold text-amber-950 hover:bg-amber-100 shadow-2xs transition"
-													onclick={() => openEditForm(item)}
-													title="Modifier les libellés de cette valeur"
-												>
-													<Pencil class="size-3 text-amber-700" />
-													<span>Modifier</span>
-												</button>
+												{#if canEditCurrentTable}
+													<button
+														type="button"
+														class="inline-flex items-center gap-1 rounded-md border border-amber-300 bg-amber-50/80 px-2.5 py-1 text-[11px] font-bold text-amber-950 hover:bg-amber-100 shadow-2xs transition"
+														onclick={() => openEditForm(item)}
+														title="Modifier les libellés de cette valeur"
+													>
+														<Pencil class="size-3 text-amber-700" />
+														<span>Modifier</span>
+													</button>
+												{/if}
 
 												<button
 													type="button"
@@ -485,14 +533,31 @@
 										<label for="requesterName" class="block font-bold text-slate-900 mb-1">
 											Demandeur (Nom & Service) <span class="text-rose-600">*</span>
 										</label>
-										<input
-											id="requesterName"
-											type="text"
-											class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
-											placeholder="Ex : Alain Prost / Informatique"
-											bind:value={requesterName}
-											required
-										/>
+										{#if user}
+											<div class="space-y-1">
+												<input
+													id="requesterName"
+													type="text"
+													class="w-full rounded-xl border border-slate-300 bg-slate-100 px-3 py-2 text-xs font-bold text-slate-900 outline-none cursor-not-allowed shadow-inner"
+													value={requesterName}
+													readonly
+													disabled
+												/>
+												<div class="flex items-center gap-1 text-[10px] text-emerald-700 font-semibold">
+													<ShieldCheck class="size-3 text-emerald-600" />
+													<span>Identité certifiée Active Directory ({user.sAMAccountName})</span>
+												</div>
+											</div>
+										{:else}
+											<input
+												id="requesterName"
+												type="text"
+												class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-950 outline-none focus:border-corporate-600 focus:ring-2 focus:ring-corporate-100"
+												placeholder="Ex : Alain Prost / Informatique"
+												bind:value={requesterName}
+												required
+											/>
+										{/if}
 									</div>
 
 									<div>

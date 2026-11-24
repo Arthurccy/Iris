@@ -1,9 +1,10 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { getPool, getLastDbError, getTableColumns, buildSafeInsert } from '$lib/server/db';
+import { canUserEditTable } from '$lib/server/permissions';
 import { env } from '$env/dynamic/private';
 
-export const POST: RequestHandler = async ({ request }) => {
+export const POST: RequestHandler = async ({ request, locals }) => {
 	try {
 		const body = await request.json();
 		const { numtab, code, libelle_long, libelle_court, param_a1, param_n1, demandeur, motif } = body;
@@ -16,6 +17,18 @@ export const POST: RequestHandler = async ({ request }) => {
 		}
 
 		const cleanNumtab = parseInt(String(numtab), 10);
+
+		// Contrôle d'habilitation RBAC / Active Directory
+		const isAuthLdap = process.env.AUTH_MODE === 'ldap';
+		if (isAuthLdap && !canUserEditTable(locals.user, cleanNumtab)) {
+			return json(
+				{
+					error: `Accès refusé : vous devez être authentifié avec un compte Windows habilité pour ajouter des valeurs dans la table diverse #${cleanNumtab}.`
+				},
+				{ status: 403 }
+			);
+		}
+
 		const cleanCode = String(code).trim().toUpperCase().slice(0, 15);
 		const cleanLong = String(libelle_long).trim().slice(0, 30);
 		const cleanShort = String(libelle_court || cleanLong.slice(0, 12)).trim().slice(0, 12);
@@ -25,7 +38,9 @@ export const POST: RequestHandler = async ({ request }) => {
 		// On affecte l'identifiant applicatif IRIS (4 car.) pour éviter l'erreur SQL 8152 (String or binary data would be truncated).
 		const cleanUser = 'IRIS';
 		const cleanReason = String(motif || '').trim();
-		const cleanRequester = String(demandeur || 'IRIS').trim();
+		const cleanRequester = locals.user
+			? `${locals.user.displayName} (${locals.user.department || locals.user.mail || locals.user.sAMAccountName})`
+			: String(demandeur || 'IRIS').trim();
 
 		const schema = process.env.SAGE_DB_SCHEMA || env.SAGE_DB_SCHEMA || 'VDRSANDB';
 

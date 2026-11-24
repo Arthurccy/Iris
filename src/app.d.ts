@@ -1,5 +1,13 @@
+import type { LdapUser } from '$lib/server/ldap';
+import type { UserPermissions } from '$lib/server/permissions';
+
 declare global {
-	namespace App {}
+	namespace App {
+		interface Locals {
+			user: LdapUser | null;
+			permissions: UserPermissions;
+		}
+	}
 }
 
 export {};
